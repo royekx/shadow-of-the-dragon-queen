@@ -322,6 +322,13 @@ em     { font-style: italic; }
   transition: background var(--transition);
 }
 
+/* Link-specific styling */
+a.section-card {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .section-card::before {
   content: '';
   position: absolute;
@@ -336,14 +343,6 @@ em     { font-style: italic; }
 }
 .section-card:hover::before {
   background: var(--crimson);
-}
-
-a.section-card {
-  color: var(--text);
-  text-decoration: none;
-}
-a.section-card:hover {
-  color: var(--text);
 }
 
 .card-icon {
@@ -547,6 +546,16 @@ a.section-card:hover {
   padding: 2px var(--sp-3);
   white-space: nowrap;
   flex-shrink: 0;
+}
+
+.entry-portrait {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--crimson-dim);
+  filter: grayscale(45%) contrast(1.05);
 }
 
 .entry-title {
