@@ -40,15 +40,15 @@
   --font-body:      'Crimson Pro', 'Georgia', 'Times New Roman', serif;
 
   /* Type scale */
-  --sz-xs:   0.70rem;
-  --sz-sm:   0.85rem;
-  --sz-base: 1rem;
-  --sz-md:   1.15rem;
-  --sz-lg:   1.35rem;
-  --sz-xl:   1.65rem;
-  --sz-2xl:  2.10rem;
-  --sz-3xl:  2.80rem;
-  --sz-4xl:  3.80rem;
+  --sz-xs:   0.753rem;
+  --sz-sm:   0.914rem;
+  --sz-base: 1.075rem;
+  --sz-md:   1.236rem;
+  --sz-lg:   1.451rem;
+  --sz-xl:   1.774rem;
+  --sz-2xl:  2.258rem;
+  --sz-3xl:  3.010rem;
+  --sz-4xl:  4.085rem;
 
   /* Spacing */
   --sp-1:   0.25rem;
@@ -83,7 +83,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 19.35px;
   line-height: 1.75;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -336,6 +336,14 @@ em     { font-style: italic; }
 }
 .section-card:hover::before {
   background: var(--crimson);
+}
+
+a.section-card {
+  color: var(--text);
+  text-decoration: none;
+}
+a.section-card:hover {
+  color: var(--text);
 }
 
 .card-icon {
