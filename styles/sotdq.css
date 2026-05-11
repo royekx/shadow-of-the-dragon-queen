@@ -1754,10 +1754,10 @@ body.with-sidebar .page-header {
 
 .action-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   margin: 3rem 0;
-  max-width: 900px;
+  max-width: 500px;
   margin-left: auto;
   margin-right: auto;
 }

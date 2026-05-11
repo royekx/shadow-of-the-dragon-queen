@@ -3,21 +3,47 @@
 // Detects path depth and builds correct relative paths automatically
 
 (function() {
-  // Detect path depth from window.location.pathname
-  const pathname = window.location.pathname;
-  const pathParts = pathname.split('/').filter(p => p);
+  // Get current pathname and remove trailing slashes
+  const pathname = window.location.pathname.replace(/\/$/, '');
   
-  // Find repo name in path (shadow-of-the-dragon-queen or similar)
-  const repoIndex = pathParts.findIndex(p => p.includes('shadow'));
-  const depth = pathParts.length - repoIndex - 1; // How many folders deep are we?
+  // Split into parts and remove empty strings and 'index.html'
+  const pathParts = pathname.split('/').filter(p => p && p !== 'index.html');
   
-  // Build relative path to root based on depth
+  // Determine depth based on directory structure
+  // Known directories: unexpected-journeys, the-embers, war-intel, theatre-of-war, armory, field-manual
+  const contentDirs = [
+    'unexpected-journeys',
+    'unexpected-journey-brief-account',
+    'unexpected-journey-full-account',
+    'the-embers',
+    'war-intel',
+    'theatre-of-war',
+    'armory',
+    'field-manual'
+  ];
+  
+  let depth = 0;
+  
+  // Check if we're in a subdirectory
+  for (let part of pathParts) {
+    if (contentDirs.includes(part)) {
+      // We're at least at depth 1
+      depth = 1;
+      // Check if we're deeper (in brief-account or full-account subdirs)
+      if (part === 'unexpected-journey-brief-account' || part === 'unexpected-journey-full-account') {
+        depth = 2;
+      }
+      break;
+    }
+  }
+  
+  // Build relative path to root
   let rootPath = '';
   for (let i = 0; i < depth; i++) {
     rootPath += '../';
   }
   
-  // Inject critical CSS (positioning only — visual styling in sotdq.css)
+  // Inject critical CSS (positioning only)
   const criticalCSS = `
     <style>
       .side-nav {
@@ -93,8 +119,7 @@
       </div>
       
       <div style="border-top: 1px solid rgba(139, 26, 26, 0.2); padding: 1rem;">
-        <a href="https://royek.foundryserver.com/game" target="_blank" class="nav-action-link" style="color: #b8832a; text-decoration: none; display: block; padding: 0.6rem; text-align: center; font-size: 0.85rem; border: 1px solid rgba(184, 131, 42, 0.3); margin-bottom: 0.5rem; transition: all 0.2s;">Take the Helm</a>
-        <a href="https://rallly.co/invite/D8kMYvewkWxI" target="_blank" class="nav-action-link" style="color: #b8832a; text-decoration: none; display: block; padding: 0.6rem; text-align: center; font-size: 0.85rem; border: 1px solid rgba(184, 131, 42, 0.3); transition: all 0.2s;">Plot the Next</a>
+        <a href="https://rallly.co/invite/D8kMYvewkWxI" target="_blank" class="nav-action-link" style="color: #b8832a; text-decoration: none; display: block; padding: 0.6rem; text-align: center; font-size: 0.85rem; border: 1px solid rgba(184, 131, 42, 0.3); transition: all 0.2s;">Schedule Next Session</a>
       </div>
     </nav>
   `;
@@ -115,9 +140,9 @@
     
     navLinks.forEach(link => {
       const href = link.getAttribute('href');
-      const resolvedHref = new URL(href, window.location.href).pathname;
+      const section = link.dataset.section;
       
-      if (currentPath.includes(link.dataset.section)) {
+      if (currentPath.includes('/' + section)) {
         link.style.borderLeftColor = '#8b1a1a';
         link.style.backgroundColor = 'rgba(139, 26, 26, 0.1)';
         link.style.color = '#b8832a';
