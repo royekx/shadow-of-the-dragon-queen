@@ -1400,3 +1400,244 @@ a.section-card {
     grid-template-columns: 1fr;
   }
 }
+
+/* =============================================================
+   JOURNEY LOG BRIEF STYLES
+   ============================================================= */
+
+/* AT A GLANCE SECTION */
+.journey-glance {
+  background: var(--bg-card);
+  border: 1px solid var(--border-lit);
+  border-left: 3px solid var(--crimson-lit);
+  padding: 1.3rem 1.5rem;
+  margin-bottom: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.glance-synopsis {
+  font-size: 0.95rem;
+  line-height: 1.72;
+  color: var(--text);
+  font-style: italic;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-lit);
+}
+
+.glance-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 0.8rem;
+  align-items: flex-start;
+}
+
+.glance-label {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--crimson-lit);
+  padding-top: 0.25rem;
+}
+
+.glance-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.chip {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--border-lit);
+  color: var(--text);
+  background: rgba(139, 26, 26, 0.05);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.chip:hover {
+  border-color: var(--crimson-lit);
+  color: var(--crimson-lit);
+  background: rgba(139, 26, 26, 0.12);
+}
+
+.chip-npc {
+  border-color: var(--border-lit);
+  color: var(--text-dim);
+  background: rgba(184, 131, 42, 0.04);
+}
+
+.chip-npc:hover {
+  border-color: var(--bronze-dim);
+  color: var(--bronze-lit);
+  background: rgba(184, 131, 42, 0.1);
+}
+
+.chip-place {
+  border-color: var(--border-lit);
+  color: var(--text-dim);
+  background: rgba(139, 26, 26, 0.04);
+}
+
+.chip-place:hover {
+  border-color: var(--crimson-dim);
+  color: var(--crimson-lit);
+  background: rgba(139, 26, 26, 0.1);
+}
+
+/* BRIEF SECTIONS */
+.brief-section {
+  margin-bottom: 1.8rem;
+}
+
+.brief-heading {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--crimson-lit);
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brief-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-lit);
+}
+
+.brief-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.brief-list li {
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--text);
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.brief-list li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--bronze-dim);
+}
+
+.brief-list li b {
+  font-weight: 600;
+  color: var(--crimson-lit);
+}
+
+.brief-list li em {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* VIDEO BLOCK */
+.video-block {
+  margin-bottom: 2.5rem;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-lit);
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-link {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.video-link a {
+  color: var(--bronze-dim);
+  text-decoration: none;
+}
+
+.video-link a:hover {
+  color: var(--bronze-lit);
+}
+
+/* LOG META */
+.log-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.log-badge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: rgba(139, 26, 26, 0.25);
+  border: 1px solid rgba(139, 26, 26, 0.5);
+  color: var(--crimson-lit);
+  padding: 0.25rem 0.6rem;
+}
+
+.log-type-badge {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--border-lit);
+  padding: 0.25rem 0.6rem;
+}
+
+.alt-format {
+  margin-left: auto;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+.alt-format a {
+  color: var(--bronze-dim);
+  text-decoration: none;
+}
+
+.alt-format a:hover {
+  color: var(--bronze-lit);
+}
+
+@media (max-width: 560px) {
+  .glance-row {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .glance-label {
+    padding-top: 0;
+  }
+}
