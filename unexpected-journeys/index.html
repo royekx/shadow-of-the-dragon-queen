@@ -206,16 +206,22 @@
       const tbody = document.getElementById('journey-tbody');
       tbody.innerHTML = '';
 
+      // journeys.js stores root-relative paths ('unexpected-journeys/...')
+      // This page is already inside unexpected-journeys/, so strip that prefix
+      function localPath(p) {
+        return p.replace(/^unexpected-journeys\//, '');
+      }
+
       SOTDQ_JOURNEYS.forEach(journey => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td class="journey-num">${journey.num}</td>
           <td class="journey-title">${journey.title}</td>
           <td class="journey-brief">
-            <a href="${journey.brief}" class="journey-btn journey-brief-btn">Brief Account</a>
+            <a href="${localPath(journey.brief)}" class="journey-btn journey-brief-btn">Brief Account</a>
           </td>
           <td class="journey-full">
-            <a href="${journey.full}" class="journey-btn journey-full-btn">Full Account</a>
+            <a href="${localPath(journey.full)}" class="journey-btn journey-full-btn">Full Account</a>
           </td>
         `;
         tbody.appendChild(row);

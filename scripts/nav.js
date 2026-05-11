@@ -1,61 +1,47 @@
-// Shadow of the Dragon Queen — Shared Sidebar Navigation Component
-// Injects into every subpage (except index.html)
-// Detects path depth and builds correct relative paths automatically
+(function () {
 
-(function() {
-  // Get current pathname and remove trailing slashes
-  const pathname = window.location.pathname.replace(/\/$/, '');
-  
-  // Split into parts and remove empty strings and 'index.html'
-  const pathParts = pathname.split('/').filter(p => p && p !== 'index.html');
-  
-  // Determine depth based on directory structure
-  // Known directories: unexpected-journeys, the-embers, war-intel, theatre-of-war, armory, field-manual
-  const contentDirs = [
+  // ─── PATH DEPTH DETECTION ────────────────────────────────────────────────
+  // Scan ALL path segments — do NOT break early.
+  // depth 0 = root (index.html)
+  // depth 1 = section index  (unexpected-journeys/index.html)
+  // depth 2 = entry page     (unexpected-journeys/unexpected-journey-brief-account/uj-001.html)
+
+  const depth1Dirs = [
     'unexpected-journeys',
-    'unexpected-journey-brief-account',
-    'unexpected-journey-full-account',
     'the-embers',
     'war-intel',
     'theatre-of-war',
     'armory',
-    'field-manual'
+    'field-manual',
+    'command-post'
   ];
-  
+
+  const depth2Dirs = [
+    'unexpected-journey-brief-account',
+    'unexpected-journey-full-account'
+  ];
+
+  const parts = window.location.pathname.split('/').filter(Boolean);
   let depth = 0;
-  
-  // Check if we're in a subdirectory
-  for (let part of pathParts) {
-    if (contentDirs.includes(part)) {
-      // We're at least at depth 1
-      depth = 1;
-      // Check if we're deeper (in brief-account or full-account subdirs)
-      if (part === 'unexpected-journey-brief-account' || part === 'unexpected-journey-full-account') {
-        depth = 2;
-      }
-      break;
-    }
-  }
-  
-  // Build relative path to root
-  let rootPath = '';
-  for (let i = 0; i < depth; i++) {
-    rootPath += '../';
-  }
-  
-  // Inject critical CSS (positioning only)
-  const criticalCSS = `
+
+  parts.forEach(function (part) {
+    if (depth1Dirs.includes(part)) depth = Math.max(depth, 1);
+    if (depth2Dirs.includes(part))  depth = Math.max(depth, 2);
+  });
+
+  // Build relative path back to repo root
+  var root = '';
+  for (var i = 0; i < depth; i++) root += '../';
+
+  // ─── INJECT CRITICAL POSITIONING CSS ─────────────────────────────────────
+  document.head.insertAdjacentHTML('beforeend', `
     <style>
       .side-nav {
         position: fixed !important;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 220px;
-        z-index: 200;
+        left: 0; top: 0; bottom: 0;
+        width: 220px; z-index: 200;
         background: #0a0704;
-        display: flex;
-        flex-direction: column;
+        display: flex; flex-direction: column;
         overflow-y: auto;
       }
       .side-nav-toggle {
@@ -63,148 +49,98 @@
         position: fixed !important;
         z-index: 201;
       }
-      body.with-sidebar {
-        padding-left: 220px;
-      }
-      @media(max-width: 768px) {
-        body.with-sidebar {
-          padding-left: 0 !important;
-          padding-top: 52px !important;
-        }
-        .side-nav {
-          position: fixed;
-          transform: translateX(-100%);
-          transition: transform .28s ease;
-          height: 100vh;
-        }
-        .side-nav.open {
-          transform: translateX(0);
-        }
+      body.with-sidebar { padding-left: 220px; }
+      @media (max-width: 768px) {
+        body.with-sidebar { padding-left: 0 !important; padding-top: 52px !important; }
+        .side-nav { transform: translateX(-100%); transition: transform .28s ease; height: 100vh; }
+        .side-nav.open { transform: translateX(0); }
         .side-nav-toggle {
           display: flex !important;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 44px;
-          align-items: center;
-          justify-content: space-between;
+          top: 0; left: 0; right: 0; height: 44px;
+          align-items: center; justify-content: space-between;
           padding: 0 1rem;
           background: #0a0704;
-          border-bottom: 1px solid rgba(139, 26, 26, 0.2);
+          border-bottom: 1px solid rgba(139,26,26,0.2);
         }
       }
     </style>
-  `;
-  
-  // Build sidebar HTML
-  const sidebarHTML = `
+  `);
+
+  // ─── INJECT SIDEBAR HTML ─────────────────────────────────────────────────
+  document.body.insertAdjacentHTML('afterbegin', `
     <div class="side-nav-toggle">
-      <span style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: #8b1a1a; letter-spacing: 0.1em;">MENU</span>
-      <button class="side-nav-close" style="background: none; border: none; color: #b8832a; cursor: pointer; font-size: 1.5rem;">&times;</button>
+      <span style="font-family:'Cinzel',serif;font-size:.9rem;color:#8b1a1a;letter-spacing:.1em;">MENU</span>
+      <button class="side-nav-close" style="background:none;border:none;color:#b8832a;cursor:pointer;font-size:1.5rem;">&times;</button>
     </div>
     <nav class="side-nav" id="main-sidebar">
-      <div style="padding: 1.5rem 1rem;">
-        <a href="${rootPath}index.html" style="color: #e8dcc8; text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 0.5rem;">Shadow of the Dragon Queen</a>
+      <div style="padding:1.5rem 1rem;">
+        <a href="${root}index.html" style="color:#e8dcc8;text-decoration:none;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;display:block;">Shadow of the Dragon Queen</a>
       </div>
-      
-      <div style="flex: 1; overflow-y: auto;">
-        <div style="padding: 0 0.5rem;">
-          <a href="${rootPath}unexpected-journeys/index.html" class="nav-link" data-section="unexpected-journeys" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">Unexpected Journeys</a>
-          <a href="${rootPath}the-embers/index.html" class="nav-link" data-section="the-embers" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">The Embers</a>
-          <a href="${rootPath}war-intel/index.html" class="nav-link" data-section="war-intel" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">War Intel</a>
-          <a href="${rootPath}theatre-of-war/index.html" class="nav-link" data-section="theatre-of-war" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">Theatre of War</a>
-          <a href="${rootPath}armory/index.html" class="nav-link" data-section="armory" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">Armory</a>
-          <a href="${rootPath}field-manual/index.html" class="nav-link" data-section="field-manual" style="color: #e8dcc8; text-decoration: none; display: block; padding: 0.8rem 1rem; font-size: 0.9rem; border-left: 3px solid transparent; transition: all 0.2s;">Field Manual</a>
-        </div>
+      <div style="flex:1;overflow-y:auto;padding:0 .5rem;">
+        <a href="${root}unexpected-journeys/index.html"  class="nav-link" data-section="unexpected-journeys"  style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Unexpected Journeys</a>
+        <a href="${root}the-embers/index.html"           class="nav-link" data-section="the-embers"           style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">The Embers</a>
+        <a href="${root}war-intel/index.html"            class="nav-link" data-section="war-intel"            style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">War Intel</a>
+        <a href="${root}theatre-of-war/index.html"       class="nav-link" data-section="theatre-of-war"       style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Theatre of War</a>
+        <a href="${root}armory/index.html"               class="nav-link" data-section="armory"               style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Armory</a>
+        <a href="${root}field-manual/index.html"         class="nav-link" data-section="field-manual"         style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Field Manual</a>
       </div>
-      
-      <div style="border-top: 1px solid rgba(139, 26, 26, 0.2); padding: 1rem;">
-        <a href="https://rallly.co/invite/D8kMYvewkWxI" target="_blank" class="nav-action-link" style="color: #b8832a; text-decoration: none; display: block; padding: 0.6rem; text-align: center; font-size: 0.85rem; border: 1px solid rgba(184, 131, 42, 0.3); transition: all 0.2s;">Schedule Next Session</a>
+      <div style="border-top:1px solid rgba(139,26,26,.2);padding:1rem;">
+        <a href="https://rallly.co/invite/D8kMYvewkWxI" target="_blank" class="nav-action-link"
+           style="color:#b8832a;text-decoration:none;display:block;padding:.6rem;text-align:center;font-size:.85rem;border:1px solid rgba(184,131,42,.3);transition:all .2s;">
+          Schedule Next Session
+        </a>
       </div>
     </nav>
-  `;
-  
-  // Insert critical CSS into head
-  document.head.insertAdjacentHTML('beforeend', criticalCSS);
-  
-  // Insert sidebar HTML at beginning of body
-  document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
-  
-  // Add sidebar class to body
+  `);
+
   document.body.classList.add('with-sidebar');
-  
-  // Highlight active link based on current path
-  function highlightActiveLink() {
-    const currentPath = window.location.pathname;
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      const section = link.dataset.section;
-      
-      if (currentPath.includes('/' + section)) {
-        link.style.borderLeftColor = '#8b1a1a';
-        link.style.backgroundColor = 'rgba(139, 26, 26, 0.1)';
-        link.style.color = '#b8832a';
-      } else {
-        link.style.borderLeftColor = 'transparent';
-        link.style.backgroundColor = 'transparent';
-        link.style.color = '#e8dcc8';
-      }
-    });
-  }
-  
-  // Mobile toggle functionality
-  const toggle = document.querySelector('.side-nav-toggle');
-  const sidebar = document.querySelector('.side-nav');
-  const closeBtn = document.querySelector('.side-nav-close');
-  
-  if (toggle) {
-    toggle.addEventListener('click', (e) => {
-      if (e.target !== closeBtn) {
-        sidebar.classList.toggle('open');
-      }
-    });
-  }
-  
-  if (closeBtn) {
-    closeBtn.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-    });
-  }
-  
-  // Close sidebar when clicking a link
-  document.querySelectorAll('.nav-link, .nav-action-link').forEach(link => {
-    link.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-    });
+
+  // ─── ACTIVE SECTION HIGHLIGHT ─────────────────────────────────────────────
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    var section = link.dataset.section;
+    if (currentPath.includes('/' + section)) {
+      link.style.borderLeftColor   = '#8b1a1a';
+      link.style.backgroundColor   = 'rgba(139,26,26,.1)';
+      link.style.color             = '#b8832a';
+    }
   });
-  
-  // Highlight active on load
-  highlightActiveLink();
-  
-  // Add hover effects
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('mouseenter', function() {
-      if (!this.style.borderLeftColor || this.style.borderLeftColor === 'transparent') {
-        this.style.backgroundColor = 'rgba(139, 26, 26, 0.08)';
-      }
+
+  // ─── MOBILE TOGGLE ────────────────────────────────────────────────────────
+  var sidebar   = document.getElementById('main-sidebar');
+  var toggle    = document.querySelector('.side-nav-toggle');
+  var closeBtn  = document.querySelector('.side-nav-close');
+
+  toggle && toggle.addEventListener('click', function (e) {
+    if (e.target !== closeBtn) sidebar.classList.toggle('open');
+  });
+  closeBtn && closeBtn.addEventListener('click', function () {
+    sidebar.classList.remove('open');
+  });
+  document.querySelectorAll('.nav-link, .nav-action-link').forEach(function (l) {
+    l.addEventListener('click', function () { sidebar.classList.remove('open'); });
+  });
+
+  // ─── HOVER EFFECTS ────────────────────────────────────────────────────────
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    link.addEventListener('mouseenter', function () {
+      if (this.style.borderLeftColor === 'transparent' || !this.style.borderLeftColor)
+        this.style.backgroundColor = 'rgba(139,26,26,.08)';
     });
-    link.addEventListener('mouseleave', function() {
-      if (!this.style.borderLeftColor || this.style.borderLeftColor === 'transparent') {
+    link.addEventListener('mouseleave', function () {
+      if (this.style.borderLeftColor === 'transparent' || !this.style.borderLeftColor)
         this.style.backgroundColor = 'transparent';
-      }
     });
   });
-  
-  document.querySelectorAll('.nav-action-link').forEach(link => {
-    link.addEventListener('mouseenter', function() {
-      this.style.backgroundColor = 'rgba(184, 131, 42, 0.1)';
-      this.style.borderColor = 'rgba(184, 131, 42, 0.6)';
+  document.querySelectorAll('.nav-action-link').forEach(function (link) {
+    link.addEventListener('mouseenter', function () {
+      this.style.backgroundColor = 'rgba(184,131,42,.1)';
+      this.style.borderColor = 'rgba(184,131,42,.6)';
     });
-    link.addEventListener('mouseleave', function() {
+    link.addEventListener('mouseleave', function () {
       this.style.backgroundColor = 'transparent';
-      this.style.borderColor = 'rgba(184, 131, 42, 0.3)';
+      this.style.borderColor = 'rgba(184,131,42,.3)';
     });
   });
+
 })();
