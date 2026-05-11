@@ -3,158 +3,183 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shadow of the Dragon Queen · D&D Campaign Companion</title>
+  <title>Shadow of the Dragon Queen · Campaign Companion</title>
   <link rel="stylesheet" href="styles/sotdq.css" />
   <script src="data/journeys.js"></script>
   <style>
-    body {
-      padding-left: 0 !important;
-    }
-    
-    .page-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    body { padding-left: 0 !important; }
 
+    /* ── HERO ──────────────────────────────────────────────── */
     .hero {
       width: 100%;
       min-height: 100vh;
       background-image:
         linear-gradient(to bottom,
-          rgba(10, 7, 4, 0.35) 0%,
-          rgba(10, 7, 4, 0.55) 60%,
-          rgba(10, 7, 4, 0.92) 100%),
+          rgba(10,7,4,0.25) 0%,
+          rgba(10,7,4,0.50) 55%,
+          rgba(10,7,4,0.95) 100%),
         url('https://lh3.googleusercontent.com/d/1HxtWOhCcRJALSWUbbrUCKNGmLYB8fIPG');
       background-size: cover;
       background-position: center top;
       background-repeat: no-repeat;
-      background-attachment: scroll;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding: 0 2rem 6rem;
-      margin-bottom: 4rem;
+      padding: 0 2rem 5rem;
       text-align: center;
     }
-
     .hero-title {
       font-family: var(--font-display);
-      font-size: clamp(2rem, 5vw, 4rem);
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
       letter-spacing: 0.08em;
-      color: var(--text);
-      margin: 0 0 0.75rem;
       text-transform: uppercase;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+      color: var(--text);
+      margin: 0 0 0.8rem;
+      text-shadow: 0 2px 24px rgba(0,0,0,0.9);
     }
-
     .hero-subtitle {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-size: clamp(1rem, 2vw, 1.2rem);
       color: var(--text-dim);
       font-style: italic;
       margin: 0;
       text-shadow: 0 1px 8px rgba(0,0,0,0.9);
     }
 
-    .decorative-break {
-      text-align: center;
-      padding: 2rem 0;
-      margin: 2rem 0;
-      color: var(--bronze-dim);
-      font-size: 1.2rem;
-      letter-spacing: 0.3em;
+    /* ── PAGE CONTENT ──────────────────────────────────────── */
+    .page-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2.5rem;
     }
 
+    /* ── DECORATIVE BREAK ──────────────────────────────────── */
+    .decorative-break {
+      text-align: center;
+      padding: 2.5rem 0 1.5rem;
+      color: var(--bronze-dim);
+      font-size: 1rem;
+      letter-spacing: 0.4em;
+    }
+
+    /* ── ACTION ROW ────────────────────────────────────────── */
+    .action-row {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+    .action-card {
+      background: transparent;
+      border: 1px solid var(--crimson-lit);
+      padding: 1.5rem 3rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .action-card:hover {
+      background: rgba(139,26,26,0.08);
+      border-color: var(--bronze-lit);
+    }
+    .action-card-title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .action-card-desc {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+    }
+    .action-card-cta {
+      font-size: 0.85rem;
+      color: var(--bronze-dim);
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
+
+    /* ── SECTION GRID ──────────────────────────────────────── */
     .section-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin: 3rem 0;
+      margin: 0 0 4rem;
     }
-
     .section-card {
-      background: rgba(139, 26, 26, 0.04);
+      background: rgba(139,26,26,0.04);
       border: 1px solid var(--border-lit);
-      padding: 1.75rem 2rem;
-      text-align: left;
+      padding: 2rem 1.75rem 1.75rem;
+      text-align: center;
       text-decoration: none;
       color: inherit;
-      transition: all 0.2s;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.9rem;
+      transition: background 0.2s, border-color 0.2s;
     }
-
     .section-card:hover {
-      background: rgba(139, 26, 26, 0.08);
-      border-color: var(--crimson-lit);
+      background: rgba(139,26,26,0.09);
+      border-color: rgba(139,26,26,0.5);
     }
-
+    .section-card-icon {
+      color: var(--crimson-lit);
+      opacity: 0.85;
+      line-height: 1;
+    }
+    .section-card-icon svg {
+      display: block;
+    }
     .section-card-title {
       font-family: var(--font-display);
-      font-size: 0.85rem;
-      letter-spacing: 0.12em;
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--crimson-lit);
-      padding-bottom: 0.6rem;
-      border-bottom: 1px solid var(--border-lit);
+      color: var(--text);
     }
-
     .section-card-desc {
-      font-size: 0.875rem;
+      font-size: 0.95rem;
       color: var(--text-dim);
       line-height: 1.65;
       flex: 1;
     }
+    .section-card-link {
+      font-size: 0.8rem;
+      color: var(--bronze-dim);
+      letter-spacing: 0.06em;
+      margin-top: 0.25rem;
+    }
 
-    .section-card-links {
-      padding-top: 0.5rem;
+    /* Unexpected Journeys card sub-links */
+    .uj-links {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
-      align-items: flex-start;
+      gap: 0.3rem;
+      align-items: center;
+      width: 100%;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border-lit);
+      font-size: 0.82rem;
     }
-
-    .section-card a {
+    .uj-links a {
       color: var(--bronze-dim);
       text-decoration: none;
-      font-size: 0.8rem;
       transition: color 0.2s;
     }
+    .uj-links a:hover { color: var(--bronze-lit); }
 
-    .section-card a:hover {
-      color: var(--bronze-lit);
+    @media (max-width: 900px) {
+      .section-grid { grid-template-columns: repeat(2, 1fr); }
     }
-
-    @media (max-width: 960px) {
-      .section-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding: 4rem 1.5rem;
-      }
-
-      .hero-title {
-        font-size: 2rem;
-      }
-
-      .hero-subtitle {
-        font-size: 0.9rem;
-      }
-
-      .action-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .section-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-      }
+    @media (max-width: 580px) {
+      .hero { padding: 0 1.5rem 4rem; }
+      .page-content { padding: 0 1.25rem; }
+      .section-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -167,92 +192,124 @@
 
   <div class="page-content">
 
-    <!-- ACTION ROW -->
     <div class="action-row">
       <a href="https://rallly.co/invite/D8kMYvewkWxI" class="action-card" target="_blank">
         <div class="action-card-title">Schedule the Next Session</div>
-        <div class="action-card-desc">Coordinate schedules and plan when The Embers gather again.</div>
+        <div class="action-card-desc">Coordinate when The Embers gather again.</div>
         <div class="action-card-cta">Open Scheduler ↗</div>
       </a>
     </div>
 
-    <!-- DECORATIVE BREAK -->
     <div class="decorative-break">✦ ✦ ✦</div>
 
-    <!-- SECTION GRID -->
     <div class="section-grid">
 
       <!-- Unexpected Journeys -->
-      <div class="section-card">
-        <div class="section-card-title">Unexpected Journeys</div>
-        <div class="section-card-desc">Every session recorded. Every moment captured. Follow The Embers from their first meeting to their greatest trials.</div>
-        <div class="section-card-links" id="unexpected-journeys-links">
-          <!-- Populated by journeys.js -->
+      <a href="unexpected-journeys/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Open scroll -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 6h18a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H10"/>
+            <path d="M10 28a3 3 0 0 1 0-6V6a3 3 0 0 0 0 6"/>
+            <line x1="16" y1="12" x2="24" y2="12"/>
+            <line x1="16" y1="17" x2="24" y2="17"/>
+            <line x1="16" y1="22" x2="21" y2="22"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">Unexpected Journeys</div>
+        <div class="section-card-desc">Every session recorded. Every moment captured. The full chronicle of The Embers.</div>
+        <div class="uj-links" id="uj-links" onclick="event.stopPropagation()"></div>
+      </a>
 
       <!-- The Embers -->
-      <div class="section-card">
-        <div class="section-card-title">The Embers</div>
-        <div class="section-card-desc">Meet the party. The bold, the clever, the righteous. They forged bonds in blood and walked paths no one else dared.</div>
-        <div class="section-card-links">
-          <a href="the-embers/index.html">Meet The Embers →</a>
+      <a href="the-embers/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Flame -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 30c-5 0-9-4-9-9 0-3 1.5-5.5 3-7.5 1-1.3 1.8-3 2-5 1.5 2 2.5 3.5 2.5 5.5 0 1-.3 2-1 3 2-1 3.5-3 3.5-5.5 1.5 2.5 3 5.5 3 9C22 26 20.2 30 18 30z"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">The Embers</div>
+        <div class="section-card-desc">The bold, the clever, the righteous. Six souls who forged bonds in blood.</div>
+        <div class="section-card-link">Meet the party →</div>
+      </a>
 
       <!-- War Intel -->
-      <div class="section-card">
-        <div class="section-card-title">War Intel</div>
-        <div class="section-card-desc">Allies and adversaries. The NPCs who shaped the story, challenged the party, and left their mark on Krynn.</div>
-        <div class="section-card-links">
-          <a href="war-intel/index.html">Review Dossiers →</a>
+      <a href="war-intel/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Eye -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 18c3.5-6 8-9 13-9s9.5 3 13 9c-3.5 6-8 9-13 9s-9.5-3-13-9z"/>
+            <circle cx="18" cy="18" r="3.5"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">War Intel</div>
+        <div class="section-card-desc">Allies and adversaries. The faces who shaped the story across Krynn.</div>
+        <div class="section-card-link">Review dossiers →</div>
+      </a>
 
       <!-- Theatre of War -->
-      <div class="section-card">
-        <div class="section-card-title">Theatre of War</div>
-        <div class="section-card-desc">Vogler, Kalaman, sacred reliquaries, and battlefields. The locations where fate was decided and legends were born.</div>
-        <div class="section-card-links">
-          <a href="theatre-of-war/index.html">Explore Locations →</a>
+      <a href="theatre-of-war/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Compass rose -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="18" cy="18" r="13"/>
+            <polygon points="18,6 20,16 18,14 16,16" fill="currentColor" stroke="none" opacity="0.7"/>
+            <polygon points="18,30 16,20 18,22 20,20" stroke="none" fill="currentColor" opacity="0.35"/>
+            <line x1="18" y1="8" x2="18" y2="28"/>
+            <line x1="8" y1="18" x2="28" y2="18"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">Theatre of War</div>
+        <div class="section-card-desc">Vogler, Kalaman, reliquaries, and battlefields. Where fate was decided.</div>
+        <div class="section-card-link">Explore locations →</div>
+      </a>
 
       <!-- Armory -->
-      <div class="section-card">
-        <div class="section-card-title">Armory</div>
-        <div class="section-card-desc">Weapons, armor, and magical treasures. The tools and trinkets that have turned battles and changed lives.</div>
-        <div class="section-card-links">
-          <a href="armory/index.html">Browse Items →</a>
+      <a href="armory/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Sword -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="4" x2="18" y2="28"/>
+            <line x1="12" y1="22" x2="24" y2="22"/>
+            <path d="M15 28 h6 l-1 4 h-4 z" stroke-linejoin="round"/>
+            <path d="M17 4 l1-1 1 1" stroke-width="1.2"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">Armory</div>
+        <div class="section-card-desc">Weapons, armor, and magical treasures earned across the campaign.</div>
+        <div class="section-card-link">Browse items →</div>
+      </a>
 
       <!-- Field Manual -->
-      <div class="section-card">
-        <div class="section-card-title">Field Manual</div>
-        <div class="section-card-desc">Rules, handouts, and references. Everything you need to understand the world, mechanics, and lore.</div>
-        <div class="section-card-links">
-          <a href="field-manual/index.html">Open Manual →</a>
+      <a href="field-manual/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Quill -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M28 5c-8 2-14 10-16 20"/>
+            <path d="M28 5c-2 6-6 10-10 14"/>
+            <line x1="12" y1="25" x2="14" y2="31"/>
+            <line x1="10" y1="28" x2="16" y2="28"/>
+          </svg>
         </div>
-      </div>
+        <div class="section-card-title">Field Manual</div>
+        <div class="section-card-desc">Rules, handouts, and references for the world and mechanics.</div>
+        <div class="section-card-link">Open manual →</div>
+      </a>
 
     </div>
-
   </div>
 
   <script>
-    // Populate Unexpected Journeys card with latest journey
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof SOTDQ_JOURNEYS !== 'undefined' && SOTDQ_JOURNEYS.length > 0) {
-        const latest = SOTDQ_JOURNEYS[SOTDQ_JOURNEYS.length - 1];
-        const linksDiv = document.getElementById('unexpected-journeys-links');
-        
-        linksDiv.innerHTML = `
-          <a href="${latest.brief}">UJ ${latest.num} · Brief Account</a>
-          <a href="${latest.full}">UJ ${latest.num} · Full Account</a>
-          <a href="unexpected-journeys/index.html">All Journeys →</a>
-        `;
-      }
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof SOTDQ_JOURNEYS === 'undefined' || !SOTDQ_JOURNEYS.length) return;
+      const latest = SOTDQ_JOURNEYS[SOTDQ_JOURNEYS.length - 1];
+      const el = document.getElementById('uj-links');
+      if (!el) return;
+      el.innerHTML =
+        '<a href="' + latest.brief + '" onclick="event.stopPropagation()">UJ ' + latest.num + ' · Brief Account</a>' +
+        '<a href="' + latest.full  + '" onclick="event.stopPropagation()">UJ ' + latest.num + ' · Full Account</a>' +
+        '<a href="unexpected-journeys/index.html" onclick="event.stopPropagation()">All Journeys →</a>';
     });
   </script>
 
