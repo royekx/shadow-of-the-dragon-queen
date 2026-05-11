@@ -40,13 +40,13 @@
   --font-body:      'Crimson Pro', 'Georgia', 'Times New Roman', serif;
 
   /* Type scale */
-  --sz-xs:   0.753rem;
-  --sz-sm:   0.914rem;
-  --sz-base: 1.075rem;
-  --sz-md:   1.236rem;
-  --sz-lg:   1.451rem;
-  --sz-xl:   1.774rem;
-  --sz-2xl:  2.258rem;
+  --sz-xs:   0.85rem;
+  --sz-sm:   0.975rem;
+  --sz-base: 1.1rem;
+  --sz-md:   1.3rem;
+  --sz-lg:   1.55rem;
+  --sz-xl:   1.85rem;
+  --sz-2xl:  2.35rem;
   --sz-3xl:  3.010rem;
   --sz-4xl:  4.085rem;
 
@@ -83,7 +83,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 19.35px;
+  font-size: 18px;
   line-height: 1.75;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -1418,7 +1418,7 @@ a.section-card {
 }
 
 .glance-synopsis {
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.72;
   color: var(--text);
   font-style: italic;
@@ -1450,7 +1450,7 @@ a.section-card {
 
 .chip {
   font-family: var(--font-body);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   padding: 0.2rem 0.6rem;
   border: 1px solid var(--border-lit);
   color: var(--text);
@@ -1597,7 +1597,7 @@ a.section-card {
 
 .log-badge {
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   background: rgba(139, 26, 26, 0.25);
@@ -1712,7 +1712,7 @@ body.with-sidebar .entry-nav-bar + div.content {
 .entry-nav-bar a {
   color: var(--text);
   text-decoration: none;
-  font-size: 0.9rem;
+  font-size: 1rem;
   transition: color 0.2s;
 }
 
@@ -1848,7 +1848,7 @@ body.with-sidebar .entry-nav-bar + div.content {
 
 .journey-table td {
   padding: 1.2rem 1.5rem;
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.6;
 }
 
@@ -1890,7 +1890,7 @@ body.with-sidebar .entry-nav-bar + div.content {
   border: 1px solid rgba(100, 149, 237, 0.4);
   color: #6495ed;
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   margin-right: 0.4rem;
   transition: all 0.2s;
 }
@@ -1907,7 +1907,7 @@ body.with-sidebar .entry-nav-bar + div.content {
   border: 1px solid rgba(184, 131, 42, 0.4);
   color: var(--bronze-dim);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   transition: all 0.2s;
 }
 
