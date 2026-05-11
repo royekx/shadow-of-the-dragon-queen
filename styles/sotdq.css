@@ -313,6 +313,11 @@ em     { font-style: italic; }
   padding: 0;
 }
 
+/* Center the last card when it's alone */
+.section-grid > :nth-child(7) {
+  grid-column: 2;
+}
+
 .section-card {
   background: var(--bg-card);
   padding: var(--sp-8) var(--sp-6);
