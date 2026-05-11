@@ -3,126 +3,152 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mayriel — The Embers · Shadow of the Dragon Queen</title>
+  <title>Mayriel · Shadow of the Dragon Queen</title>
   <link rel="stylesheet" href="../styles/sotdq.css" />
+  <script src="../scripts/nav.js" defer></script>
+  <style>
+    .page-header {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 3rem;
+    }
+
+    .page-header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--bronze-dim);
+      margin: 1.5rem auto 0;
+    }
+
+    .char-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      margin: 2rem auto;
+      max-width: 1000px;
+      padding: 0 3rem;
+    }
+
+    .char-portrait-frame {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .char-portrait {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: rgba(139, 26, 26, 0.1);
+      border: 1px solid var(--border-lit);
+      overflow: hidden;
+    }
+
+    .char-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .char-stats {
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    .stat-label {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-value {
+      color: var(--text);
+      margin-bottom: 0.8rem;
+    }
+
+    .char-bio {
+      max-width: 600px;
+    }
+
+    .char-bio p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin: 0 0 1rem;
+      color: var(--text);
+    }
+
+    .char-bio p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 768px) {
+      .char-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1.2rem;
+      }
+
+      .char-portrait-frame {
+        max-width: 200px;
+      }
+
+      .page-header {
+        padding: 0 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="site-nav">
-    <a href="../index.html">Shadow of the Dragon Queen</a>
-    <span class="sep">›</span>
-    <a href="index.html">The Embers</a>
-    <span class="sep">›</span>
-    <span class="crumb-current">Mayriel</span>
+  <div class="page-content">
+
+    <div class="page-header">
+      <div class="page-eyebrow">Cleric of Paladine</div>
+      <h1 class="page-title">Mayriel</h1>
+    </div>
+
+    <nav class="entry-nav-bar">
+    <a href="roshi.html">← Previous</a>
+    <a href="index.html" class="entry-nav-center">The Embers</a>
+    <a href="aeimos.html">Next →</a>
   </nav>
 
-  <div class="page-header">
-    <div class="page-eyebrow">The Embers · Player Character</div>
-    <h1 class="page-title">Mayriel</h1>
-    <p class="page-subtitle">Faith made flesh and shield</p>
-  </div>
-
-  <div class="content">
     <div class="char-layout">
-
-      <!-- LEFT: Portrait + Stats -->
       <div class="char-portrait-frame">
         <div class="char-portrait">
-          <img
-            src="https://lh3.googleusercontent.com/d/1VKa7NEkNHE6cGsNfNBckPyjOvvKLPrkM"
-            alt="Mayriel"
-            loading="lazy"
-          />
+          <img src="https://lh3.googleusercontent.com/d/1VKa7NEkNHE6cGsNfNBckPyjOvvKLPrkM" alt="Mayriel" onerror="this.style.display='none'">
         </div>
-
         <div class="char-stats">
-          <div class="char-stat">
-            <span class="char-stat-label">Class</span>
-            <span class="char-stat-value">Cleric of Paladine</span>
-          </div>
-          <div class="char-stat">
-            <span class="char-stat-label">Affiliation</span>
-            <span class="char-stat-value">The Embers · Paladine (pledged)</span>
-          </div>
-          <div class="char-stat">
-            <span class="char-stat-label">Rank</span>
-            <span class="char-stat-value">Soldier — Kalaman</span>
-          </div>
-          <div class="char-stat">
-            <span class="char-stat-label">Equipment</span>
-            <span class="char-stat-value">Sunscale · Divine pendant · Family signet ring — pledged</span>
-          </div>
-          <div class="char-stat">
-            <span class="char-stat-label">Status</span>
-            <span class="char-stat-value">Active — pledge outstanding</span>
-          </div>
+          <div class="stat-label">Race / Class</div>
+          <div class="stat-value">Elf · Cleric of Paladine</div>
+
+          <div class="stat-label">Affiliation</div>
+          <div class="stat-value">The Embers</div>
+
+          <div class="stat-label">First Journey</div>
+          <div class="stat-value">UJ 001 — The Night of the Eye</div>
+
+          <div class="stat-label">Status</div>
+          <div class="stat-value">Active</div>
         </div>
       </div>
 
-      <!-- RIGHT: Bio + Threads -->
-      <div class="char-main">
-
-        <div class="char-bio">
-          <p>Mayriel was at Vogler's docks, one hand on a fish statue touched by locals for luck, when the vision arrived without invitation. A horned woman commanding slaughter beneath the three moons. A five-headed dragon breathing fire in five colours. And then — before annihilation — platinum fire rising to shield her from it. She did not choose to see it. When it ended, Fizban found her shaken, and told her that if the gods were speaking, she should listen.</p>
-
-          <p>She is a cleric of Paladine at a moment when that should be impossible. The gods left Krynn generations ago. Clerics have not walked openly in centuries. Mayriel's divine power is not a theological position — it is <strong>something that happens when she reaches for it</strong>, which makes it stranger to witness than simple faith, and more difficult to argue with. People ask her if she has been touched by the gods. The honest answer frightens her slightly less than it used to.</p>
-
-          <p>At Vogler's burning docks, she pledged her <strong>family signet ring to Paladine</strong> — a promise of obedience at a moment yet to come, terms unspecified. The ring glowed with holy light when she offered it. <strong>Sunscale</strong>, the golden canary that had followed Fizban, witnessed this and then chose to remain with her. Sunscale is not simply a bird. The truth of what it is shimmers at the edges of ordinary perception, visible only in the right light, which is the light Mayriel increasingly sees by.</p>
-
-          <p>On the Vingaard River, the Dragon Queen appeared to her in vision and promised that her sword would find her. Mayriel heard it. She has not forgotten it, and she has decided that the correct response is to be somewhere else when the sword arrives.</p>
-        </div>
-
-        <div class="section-block">
-          <div class="char-section-label">Appearances</div>
-          <div class="char-appearances">
-            <a href="../battle-logs/field-reports/battle-log-001.html" class="char-appearance">
-              <span class="entry-badge">UJ 001</span>
-              <span class="char-appearance-title">The Night of the Eye</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-002.html" class="char-appearance">
-              <span class="entry-badge">UJ 002</span>
-              <span class="char-appearance-title">The Road After Bloodshed</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-003.html" class="char-appearance">
-              <span class="entry-badge">UJ 003</span>
-              <span class="char-appearance-title">The Beast Beneath Crustdurn Isle</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-004.html" class="char-appearance">
-              <span class="entry-badge">UJ 004</span>
-              <span class="char-appearance-title">Tales, Tears, and Treachery</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-005.html" class="char-appearance">
-              <span class="entry-badge">UJ 005</span>
-              <span class="char-appearance-title">Shadows in the Woods</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-006.html" class="char-appearance">
-              <span class="entry-badge">UJ 006</span>
-              <span class="char-appearance-title">The Dragon Queen's Demand</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-007.html" class="char-appearance">
-              <span class="entry-badge">UJ 007</span>
-              <span class="char-appearance-title">Flames Over Vogler</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-008.html" class="char-appearance">
-              <span class="entry-badge">UJ 008</span>
-              <span class="char-appearance-title">Ashes on the River</span>
-            </a>
-            <a href="../battle-logs/field-reports/battle-log-009.html" class="char-appearance">
-              <span class="entry-badge">UJ 009</span>
-              <span class="char-appearance-title">The Reliquary of Lost Oaths</span>
-            </a>
-          </div>
-        </div>
-
+      <div class="char-bio">
+        <p>Mayriel is a healer and warrior who hears the voice of Paladine in moments of darkness and divine clarity. She came to the roads seeking to understand what the gods were saying — and she found her answer in fire and purpose.</p>
+        <p>She has stood between her companions and death. She has called down divine wrath upon those who would harm the innocent. And she has carried the weight of being the light in a world growing darker. Mayriel's faith is not blind — it is sharp, tested, and earned through sacrifice.</p>
       </div>
     </div>
-  </div>
 
-  <footer class="page-footer">
-    <a href="../index.html">← Home</a>
-    <span class="sep">·</span>
-    <a href="index.html">← The Embers</a>
-  </footer>
+    <nav class="entry-nav-bar">
+    <a href="roshi.html">← Previous</a>
+    <a href="index.html" class="entry-nav-center">The Embers</a>
+    <a href="aeimos.html">Next →</a>
+  </nav>
+
+  </div>
 
 </body>
 </html>
