@@ -5,6 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unexpected Journeys · Shadow of the Dragon Queen</title>
   <link rel="stylesheet" href="../styles/sotdq.css" />
+  <style>
+    .journey-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    .journey-table tr {
+      border-bottom: 1px solid var(--border-lit);
+    }
+    .journey-table tr:last-child {
+      border-bottom: none;
+    }
+    .journey-table td {
+      padding: 1.2rem 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .journey-table td:first-child {
+      color: var(--crimson-lit);
+      font-weight: 600;
+      width: 8%;
+      text-align: center;
+    }
+    .journey-table td:nth-child(2) {
+      width: 40%;
+      color: var(--text);
+    }
+    .journey-table a {
+      color: var(--bronze-dim);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border-lit);
+      transition: color 0.2s;
+    }
+    .journey-table a:hover {
+      color: var(--bronze-lit);
+      border-bottom-color: var(--bronze-dim);
+    }
+    .journey-table td:nth-child(3),
+    .journey-table td:nth-child(4) {
+      width: 26%;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .journey-table td {
+        padding: 0.8rem 0.6rem;
+        font-size: 0.85rem;
+      }
+      .journey-table td:first-child {
+        width: 10%;
+      }
+      .journey-table td:nth-child(2) {
+        width: 35%;
+      }
+      .journey-table td:nth-child(3),
+      .journey-table td:nth-child(4) {
+        width: 22.5%;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -22,120 +81,62 @@
 
   <div class="content">
 
-    <div class="section-block">
-      <div class="section-label">All Journeys</div>
-      <div class="entry-list">
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-001.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 001</span>
-            <span class="entry-title">The Night of the Eye</span>
-            <span class="entry-meta">Five strangers meet in draconian ambush</span>
-          </a>
-          <a href="field-reports/journey-log-001.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-002.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 002</span>
-            <span class="entry-title">The Road After Bloodshed</span>
-            <span class="entry-meta">A roper beneath the earth, Fizban rescued</span>
-          </a>
-          <a href="field-reports/journey-log-002.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-003.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 003</span>
-            <span class="entry-title">The Beast Beneath Crustdurn Isle</span>
-            <span class="entry-meta">A froghemoth in the depths, Roshi swallowed</span>
-          </a>
-          <a href="field-reports/journey-log-003.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-004.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 004</span>
-            <span class="entry-title">Tales, Tears, and Treachery</span>
-            <span class="entry-meta">Ispin's funeral, the Kingfisher Festival massacre</span>
-          </a>
-          <a href="field-reports/journey-log-004.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-005.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 005</span>
-            <span class="entry-title">Shadows in the Woods</span>
-            <span class="entry-meta">Scouting the Red Army, Jenkins aids the party</span>
-          </a>
-          <a href="field-reports/journey-log-005.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-006.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 006</span>
-            <span class="entry-title">The Dragon Queen's Demand</span>
-            <span class="entry-meta">Ultimatum and battle at the gates, evacuation begins</span>
-          </a>
-          <a href="field-reports/journey-log-006.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-007.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 007</span>
-            <span class="entry-title">Flames Over Vogler</span>
-            <span class="entry-meta">A mechanical dragon, Theros Flametongue, Becklin falls</span>
-          </a>
-          <a href="field-reports/journey-log-007.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-008.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 008</span>
-            <span class="entry-title">Ashes on the River</span>
-            <span class="entry-meta">The Ashen Vigils rise, Kalaman council</span>
-          </a>
-          <a href="field-reports/journey-log-008.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">No recording</span>
-          </a>
-        </div>
-
-        <div class="entry" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding: 1.5rem; border: 1px solid var(--muted); background: var(--bg);">
-          <a href="full-chronicle/uj-009.html" class="entry" style="border: none; padding: 0; margin: 0;">
-            <span class="entry-badge">UJ 009</span>
-            <span class="entry-title">The Reliquary of Lost Oaths</span>
-            <span class="entry-meta">Knights Radiant oaths test, Sir Cthondor's tomb</span>
-          </a>
-          <a href="field-reports/journey-log-009.html" class="entry" style="border: none; padding: 0; margin: 0; text-align: right;">
-            <span class="entry-badge badge-muted">Field Report</span>
-            <span class="entry-meta">Session recording & notes</span>
-          </a>
-        </div>
-
-      </div>
-    </div>
+    <table class="journey-table">
+      <tr>
+        <td>001</td>
+        <td>The Night of the Eye</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-001.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-001.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>002</td>
+        <td>The Road After Bloodshed</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-002.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-002.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>003</td>
+        <td>The Beast Beneath Crustdurn Isle</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-003.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-003.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>004</td>
+        <td>Tales, Tears, and Treachery</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-004.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-004.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>005</td>
+        <td>Shadows in the Woods</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-005.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-005.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>006</td>
+        <td>The Dragon Queen's Demand</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-006.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-006.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>007</td>
+        <td>Flames Over Vogler</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-007.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-007.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>008</td>
+        <td>Ashes on the River</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-008.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-008.html">Full Account</a></td>
+      </tr>
+      <tr>
+        <td>009</td>
+        <td>The Reliquary of Lost Oaths</td>
+        <td><a href="unexpected-journey-brief-account/unexpected-journey-brief-account-009.html">Brief Account</a></td>
+        <td><a href="unexpected-journey-full-account/unexpected-journey-full-account-009.html">Full Account</a></td>
+      </tr>
+    </table>
 
   </div>
 
