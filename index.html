@@ -27,10 +27,12 @@
     }
 
     .hero-emblem {
-      width: 120px;
-      height: 120px;
+      max-width: 200px;
+      max-height: 200px;
       margin: 0 auto 2rem;
-      opacity: 0.8;
+      opacity: 0.9;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(139, 26, 26, 0.3);
     }
 
     .hero-title {
@@ -157,10 +159,7 @@
 <body>
 
   <div class="hero">
-    <svg class="hero-emblem" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-      <!-- Dragon silhouette for SotDQ -->
-      <path d="M 60 20 L 80 35 L 75 50 L 90 45 L 85 65 L 95 70 L 70 75 L 75 90 L 60 100 L 45 90 L 50 75 L 25 70 L 35 65 L 30 45 L 45 50 L 40 35 Z" fill="#8b1a1a" opacity="0.8"/>
-    </svg>
+    <img src="https://lh3.googleusercontent.com/d/1HxtWOhCcRJALSWUbbrUCKNGmLYB8fIPG" alt="Shadow of the Dragon Queen" class="hero-emblem">
     <h1 class="hero-title">Shadow of the Dragon Queen</h1>
     <p class="hero-subtitle">Takhisis stirs. Her armies march on Ansalon.</p>
   </div>
@@ -169,16 +168,9 @@
 
     <!-- ACTION ROW -->
     <div class="action-row">
-      <a href="https://royek.foundryserver.com/game" class="action-card" target="_blank">
-        <div class="action-card-icon">⚔️</div>
-        <div class="action-card-title">Take the Helm</div>
-        <div class="action-card-desc">Enter the Foundry VTT game server and prepare for battle.</div>
-        <div class="action-card-cta">Enter Session ↗</div>
-      </a>
-
       <a href="https://rallly.co/invite/D8kMYvewkWxI" class="action-card" target="_blank">
         <div class="action-card-icon">📅</div>
-        <div class="action-card-title">Plot the Next Engagement</div>
+        <div class="action-card-title">Schedule the Next Session</div>
         <div class="action-card-desc">Coordinate schedules and plan when The Embers gather again.</div>
         <div class="action-card-cta">Schedule Now ↗</div>
       </a>
