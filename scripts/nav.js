@@ -1,21 +1,15 @@
 (function () {
 
-  // ─── PATH DEPTH DETECTION ────────────────────────────────────────────────
-  // Scan ALL path segments — do NOT break early.
-  // depth 0 = root (index.html)
-  // depth 1 = section index  (unexpected-journeys/index.html)
-  // depth 2 = entry page     (unexpected-journeys/unexpected-journey-brief-account/uj-001.html)
-
+  // ─── PATH DEPTH DETECTION ─────────────────────────────────────────────────
   const depth1Dirs = [
     'unexpected-journeys',
     'the-embers',
+    'dossiers',
     'war-intel',
-    'theatre-of-war',
+    'atlas',
     'armory',
-    'field-manual',
     'command-post'
   ];
-
   const depth2Dirs = [
     'unexpected-journey-brief-account',
     'unexpected-journey-full-account'
@@ -23,17 +17,15 @@
 
   const parts = window.location.pathname.split('/').filter(Boolean);
   let depth = 0;
-
-  parts.forEach(function (part) {
-    if (depth1Dirs.includes(part)) depth = Math.max(depth, 1);
-    if (depth2Dirs.includes(part))  depth = Math.max(depth, 2);
+  parts.forEach(function (p) {
+    if (depth1Dirs.includes(p)) depth = Math.max(depth, 1);
+    if (depth2Dirs.includes(p))  depth = Math.max(depth, 2);
   });
 
-  // Build relative path back to repo root
   var root = '';
   for (var i = 0; i < depth; i++) root += '../';
 
-  // ─── INJECT CRITICAL POSITIONING CSS ─────────────────────────────────────
+  // ─── CRITICAL POSITIONING CSS ─────────────────────────────────────────────
   document.head.insertAdjacentHTML('beforeend', `
     <style>
       .side-nav {
@@ -66,23 +58,23 @@
     </style>
   `);
 
-  // ─── INJECT SIDEBAR HTML ─────────────────────────────────────────────────
+  // ─── SIDEBAR HTML ──────────────────────────────────────────────────────────
   document.body.insertAdjacentHTML('afterbegin', `
     <div class="side-nav-toggle">
       <span style="font-family:'Cinzel',serif;font-size:.9rem;color:#8b1a1a;letter-spacing:.1em;">MENU</span>
       <button class="side-nav-close" style="background:none;border:none;color:#b8832a;cursor:pointer;font-size:1.5rem;">&times;</button>
     </div>
     <nav class="side-nav" id="main-sidebar">
-      <div style="padding:1.5rem 1rem;">
-        <a href="${root}index.html" style="color:#e8dcc8;text-decoration:none;font-family:'Cinzel',serif;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;display:block;">Shadow of the Dragon Queen</a>
+      <div style="padding:1.5rem 1rem 1rem;">
+        <a href="${root}index.html" style="color:#e8dcc8;text-decoration:none;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;display:block;line-height:1.4;">Shadow of the<br>Dragon Queen</a>
       </div>
       <div style="flex:1;overflow-y:auto;padding:0 .5rem;">
-        <a href="${root}unexpected-journeys/index.html"  class="nav-link" data-section="unexpected-journeys"  style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Unexpected Journeys</a>
-        <a href="${root}the-embers/index.html"           class="nav-link" data-section="the-embers"           style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">The Embers</a>
-        <a href="${root}war-intel/index.html"            class="nav-link" data-section="war-intel"            style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">War Intel</a>
-        <a href="${root}theatre-of-war/index.html"       class="nav-link" data-section="theatre-of-war"       style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Theatre of War</a>
-        <a href="${root}armory/index.html"               class="nav-link" data-section="armory"               style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Armory</a>
-        <a href="${root}field-manual/index.html"         class="nav-link" data-section="field-manual"         style="color:#e8dcc8;text-decoration:none;display:block;padding:.8rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Field Manual</a>
+        <a href="${root}unexpected-journeys/index.html" class="nav-link" data-section="unexpected-journeys" style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Unexpected Journeys</a>
+        <a href="${root}the-embers/index.html"          class="nav-link" data-section="the-embers"          style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">The Embers</a>
+        <a href="${root}dossiers/index.html"            class="nav-link" data-section="dossiers"            style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Dossiers</a>
+        <a href="${root}war-intel/index.html"           class="nav-link" data-section="war-intel"           style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">War Intel</a>
+        <a href="${root}atlas/index.html"               class="nav-link" data-section="atlas"               style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">The Atlas</a>
+        <a href="${root}armory/index.html"              class="nav-link" data-section="armory"              style="color:#e8dcc8;text-decoration:none;display:block;padding:.75rem 1rem;font-size:.9rem;border-left:3px solid transparent;transition:all .2s;">Armory</a>
       </div>
       <div style="border-top:1px solid rgba(139,26,26,.2);padding:1rem;">
         <a href="https://rallly.co/invite/D8kMYvewkWxI" target="_blank" class="nav-action-link"
@@ -95,52 +87,40 @@
 
   document.body.classList.add('with-sidebar');
 
-  // ─── ACTIVE SECTION HIGHLIGHT ─────────────────────────────────────────────
-  const currentPath = window.location.pathname;
+  // ─── ACTIVE LINK ──────────────────────────────────────────────────────────
+  var path = window.location.pathname;
   document.querySelectorAll('.nav-link').forEach(function (link) {
-    var section = link.dataset.section;
-    if (currentPath.includes('/' + section)) {
-      link.style.borderLeftColor   = '#8b1a1a';
-      link.style.backgroundColor   = 'rgba(139,26,26,.1)';
-      link.style.color             = '#b8832a';
+    if (path.includes('/' + link.dataset.section)) {
+      link.style.borderLeftColor  = '#8b1a1a';
+      link.style.backgroundColor  = 'rgba(139,26,26,.1)';
+      link.style.color            = '#b8832a';
     }
   });
 
   // ─── MOBILE TOGGLE ────────────────────────────────────────────────────────
-  var sidebar   = document.getElementById('main-sidebar');
-  var toggle    = document.querySelector('.side-nav-toggle');
-  var closeBtn  = document.querySelector('.side-nav-close');
-
-  toggle && toggle.addEventListener('click', function (e) {
-    if (e.target !== closeBtn) sidebar.classList.toggle('open');
-  });
-  closeBtn && closeBtn.addEventListener('click', function () {
-    sidebar.classList.remove('open');
-  });
-  document.querySelectorAll('.nav-link, .nav-action-link').forEach(function (l) {
+  var sidebar  = document.getElementById('main-sidebar');
+  var toggle   = document.querySelector('.side-nav-toggle');
+  var closeBtn = document.querySelector('.side-nav-close');
+  toggle  && toggle.addEventListener('click',   function (e) { if (e.target !== closeBtn) sidebar.classList.toggle('open'); });
+  closeBtn && closeBtn.addEventListener('click', function ()  { sidebar.classList.remove('open'); });
+  document.querySelectorAll('.nav-link,.nav-action-link').forEach(function (l) {
     l.addEventListener('click', function () { sidebar.classList.remove('open'); });
   });
 
   // ─── HOVER EFFECTS ────────────────────────────────────────────────────────
   document.querySelectorAll('.nav-link').forEach(function (link) {
     link.addEventListener('mouseenter', function () {
-      if (this.style.borderLeftColor === 'transparent' || !this.style.borderLeftColor)
+      if (!this.style.borderLeftColor || this.style.borderLeftColor === 'transparent')
         this.style.backgroundColor = 'rgba(139,26,26,.08)';
     });
     link.addEventListener('mouseleave', function () {
-      if (this.style.borderLeftColor === 'transparent' || !this.style.borderLeftColor)
+      if (!this.style.borderLeftColor || this.style.borderLeftColor === 'transparent')
         this.style.backgroundColor = 'transparent';
     });
   });
   document.querySelectorAll('.nav-action-link').forEach(function (link) {
-    link.addEventListener('mouseenter', function () {
-      this.style.backgroundColor = 'rgba(184,131,42,.1)';
-      this.style.borderColor = 'rgba(184,131,42,.6)';
-    });
-    link.addEventListener('mouseleave', function () {
-      this.style.backgroundColor = 'transparent';
-      this.style.borderColor = 'rgba(184,131,42,.3)';
-    });
+    link.addEventListener('mouseenter', function () { this.style.backgroundColor='rgba(184,131,42,.1)'; this.style.borderColor='rgba(184,131,42,.6)'; });
+    link.addEventListener('mouseleave', function () { this.style.backgroundColor='transparent'; this.style.borderColor='rgba(184,131,42,.3)'; });
   });
 
 })();

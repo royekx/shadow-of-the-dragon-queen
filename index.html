@@ -26,7 +26,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding: 0 2rem 5rem;
+      padding: 0 2rem 20vh;
       text-align: center;
     }
     .hero-title {
@@ -72,6 +72,8 @@
       background: transparent;
       border: 1px solid var(--crimson-lit);
       padding: 1.5rem 3rem;
+      min-width: 280px;
+      max-width: 380px;
       text-align: center;
       text-decoration: none;
       color: var(--text);
@@ -217,7 +219,7 @@
           </svg>
         </div>
         <div class="section-card-title">Unexpected Journeys</div>
-        <div class="section-card-desc">Every session recorded. Every moment captured. The full chronicle of The Embers.</div>
+        <div class="section-card-desc">Every journey recorded. Every moment captured. The full chronicle of The Embers.</div>
         <div class="uj-links" id="uj-links" onclick="event.stopPropagation()"></div>
       </a>
 
@@ -234,8 +236,8 @@
         <div class="section-card-link">Meet the party →</div>
       </a>
 
-      <!-- War Intel -->
-      <a href="war-intel/index.html" class="section-card">
+      <!-- Dossiers -->
+      <a href="dossiers/index.html" class="section-card">
         <div class="section-card-icon">
           <!-- Eye -->
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -243,13 +245,27 @@
             <circle cx="18" cy="18" r="3.5"/>
           </svg>
         </div>
-        <div class="section-card-title">War Intel</div>
-        <div class="section-card-desc">Allies and adversaries. The faces who shaped the story across Krynn.</div>
-        <div class="section-card-link">Review dossiers →</div>
+        <div class="section-card-title">Dossiers</div>
+        <div class="section-card-desc">Allies, neutrals, and adversaries. Every face the party has encountered.</div>
+        <div class="section-card-link">Open dossiers →</div>
       </a>
 
-      <!-- Theatre of War -->
-      <a href="theatre-of-war/index.html" class="section-card">
+      <!-- War Intel -->
+      <a href="war-intel/index.html" class="section-card">
+        <div class="section-card-icon">
+          <!-- Raven / Intel -->
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 28 c2-4 4-8 8-10 2-1 4-1 5-3 1-2 1-5-1-7 3 1 5 4 4 7 4-2 6-6 5-10 3 3 3 8 1 11 2 0 4-1 5-3-1 4-4 7-8 8-3 1-7 1-9 3l-3 4z"/>
+            <circle cx="22" cy="11" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div class="section-card-title">War Intel</div>
+        <div class="section-card-desc">Factions, armies, and forces shaping the fate of Ansalon.</div>
+        <div class="section-card-link">Read intel →</div>
+      </a>
+
+      <!-- The Atlas -->
+      <a href="atlas/index.html" class="section-card">
         <div class="section-card-icon">
           <!-- Compass rose -->
           <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
@@ -260,8 +276,8 @@
             <line x1="8" y1="18" x2="28" y2="18"/>
           </svg>
         </div>
-        <div class="section-card-title">Theatre of War</div>
-        <div class="section-card-desc">Vogler, Kalaman, reliquaries, and battlefields. Where fate was decided.</div>
+        <div class="section-card-title">The Atlas</div>
+        <div class="section-card-desc">Every road walked and battlefield crossed. The lands of the campaign.</div>
         <div class="section-card-link">Explore locations →</div>
       </a>
 
@@ -279,22 +295,6 @@
         <div class="section-card-title">Armory</div>
         <div class="section-card-desc">Weapons, armor, and magical treasures earned across the campaign.</div>
         <div class="section-card-link">Browse items →</div>
-      </a>
-
-      <!-- Field Manual -->
-      <a href="field-manual/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Quill -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M28 5c-8 2-14 10-16 20"/>
-            <path d="M28 5c-2 6-6 10-10 14"/>
-            <line x1="12" y1="25" x2="14" y2="31"/>
-            <line x1="10" y1="28" x2="16" y2="28"/>
-          </svg>
-        </div>
-        <div class="section-card-title">Field Manual</div>
-        <div class="section-card-desc">Rules, handouts, and references for the world and mechanics.</div>
-        <div class="section-card-link">Open manual →</div>
       </a>
 
     </div>
