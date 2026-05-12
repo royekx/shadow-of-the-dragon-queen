@@ -25,9 +25,10 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      padding: 0 2rem 20vh;
+      justify-content: center;
+      padding: 0 2rem;
       text-align: center;
+      position: relative;
     }
     .hero-title {
       font-family: var(--font-display);
@@ -66,14 +67,14 @@
     .action-row {
       display: flex;
       justify-content: center;
-      margin: 2rem 0;
+      align-items: center;
+      margin: 3rem 0 4rem;
     }
     .action-card {
       background: transparent;
       border: 1px solid var(--crimson-lit);
       padding: 1.5rem 3rem;
-      min-width: 280px;
-      max-width: 380px;
+      min-width: 300px;
       text-align: center;
       text-decoration: none;
       color: var(--text);
@@ -82,6 +83,7 @@
       flex-direction: column;
       align-items: center;
       gap: 0.5rem;
+      white-space: nowrap;
     }
     .action-card:hover {
       background: rgba(139,26,26,0.08);
