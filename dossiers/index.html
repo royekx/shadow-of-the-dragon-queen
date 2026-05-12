@@ -6,6 +6,97 @@
   <title>Dossiers · Shadow of the Dragon Queen</title>
   <link rel="stylesheet" href="../styles/sotdq.css" />
   <script src="../scripts/nav.js" defer></script>
+  <style>
+    .page-header {
+      padding: 2.5rem 3rem 2rem;
+    }
+    .page-header::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--crimson);
+      margin-top: 1.5rem;
+    }
+    .dossier-listing {
+      padding: 0 3rem 4rem;
+    }
+    .dossier-group {
+      margin: 2.5rem 0 0;
+    }
+    .dossier-group-label {
+      font-family: var(--font-display);
+      font-size: var(--sz-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-lit);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0;
+    }
+    .dossier-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 150px 150px;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-lit);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+    .dossier-row:hover {
+      background: rgba(139, 26, 26, 0.05);
+      padding-left: 0.5rem;
+    }
+    .dossier-portrait {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--border-lit);
+      overflow: hidden;
+      background: rgba(139, 26, 26, 0.08);
+      flex-shrink: 0;
+    }
+    .dossier-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .dossier-name {
+      font-family: var(--font-display);
+      font-size: var(--sz-sm);
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .dossier-subtitle {
+      font-size: var(--sz-xs);
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+    .disposition-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: var(--sz-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid;
+      border-radius: 1px;
+    }
+    .disposition-ally    { color: #7dab8a; border-color: rgba(125,171,138,.4); background: rgba(125,171,138,.06); }
+    .disposition-neutral { color: var(--bronze-dim); border-color: rgba(184,131,42,.4); background: rgba(184,131,42,.06); }
+    .disposition-threat  { color: var(--crimson-lit); border-color: rgba(139,26,26,.5); background: rgba(139,26,26,.08); }
+    .status-text { font-size: var(--sz-xs); color: var(--text-dim); letter-spacing: 0.06em; }
+    .status-fallen  { color: #7dab8a; }
+    .status-slain   { color: var(--crimson-lit); }
+    .status-special { color: var(--bronze-dim); }
+
+    @media (max-width: 768px) {
+      .page-header, .dossier-listing { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .dossier-row { grid-template-columns: 44px 1fr 100px; }
+      .dossier-row > *:last-child { display: none; }
+    }
+  </style>
 </head>
 <body>
 
