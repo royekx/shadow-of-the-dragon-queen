@@ -7,6 +7,174 @@
   <link rel="stylesheet" href="../styles/sotdq.css" />
   <script src="../data/journeys.js"></script>
   <script src="../scripts/nav.js" defer></script>
+  <style>
+    .page-content {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .content {
+      max-width: 100%;
+      margin: 0;
+    }
+
+    .page-header {
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 3rem;
+    }
+
+    .page-header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 1px;
+      background: var(--bronze-dim);
+      margin: 1.5rem auto 0;
+    }
+
+    .journey-listing {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 3rem;
+    }
+
+    .journey-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+
+    .journey-table tr {
+      border-bottom: 1px solid var(--border-lit);
+      transition: background 0.2s;
+    }
+
+    .journey-table tr:hover {
+      background: rgba(139, 26, 26, 0.04);
+    }
+
+    .journey-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .journey-table td {
+      padding: 1.5rem 1.2rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .journey-num {
+      color: var(--crimson-lit);
+      font-weight: 700;
+      font-family: var(--font-display);
+      width: 10%;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .journey-title {
+      color: var(--text);
+      width: 40%;
+      font-weight: 500;
+    }
+
+    .journey-brief {
+      width: 25%;
+      text-align: center;
+    }
+
+    .journey-full {
+      width: 25%;
+      text-align: center;
+    }
+
+    .journey-btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      border: 1px solid;
+      transition: all 0.2s;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .journey-brief-btn {
+      background: rgba(100, 149, 237, 0.08);
+      border-color: rgba(100, 149, 237, 0.4);
+      color: #6495ed;
+    }
+
+    .journey-brief-btn:hover {
+      background: rgba(100, 149, 237, 0.15);
+      border-color: #6495ed;
+    }
+
+    .journey-full-btn {
+      background: rgba(184, 131, 42, 0.08);
+      border-color: rgba(184, 131, 42, 0.4);
+      color: var(--bronze-dim);
+    }
+
+    .journey-full-btn:hover {
+      background: rgba(184, 131, 42, 0.15);
+      border-color: var(--bronze-lit);
+    }
+
+    @media (max-width: 960px) {
+      .page-header,
+      .journey-listing {
+        padding: 0 2rem;
+      }
+
+      .journey-table td {
+        padding: 1rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .journey-num {
+        width: 12%;
+      }
+
+      .journey-title {
+        width: 38%;
+      }
+
+      .journey-brief {
+        width: 25%;
+      }
+
+      .journey-full {
+        width: 25%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-header,
+      .journey-listing {
+        padding: 0 1.2rem;
+      }
+
+      .journey-table {
+        font-size: 0.8rem;
+      }
+
+      .journey-table td {
+        padding: 0.8rem 0.4rem;
+      }
+
+      .journey-num {
+        font-size: 0.9rem;
+      }
+
+      .journey-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
