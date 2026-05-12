@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dossiers · Shadow of the Dragon Queen</title>
+  <link rel="stylesheet" href="../styles/sotdq.css" />
+  <script src="../scripts/nav.js" defer></script>
+  <style>
+    .page-header {
+      padding: 2.5rem 3rem 2rem;
+    }
+    .page-header::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--crimson);
+      margin-top: 1.5rem;
+    }
+    .dossier-listing {
+      padding: 0 3rem 4rem;
+    }
+    .dossier-group {
+      margin: 2.5rem 0 0;
+    }
+    .dossier-group-label {
+      font-family: var(--font-display);
+      font-size: var(--sz-xs);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--border-lit);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0;
+    }
+    .dossier-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 150px 150px;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-lit);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+    .dossier-row:hover {
+      background: rgba(139, 26, 26, 0.05);
+      padding-left: 0.5rem;
+    }
+    .dossier-portrait {
+      width: 56px;
+      height: 56px;
+      border: 1px solid var(--border-lit);
+      overflow: hidden;
+      background: rgba(139, 26, 26, 0.08);
+      flex-shrink: 0;
+    }
+    .dossier-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .dossier-name {
+      font-family: var(--font-display);
+      font-size: var(--sz-sm);
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .dossier-subtitle {
+      font-size: var(--sz-xs);
+      color: var(--text-dim);
+      margin-top: 0.25rem;
+    }
+    .disposition-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      font-size: var(--sz-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: 1px solid;
+      border-radius: 1px;
+    }
+    .disposition-ally    { color: #7dab8a; border-color: rgba(125,171,138,.4); background: rgba(125,171,138,.06); }
+    .disposition-neutral { color: var(--bronze-dim); border-color: rgba(184,131,42,.4); background: rgba(184,131,42,.06); }
+    .disposition-threat  { color: var(--crimson-lit); border-color: rgba(139,26,26,.5); background: rgba(139,26,26,.08); }
+    .status-text { font-size: var(--sz-xs); color: var(--text-dim); letter-spacing: 0.06em; }
+    .status-fallen  { color: #7dab8a; }
+    .status-slain   { color: var(--crimson-lit); }
+    .status-special { color: var(--bronze-dim); }
+
+    @media (max-width: 768px) {
+      .page-header, .dossier-listing { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .dossier-row { grid-template-columns: 44px 1fr 100px; }
+      .dossier-row > *:last-child { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-header">
+    <div class="page-eyebrow">Intelligence Files</div>
+    <h1 class="page-title">Dossiers</h1>
+    <p class="page-subtitle">Every face the party has encountered — allies, neutrals, and those who stand against them.</p>
+  </div>
+
+  <div class="dossier-listing">
+
+    <div class="dossier-group">
+      <div class="dossier-group-label">Allies</div>
+      <a href="becklin-uth-viharin.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Becklin Uth Viharin</div><div class="dossier-subtitle">Knight of the Crown, Solamnia</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text status-fallen">Fallen</div>
+      </a>
+      <a href="fizban.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Fizban</div><div class="dossier-subtitle">Wandering Mage</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="cudgel-ironsmile.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Cudgel Ironsmile</div><div class="dossier-subtitle">Proprietor, The Brass Crab</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="darrett-highwater.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Darrett Highwater</div><div class="dossier-subtitle">Officer, Kalaman Military</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="sunscale.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Sunscale</div><div class="dossier-subtitle">Mayriel's Companion</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="sir-cthondor.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Sir Cthondor</div><div class="dossier-subtitle">Knight, Freed from Corruption</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="than-rookledust.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Than Rookledust</div><div class="dossier-subtitle">Gnome Engineer</div></div>
+        <div><span class="disposition-badge disposition-ally">Ally</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+    </div>
+
+    <div class="dossier-group">
+      <div class="dossier-group-label">Neutral</div>
+      <a href="governor-miat.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Governor Miat</div><div class="dossier-subtitle">Governor of Kalaman</div></div>
+        <div><span class="disposition-badge disposition-neutral">Neutral</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="marshal-vendri.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Marshal Vendri</div><div class="dossier-subtitle">Marshal of Kalaman</div></div>
+        <div><span class="disposition-badge disposition-neutral">Neutral</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="mayor-raven.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Mayor Raven</div><div class="dossier-subtitle">Mayor of Vogler</div></div>
+        <div><span class="disposition-badge disposition-neutral">Neutral</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+    </div>
+
+    <div class="dossier-group">
+      <div class="dossier-group-label">Threats</div>
+      <a href="bakaris-the-younger.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Bakaris the Younger</div><div class="dossier-subtitle">Dragon Army Officer</div></div>
+        <div><span class="disposition-badge disposition-threat">Threat</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="gragonis.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Gragonis</div><div class="dossier-subtitle">Vogler Militia, Paid Traitor</div></div>
+        <div><span class="disposition-badge disposition-threat">Threat</span></div>
+        <div class="status-text">Alive</div>
+      </a>
+      <a href="theros-flametongue.html" class="dossier-row">
+        <div class="dossier-portrait"></div>
+        <div><div class="dossier-name">Theros Flametongue</div><div class="dossier-subtitle">Dragon Army Commander</div></div>
+        <div><span class="disposition-badge disposition-threat">Threat</span></div>
+        <div class="status-text status-special">Alive (Resurrected)</div>
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
