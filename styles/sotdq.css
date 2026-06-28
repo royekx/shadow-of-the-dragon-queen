@@ -1937,3 +1937,308 @@ body.with-sidebar .entry-nav-bar + div.content {
     font-size: 0.75rem;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────── */
+/* ENTRY PAGE STYLES (War Intel, Dossiers, Armory, etc.) */
+/* ─────────────────────────────────────────────────────────────────────── */
+
+.page-header {
+  padding: var(--sp-10) var(--sp-12) var(--sp-8);
+  border-bottom: 1px solid var(--border-lit);
+}
+.page-header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--crimson);
+  margin-top: var(--sp-6);
+}
+
+.page-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--sz-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: var(--sz-md);
+  color: var(--text-dim);
+  margin: 0;
+  font-style: italic;
+}
+
+.content {
+  padding: var(--sp-10) var(--sp-12) var(--sp-16);
+  max-width: 900px;
+}
+
+.section {
+  margin: var(--sp-10) 0;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--sz-md);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-lit);
+}
+
+.intel-badge,
+.dossier-badge,
+.item-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid;
+  border-radius: 1px;
+  font-size: var(--sz-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.intel-badge {
+  background: rgba(139, 26, 26, 0.1);
+  border-color: var(--crimson-lit);
+  color: var(--crimson-lit);
+}
+
+.dossier-badge {
+  background: rgba(139, 26, 26, 0.1);
+  border-color: var(--crimson-lit);
+  color: var(--crimson-lit);
+}
+
+.item-badge {
+  background: rgba(184, 131, 42, 0.1);
+  border-color: var(--bronze-lit);
+  color: var(--bronze-lit);
+}
+
+.info-box {
+  padding: var(--sp-6);
+  background: rgba(139, 26, 26, 0.05);
+  border-left: 3px solid var(--crimson);
+  margin: var(--sp-6) 0;
+}
+
+.info-box-title {
+  font-family: var(--font-display);
+  font-size: var(--sz-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crimson-lit);
+  margin-bottom: 0.75rem;
+}
+
+.info-box p {
+  font-size: var(--sz-sm);
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+  color: var(--text-dim);
+}
+
+.info-box p:last-child {
+  margin-bottom: 0;
+}
+
+.content p {
+  font-size: var(--sz-sm);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--text-dim);
+}
+
+.content strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.content li {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+  font-size: var(--sz-sm);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.content li:before {
+  content: '▪';
+  position: absolute;
+  left: 0;
+  color: var(--bronze-dim);
+}
+
+@media (max-width: 768px) {
+  .page-header { padding: var(--sp-8) var(--sp-5) var(--sp-6); }
+  .content { padding: var(--sp-8) var(--sp-5) var(--sp-12); }
+  .page-title { font-size: clamp(1.4rem, 4vw, 2rem); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────── */
+/* ENTRY PAGE STYLES - Minimal, non-conflicting */
+/* ─────────────────────────────────────────────────────────────────────── */
+
+.page-header {
+  padding: 2.5rem 3rem 2rem;
+  border-bottom: 1px solid var(--border-lit);
+}
+
+.page-header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--crimson);
+  margin-top: 1.5rem;
+}
+
+.page-eyebrow {
+  font-family: var(--font-display);
+  font-size: var(--sz-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.page-subtitle {
+  font-size: var(--sz-md);
+  color: var(--text-dim);
+  margin: 0;
+  font-style: italic;
+}
+
+.content {
+  padding: 2.5rem 3rem 4rem;
+  max-width: 900px;
+}
+
+.section {
+  margin: 2rem 0;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--sz-md);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-lit);
+}
+
+.intel-badge,
+.dossier-badge,
+.item-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid;
+  font-size: var(--sz-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.intel-badge {
+  background: rgba(139, 26, 26, 0.08);
+  border-color: var(--crimson-lit);
+  color: var(--crimson-lit);
+}
+
+.dossier-badge,
+.item-badge {
+  background: rgba(139, 26, 26, 0.08);
+  border-color: var(--crimson-lit);
+  color: var(--crimson-lit);
+}
+
+.info-box {
+  padding: 1.5rem;
+  background: rgba(139, 26, 26, 0.05);
+  border-left: 3px solid var(--crimson);
+  margin: 1.5rem 0;
+}
+
+.info-box-title {
+  font-family: var(--font-display);
+  font-size: var(--sz-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crimson-lit);
+  margin-bottom: 0.75rem;
+}
+
+.content p {
+  font-size: var(--sz-sm);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  color: var(--text-dim);
+}
+
+.content strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.content ul {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.content li {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+  font-size: var(--sz-sm);
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.content li:before {
+  content: '▪';
+  position: absolute;
+  left: 0;
+  color: var(--bronze-dim);
+}
+
+@media (max-width: 768px) {
+  .page-header { padding: 2rem 1.25rem 1.5rem; }
+  .content { padding: 2rem 1.25rem 3rem; }
+  .page-title { font-size: clamp(1.4rem, 4vw, 2rem); }
+}
