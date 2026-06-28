@@ -6,18 +6,109 @@
   <title>Takhisis, the Shadow Queen · War Intel</title>
   <link rel="stylesheet" href="../../styles/sotdq.css" />
   <script src="../../scripts/nav.js" defer></script>
+  <style>
+    .page-header {
+      padding: 2.5rem 3rem 2rem;
+      border-bottom: 1px solid var(--border-lit);
+    }
+    .page-header::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 2px;
+      background: var(--crimson);
+      margin-top: 1.5rem;
+    }
+    .content {
+      padding: 2.5rem 3rem;
+      max-width: 900px;
+    }
+    .section {
+      margin: 2.5rem 0;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--sz-md);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border-lit);
+    }
+    .intel-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: rgba(139, 26, 26, 0.1);
+      border: 1px solid var(--crimson-lit);
+      color: var(--crimson-lit);
+      font-size: var(--sz-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    p {
+      font-size: var(--sz-sm);
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+      color: var(--text-dim);
+    }
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    .info-box {
+      padding: 1.5rem;
+      background: rgba(139, 26, 26, 0.05);
+      border-left: 3px solid var(--crimson);
+      margin: 1.5rem 0;
+    }
+    .info-box-title {
+      font-family: var(--font-display);
+      font-size: var(--sz-xs);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--crimson-lit);
+      margin-bottom: 0.75rem;
+    }
+    .info-box p {
+      margin-bottom: 0.5rem;
+    }
+    .info-box p:last-child {
+      margin-bottom: 0;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+    li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      font-size: var(--sz-sm);
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+    li:before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: var(--bronze-dim);
+    }
+    @media (max-width: 768px) {
+      .page-header, .content { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+  </style>
 </head>
 <body>
 
   <div class="page-header">
     <div class="page-eyebrow">War Intel</div>
     <h1 class="page-title">Takhisis, the Shadow Queen</h1>
-    <p class="page-subtitle">The Shadow Queen — The power driving the Dragon Armies</p>
+    <p class="page-subtitle">The power driving the Dragon Armies. A force of darkness and domination.</p>
   </div>
 
   <div class="content">
-
-    <div class="intel-badge">Critical Threat</div>
 
     <div class="intel-badge">Threat Level: Apocalyptic</div>
 
