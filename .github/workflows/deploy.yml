@@ -1,0 +1,66 @@
+name: Build search index & deploy to Pages
+
+# Runs on every push to main. Builds the Pagefind search index from the
+# committed HTML, then publishes the whole site to GitHub Pages.
+#
+# ONE-TIME SETUP (once, in the repo on github.com):
+#   Settings -> Pages -> Build and deployment -> Source -> "GitHub Actions"
+# Until that is switched, Pages keeps serving the branch directly and the
+# search page reports that its index is not available yet. Everything else
+# on the site works either way.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:      # allows a manual re-run from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Player index -> /pagefind/
+      # An explicit glob: the gate, the hub, the search page, the redirect
+      # stubs and everything under _build/ are simply never matched.
+      - name: Build search index
+        run: |
+          npx -y pagefind \
+            --site . \
+            --glob "{unexpected-journeys/journey-*.html,unexpected-journeys/index.html,road-so-far/*.html,quests/*.html,the-embers/*.html,dossiers/*.html,atlas/*.html,armory/*.html,war-intel/*.html}" \
+            --exclude-selectors "[data-pagefind-ignore], nav, footer" \
+            --verbose
+
+      # The build tooling is not part of the published site.
+      - name: Drop build tooling from the artifact
+        run: rm -rf _build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

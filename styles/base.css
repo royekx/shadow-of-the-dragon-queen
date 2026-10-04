@@ -1,0 +1,1059 @@
+/* =======================================================
+   SHADOW OF THE DRAGON QUEEN - Shared Design System
+   Ported from the Caelestis site by _build/port_from_caelestis.py.
+   Do not hand-edit the ported sheets; put site-specific rules in
+   styles/site.css, which every page loads last.
+   ======================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+/* ── TOKENS ── */
+:root {
+  /* -- Backgrounds: scorched iron -- */
+  --bg:          #0a0704;
+  --bg-deep:     #060403;
+  --bg-panel:    rgba(26, 18, 12, 0.92);
+  --bg-card:     rgba(31, 22, 15, 0.90);
+  --bg-raised:   rgba(48, 34, 23, 0.80);
+
+  /* -- Rules: parchment, held faint -- */
+  --rule:        rgba(214, 186, 146, 0.15);
+  --rule-soft:   rgba(214, 186, 146, 0.08);
+
+  /* -- Bronze: the warm accent. Names stay --gold-* so every ported
+        rule follows without edits. -- */
+  --gold:        #c9963f;
+  --gold-light:  #e6bd72;
+  --gold-dim:    #94692a;
+  --gold-faint:  rgba(201, 150, 63, 0.10);
+  --gold-rule:   rgba(201, 150, 63, 0.30);
+
+  /* -- Crimson: wayfinding, links, hover. Names stay --ice-*. -- */
+  --ice:         #d0574a;
+  --ice-light:   #ec8d7c;
+  --ice-dim:     #8f2a22;
+  --ice-faint:   rgba(176, 40, 40, 0.12);
+
+  /* -- Steel: held in reserve for a third state. Names stay --violet-*. -- */
+  --violet:      #9aa7b4;
+  --violet-dim:  #66727e;
+
+  /* -- Text: four tiers on warm parchment -- */
+  --text:        #efe4d0;
+  --text-soft:   #dccdb4;
+  --text-dim:    #c7b79d;
+  --text-muted:  #a39379;
+  --text-faint:  #7d6e5a;
+
+  /* Veil over the backdrop. The one dial for how much ember shows through. */
+  --veil-centre: rgba(10, 7, 4, 0.20);
+  --veil-edge:   rgba(6, 4, 3, 0.58);
+
+  /* -- Rank colours (unused here, kept so ported rules resolve) -- */
+  --cadet:       #b04a4a;
+  --sailor:      #9aa7b4;
+  --officer:     #c9963f;
+  --bridge:      #c9963f;
+
+  /* -- Misc -- */
+  --radius:      0;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* One dial for the whole site. Everything below is in rem. */
+html { scroll-behavior: smooth; font-size: 118%; background: var(--bg-deep); }
+
+/* ── BASE ── */
+body {
+  /* No background colour here — an opaque body fill would paint over
+     body::before, which sits at z-index -2. html carries the fallback. */
+  color: var(--text);
+  font-family: 'Crimson Pro', Georgia, serif;
+  min-height: 100vh;
+  position: relative;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; z-index: -2;
+  background:
+    radial-gradient(120% 70% at 18% 108%, rgba(150, 34, 22, 0.55) 0%, rgba(96, 22, 14, 0.28) 38%, transparent 68%),
+    radial-gradient(90% 60% at 88% 104%, rgba(168, 84, 24, 0.30) 0%, transparent 62%),
+    radial-gradient(70% 50% at 82% -8%, rgba(120, 82, 34, 0.22) 0%, transparent 70%),
+    radial-gradient(60% 45% at 8% -6%, rgba(70, 22, 18, 0.30) 0%, transparent 72%),
+    linear-gradient(to bottom, #0b0806 0%, #0a0705 55%, #120a07 100%);
+}
+body::after {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  /* Sparks first so they sit above the veil. */
+  background-image:
+    radial-gradient(1.5px 1.5px at 8%  72%, #ffb36699 0%, transparent 100%),
+    radial-gradient(1px   1px   at 22% 58%, #ff9a4d66 0%, transparent 100%),
+    radial-gradient(2px   2px   at 31% 86%, #ffc680aa 0%, transparent 100%),
+    radial-gradient(1px   1px   at 44% 64%, #ff8a3d55 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 57% 91%, #ffb36688 0%, transparent 100%),
+    radial-gradient(1px   1px   at 66% 49%, #ffd9a044 0%, transparent 100%),
+    radial-gradient(2px   2px   at 74% 78%, #ff9a4d99 0%, transparent 100%),
+    radial-gradient(1px   1px   at 83% 61%, #ffb36655 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 91% 88%, #ffc68088 0%, transparent 100%),
+    radial-gradient(1px   1px   at 14% 41%, #ffd9a033 0%, transparent 100%),
+    radial-gradient(1px   1px   at 38% 33%, #ffb36633 0%, transparent 100%),
+    radial-gradient(1px   1px   at 61% 24%, #ffd9a02e 0%, transparent 100%),
+    radial-gradient(1px   1px   at 88% 31%, #ff9a4d33 0%, transparent 100%),
+    radial-gradient(1px   1px   at 4%  18%, #ffd9a022 0%, transparent 100%),
+    radial-gradient(1px   1px   at 51% 12%, #ffb36622 0%, transparent 100%),
+    radial-gradient(ellipse at 50% 45%, var(--veil-centre) 50%, var(--veil-edge) 100%);
+  background-repeat: no-repeat;
+}
+
+
+
+/* ── PAGE WRAPPER ── */
+.page-content {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ── CONTENT SCRIM ──
+   The nebula runs bright in places, and pages whose content sits directly
+   on it — prose, lists, anything without its own card — become hard to
+   read. This puts a soft translucent field behind every content column.
+
+   It behaves as a shadow rather than a panel: the box-shadow spreads the
+   same colour outward at a wide blur, so the edges dissolve instead of
+   drawing a rectangle. Pages that already have cards gain a little depth
+   and nothing else. */
+.content { position: relative; z-index: 0; }
+.content::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem -1.75rem;
+  z-index: -1;
+  border-radius: 0;
+  background: rgba(9, 6, 4, 0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 70px 55px rgba(9, 6, 4, 0.62);
+  pointer-events: none;
+}
+@media (max-width: 620px) {
+  .content::before { inset: -0.75rem -0.9rem; }
+}
+
+
+/* ── SURFACES ──
+   The backdrop does the work. Blocks that used to carry their own fill now
+   sit on the scrim behind the content column, so a page reads as one field
+   of text over the nebula rather than a stack of panels. What separates
+   sections is a rule and space, not a box.
+
+   A fill is reserved for things that are genuinely interactive or set
+   apart — rows you can open, inputs, the active tab — where the surface
+   is saying "this responds" rather than "this is text". */
+.voyage-glance,
+.log-overview,
+.account-body,
+.dossier-row-body,
+.entry-body,
+.section-block {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+.section-block { margin-bottom: 2.4rem; }
+
+/* Section labels get a hairline instead of a card edge. */
+.section-label {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0.9rem;
+}
+
+/* Kept: rows that open, and the sheet a document sits on. */
+.log-entry { background: var(--bg-card); }
+.log-entry:hover { background: var(--bg-raised); }
+
+
+/* ── ENTRY PAGES: a panel, not a scrim ──
+   List pages read well flat — the rows carry their own surface. Detail
+   pages do not: a stat block, prose, and voyage sections sitting loose on
+   the backdrop look unfinished next to an index full of filled rows.
+
+   So any page with an entry header gets a real panel behind its content:
+   the blue fill, a rule, a hard edge. :has() picks them up without a class
+   on the markup; .content.is-panel forces it where the header is absent. */
+/* On an entity page the scrim is not a scrim — it is the panel the record
+   sits on, and it is visible. It used to bleed 2rem past .content on each
+   side, which made it wider than the command bar above it. The bar carries
+   the column width exactly, so the two never lined up.
+
+   Horizontal inset is 0 now: the panel is the column, the same width as the
+   bar and as the listing panels on every other page. .content's own 2.5rem
+   padding keeps the record off the panel edge, so nothing moves inward. */
+body:has(.entry-header) .content::before,
+body:has(.doc-paper) .content::before,
+.content.is-panel::before {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  box-shadow: 0 18px 50px rgba(4, 2, 1, 0.45);
+  inset: -1.75rem 0;
+}
+@media (max-width: 620px) {
+  body:has(.entry-header) .content::before,
+  .content.is-panel::before { inset: -0.9rem 0; }
+}
+
+
+/* ── ROUNDED: PILLS AND TABS ONLY ──
+   With the softer palette, square containers hold an edge better than
+   rounded ones. Radius is now reserved for the two things that read as
+   controls rather than surfaces: pills, and tabs.
+
+   Tabs round only their top corners and the panel rounds only the three
+   corners the active tab does not meet, so the pair still reads as one
+   continuous surface. */
+.chip, .filter-tag, .q-kind, .prior > summary,
+.log-badge, .log-type-badge, .stub-chip,
+.voyage-nav-bar, .voyage-nav-bottom, .clear-btn,
+.obj-progress, .board-count {
+  border-radius: 999px;
+}
+
+.account-tab, .board-tab { border-radius: 12px 12px 0 0; }
+.account-panel, .board-panel { border-radius: 0 12px 12px 12px; }
+
+/* ── PAGE EMBLEM (replaces eyebrow on landing pages) ── */
+.page-emblem {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  color: var(--gold-dim);
+}
+.page-emblem svg { width: 120px; }
+
+/* ── SIDE NAV ── */
+.side-nav {
+  position: fixed; left: 0; top: 0; bottom: 0;
+  width: 244px;
+  background: rgba(8, 5, 3,0.99);
+  border-right: 1px solid var(--gold-rule);
+  display: flex; flex-direction: column;
+  z-index: 200; overflow-y: auto;
+}
+.side-nav-head {
+  padding: 1.8rem 1.4rem 1.4rem;
+  border-bottom: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.side-nav-logo {
+  font-family: 'Cinzel', serif; font-size: 1.1rem;
+  font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; display: block;
+}
+.side-nav-logo:hover { color: var(--gold-light); }
+.side-nav-body { padding: 1.2rem 0; flex: 1; }
+/* Global search field at the top of the sidebar */
+.side-nav-search {
+  position: relative; display: flex; align-items: center;
+  margin: 0 1.4rem 1rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.side-nav-search svg {
+  position: absolute; left: 0.6rem; width: 14px; height: 14px;
+  stroke: var(--gold-dim); pointer-events: none;
+}
+.side-nav-search input {
+  width: 100%; background: var(--bg); border: 1px solid var(--rule);
+  border-radius: var(--radius); color: var(--text);
+  font-family: 'Crimson Pro', serif; font-size: 0.99rem;
+  padding: 0.45rem 0.6rem 0.45rem 1.9rem; outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.side-nav-search input::placeholder { color: var(--text-muted); font-style: italic; }
+.side-nav-search input:focus {
+  border-color: var(--gold-dim); box-shadow: 0 0 0 1px var(--gold-faint);
+}
+.side-nav-link {
+  font-family: 'Cinzel', serif; font-size: 0.92rem;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  color: var(--text-dim); text-decoration: none;
+  padding: 0.6rem 1.4rem;
+  display: block; border-left: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, padding-left 0.2s;
+}
+.side-nav-link:hover {
+  color: var(--text); border-left-color: var(--gold-dim);
+  background: rgba(201, 150, 63,0.04); padding-left: 1.8rem;
+}
+.side-nav-link.active {
+  color: var(--gold); border-left-color: var(--gold);
+  background: rgba(201, 150, 63,0.06);
+}
+.side-nav-divider {
+  height: 1px; background: var(--gold-rule);
+  margin: 1rem 1.4rem;
+}
+.side-nav-ext-link {
+  font-family: 'Cinzel', serif; font-size: 0.899rem;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+  padding: 0.5rem 1.4rem;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s;
+}
+.side-nav-ext-link:hover { color: var(--gold-dim); }
+.side-nav-ext-link svg { width: 9px; opacity: 0.6; flex-shrink: 0; }
+
+/* Offset content when sidebar present */
+body.with-sidebar { padding-left: 244px; }
+
+/* Content fills available space — sidebar is the left boundary, padding provides breathing room */
+body.with-sidebar .page-content {
+  margin: 0;
+  max-width: 100%;
+  padding: 0 3rem;
+}
+/* One column width across the whole site.
+
+   This used to be max-width:100%, which let every page but the hub run to the
+   edge of whatever monitor it was opened on. The hub reads better because it
+   has always been bounded. --column is that bound, and the header, the content
+   and the command bar all sit inside it.
+
+   It is a min(), not a fixed width — the column still gives back space on a
+   laptop, it just stops growing once lines get too long to scan. */
+:root { --column: min(1180px, 100%); }
+body.with-sidebar .content {
+  max-width: var(--column);
+  margin: 0 auto;
+}
+/* Page header stays contained and centred within the content area */
+body.with-sidebar .page-header {
+  max-width: var(--column);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Mobile: hamburger toggle */
+.side-nav-toggle {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 201;
+  background: rgba(8, 5, 3,0.97);
+  border-bottom: 1px solid var(--rule);
+  color: var(--gold-dim); cursor: pointer;
+  height: 44px;
+  align-items: center; justify-content: flex-start;
+  padding: 0 1.2rem; gap: 0.8rem;
+}
+.side-nav-toggle svg { width: 16px; }
+.side-nav-toggle-label {
+  font-family: 'Cinzel', serif; font-size: 0.942rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media(max-width: 768px) {
+  body.with-sidebar { padding-left: 0; padding-top: 52px; }
+  body.with-sidebar .page-content { padding: 0 1.2rem; }
+  .side-nav { transform: translateX(-100%); transition: transform 0.28s ease; box-shadow: none; background: rgba(8, 5, 3,0.99); }
+  .side-nav.open { transform: translateX(0); box-shadow: 4px 0 32px rgba(0,0,0,0.8); }
+  .side-nav-toggle { display: flex; }
+}
+
+/* ── ENTRY NAV (Nexus, Dossiers, and other section entry pages) ── */
+.nav-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+  gap: 0.8rem;
+}
+.nav-prev, .nav-next {
+  font-family: 'Cinzel', serif; font-size: 0.835rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-dim); text-decoration: none;
+  transition: color 0.2s; white-space: nowrap; flex-shrink: 0;
+}
+.nav-prev:hover, .nav-next:hover { color: var(--gold-light); }
+.nav-prev.disabled, .nav-next.disabled {
+  color: var(--text-muted); pointer-events: none; opacity: 0.4;
+}
+.nav-center {
+  font-family: 'Cinzel', serif; font-size: 0.812rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold-dim); text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 0.28rem 0.9rem; white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.nav-center:hover {
+  border-color: var(--gold-dim); color: var(--gold-light);
+  background: rgba(201, 150, 63,0.05);
+}
+
+/* ── VOYAGE PREV / NEXT ── */
+.voyage-nav-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 2rem;
+  gap: 0.8rem;
+}
+.voyage-nav-bar + .log-meta { margin-top: 0; }
+.voyage-nav-link {
+  font-family: 'Cinzel', serif; font-size: 0.835rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--gold-dim); text-decoration: none;
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: color 0.2s; white-space: nowrap; flex-shrink: 0;
+}
+.voyage-nav-link:hover { color: var(--gold-light); }
+.voyage-nav-link.disabled { color: var(--text-muted); pointer-events: none; opacity: 0.4; }
+.voyage-nav-link svg { width: 12px; }
+.voyage-nav-center {
+  font-family: 'Cinzel', serif; font-size: 0.812rem;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--gold-dim); text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 0.28rem 0.9rem; white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.voyage-nav-center:hover {
+  border-color: var(--gold-dim); color: var(--gold-light);
+  background: rgba(201, 150, 63,0.05);
+}
+.voyage-nav-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  padding: 1.2rem 0 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 2rem; gap: 0.8rem;
+}
+
+/* On a phone the three links do not fit on one line. Every one of them is
+   nowrap and the centre link does not shrink, so the row reported a
+   min-content width of up to 700px and took the page sideways with it.
+   Two rows instead: the centre link across the top, prev and next below. */
+@media (max-width: 620px) {
+  .nav-bar, .voyage-nav-bar, .voyage-nav-bottom {
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.7rem 0.8rem; align-items: center;
+  }
+  .nav-center, .voyage-nav-center {
+    grid-column: 1 / -1; order: -1;
+    text-align: center; white-space: normal;
+  }
+  .nav-prev, .nav-next, .voyage-nav-link {
+    white-space: normal; min-width: 0;
+  }
+  .nav-next { justify-self: end; text-align: right; }
+  .voyage-nav-bar > .voyage-nav-link:last-child,
+  .voyage-nav-bottom > .voyage-nav-link:last-child {
+    justify-self: end; justify-content: flex-end; text-align: right;
+  }
+  /* A lone next link would otherwise sit in the left half. */
+  .voyage-nav-bar > .voyage-nav-link:first-child:not(:last-child) ~ .voyage-nav-link { grid-column: 2; }
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  text-align: center;
+  padding: 3.5rem 2rem 2.5rem;
+  position: relative;
+}
+.page-header::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.2rem auto 0;
+}
+.page-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.835rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.page-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  line-height: 1.1;
+}
+.page-subtitle {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+
+/* ── CONTENT AREA ── */
+.content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2.5rem 6rem;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.835rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.1rem;
+}
+
+/* ── SECTION BLOCK ── */
+.section-block { margin-bottom: 2.5rem; }
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--gold-faint);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold);
+  padding: 0.85rem 1.1rem;
+  font-size: 0.99rem;
+  line-height: 1.55;
+  margin-top: 0.9rem;
+}
+.callout-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.835rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* ── ENTRY LIST ── */
+.entry-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.entry {
+  font-size: 1.01rem;
+  line-height: 1.5;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--gold-rule);
+  color: var(--text);
+}
+.entry b { font-weight: 600; color: var(--text); }
+.entry em { color: var(--text-dim); }
+
+/* ── DIVIDER ── */
+.divider {
+  text-align: center;
+  color: var(--gold-dim);
+  font-size: 0.899rem;
+  letter-spacing: 0.4em;
+  margin: 0.3rem 0 2rem;
+}
+
+/* ── PAGE FOOTER ── */
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+    .content { padding: 0 1.2rem 4rem; }
+  .page-header { padding: 2.5rem 1.2rem 2rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ARCHIVE RETRIEVAL — search terminal
+   Shared styling for the global search page, per-section
+   search boxes, and the gated DM / FIA search surfaces.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Terminal page shell ── */
+.terminal-wrap { max-width: 780px; margin: 0 auto; padding: 3.5rem 1.5rem 5rem; }
+.terminal-head { text-align: center; margin-bottom: 2.5rem; }
+.terminal-eyebrow {
+  font-family: 'Cinzel', serif; font-size: 0.858rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--gold-dim); margin-bottom: 1rem;
+}
+.terminal-title {
+  font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: var(--gold);
+  letter-spacing: 0.04em; margin: 0 0 0.6rem; text-shadow: 0 0 24px rgba(201, 150, 63,0.18);
+}
+.terminal-sub {
+  font-size: 0.98rem; color: var(--text-dim); font-style: italic;
+  max-width: 30rem; margin: 0 auto;
+}
+
+/* ── Search console ── */
+.search-console {
+  background: var(--bg-panel); border: 1px solid var(--rule); border-radius: var(--radius);
+  padding: 1.6rem 1.5rem 1.5rem; box-shadow: 0 0 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(201, 150, 63,0.06);
+  position: relative;
+}
+.search-console::before {
+  content: ''; position: absolute; inset: 4px; border: 1px solid rgba(201, 150, 63,0.08);
+  border-radius: var(--radius); pointer-events: none;
+}
+.search-console-label {
+  font-family: 'Cinzel', serif; font-size: 0.835rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.7rem;
+}
+.search-row { display: flex; gap: 0.6rem; align-items: stretch; }
+.search-field { flex: 1; position: relative; display: flex; align-items: center; }
+.search-field > svg {
+  position: absolute; left: 0.85rem; width: 16px; height: 16px;
+  stroke: var(--gold-dim); pointer-events: none;
+}
+.search-input {
+  width: 100%; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius);
+  color: var(--text); font-family: 'Crimson Pro', serif; font-size: 1.05rem;
+  padding: 0.7rem 0.9rem 0.7rem 2.5rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.search-input::placeholder { color: var(--text-muted); font-style: italic; }
+.search-input:focus {
+  border-color: var(--gold-dim); box-shadow: 0 0 0 1px var(--gold-faint), 0 0 18px rgba(201, 150, 63,0.1);
+}
+.scope-select { position: relative; }
+.scope-select select {
+  appearance: none; -webkit-appearance: none; background: var(--bg-raised);
+  border: 1px solid var(--rule); border-radius: var(--radius); color: var(--gold-light);
+  font-family: 'Cinzel', serif; font-size: 0.92rem; letter-spacing: 0.06em;
+  padding: 0.7rem 2rem 0.7rem 0.9rem; cursor: pointer; outline: none; height: 100%;
+}
+.scope-select select:focus { border-color: var(--gold-dim); }
+.scope-select::after {
+  content: '▾'; position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%);
+  color: var(--gold-dim); pointer-events: none; font-size: 0.899rem;
+}
+.scope-hint { margin-top: 0.75rem; font-size: 0.942rem; color: var(--text-muted); font-style: italic; }
+.scope-hint b { color: var(--gold-dim); font-style: normal; font-weight: 600; }
+
+/* ── Results ── */
+.results-meta {
+  margin: 2rem 0 1rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule);
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.results-count {
+  font-family: 'Cinzel', serif; font-size: 0.92rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold-dim);
+}
+.results-term { color: var(--gold-light); }
+.results-scope { font-size: 0.92rem; color: var(--text-muted); font-style: italic; }
+
+.result {
+  display: block; text-decoration: none; padding: 1.1rem 1.2rem; margin-bottom: 0.7rem;
+  background: var(--bg-card); border: 1px solid transparent; border-left: 2px solid var(--gold-rule);
+  border-radius: var(--radius); transition: border-color 0.18s, background 0.18s, transform 0.18s;
+}
+.result:hover {
+  background: var(--bg-raised); border-left-color: var(--gold); border-color: var(--gold-rule);
+  transform: translateX(2px);
+}
+.result-head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.35rem;
+}
+.result-title {
+  font-family: 'Cinzel', serif; font-size: 1.02rem; color: var(--gold); letter-spacing: 0.02em;
+}
+.result:hover .result-title { color: var(--gold-light); }
+.result-path {
+  font-family: 'Cinzel', serif; font-size: 0.812rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+}
+.result-snippet { font-size: 1.01rem; color: var(--text-dim); line-height: 1.55; }
+.result-snippet mark { background: var(--gold-faint); color: var(--gold-light); padding: 0 2px; border-radius: 1px; }
+
+.search-state {
+  text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);
+  font-style: italic; font-size: 1.04rem;
+}
+.search-footnote {
+  margin-top: 2.5rem; text-align: center; font-size: 0.92rem;
+  color: var(--text-muted); font-style: italic; line-height: 1.7;
+}
+
+/* ── Per-section inline search box (compact) ── */
+.section-search {
+  max-width: 620px; margin: 0 auto 2rem; position: relative; display: flex; align-items: center;
+}
+.section-search > svg {
+  position: absolute; left: 0.85rem; width: 15px; height: 15px; stroke: var(--gold-dim); pointer-events: none;
+}
+.section-search input {
+  width: 100%; background: var(--bg); border: 1px solid var(--rule); border-radius: var(--radius);
+  color: var(--text); font-family: 'Crimson Pro', serif; font-size: 0.98rem;
+  padding: 0.6rem 0.9rem 0.6rem 2.4rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+}
+.section-search input::placeholder { color: var(--text-muted); font-style: italic; }
+.section-search input:focus {
+  border-color: var(--gold-dim); box-shadow: 0 0 0 1px var(--gold-faint);
+}
+/* Inline results dropdown for the per-section box */
+.section-search-results {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 40;
+  background: var(--bg-panel); border: 1px solid var(--rule); border-radius: var(--radius);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6); max-height: 60vh; overflow-y: auto; display: none;
+}
+.section-search-results.open { display: block; }
+.section-search-results .result { margin: 0; border-left: none; border-radius: 0; border-bottom: 1px solid var(--rule); }
+.section-search-results .result:last-child { border-bottom: none; }
+.section-search-results .search-state { padding: 1.4rem 1rem; }
+
+/* ── Search entry card on the landing grid ── */
+.s-card.search-card .s-icon { color: var(--gold); }
+
+@media (max-width: 640px) {
+  .search-row { flex-direction: column; }
+  .scope-select select { width: 100%; }
+  .terminal-title { font-size: 1.6rem; }
+}
+
+
+/* ── SIDE NAV: GROUP LABELS + HUB LINK ── */
+.side-nav-group-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.858rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.9;
+  padding: 1.2rem 1.4rem 0.45rem;
+}
+.side-nav-body > .side-nav-group-label:first-of-type { padding-top: 0.6rem; }
+
+.side-nav-hub {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.789rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-top: 0.35rem;
+  transition: color 0.2s;
+}
+.side-nav-hub:hover { color: var(--gold-dim); }
+
+
+/* ══════════════════════════════════════════════════════════════
+   PORTRAIT TREATMENT — detail pages only
+   Applies to .portrait-frame when it actually contains an image,
+   so "Portrait Pending" placeholders keep their plain frame and
+   listing-page thumbnails (.crew-thumb, .dossier-thumb) are
+   untouched. Set here rather than per-page so every entry picks
+   it up automatically.
+   ══════════════════════════════════════════════════════════════ */
+.portrait-frame:has(img) {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--gold-dim);
+  background: #080503;
+  box-shadow:
+    0 8px 34px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(201, 150, 63, 0.10);
+}
+
+/* Gold rule across the top, matching the card treatment */
+.portrait-frame:has(img)::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0.7; z-index: 2; pointer-events: none;
+}
+
+/* Vignette — sinks the edges into the page instead of cutting a hard square */
+.portrait-frame:has(img)::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(8, 5, 3,0.30) 0%, transparent 22%, transparent 62%, rgba(8, 5, 3,0.62) 100%),
+    radial-gradient(115% 85% at 50% 38%, transparent 42%, rgba(8, 5, 3,0.55) 100%);
+}
+
+.portrait-frame:has(img) img {
+  filter: saturate(0.94) contrast(1.05);
+  transform: scale(1.005);
+  transition: transform 0.6s ease, filter 0.6s ease;
+}
+.portrait-frame:has(img):hover img {
+  transform: scale(1.04);
+  filter: saturate(1) contrast(1.07);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait-frame:has(img) img,
+  .portrait-frame:has(img):hover img { transition: none; transform: none; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   PORTRAIT LIGHTBOX — wired by scripts/nav.js
+   Any .portrait-frame holding an image becomes click-to-expand.
+   ══════════════════════════════════════════════════════════════ */
+.portrait-frame.cae-expandable {
+  cursor: pointer;
+  outline-offset: 3px;
+}
+.portrait-frame.cae-expandable:focus-visible {
+  outline: 1px solid var(--gold);
+}
+
+.cae-lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(0, 0, 0, 0.9);
+  align-items: center; justify-content: center;
+  padding: 2.5rem;
+}
+.cae-lightbox.open { display: flex; animation: caeFade 0.2s ease both; }
+.cae-lightbox img {
+  max-width: 92%; max-height: 88%;
+  object-fit: contain;
+  border: 1px solid var(--rule);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+  cursor: default;
+}
+.cae-lightbox-close {
+  position: absolute; top: 1.2rem; right: 1.5rem;
+  font-family: 'Cinzel', serif; font-size: 0.835rem;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold-dim); background: none;
+  border: 1px solid var(--rule);
+  padding: 0.45rem 1rem; cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.cae-lightbox-close:hover { color: var(--text); border-color: var(--gold-dim); }
+
+@keyframes caeFade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 560px) {
+  .cae-lightbox { padding: 1rem; }
+  .cae-lightbox img { max-width: 100%; max-height: 82%; }
+}
+
+/* ── SEARCH: spelling correction notice ── */
+.search-correction {
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--gold-dim);
+  background: var(--gold-faint);
+  padding: 0.55rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.963rem;
+  font-style: italic;
+  color: var(--text-dim);
+}
+.search-correction b {
+  font-style: normal;
+  color: var(--gold-light);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   STAT LISTS — key/value rows in the portrait column
+   The column is narrow, so a two-word value used to break across
+   lines and collide with its label. Keys and values are now
+   unbreakable units: when a value can't sit beside its label it
+   drops to its own line instead of splitting down the middle.
+   Higher specificity than the per-page rules it corrects.
+   ══════════════════════════════════════════════════════════════ */
+.stat-list .stat-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.15rem 0.9rem;
+}
+.stat-list .stat-key {
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+.stat-list .stat-val {
+  white-space: nowrap;
+  flex: 1 1 auto;
+  text-align: right;
+  min-width: 0;
+}
+/* A handful of values are longer than the column at any width. These wrap
+   normally — on their own line, so they still never collide with a label. */
+.stat-list .stat-val.stat-val-long {
+  white-space: normal;
+  overflow-wrap: break-word;
+  flex: 1 1 100%;
+}
+
+/* A little more room for the portrait column, which also helps the images */
+@media (min-width: 561px) {
+  .content .entry-header { grid-template-columns: 196px 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   COMMAND BAR
+   Injected by nav.js at the top of every page. Two operations and the
+   crew's current bearing, stuck to the top so it is always in reach.
+   The strip trims with ellipsis on purpose; the caret opens what it cut.
+   ══════════════════════════════════════════════════════════════════ */
+.command-bar {
+  /* Sticky, as in the hub demo: it travels down the column with the page and
+     parks at the top once it gets there.
+
+     max-width / overflow / the min-width:0 on the flex children below are what
+     keep it inside the column. Without them the bearing values set the strip's
+     min-content width and pushed the whole bar past the page edge. */
+  position: sticky; top: 0; z-index: 150;
+  /* Brass, not a second blue. The registers and panels below it are all
+     ice-toned; when the bar was too, it read as another panel rather than as
+     the thing that sits above them. */
+  background: linear-gradient(180deg, rgba(26, 18, 9, 0.97), rgba(18, 13, 7, 0.97));
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--gold-rule);
+  border-left: 3px solid var(--gold);
+  /* It sits outside .content now, so it carries the column width itself
+     rather than inheriting it. The bottom margin clears .content's scrim,
+     which starts 1.5rem above the content box. */
+  max-width: var(--column); min-width: 0; overflow: hidden;
+  margin: 0 auto 2.2rem; width: 100%;
+  box-shadow: 0 14px 34px rgba(4, 2, 1, 0.45);
+}
+
+/* ── Global search ── */
+.cb-search {
+  display: flex; align-items: center; gap: 0.7rem;
+  padding: 0.6rem 1.1rem; border-bottom: 1px solid var(--gold-rule);
+}
+/* Both the glyph and the tag submit the form. */
+.cb-search-go {
+  background: none; border: none; padding: 0; margin: 0;
+  display: flex; align-items: center; cursor: pointer;
+  color: var(--gold-dim); flex-shrink: 0; transition: color .18s;
+}
+.cb-search-go:hover { color: var(--gold-light); }
+.cb-search svg { width: 14px; flex-shrink: 0; }
+.cb-search input {
+  flex: 1; min-width: 0; background: none; border: none; outline: none;
+  color: var(--text); font-family: 'Crimson Pro', serif;
+  font-size: 0.95rem; font-style: italic;
+}
+.cb-search input::placeholder { color: var(--text-muted); }
+.cb-search-tag {
+  background: none; border: none; cursor: pointer;
+  transition: color .18s;
+  font-family: 'Cinzel', serif; font-size: 0.683rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold-dim); white-space: nowrap;
+  padding-left: 0.9rem; border-left: 1px solid var(--rule-soft);
+}
+.cb-search:focus-within .cb-search-go, .cb-search:focus-within .cb-search-tag { color: var(--gold); }
+.cb-search-tag:hover { color: var(--gold-light); }
+
+/* ── Operations ── */
+.cb-ops { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--gold-rule); }
+.cb-op {
+  display: flex; align-items: baseline; gap: 0.6rem; min-width: 0;
+  padding: 0.55rem 1.1rem; text-decoration: none;
+  transition: background .18s, color .18s;
+}
+.cb-op + .cb-op { border-left: 1px solid var(--gold-rule); }
+.cb-op:hover { background: var(--gold-faint); }
+.cb-op-name {
+  font-family: 'Cinzel', serif; font-size: 0.812rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.cb-op-note {
+  font-size: 0.888rem; font-style: italic; color: var(--text-muted);
+  min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cb-op svg { width: 9px; margin-left: auto; color: var(--text-muted); flex-shrink: 0; align-self: center; }
+.cb-op:hover .cb-op-note, .cb-op:hover svg { color: var(--gold-dim); }
+
+/* ── Bearing strip ── */
+.cb-strip { display: flex; align-items: stretch; min-width: 0; }
+.cb-face {
+  flex: 1; min-width: 0; display: grid;
+  grid-template-columns: auto 1fr 1.2fr 1.6fr;
+  align-items: center; gap: 1.1rem;
+  padding: 0.65rem 1.1rem; text-decoration: none;
+  transition: background .18s;
+}
+.cb-face:hover { background: rgba(201, 150, 63, 0.10); }
+.cb-label {
+  font-family: 'Cinzel', serif; font-size: 0.683rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.cb-cell { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.cb-key {
+  font-family: 'Cinzel', serif; font-size: 0.61rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+}
+.cb-val {
+  font-size: 0.963rem; color: var(--text); line-height: 1.3;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cb-note { color: var(--text-muted); font-style: italic; font-size: 0.877rem; }
+.cb-face:hover .cb-val { color: var(--gold-light); }
+
+.cb-expand {
+  flex-shrink: 0; width: 44px; border: none; border-left: 1px solid var(--gold-rule);
+  background: transparent; color: var(--gold-dim); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: color .18s, background .18s;
+}
+.cb-expand svg { width: 12px; transition: transform .2s; }
+.cb-expand:hover { color: var(--gold-light); background: var(--gold-faint); }
+.cb-expand[aria-expanded="true"] svg { transform: rotate(180deg); }
+
+/* ── Expanded detail ── */
+.cb-detail {
+  padding: 0.9rem 1.1rem 1rem; border-top: 1px solid var(--gold-rule);
+  display: flex; flex-direction: column; gap: 0.75rem;
+}
+.cb-detail[hidden] { display: none; }
+.cb-conseq { font-size: 0.93rem; line-height: 1.65; color: var(--text-dim); margin: 0; max-width: 80ch; }
+.cb-row { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; }
+.cb-quests, .cb-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.cb-quest, .cb-chip {
+  display: inline-flex; align-items: baseline; gap: 0.45rem;
+  font-size: 0.909rem; padding: 0.16rem 0.68rem; border-radius: 999px;
+  border: 1px solid var(--gold-rule); background: rgba(201, 150, 63, 0.07);
+  color: var(--text-dim); text-decoration: none; transition: border-color .18s, color .18s;
+}
+.cb-quest:hover, .cb-chip:hover { border-color: var(--ice-dim); color: var(--ice); }
+.cb-prog { font-family: 'Cinzel', serif; font-size: 0.719rem; color: var(--gold); }
+.cb-more {
+  align-self: flex-start; font-family: 'Cinzel', serif; font-size: 0.708rem;
+  letter-spacing: 0.15em; text-transform: uppercase; color: var(--ice-dim); text-decoration: none;
+}
+.cb-more:hover { color: var(--ice); }
+
+@media (max-width: 860px) {
+  .cb-ops { grid-template-columns: 1fr; }
+  .cb-op + .cb-op { border-left: none; border-top: 1px solid var(--rule-soft); }
+  .cb-op-note { display: none; }
+  .cb-face { grid-template-columns: 1fr 1fr; gap: 0.6rem 1.2rem; }
+  .cb-label { display: none; }
+  .cb-face > .cb-cell:last-child { grid-column: 1 / -1; }
+  .cb-val { white-space: normal; }
+}
+
+/* Two columns of bearing values are still two words wide on a phone.
+   Stack them. This lived in register.css, which the bearings pages and
+   the hub do not load, so the strip rendered differently there. */
+@media (max-width: 620px) {
+  .cb-face { grid-template-columns: minmax(0, 1fr); }
+  .cb-face > .cb-cell:last-child { grid-column: auto; }
+}
+
+/* Cards sit in a uniform grid, so a two-line link row on one card must not
+   stretch its neighbours. Descriptions clamp and links stay on one line. */
+.s-card { min-height: 0; }
+.s-desc { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; max-height: 3em; flex: none; }
+.s-links { flex-wrap: wrap; min-width: 0; }
+.s-link { display: inline-block; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.s-link-all { margin-top: 0; padding-top: 0; border-top: none; }
+
+@media (max-width: 620px) {
+  .cb-search-tag { display: none; }
+  .cb-search input { font-size: 0.963rem; }
+}

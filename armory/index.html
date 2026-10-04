@@ -1,61 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Armory — Shadow of the Dragon Queen</title>
-  <link rel="stylesheet" href="../styles/sotdq.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armory &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/entity.css">
+<link rel="stylesheet" href="../styles/board.css">
+<link rel="stylesheet" href="../styles/register.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../data/standing.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script src="../scripts/ui.js" defer></script>
 </head>
-<body>
-
-  <nav class="site-nav">
-    <a href="../index.html">Shadow of the Dragon Queen</a>
-    <span class="sep">›</span>
-    <span class="crumb-current">Armory</span>
-  </nav>
-
-  <div class="page-header">
-    <div class="page-eyebrow">Equipment</div>
-    <h1 class="page-title">Armory</h1>
-    <p class="page-subtitle">Weapons, artifacts, and equipment in the company's possession. Logged upon acquisition.</p>
+<body data-pagefind-filter="section:armory">
+<div class="page-content">
+<div class="page-header">
+  <div class="page-emblem" data-pagefind-ignore><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="20" x2="42" y2="20" stroke-width="0.6" opacity="0.4"/><polyline points="38,15 43,20 38,25" opacity="0.5"/><polyline points="33,16 38,20 33,24" opacity="0.3"/><g transform="translate(60,21)"><path d="M0,-15 C1.5,-9 8,-6 8,2 A8,8 0 0 1 -8,2 C-8,-2 -5.5,-4 -4.5,-8 C-2.5,-6.5 -1,-9 0,-15 Z"/><path d="M0,-3 C1,-0.5 3,1 3,4 A3,3 0 0 1 -3,4 C-3,1.5 -1,0.5 0,-3 Z" fill="currentColor" stroke="none" opacity="0.75"/></g><polyline points="82,15 77,20 82,25" opacity="0.3"/><polyline points="87,16 82,20 87,24" opacity="0.5"/><line x1="78" y1="20" x2="120" y2="20" stroke-width="0.6" opacity="0.4"/></svg></div>
+  <h1 class="page-title" data-pagefind-meta="title">Armory</h1>
+  <div class="page-subtitle">What the Embers carry, and what it has cost them</div>
+</div>
+<div class="content">
+<div class="railed">
+<div class="board-tabs tabrail" data-pagefind-ignore>
+<button class="board-tab is-active" type="button" data-class="all">All Items <span class="board-count">17</span></button>
+<button class="board-tab" type="button" data-class="magic-item">Magic Items <span class="board-count">13</span></button>
+<button class="board-tab" type="button" data-class="keepsake">Keepsakes <span class="board-count">3</span></button>
+<button class="board-tab" type="button" data-class="document">Documents <span class="board-count">1</span></button>
+</div>
+<div class="board-body panels">
+  <div class="search-row" data-pagefind-ignore><input class="search-input" type="search" placeholder="Search by name..." aria-label="Search the armory"></div>
+  <div class="facets" data-pagefind-ignore><div class="facet facet-stacked"><span class="facet-label">Type</span><div class="facet-pills"><button class="filter-tag" type="button" data-type="ammunition">Ammunition</button><button class="filter-tag" type="button" data-type="armor">Armor</button><button class="filter-tag" type="button" data-type="document">Document</button><button class="filter-tag" type="button" data-type="gem">Gem</button><button class="filter-tag" type="button" data-type="ring">Ring</button><button class="filter-tag" type="button" data-type="shield">Shield</button><button class="filter-tag" type="button" data-type="weapon">Weapon</button><button class="filter-tag" type="button" data-type="wondrous-item">Wondrous Item</button></div></div><div class="facet facet-stacked"><span class="facet-label">Held by</span><div class="facet-pills"><button class="filter-tag" type="button" data-holder="aratos">Aratos</button><button class="filter-tag" type="button" data-holder="roshi">Roshi</button><button class="filter-tag" type="button" data-holder="jasper">Jasper</button><button class="filter-tag" type="button" data-holder="kakashi">Kakashi</button><button class="filter-tag" type="button" data-holder="the-embers">The Embers</button><button class="filter-tag" type="button" data-holder="aeimos">Aeimos</button><button class="filter-tag" type="button" data-holder="mayriel">Mayriel</button><button class="filter-tag" type="button" data-holder="darrett-highwater">Darrett Highwater</button><button class="filter-tag" type="button" data-holder="burned-away">Burned away</button></div></div></div>
+  <div class="result-line" data-pagefind-ignore><span class="result-count">17 on record</span><button class="clear-btn" type="button" hidden>Clear filters</button></div>
+  <div class="register" data-pagefind-ignore>
+<div class="ent item-row" data-class="magic-item" data-type="armor" data-holder="the-embers" data-name="armor of bone">
+  <a class="ent-row" href="armor-of-bone.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>A</span></span>
+    <span class="ent-name">Armor of Bone<span class="ent-sub">The necromancer&#x27;s armor</span></span>
+    <span class="ent-type">Armor</span>
+    <span class="ent-state">The Embers</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">An intricate armor of bone, heavy with necrotic energy, taken from the body of the necromancer who served Lord Soth.</p></div>
+</div>
+<div class="ent item-row" data-class="keepsake" data-type="armor" data-holder="darrett-highwater" data-name="becklin&#x27;s armor">
+  <a class="ent-row" href="becklins-armor.html">
+    <span class="ent-face keepsake"><span class="face-mono" data-pagefind-ignore>B</span></span>
+    <span class="ent-name">Becklin&#x27;s Armor<span class="ent-sub">Solamnic armor</span></span>
+    <span class="ent-type">Armor</span>
+    <span class="ent-state">Darrett Highwater</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">The Solamnic armor of Becklin Uth Viharin. Darrett would not take it at first. He wears it now as a promise to grow into the burden.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="ring" data-holder="the-embers" data-name="blue-gemmed ring">
+  <a class="ent-row" href="blue-gemmed-ring.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>B</span></span>
+    <span class="ent-name">Blue-Gemmed Ring<span class="ent-sub">Ring of protective magic</span></span>
+    <span class="ent-type">Ring</span>
+    <span class="ent-state">The Embers</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A ring set with a blue gem, found among the messenger&#x27;s dead. It offers protective magic to whoever wears it.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="gem" data-holder="kakashi" data-name="boilerdrake heart">
+  <a class="ent-row" href="boilerdrake-heart.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>B</span></span>
+    <span class="ent-name">Boilerdrake Heart<span class="ent-sub">Fire gem from the war machine</span></span>
+    <span class="ent-type">Gem</span>
+    <span class="ent-state">Kakashi</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A hot, glowing gem pulled from the wreckage of the mechanical dragon that burned Vogler. It was the source of the machine&#x27;s fire.</p></div>
+</div>
+<div class="ent item-row" data-class="keepsake" data-type="wondrous-item" data-holder="mayriel" data-name="divine pendant">
+  <a class="ent-row" href="divine-pendant.html">
+    <span class="ent-face keepsake"><span class="face-mono" data-pagefind-ignore>D</span></span>
+    <span class="ent-name">Divine Pendant<span class="ent-sub">A gift that came with the finch</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">Mayriel</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A pendant Mayriel woke to in Vogler alongside a golden finch, meant to aid her divine path.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="wondrous-item" data-holder="jasper" data-name="the dragon&#x27;s eye coin">
+  <a class="ent-row" href="dragons-eye-coin.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>D</span></span>
+    <span class="ent-name">The Dragon&#x27;s Eye Coin<span class="ent-sub">Mark of the guild</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">Jasper</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">The coin by which the Dragon&#x27;s Eye marked and bound Jasper: a deadly thing, by his own account. It can also lend its bearer another face.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="weapon" data-holder="aratos" data-name="the emberwake greataxe">
+  <a class="ent-row" href="the-emberwake-greataxe.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>E</span></span>
+    <span class="ent-name">The Emberwake Greataxe<span class="ent-sub">Cursed trophy axe</span></span>
+    <span class="ent-type">Weapon</span>
+    <span class="ent-state">Aratos</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A great axe that runs warm constantly, like an ember that never dies. Aratos took it from Theros Flametongue&#x27;s body as Vogler burned. It is cursed: a real blow against its bearer can wake a rage that is not his own, and he cannot hand it away or set it down. Restraint, not fury, is what quiets it.</p></div>
+</div>
+<div class="ent item-row" data-class="document" data-type="document" data-holder="burned-away" data-name="fizban&#x27;s stew recipe">
+  <a class="ent-row" href="fizbans-stew-recipe.html">
+    <span class="ent-face document"><span class="face-mono" data-pagefind-ignore>F</span></span>
+    <span class="ent-name">Fizban&#x27;s Stew Recipe<span class="ent-sub">Ispin&#x27;s campfire stew, in Fizban&#x27;s hand</span></span>
+    <span class="ent-type">Document</span>
+    <span class="ent-state">Burned away</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A scrap of parchment recording Ispin Greenshield&#x27;s campfire stew, each ingredient in an absurd quantity. The numbers were a cipher pointing to words in the recipe itself, and the words were an incantation. Spoken aloud, it taught all five of the party the Green Flame Blade and burned to nothing.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="wondrous-item" data-holder="aratos" data-name="the horn of sir cthondor">
+  <a class="ent-row" href="horn-of-sir-cthondor.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>H</span></span>
+    <span class="ent-name">The Horn of Sir Cthondor<span class="ent-sub">Spectral horn of the Knights Radiant</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">Aratos</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">The horn from the central statue in Sir Cthondor&#x27;s tomb. Blown, it makes no sound a mortal can hear. Two spectral knights appear, armored and waiting for command.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="shield" data-holder="roshi" data-name="ispin&#x27;s green shield">
+  <a class="ent-row" href="ispins-green-shield.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>I</span></span>
+    <span class="ent-name">Ispin&#x27;s Green Shield<span class="ent-sub">Shield of a legend</span></span>
+    <span class="ent-type">Shield</span>
+    <span class="ent-state">Roshi</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">The green shield Ispin Greenshield carried through a life of impossible stories. He meant it to pass on. When Roshi took it, it felt as though the shield had come home.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="ammunition" data-holder="jasper" data-name="leeching bolts">
+  <a class="ent-row" href="leeching-bolts.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>L</span></span>
+    <span class="ent-name">Leeching Bolts<span class="ent-sub">Bolts that draw life from their target</span></span>
+    <span class="ent-type">Ammunition</span>
+    <span class="ent-state">Jasper</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">Special bolts meant to leech life from whatever they strike. Jenkins handed them over, grudgingly, when Jasper chose to stay and defend Vogler.</p></div>
+</div>
+<div class="ent item-row" data-class="keepsake" data-type="ring" data-holder="mayriel" data-name="mayriel&#x27;s signet ring">
+  <a class="ent-row" href="mayriels-signet-ring.html">
+    <span class="ent-face keepsake"><span class="face-mono" data-pagefind-ignore>M</span></span>
+    <span class="ent-name">Mayriel&#x27;s Signet Ring<span class="ent-sub">Family signet, pledged to Paladine</span></span>
+    <span class="ent-type">Ring</span>
+    <span class="ent-state">Mayriel</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">Mayriel&#x27;s family signet ring. On the burning docks of Vogler she offered it to Paladine, with a promise of obedience when the god one day asks something of her. It glowed with holy light.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="wondrous-item" data-holder="kakashi" data-name="moon-marked spellbook">
+  <a class="ent-row" href="moon-marked-spellbook.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>M</span></span>
+    <span class="ent-name">Moon-Marked Spellbook<span class="ent-sub">Reward of the mage trial</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">Kakashi</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A spellbook marked with the moons, given to Kakashi and Jasper for passing the trial together.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="weapon" data-holder="roshi" data-name="moon-touched sword">
+  <a class="ent-row" href="moon-touched-sword.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>M</span></span>
+    <span class="ent-name">Moon-Touched Sword<span class="ent-sub">Blade from beneath the isle</span></span>
+    <span class="ent-type">Weapon</span>
+    <span class="ent-state">Roshi</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A moon-touched sword recovered from whatever had been dragged or offered to the beast beneath Crustdurn Isle.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="wondrous-item" data-holder="the-embers" data-name="periapt from the cliffside">
+  <a class="ent-row" href="periapt-from-the-cliffside.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>P</span></span>
+    <span class="ent-name">Periapt from the Cliffside<span class="ent-sub">Amulet that holds off death</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">The Embers</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A magical amulet found among the messenger&#x27;s dead. Identified as a periapt that can preserve its wearer from death when they fall.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="weapon" data-holder="aeimos" data-name="storm-charged gauntlets">
+  <a class="ent-row" href="storm-charged-gauntlets.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>S</span></span>
+    <span class="ent-name">Storm-Charged Gauntlets<span class="ent-sub">Aeimos&#x27;s gauntlets</span></span>
+    <span class="ent-type">Weapon</span>
+    <span class="ent-state">Aeimos</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">The gauntlets Aeimos fights with. Activated, they strike with lightning, even from a distance.</p></div>
+</div>
+<div class="ent item-row" data-class="magic-item" data-type="wondrous-item" data-holder="jasper" data-name="winged boots">
+  <a class="ent-row" href="winged-boots.html">
+    <span class="ent-face magic-item"><span class="face-mono" data-pagefind-ignore>W</span></span>
+    <span class="ent-name">Winged Boots<span class="ent-sub">Boots that carry their wearer into the air</span></span>
+    <span class="ent-type">Wondrous Item</span>
+    <span class="ent-state">Jasper</span>
+  </a>
+  <div class="ent-detail"><p class="stub-desc">A pair of winged boots Jasper bought from Old Man Jenkins with the party&#x27;s shared gold, and later defended as a slick deal.</p></div>
+</div>
   </div>
+  <p class="no-results" hidden>Nothing on record matches.</p>
+</div>
+</div>
+</div>
+</div>
+<script>
+// Runs at DOMContentLoaded so its click handlers are bound after ui.js's
+// generic .filter-tag handler and get the last word on which pills are lit.
+document.addEventListener('DOMContentLoaded', function () {
+  'use strict';
+  var AXES = ["type", "holder"];
+  var NOUN = "on record";
+  var rows   = Array.prototype.slice.call(document.querySelectorAll('.register .ent'));
+  var pills  = Array.prototype.slice.call(document.querySelectorAll('.filter-tag'));
+  var tabs   = Array.prototype.slice.call(document.querySelectorAll('.board-tab[data-class]'));
+  var search = document.querySelector('.search-input');
+  var count  = document.querySelector('.result-count');
+  var none   = document.querySelector('.no-results');
+  var clear  = document.querySelector('.clear-btn');
+  var state  = { q: '', cls: 'all' };
+  AXES.forEach(function (a) { state[a] = null; });
 
-  <div class="content">
+  function axisOf(p) { for (var i = 0; i < AXES.length; i++) { if (p.dataset[AXES[i]] !== undefined) return AXES[i]; } }
+  function has(el, axis, val) { return (el.dataset[axis] || '').split(' ').indexOf(val) !== -1; }
 
-    <div class="section-block">
-      <div class="section-label">Magic Items</div>
-      <div class="empty-state">
-        <div class="empty-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line x1="9" y1="31" x2="31" y2="9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M31 9 Q37 5 37 13 L29 11 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-            <line x1="31" y1="31" x2="9" y2="9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="M9 9 Q3 5 3 13 L11 11 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
-        <p class="empty-text">Nothing logged. The company travels light.</p>
-      </div>
-    </div>
+  function apply() {
+    var n = 0;
+    rows.forEach(function (r) {
+      var ok = (state.cls === 'all' || has(r, 'class', state.cls)) &&
+               (!state.q || (r.dataset.name || '').indexOf(state.q) !== -1);
+      AXES.forEach(function (a) { if (ok && state[a] && !has(r, a, state[a])) ok = false; });
+      r.hidden = !ok;
+      if (ok) n++;
+    });
+    pills.forEach(function (p) { var a = axisOf(p); p.classList.toggle('is-active', state[a] === p.dataset[a]); });
+    tabs.forEach(function (t) { t.classList.toggle('is-active', t.dataset['class'] === state.cls); });
+    if (count) count.textContent = n + ' ' + NOUN;
+    if (none)  none.hidden = n > 0;
+    var any = state.q || state.cls !== 'all' || AXES.some(function (a) { return state[a]; });
+    if (clear) clear.hidden = !any;
+  }
 
-    <div class="section-block">
-      <div class="section-label">Mundane Equipment</div>
-      <div class="empty-state">
-        <p class="empty-text">No equipment on file.</p>
-      </div>
-    </div>
-
-    <!-- Uncomment and populate once items are acquired
-    <div class="entry-list">
-      
-    </div>
-    -->
-
-  </div>
-
-  <footer class="page-footer">
-    <a href="../index.html">← Home</a>
-  </footer>
-
-  <script src="../scripts/nav.js" defer></script>
+  pills.forEach(function (p) {
+    p.addEventListener('click', function () {
+      var a = axisOf(p), v = p.dataset[a];
+      state[a] = state[a] === v ? null : v;
+      apply();
+    });
+  });
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { state.cls = t.dataset['class']; apply(); });
+  });
+  if (search) search.addEventListener('input', function () {
+    state.q = search.value.trim().toLowerCase();
+    apply();
+  });
+  if (clear) clear.addEventListener('click', function () {
+    state.q = ''; state.cls = 'all';
+    AXES.forEach(function (a) { state[a] = null; });
+    if (search) search.value = '';
+    apply();
+  });
+  apply();
+});
+</script>
 </body>
 </html>

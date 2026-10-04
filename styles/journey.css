@@ -1,0 +1,193 @@
+/* Lifted from the <style> block of Caelestis voyages/voyage-004.html by
+   _build/port_from_caelestis.py. Do not hand-edit. */
+
+  /* ── VIDEO ── */
+  .video-block { margin-bottom: 2.4rem; }
+  .video-container {
+    position: relative; width: 100%; padding-bottom: 56.25%;
+    background: #0a0705; border: 1px solid var(--gold-rule); overflow: hidden;
+  }
+  .video-container iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+  .video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.8rem;
+  }
+  .video-placeholder svg { width: 48px; color: var(--gold-dim); opacity: 0.4; }
+  .video-placeholder p {
+    font-family: 'Cinzel', serif; font-size: 0.835rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted);
+  }
+  .video-link { margin-top: 0.5rem; font-size: 0.963rem; font-style: italic; color: var(--text-muted); }
+  .video-link a { color: var(--gold-dim); text-decoration: none; }
+  .video-link a:hover { color: var(--gold); }
+
+  /* ── LOG META ── */
+  .log-meta {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1.6rem; flex-wrap: wrap;
+  }
+  .log-badge {
+    font-family: 'Cinzel', serif; font-size: 0.835rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    background: var(--gold-faint); border: 1px solid var(--gold-rule);
+    color: var(--gold-dim); padding: 0.25rem 0.6rem;
+  }
+  .log-type-badge {
+    font-family: 'Cinzel', serif; font-size: 0.812rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-muted); border: 1px solid var(--gold-rule);
+    padding: 0.25rem 0.6rem;
+  }
+
+  /* ── AT A GLANCE ── */
+  .voyage-glance {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-rule);
+    border-left: 3px solid var(--gold-dim);
+    padding: 1.3rem 1.5rem;
+    margin-bottom: 2.2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .glance-synopsis {
+    font-size: 1.04rem; line-height: 1.72; color: var(--text);
+    font-style: italic; padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gold-rule);
+  }
+  .glance-row { display: grid; grid-template-columns: 90px 1fr; gap: 0.8rem; align-items: flex-start; }
+  .glance-label {
+    font-family: 'Cinzel', serif; font-size: 0.789rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-dim); padding-top: 0.25rem;
+  }
+  .glance-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    font-family: 'Crimson Pro', serif;
+    font-size: 0.963rem; padding: 0.15rem 0.6rem;
+    border: 1px solid var(--gold-rule);
+    color: var(--text); background: rgba(201, 150, 63,0.05);
+    text-decoration: none; white-space: nowrap;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .chip:hover { border-color: var(--gold-dim); color: var(--gold-light); }
+  .chip-npc { border-color: rgba(176, 60, 50,0.35); color: var(--text-dim); background: rgba(176, 60, 50,0.05); }
+  .chip-npc:hover { border-color: rgba(176, 60, 50,0.7); color: #ec8d7c; }
+  .chip-place { border-color: rgba(140, 150, 162,0.3); color: var(--text-dim); background: rgba(140, 150, 162,0.04); }
+  .chip-item { border-color: rgba(160,120,32,0.4); color: var(--text-dim); background: rgba(160,120,32,0.05); }
+  .chip-item:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── ACCOUNT ACCORDIONS ── */
+  .account {
+    border: 1px solid var(--gold-rule);
+    background: var(--bg-card);
+    margin-bottom: 1.2rem;
+  }
+  .account > summary {
+    list-style: none; cursor: pointer;
+    padding: 1rem 1.3rem;
+    display: flex; align-items: center; gap: 0.9rem;
+    transition: background 0.2s;
+  }
+  .account > summary::-webkit-details-marker { display: none; }
+  .account > summary:hover { background: rgba(201, 150, 63,0.05); }
+  .account-caret {
+    width: 11px; flex-shrink: 0; color: var(--gold-dim);
+    transition: transform 0.22s ease;
+  }
+  .account[open] > summary .account-caret { transform: rotate(90deg); }
+  .account-name {
+    font-family: 'Cinzel', serif; font-size: 0.92rem;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold);
+  }
+  .account-note {
+    font-size: 0.94rem; font-style: italic; color: var(--text-muted);
+    margin-left: auto; text-align: right;
+  }
+  .account-body { padding: 0.4rem 1.5rem 1.8rem; border-top: 1px solid var(--gold-rule); }
+  .account-body > *:first-child { margin-top: 1.4rem; }
+
+  /* ── BRIEF SECTIONS ── */
+  .brief-section { margin-bottom: 1.8rem; }
+  .brief-section:last-child { margin-bottom: 0; }
+  .brief-heading {
+    font-family: 'Cinzel', serif; font-size: 0.877rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.7rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .brief-heading::after { content: ''; flex: 1; height: 1px; background: var(--gold-rule); }
+  .brief-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.45rem; }
+  .brief-list li {
+    font-size: 1.01rem; line-height: 1.55; color: var(--text);
+    padding-left: 1.1rem; position: relative;
+  }
+  .brief-list li::before { content: '\203A'; position: absolute; left: 0; color: var(--gold-dim); }
+  .brief-list li b { font-weight: 600; }
+  .brief-list li em { color: var(--text-dim); font-style: italic; }
+
+  /* ── NARRATIVE PROSE ── */
+  .narrative { max-width: 720px; }
+  .narrative p {
+    font-size: 1.05rem; line-height: 1.85; color: var(--text);
+    margin-bottom: 1.4rem; letter-spacing: 0.01em;
+  }
+  .narrative p:first-child::first-letter {
+    font-family: 'Cinzel', serif; font-size: 3.2rem; font-weight: 700;
+    float: left; line-height: 0.75; margin-right: 0.08em; margin-top: 0.12em;
+    color: var(--gold);
+  }
+  .chapter-break { display: flex; align-items: center; gap: 1rem; margin: 2.2rem 0 1.8rem; }
+  .chapter-break::before, .chapter-break::after { content: ''; flex: 1; height: 1px; background: var(--gold-rule); }
+  .chapter-break-text {
+    font-family: 'Cinzel', serif; font-size: 0.835rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold-dim); white-space: nowrap; flex-shrink: 0;
+  }
+
+  @media(max-width:560px){
+    .glance-row { grid-template-columns: 1fr; gap: 0.3rem; }
+    .glance-label { padding-top: 0; }
+    .account-note { display: none; }
+    .account-body { padding: 0.4rem 1.1rem 1.5rem; }
+  }
+
+  /* ── ACCOUNT TABS ──
+     Browser-style: rounded tops, the active tab merging into the panel
+     below it. Panels stay in the DOM; JS only toggles visibility. */
+  .account-tabs { display: flex; gap: 0.25rem; flex-wrap: wrap; position: relative; z-index: 2; }
+  .account-tab {
+    flex: 0 1 auto; display: flex; flex-direction: column; gap: 0.15rem; text-align: left;
+    padding: 0.7rem 1.35rem 0.75rem;
+    background: rgba(255,255,255,0.015);
+    border: 1px solid var(--rule); border-bottom: none;
+    border-radius: 12px 12px 0 0; margin-bottom: -1px;
+    cursor: pointer; font: inherit; color: inherit;
+    transition: background .18s ease, color .18s ease;
+  }
+  .account-tab:hover { background: rgba(201, 150, 63,0.06); }
+  .account-tab.is-active { background: var(--bg-card); border-color: var(--ice-dim); padding-bottom: 0.85rem; }
+  .account-tab-name {
+    font-family: 'Cinzel', serif; font-size: 0.856rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+  }
+  .account-tab.is-active .account-tab-name { color: var(--gold); }
+  .account-tab-note { font-size: 0.909rem; font-style: italic; color: var(--text-muted); white-space: nowrap; }
+  .account-tab:not(.is-active) .account-tab-note { opacity: 0.6; }
+  .account-panels { position: relative; z-index: 1; }
+  .account-panel {
+    border: 1px solid var(--ice-dim); border-radius: 0 12px 12px 12px;
+    background: var(--bg-card);
+  }
+  .js-tabs .account-panel { display: none; }
+  .js-tabs .account-panel.is-active { display: block; }
+  @media (max-width: 720px) {
+    .account-tab-note { display: none; }
+    .account-tab { padding: 0.6rem 1rem 0.65rem; flex: 1 1 auto; align-items: center; }
+    .account-tab-name { font-size: 0.835rem; letter-spacing: 0.1em; }
+  }
+
+  .voyage-glance { border-radius: 12px; }
+  .chip { border-radius: 999px; }
+  .log-badge, .log-type-badge { border-radius: 999px; }
+  .video-container { border-radius: 10px; }
+  .voyage-nav-bar, .voyage-nav-bottom { border-radius: 999px; }

@@ -1,62 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Theatre of War — Shadow of the Dragon Queen</title>
-  <link rel="stylesheet" href="../styles/sotdq.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Atlas &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/entity.css">
+<link rel="stylesheet" href="../styles/board.css">
+<link rel="stylesheet" href="../styles/register.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../data/standing.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script src="../scripts/ui.js" defer></script>
 </head>
-<body>
-
-  <nav class="site-nav">
-    <a href="../index.html">Shadow of the Dragon Queen</a>
-    <span class="sep">›</span>
-    <span class="crumb-current">The Atlas</span>
-  </nav>
-
-  <div class="page-header">
-    <div class="page-eyebrow">Navigation Records</div>
-    <h1 class="page-title">The Atlas</h1>
-    <p class="page-subtitle">Mapped fronts, occupied territories, and points of interest across Ansalon. Consult before any engagement.</p>
-  </div>
-
-  <div class="content">
-
-    <div class="section-block">
-      <div class="section-label">Active Fronts</div>
-      <div class="empty-state">
-        <div class="empty-icon">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M5 11 L15 7 L26 13 L35 9 L35 33 L26 37 L15 31 L5 35 Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-            <line x1="15" y1="7" x2="15" y2="31" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-            <line x1="26" y1="13" x2="26" y2="37" stroke="currentColor" stroke-width="1" opacity="0.4"/>
-            <circle cx="21" cy="21" r="3" stroke="currentColor" stroke-width="1.5"/>
-            <line x1="21" y1="24" x2="21" y2="29" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <p class="empty-text">No fronts mapped. The full shape of the war has yet to reveal itself.</p>
-      </div>
-    </div>
-
-    <div class="section-block">
-      <div class="section-label">Locations</div>
-      <div class="empty-state">
-        <p class="empty-text">No locations on file. The company has not yet mapped its surroundings.</p>
-      </div>
-    </div>
-
-    <!-- Uncomment and populate once locations are added
-    <div class="entry-list">
-      
-    </div>
-    -->
-
-  </div>
-
-  <footer class="page-footer">
-    <a href="../index.html">← Home</a>
-  </footer>
-
-  <script src="../scripts/nav.js" defer></script>
+<body data-pagefind-filter="section:atlas">
+<div class="page-content">
+<div class="page-header">
+  <div class="page-emblem" data-pagefind-ignore><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="20" x2="42" y2="20" stroke-width="0.6" opacity="0.4"/><polyline points="38,15 43,20 38,25" opacity="0.5"/><polyline points="33,16 38,20 33,24" opacity="0.3"/><g transform="translate(60,21)"><path d="M0,-15 C1.5,-9 8,-6 8,2 A8,8 0 0 1 -8,2 C-8,-2 -5.5,-4 -4.5,-8 C-2.5,-6.5 -1,-9 0,-15 Z"/><path d="M0,-3 C1,-0.5 3,1 3,4 A3,3 0 0 1 -3,4 C-3,1.5 -1,0.5 0,-3 Z" fill="currentColor" stroke="none" opacity="0.75"/></g><polyline points="82,15 77,20 82,25" opacity="0.3"/><polyline points="87,16 82,20 87,24" opacity="0.5"/><line x1="78" y1="20" x2="120" y2="20" stroke-width="0.6" opacity="0.4"/></svg></div>
+  <h1 class="page-title" data-pagefind-meta="title">The Atlas</h1>
+  <div class="page-subtitle">Every road walked and every place worth marking</div>
+</div>
+<div class="content">
+<div class="intro-note">Where the Embers have been, and where they have only been told to go. Entries drawn faintly are known by name alone.</div>
+<div class="survey"><img src="https://lh3.googleusercontent.com/d/1V7_DqsoC7C3KVWuW27c-Um8YASEvQaxm" alt="Map of Ansalon" loading="lazy"></div>
+<div class="railed">
+<div class="board-tabs tabrail" data-pagefind-ignore>
+<button class="board-tab is-active" type="button" data-panel="kalaman" aria-selected="true">Kalaman <span class="board-count">3</span></button>
+<button class="board-tab" type="button" data-panel="vogler" aria-selected="false">Vogler <span class="board-count">3</span></button>
+<button class="board-tab" type="button" data-panel="beyond" aria-selected="false">Beyond <span class="board-count">4</span></button>
+</div>
+<div class="board-panels panels" data-pagefind-ignore>
+<section class="board-panel is-active" id="kalaman" data-panel="kalaman">
+<p class="board-note">The walled city, its camp, and the hills around it.</p>
+<div class="register">
+<div class="ent place-row" data-entry="Kalaman">
+  <a class="ent-row" href="kalaman.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">Kalaman<span class="ent-sub">Walled city &middot; On the Vingaard</span></span>
+    <span class="ent-state">Base of operations</span></a>
+  <div class="ent-detail"><p class="stub-desc">Kalaman is a walled city half a day downriver from Vogler. It took in Vogler&#x27;s refugees in exchange for the party&#x27;s service. It holds a High Sorcery presence, a hidden branch of the Dragon&#x27;s Eye, and a courtyard of knightly statues that includes Lord Soth.</p><div class="det-sites"><span class="det-label">Within</span><div class="det-chips"><span class="stub-chip" style="cursor:default">The council chambers</span><span class="stub-chip" style="cursor:default">The castle training yard</span><span class="stub-chip" style="cursor:default">The knights&#x27; courtyard</span><span class="stub-chip" style="cursor:default">Wyhan&#x27;s Apothecary</span><span class="stub-chip" style="cursor:default">Peller&#x27;s Provisions</span></div></div></div>
+</div>
+<div class="ent place-row" data-entry="The Refugee Camp">
+  <a class="ent-row" href="the-refugee-camp.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">The Refugee Camp<span class="ent-sub">Encampment &middot; Outside Kalaman</span></span>
+    <span class="ent-state">Home base</span></a>
+  <div class="ent-detail"><p class="stub-desc">Tents along the Vingaard River outside Kalaman&#x27;s walls, where the people of Vogler have settled. The party chose to stay here with them rather than take the comforts of the castle.</p></div>
+</div>
+<div class="ent place-row" data-entry="The Reliquary of Sir Cthondor">
+  <a class="ent-row" href="the-reliquary-of-sir-cthondor.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">The Reliquary of Sir Cthondor<span class="ent-sub">Hidden tomb &middot; Hills outside Kalaman</span></span>
+    <span class="ent-state">Cleansed</span></a>
+  <div class="ent-detail"><p class="stub-desc">A cave outside Kalaman opens onto a stone door marked with the sword of the Knights Radiant, drawn with six points. The door asks for an oath. Behind it lie murals of a floating city falling, and a tomb of knights with Sir Cthondor at its centre.</p><div class="det-sites"><span class="det-label">Within</span><div class="det-chips"><span class="stub-chip" style="cursor:default">The oath door</span><span class="stub-chip" style="cursor:default">The mural passage</span><span class="stub-chip" style="cursor:default">The tomb</span></div></div></div>
+</div>
+</div>
+</section>
+<section class="board-panel" id="vogler" data-panel="vogler">
+<p class="board-note">The town on the Vingaard that the party could not save.</p>
+<div class="register">
+<div class="ent place-row" data-entry="Vogler">
+  <a class="ent-row" href="vogler.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">Vogler<span class="ent-sub">Riverside town &middot; On the Vingaard</span></span>
+    <span class="ent-state">Destroyed</span></a>
+  <div class="ent-detail"><p class="stub-desc">Vogler was a village on the Vingaard River that knew how to mourn and celebrate in the same breath. It honored Ispin Greenshield, held the Kingfisher Festival, and was burned by the Red Dragon Army&#x27;s mechanical dragon. Its people are now refugees outside Kalaman.</p><div class="det-sites"><span class="det-label">Within</span><div class="det-chips"><span class="stub-chip" style="cursor:default">The Brass Crab</span><span class="stub-chip" style="cursor:default">High Hill</span><span class="stub-chip" style="cursor:default">The docks</span><span class="stub-chip" style="cursor:default">Gertrude&#x27;s smithy</span><span class="stub-chip" style="cursor:default">General Goods</span></div></div></div>
+</div>
+<div class="ent place-row" data-entry="Thornwall Keep">
+  <a class="ent-row" href="thornwall-keep.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">Thornwall Keep<span class="ent-sub">Keep &middot; Vogler</span></span>
+    <span class="ent-state">Lost with Vogler</span></a>
+  <div class="ent-detail"><p class="stub-desc">The keep at Vogler. Becklin gave Roshi Ispin&#x27;s shield here, Than kept his workshop here, and Becklin left a chest here for Darrett. It burned with the town.</p></div>
+</div>
+<div class="ent place-row" data-entry="Crustdurn Isle">
+  <a class="ent-row" href="crustdurn-isle.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">Crustdurn Isle<span class="ent-sub">River island &middot; Vingaard River, near Vogler</span></span>
+    <span class="ent-state">Cleared</span></a>
+  <div class="ent-detail"><p class="stub-desc">A lonely island in the river near Vogler, rumored haunted and avoided by locals. A hatch in its abandoned shack leads down to a cavern littered with fish bones.</p></div>
+</div>
+</div>
+</section>
+<section class="board-panel" id="beyond" data-panel="beyond">
+<p class="board-note">The roads between, and places known only by name.</p>
+<div class="register">
+<div class="ent place-row" data-entry="The Vingaard River">
+  <a class="ent-row" href="the-vingaard-river.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">The Vingaard River<span class="ent-sub">River &middot; Vogler to Kalaman</span></span>
+    <span class="ent-state">Travelled</span></a>
+  <div class="ent-detail"><p class="stub-desc">The river that runs past Vogler and on to Kalaman, half a day downstream. It carried Ispin&#x27;s funeral boat, and later the whole town.</p></div>
+</div>
+<div class="ent place-row" data-entry="The Tower of Wayreth">
+  <a class="ent-row" href="tower-of-wayreth.html"><span class="ent-glyph body"></span>
+    <span class="ent-name">The Tower of Wayreth<span class="ent-sub">Arcane stronghold &middot; Moves</span></span>
+    <span class="ent-state">Target</span></a>
+  <div class="ent-detail"><p class="stub-desc">A moving tower guarded by the wizards of High Sorcery, said to hold the Orb of Dragonkind. Jasper&#x27;s task is to steal it. Seredyn&#x27;s counsel is that the tower is far harder to leave than to enter.</p></div>
+</div>
+<div class="ent place-row is-unknown" data-entry="Tatina Rookledust&#x27;s home">
+  <div class="ent-row is-unlinked"><span class="ent-glyph body"></span>
+    <span class="ent-name">Tatina Rookledust&#x27;s home<span class="ent-sub">Unknown &middot; Several days from Kalaman</span></span>
+    <span class="ent-state">Destination</span></div>
+  <div class="ent-detail"><p class="stub-desc">Where the party is headed. Marshal Vendri gave the direction; nothing else about it is known.</p></div>
+</div>
+<div class="ent place-row is-unknown" data-entry="The road to Vogler">
+  <div class="ent-row is-unlinked"><span class="ent-glyph body"></span>
+    <span class="ent-name">The road to Vogler<span class="ent-sub">Road &middot; Solamnia</span></span>
+    <span class="ent-state">Travelled</span></div>
+  <div class="ent-detail"><p class="stub-desc">Where five strangers met in an ambush, burned the scaled dead, and later met an old wizard inside a creature of living sand.</p></div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>
