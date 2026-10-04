@@ -464,6 +464,13 @@ def build_journeys():
                    '<div class="video-link">Watch on YouTube: <a href="https://youtu.be/%s" target="_blank" '
                    'rel="noopener">youtu.be/%s</a> &middot; <a href="%s" target="_blank" rel="noopener">'
                    'all recordings</a></div>' % (j['video'], j['video'], j['video'], e(CAMPAIGN['playlist'])))
+        elif j.get('video') is False:
+            rec = ('<div class="video-container"><div class="video-placeholder">'
+                   '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'
+                   '<circle cx="24" cy="24" r="20"/><polygon points="20,16 36,24 20,32" fill="currentColor" '
+                   'stroke="none" opacity="0.4"/></svg><p>This Session Was Not Recorded</p></div></div>\n'
+                   '<div class="video-link">The other sessions: <a href="%s" target="_blank" '
+                   'rel="noopener">all recordings</a></div>' % e(CAMPAIGN['playlist']))
         else:
             rec = ('<div class="video-container"><div class="video-placeholder">'
                    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'

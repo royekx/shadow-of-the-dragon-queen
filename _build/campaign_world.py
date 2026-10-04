@@ -23,6 +23,7 @@ SIX = FIVE + ['aeimos']
 # ---------------------------------------------------------------------------
 # npcs / places / items are (label, ref-or-None). A ref links the chip; None
 # leaves it as plain text. The accounts themselves live in _build/journeys/.
+# video: a YouTube ID, None if not linked yet, False if the session was not recorded.
 
 JOURNEYS = [
     dict(num=1, title='The Night of the Eye', level=1, where='Road to Vogler', video='lUOB97A9Bl0',
@@ -92,7 +93,7 @@ JOURNEYS = [
                  ('The Vingaard River', 'place:the-vingaard-river')],
          items=[('The Emberwake Greataxe', 'item:the-emberwake-greataxe'), ('Boilerdrake Heart', 'item:boilerdrake-heart'),
                 ("Mayriel's Signet Ring", 'item:mayriels-signet-ring'), ('Winged Boots', 'item:winged-boots')]),
-    dict(num=8, title='Ashes on the River', level=4, where='Vingaard River to Kalaman', video=None,
+    dict(num=8, title='Ashes on the River', level=4, where='Vingaard River to Kalaman', video=False,
          subtitle='The river carries ghosts. Kalaman rises ahead, but the dead walk the waters.',
          synopsis='On the river the dead rise as Ashen Vigils, each showing a survivor someone different. The party breaks them, reaches Kalaman, and argues its way before the council. Vogler is given refuge in exchange for military service, with Darrett as the go-between.',
          pcs=FIVE,
@@ -115,7 +116,7 @@ JOURNEYS = [
          places=[('The refugee camp', 'place:the-refugee-camp'),
                  ('The reliquary', 'place:the-reliquary-of-sir-cthondor')],
          items=[('Horn of Sir Cthondor', 'item:horn-of-sir-cthondor'), ('Armor of Bone', 'item:armor-of-bone')]),
-    dict(num=10, title='The Weight of the Axe', level=4, where='Kalaman', video=None,
+    dict(num=10, title='The Weight of the Axe', level=4, where='Kalaman', video='G0hiBL1WDE0',
          subtitle='A recipe hides a spell. A trophy hides a curse.',
          synopsis="Fizban's stew recipe turns out to be a cipher for a spell. Jasper is walked into the Dragon's Eye in Kalaman. Aratos's trophy axe takes him in a sparring match and nearly kills a squire; at the reliquary he masters it once through restraint. Marshal Vendri sends the party, now named the Embers, to find the tinkerer Tatina Rookledust.",
          pcs=FIVE,
