@@ -1,149 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>War Intel · Shadow of the Dragon Queen</title>
-  <link rel="stylesheet" href="../styles/sotdq.css" />
-  <script src="../scripts/nav.js" defer></script>
-  <style>
-    .page-header {
-      padding: 2.5rem 3rem 2rem;
-      border-bottom: 1px solid var(--border-lit);
-    }
-    .page-header::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 2px;
-      background: var(--crimson);
-      margin-top: 1.5rem;
-    }
-    .intel-listing {
-      padding: 0 3rem 4rem;
-    }
-    .intel-group {
-      margin: 2.5rem 0 0;
-    }
-    .intel-group-label {
-      font-family: var(--font-display);
-      font-size: var(--sz-xs);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-dim);
-      border-bottom: 1px solid var(--border-lit);
-      padding-bottom: 0.5rem;
-      margin-bottom: 0;
-    }
-    .intel-row {
-      display: grid;
-      grid-template-columns: 1fr 200px;
-      gap: 2rem;
-      align-items: center;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid var(--border-lit);
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.15s;
-    }
-    .intel-row:hover {
-      background: rgba(139, 26, 26, 0.05);
-      padding-left: 0.5rem;
-    }
-    .intel-name {
-      font-family: var(--font-display);
-      font-size: var(--sz-md);
-      letter-spacing: 0.04em;
-      color: var(--text);
-    }
-    .intel-subtitle {
-      font-size: var(--sz-xs);
-      color: var(--text-dim);
-      margin-top: 0.5rem;
-    }
-    .intel-badge {
-      display: inline-block;
-      padding: 0.3rem 0.75rem;
-      font-size: var(--sz-xs);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: 1px solid;
-      border-radius: 1px;
-      text-align: center;
-    }
-    .intel-threat { color: var(--crimson-lit); border-color: rgba(139,26,26,.5); background: rgba(139,26,26,.08); }
-    .intel-faction-ally { color: #7dab8a; border-color: rgba(125,171,138,.4); background: rgba(125,171,138,.06); }
-    .intel-faction-neutral { color: var(--bronze-dim); border-color: rgba(184,131,42,.4); background: rgba(184,131,42,.06); }
-    .intel-type { color: var(--text-dim); border-color: rgba(232,220,200,.2); background: rgba(232,220,200,.05); }
-
-    @media (max-width: 768px) {
-      .page-header, .intel-listing { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .intel-row { grid-template-columns: 1fr; }
-      .intel-badge { display: block; margin-top: 0.5rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>War Intel &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/entity.css">
+<link rel="stylesheet" href="../styles/board.css">
+<link rel="stylesheet" href="../styles/register.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../data/standing.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script src="../scripts/ui.js" defer></script>
 </head>
-<body>
-
-  <div class="page-header">
-    <div class="page-eyebrow">Intelligence & Lore</div>
-    <h1 class="page-title">War Intel</h1>
-    <p class="page-subtitle">Factions, armies, entities, and the forces that shape the conflict.</p>
-  </div>
-
-  <div class="intel-listing">
-
-    <div class="intel-group">
-      <div class="intel-group-label">Threats</div>
-
-      <a href="takhisis-the-shadow-queen.html" class="intel-row">
-        <div>
-          <div class="intel-name">Takhisis, the Shadow Queen</div>
-          <div class="intel-subtitle">The driving force behind the invasion of Ansalon</div>
-        </div>
-        <div><span class="intel-badge intel-threat">Critical Threat</span></div>
-      </a>
-
-      <a href="the-red-dragon-army.html" class="intel-row">
-        <div>
-          <div class="intel-name">The Red Dragon Army</div>
-          <div class="intel-subtitle">Organized military force pursuing conquest and refugees</div>
-        </div>
-        <div><span class="intel-badge intel-threat">Active Threat</span></div>
-      </a>
-
-      <a href="draconians.html" class="intel-row">
-        <div>
-          <div class="intel-name">Draconians</div>
-          <div class="intel-subtitle">Reptilian soldiers of the Shadow Queen — brutal and devoted</div>
-        </div>
-        <div><span class="intel-badge intel-type">Creature Type</span></div>
-      </a>
-
-    </div>
-
-    <div class="intel-group">
-      <div class="intel-group-label">Allies & Factions</div>
-
-      <a href="the-knights-of-solamnia.html" class="intel-row">
-        <div>
-          <div class="intel-name">The Knights of Solamnia</div>
-          <div class="intel-subtitle">Ancient order of warriors bound by oath and honor</div>
-        </div>
-        <div><span class="intel-badge intel-faction-ally">Ally</span></div>
-      </a>
-
-      <a href="the-mages-of-high-sorcery.html" class="intel-row">
-        <div>
-          <div class="intel-name">The Mages of High Sorcery</div>
-          <div class="intel-subtitle">Exclusive order of spellcasters pursuing magical knowledge</div>
-        </div>
-        <div><span class="intel-badge intel-faction-neutral">Neutral</span></div>
-      </a>
-
-    </div>
-
-  </div>
-
+<body data-pagefind-filter="section:war-intel">
+<div class="page-content">
+<div class="page-header">
+  <div class="page-emblem" data-pagefind-ignore><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="20" x2="42" y2="20" stroke-width="0.6" opacity="0.4"/><polyline points="38,15 43,20 38,25" opacity="0.5"/><polyline points="33,16 38,20 33,24" opacity="0.3"/><g transform="translate(60,21)"><path d="M0,-15 C1.5,-9 8,-6 8,2 A8,8 0 0 1 -8,2 C-8,-2 -5.5,-4 -4.5,-8 C-2.5,-6.5 -1,-9 0,-15 Z"/><path d="M0,-3 C1,-0.5 3,1 3,4 A3,3 0 0 1 -3,4 C-3,1.5 -1,0.5 0,-3 Z" fill="currentColor" stroke="none" opacity="0.75"/></g><polyline points="82,15 77,20 82,25" opacity="0.3"/><polyline points="87,16 82,20 87,24" opacity="0.5"/><line x1="78" y1="20" x2="120" y2="20" stroke-width="0.6" opacity="0.4"/></svg></div>
+  <h1 class="page-title" data-pagefind-meta="title">War Intel</h1>
+  <div class="page-subtitle">The powers shaping the war, as far as the Embers know them</div>
+</div>
+<div class="content">
+<div class="section-label">The Enemy <span class="section-note">Who is marching, and in whose name.</span></div>
+<div class="card-grid" data-pagefind-ignore>
+<a class="s-card" href="takhisis-the-shadow-queen.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>T</span></div><div class="s-title">Takhisis, the Dragon Queen</div></div><div class="s-desc">The queen the enemy serves. Her soldiers call her the Shadow Queen and the Dragon Queen and say they are reclaiming the realm for her. Mayriel has seen her in vision as a horned woman in dark regalia who unfolds into a five-headed dragon.</div></a>
+<a class="s-card" href="the-red-dragon-army.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>R</span></div><div class="s-title">The Red Dragon Army</div></div><div class="s-desc">An invading army serving the Dragon Queen: organized, supplied and unafraid. It fields human soldiers, draconians and war machines, and buys betrayal where it can. It burned Vogler and is pressing other villages too.</div></a>
+<a class="s-card" href="draconians.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>D</span></div><div class="s-title">Draconians</div></div><div class="s-desc">Reptilian humanoids with scaled hides, sharp claws and brutal weapons. They speak Draconic, fight in coordination, and prefer death to capture. Their bodies decay with unnatural speed, and some do worse than decay.</div></a>
+</div>
+<div class="section-label">Orders <span class="section-note">Knights and wizards, living and lost.</span></div>
+<div class="card-grid" data-pagefind-ignore>
+<a class="s-card" href="the-knights-of-solamnia.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>K</span></div><div class="s-title">The Knights of Solamnia</div></div><div class="s-desc">One of the great knighthoods of Ansalon, bound by oath and by the Measure. Aratos set out to reach them and warn them of what his vision showed. Their reputation has carried a shadow since the Cataclysm, and one of their most celebrated sons is now their disgrace.</div></a>
+<a class="s-card" href="the-knights-radiant.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>K</span></div><div class="s-title">The Knights Radiant</div></div><div class="s-desc">A lost order tied to hidden reliquaries. Its symbol is a sword, and its doors ask for oaths: Valor, Resolve, Foresight. Aratos and Aeimos have been named children of Cathan by one of its dead. Its tombs and legacies are being targeted by Lord Soth.</div></a>
+<a class="s-card" href="the-mages-of-high-sorcery.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>M</span></div><div class="s-title">The Mages of High Sorcery</div></div><div class="s-desc">An old and secretive order of wizards, organized into three robes. Its towers are built to keep powerful magical things safe from those who would misuse them. One of them, the Tower of Wayreth, moves. In Kalaman the order&#x27;s face is Wyhan, an apothecary.</div></a>
+</div>
+<div class="section-label">Guilds <span class="section-note">Those who work out of sight.</span></div>
+<div class="card-grid" data-pagefind-ignore>
+<a class="s-card" href="the-dragons-eye.html"><div class="s-card-head"><div class="s-icon"><span class="face-mono" data-pagefind-ignore>D</span></div><div class="s-title">The Dragon&#x27;s Eye</div></div><div class="s-desc">A secretive thieves&#x27; guild that marks and binds its members with a coin. Its phrase is: none shall hide from the Dragon&#x27;s Eye. Its guild master is Lucky Leppomanto. It keeps a hidden branch in Kalaman behind the sign of Peller&#x27;s Provisions.</div></a>
+</div>
+</div>
+</div>
 </body>
 </html>

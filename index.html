@@ -1,319 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shadow of the Dragon Queen · Campaign Companion</title>
-  <link rel="stylesheet" href="styles/sotdq.css" />
-  <script src="data/journeys.js"></script>
-  <style>
-    body { padding-left: 0 !important; }
-
-    /* ── HERO ──────────────────────────────────────────────── */
-    .hero {
-      width: 100%;
-      min-height: 100vh;
-      background-image:
-        linear-gradient(to bottom,
-          rgba(10,7,4,0.25) 0%,
-          rgba(10,7,4,0.50) 55%,
-          rgba(10,7,4,0.95) 100%),
-        url('https://lh3.googleusercontent.com/d/1HxtWOhCcRJALSWUbbrUCKNGmLYB8fIPG');
-      background-size: cover;
-      background-position: center top;
-      background-repeat: no-repeat;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0 2rem;
-      text-align: center;
-      position: relative;
-    }
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text);
-      margin: 0 0 0.8rem;
-      text-shadow: 0 2px 24px rgba(0,0,0,0.9);
-    }
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: var(--text-dim);
-      font-style: italic;
-      margin: 0;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.9);
-    }
-
-    /* ── PAGE CONTENT ──────────────────────────────────────── */
-    .page-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2.5rem;
-    }
-
-    /* ── DECORATIVE BREAK ──────────────────────────────────── */
-    .decorative-break {
-      text-align: center;
-      padding: 2.5rem 0 1.5rem;
-      color: var(--bronze-dim);
-      font-size: 1rem;
-      letter-spacing: 0.4em;
-    }
-
-    /* ── ACTION ROW ────────────────────────────────────────── */
-    .action-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 3rem 0 4rem;
-    }
-    .action-card {
-      background: transparent;
-      border: 1px solid var(--crimson-lit);
-      padding: 1.5rem 3rem;
-      min-width: 300px;
-      text-align: center;
-      text-decoration: none;
-      color: var(--text);
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      white-space: nowrap;
-    }
-    .action-card:hover {
-      background: rgba(139,26,26,0.08);
-      border-color: var(--bronze-lit);
-    }
-    .action-card-title {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .action-card-desc {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-    }
-    .action-card-cta {
-      font-size: 0.85rem;
-      color: var(--bronze-dim);
-      letter-spacing: 0.06em;
-      margin-top: 0.25rem;
-    }
-
-    /* ── SECTION GRID ──────────────────────────────────────── */
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin: 0 0 4rem;
-    }
-    .section-card {
-      background: rgba(139,26,26,0.04);
-      border: 1px solid var(--border-lit);
-      padding: 2rem 1.75rem 1.75rem;
-      text-align: center;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.9rem;
-      transition: background 0.2s, border-color 0.2s;
-    }
-    .section-card:hover {
-      background: rgba(139,26,26,0.09);
-      border-color: rgba(139,26,26,0.5);
-    }
-    .section-card-icon {
-      color: var(--crimson-lit);
-      opacity: 0.85;
-      line-height: 1;
-    }
-    .section-card-icon svg {
-      display: block;
-    }
-    .section-card-title {
-      font-family: var(--font-display);
-      font-size: 0.9rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text);
-    }
-    .section-card-desc {
-      font-size: 0.95rem;
-      color: var(--text-dim);
-      line-height: 1.65;
-      flex: 1;
-    }
-    .section-card-link {
-      font-size: 0.8rem;
-      color: var(--bronze-dim);
-      letter-spacing: 0.06em;
-      margin-top: 0.25rem;
-    }
-
-    /* Unexpected Journeys card sub-links */
-    .uj-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      align-items: center;
-      width: 100%;
-      padding-top: 0.5rem;
-      border-top: 1px solid var(--border-lit);
-      font-size: 0.82rem;
-    }
-    .uj-links a {
-      color: var(--bronze-dim);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .uj-links a:hover { color: var(--bronze-lit); }
-
-    @media (max-width: 900px) {
-      .section-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 580px) {
-      .hero { padding: 0 1.5rem 4rem; }
-      .page-content { padding: 0 1.25rem; }
-      .section-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="styles/base.css">
+<style>
+  body { overflow: hidden; }
+  .gate {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden;
+  }
+  .gate-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: url('https://lh3.googleusercontent.com/d/1HxtWOhCcRJALSWUbbrUCKNGmLYB8fIPG') center top / cover no-repeat;
+    transition: transform 0.9s ease, filter 0.9s ease;
+  }
+  .gate-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(8,5,3,0.55) 0%, rgba(8,5,3,0.15) 24%, rgba(8,5,3,0.30) 52%, rgba(8,5,3,0.80) 80%, rgba(8,5,3,0.97) 100%),
+      linear-gradient(to right, rgba(8,5,3,0.6) 0%, transparent 24%, transparent 76%, rgba(8,5,3,0.6) 100%);
+  }
+  .gate-content {
+    position: relative; z-index: 2; text-align: center; padding: 0 1.5rem;
+    animation: fadeUp 1.2s ease both;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .gate-title {
+    font-family: 'Cinzel', serif; font-size: clamp(2.1rem, 6.4vw, 4.4rem);
+    font-weight: 900; letter-spacing: 0.07em; line-height: 1.08; text-transform: uppercase;
+    color: var(--text);
+    text-shadow: 0 0 60px rgba(176,40,40,0.55), 0 2px 10px rgba(0,0,0,0.9);
+    margin-bottom: 0.9rem;
+  }
+  .gate-title span { color: var(--gold-light); }
+  .gate-tagline {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); font-style: italic;
+    color: var(--text-dim); letter-spacing: 0.04em; margin-bottom: 0.5rem;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.9);
+  }
+  .gate-campaign {
+    font-family: 'Cinzel', serif; font-size: 0.888rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--text-dim); margin-bottom: 2rem;
+  }
+  .gate-rule { display: flex; align-items: center; justify-content: center; gap: 0.8rem; color: var(--gold-dim); margin-bottom: 2.8rem; }
+  .gate-rule::before, .gate-rule::after { content: ''; width: 60px; height: 1px; background: linear-gradient(to right, transparent, var(--gold-dim)); }
+  .gate-rule::after { transform: scaleX(-1); }
+  .gate-enter {
+    display: inline-flex; align-items: center; gap: 0.9rem;
+    font-family: 'Cinzel', serif; font-size: 0.845rem; letter-spacing: 0.28em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none; border: 1px solid var(--gold-dim);
+    padding: 0.85rem 2.4rem; background: rgba(8,5,3,0.55);
+    transition: border-color 0.25s, color 0.25s, background 0.25s, box-shadow 0.25s;
+  }
+  .gate-enter:hover, .gate:hover .gate-enter {
+    border-color: var(--gold); color: var(--gold-light);
+    background: rgba(201,150,63,0.08); box-shadow: 0 0 40px rgba(201,150,63,0.18);
+  }
+  .gate-enter svg { width: 12px; }
+  .gate-hint {
+    margin-top: 1.4rem; font-family: 'Cinzel', serif; font-size: 0.766rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--text-muted);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  body.entering .gate-content { opacity: 0; transform: translateY(-14px); }
+  body.entering .gate-bg { transform: scale(1.06); filter: brightness(0.35); }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes pulse { 0%,100% { opacity: 0.45; } 50% { opacity: 0.9; } }
+  @media (prefers-reduced-motion: reduce) {
+    .gate-content, .gate-hint { animation: none; }
+    .gate-bg, .gate-content { transition: none; }
+  }
+</style>
 </head>
-<body>
-
-  <div class="hero">
-    <h1 class="hero-title">Shadow of the Dragon Queen</h1>
-    <p class="hero-subtitle">Takhisis stirs. Her armies march on Ansalon.</p>
+<body data-pagefind-ignore>
+<div class="gate" id="js-gate">
+  <div class="gate-bg"></div>
+  <div class="gate-content">
+    <h1 class="gate-title">Shadow of the<br><span>Dragon Queen</span></h1>
+    <p class="gate-tagline">Takhisis stirs. Her armies march on Ansalon.</p>
+    <p class="gate-campaign">A Dragonlance Campaign</p>
+    <div class="gate-rule">&#10022;</div>
+    <a class="gate-enter" href="hub.html" id="js-enter">
+      Enter
+      <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M2 6h8M7 3l3 3-3 3"/></svg>
+    </a>
+    <div class="gate-hint">Click anywhere or press any key</div>
   </div>
-
-  <div class="page-content">
-
-    <div class="action-row">
-      <a href="https://rallly.co/invite/D8kMYvewkWxI" class="action-card" target="_blank">
-        <div class="action-card-title">Schedule the Next Session</div>
-        <div class="action-card-desc">Coordinate when The Embers gather again.</div>
-        <div class="action-card-cta">Open Scheduler ↗</div>
-      </a>
-    </div>
-
-    <div class="decorative-break">✦ ✦ ✦</div>
-
-    <div class="section-grid">
-
-      <!-- Unexpected Journeys -->
-      <a href="unexpected-journeys/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Open scroll -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10 6h18a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H10"/>
-            <path d="M10 28a3 3 0 0 1 0-6V6a3 3 0 0 0 0 6"/>
-            <line x1="16" y1="12" x2="24" y2="12"/>
-            <line x1="16" y1="17" x2="24" y2="17"/>
-            <line x1="16" y1="22" x2="21" y2="22"/>
-          </svg>
-        </div>
-        <div class="section-card-title">Unexpected Journeys</div>
-        <div class="section-card-desc">Every journey recorded. Every moment captured. The full chronicle of The Embers.</div>
-        <div class="uj-links" id="uj-links" onclick="event.stopPropagation()"></div>
-      </a>
-
-      <!-- The Embers -->
-      <a href="the-embers/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Flame -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 30c-5 0-9-4-9-9 0-3 1.5-5.5 3-7.5 1-1.3 1.8-3 2-5 1.5 2 2.5 3.5 2.5 5.5 0 1-.3 2-1 3 2-1 3.5-3 3.5-5.5 1.5 2.5 3 5.5 3 9C22 26 20.2 30 18 30z"/>
-          </svg>
-        </div>
-        <div class="section-card-title">The Embers</div>
-        <div class="section-card-desc">The bold, the clever, the righteous. Six souls who forged bonds in blood.</div>
-        <div class="section-card-link">Meet the party →</div>
-      </a>
-
-      <!-- Dossiers -->
-      <a href="dossiers/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Eye -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 18c3.5-6 8-9 13-9s9.5 3 13 9c-3.5 6-8 9-13 9s-9.5-3-13-9z"/>
-            <circle cx="18" cy="18" r="3.5"/>
-          </svg>
-        </div>
-        <div class="section-card-title">Dossiers</div>
-        <div class="section-card-desc">Allies, neutrals, and adversaries. Every face the party has encountered.</div>
-        <div class="section-card-link">Open dossiers →</div>
-      </a>
-
-      <!-- War Intel -->
-      <a href="war-intel/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Raven / Intel -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 28 c2-4 4-8 8-10 2-1 4-1 5-3 1-2 1-5-1-7 3 1 5 4 4 7 4-2 6-6 5-10 3 3 3 8 1 11 2 0 4-1 5-3-1 4-4 7-8 8-3 1-7 1-9 3l-3 4z"/>
-            <circle cx="22" cy="11" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <div class="section-card-title">War Intel</div>
-        <div class="section-card-desc">Factions, armies, and forces shaping the fate of Ansalon.</div>
-        <div class="section-card-link">Read intel →</div>
-      </a>
-
-      <!-- The Atlas -->
-      <a href="atlas/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Compass rose -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="18" cy="18" r="13"/>
-            <polygon points="18,6 20,16 18,14 16,16" fill="currentColor" stroke="none" opacity="0.7"/>
-            <polygon points="18,30 16,20 18,22 20,20" stroke="none" fill="currentColor" opacity="0.35"/>
-            <line x1="18" y1="8" x2="18" y2="28"/>
-            <line x1="8" y1="18" x2="28" y2="18"/>
-          </svg>
-        </div>
-        <div class="section-card-title">The Atlas</div>
-        <div class="section-card-desc">Every road walked and battlefield crossed. The lands of the campaign.</div>
-        <div class="section-card-link">Explore locations →</div>
-      </a>
-
-      <!-- Armory -->
-      <a href="armory/index.html" class="section-card">
-        <div class="section-card-icon">
-          <!-- Sword -->
-          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="18" y1="4" x2="18" y2="28"/>
-            <line x1="12" y1="22" x2="24" y2="22"/>
-            <path d="M15 28 h6 l-1 4 h-4 z" stroke-linejoin="round"/>
-            <path d="M17 4 l1-1 1 1" stroke-width="1.2"/>
-          </svg>
-        </div>
-        <div class="section-card-title">Armory</div>
-        <div class="section-card-desc">Weapons, armor, and magical treasures earned across the campaign.</div>
-        <div class="section-card-link">Browse items →</div>
-      </a>
-
-    </div>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      if (typeof SOTDQ_JOURNEYS === 'undefined' || !SOTDQ_JOURNEYS.length) return;
-      const latest = SOTDQ_JOURNEYS[SOTDQ_JOURNEYS.length - 1];
-      const el = document.getElementById('uj-links');
-      if (!el) return;
-      el.innerHTML =
-        '<a href="' + latest.brief + '" onclick="event.stopPropagation()">UJ ' + latest.num + ' · Brief Account</a>' +
-        '<a href="' + latest.full  + '" onclick="event.stopPropagation()">UJ ' + latest.num + ' · Full Account</a>' +
-        '<a href="unexpected-journeys/index.html" onclick="event.stopPropagation()">All Journeys →</a>';
-    });
-  </script>
-
+</div>
+<script>
+(function () {
+  var DEST = 'hub.html';
+  var went = false;
+  function enter() {
+    if (went) return;
+    went = true;
+    document.body.classList.add('entering');
+    setTimeout(function () { window.location.href = DEST; }, 380);
+  }
+  document.getElementById('js-gate').addEventListener('click', enter);
+  document.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'Shift' || e.key === 'Tab') return;
+    enter();
+  });
+  var l = document.createElement('link');
+  l.rel = 'prefetch'; l.href = DEST;
+  document.head.appendChild(l);
+})();
+</script>
 </body>
 </html>

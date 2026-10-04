@@ -1,154 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mayriel · Shadow of the Dragon Queen</title>
-  <link rel="stylesheet" href="../styles/sotdq.css" />
-  <script src="../scripts/nav.js" defer></script>
-  <style>
-    .page-header {
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 3rem;
-    }
-
-    .page-header::after {
-      content: '';
-      display: block;
-      width: 80px;
-      height: 1px;
-      background: var(--bronze-dim);
-      margin: 1.5rem auto 0;
-    }
-
-    .char-layout {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 3rem;
-      margin: 2rem auto;
-      max-width: 1000px;
-      padding: 0 3rem;
-    }
-
-    .char-portrait-frame {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .char-portrait {
-      width: 100%;
-      aspect-ratio: 3/4;
-      background: rgba(139, 26, 26, 0.1);
-      border: 1px solid var(--border-lit);
-      overflow: hidden;
-    }
-
-    .char-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .char-stats {
-      font-size: 0.85rem;
-      line-height: 1.8;
-    }
-
-    .stat-label {
-      color: var(--text-dim);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .stat-value {
-      color: var(--text);
-      margin-bottom: 0.8rem;
-    }
-
-    .char-bio {
-      max-width: 600px;
-    }
-
-    .char-bio p {
-      font-size: 0.95rem;
-      line-height: 1.8;
-      margin: 0 0 1rem;
-      color: var(--text);
-    }
-
-    .char-bio p:last-child {
-      margin-bottom: 0;
-    }
-
-    @media (max-width: 768px) {
-      .char-layout {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 1.2rem;
-      }
-
-      .char-portrait-frame {
-        max-width: 200px;
-      }
-
-      .page-header {
-        padding: 0 1.2rem;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayriel &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/entity.css">
+<link rel="stylesheet" href="../styles/board.css">
+<link rel="stylesheet" href="../styles/register.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../data/standing.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script src="../scripts/ui.js" defer></script>
 </head>
-<body>
-
-  <div class="page-content">
-
-    <div class="page-header">
-      <div class="page-eyebrow">Cleric of Paladine</div>
-      <h1 class="page-title">Mayriel</h1>
-    </div>
-
-    <nav class="entry-nav-bar">
-    <a href="roshi.html">← Previous</a>
-    <a href="index.html" class="entry-nav-center">The Embers</a>
-    <a href="aeimos.html">Next →</a>
-  </nav>
-
-    <div class="char-layout">
-      <div class="char-portrait-frame">
-        <div class="char-portrait">
-          <img src="https://lh3.googleusercontent.com/d/1VKa7NEkNHE6cGsNfNBckPyjOvvKLPrkM" alt="Mayriel" onerror="this.style.display='none'">
-        </div>
-        <div class="char-stats">
-          <div class="stat-label">Race / Class</div>
-          <div class="stat-value">Elf · Cleric of Paladine</div>
-
-          <div class="stat-label">Affiliation</div>
-          <div class="stat-value">The Embers</div>
-
-          <div class="stat-label">First Journey</div>
-          <div class="stat-value">UJ 001 — The Night of the Eye</div>
-
-          <div class="stat-label">Status</div>
-          <div class="stat-value">Active</div>
-        </div>
-      </div>
-
-      <div class="char-bio">
-        <p>Mayriel is a healer and warrior who hears the voice of Paladine in moments of darkness and divine clarity. She came to the roads seeking to understand what the gods were saying — and she found her answer in fire and purpose.</p>
-        <p>She has stood between her companions and death. She has called down divine wrath upon those who would harm the innocent. And she has carried the weight of being the light in a world growing darker. Mayriel's faith is not blind — it is sharp, tested, and earned through sacrifice.</p>
-      </div>
-    </div>
-
-    <nav class="entry-nav-bar">
-    <a href="roshi.html">← Previous</a>
-    <a href="index.html" class="entry-nav-center">The Embers</a>
-    <a href="aeimos.html">Next →</a>
-  </nav>
-
-  </div>
-
+<body data-pagefind-filter="section:the-embers">
+<div class="page-content">
+<div class="page-header">
+  <div class="page-emblem" data-pagefind-ignore><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="20" x2="42" y2="20" stroke-width="0.6" opacity="0.4"/><polyline points="38,15 43,20 38,25" opacity="0.5"/><polyline points="33,16 38,20 33,24" opacity="0.3"/><g transform="translate(60,21)"><path d="M0,-15 C1.5,-9 8,-6 8,2 A8,8 0 0 1 -8,2 C-8,-2 -5.5,-4 -4.5,-8 C-2.5,-6.5 -1,-9 0,-15 Z"/><path d="M0,-3 C1,-0.5 3,1 3,4 A3,3 0 0 1 -3,4 C-3,1.5 -1,0.5 0,-3 Z" fill="currentColor" stroke="none" opacity="0.75"/></g><polyline points="82,15 77,20 82,25" opacity="0.3"/><polyline points="87,16 82,20 87,24" opacity="0.5"/><line x1="78" y1="20" x2="120" y2="20" stroke-width="0.6" opacity="0.4"/></svg></div>
+  <h1 class="page-title" data-pagefind-meta="title">Mayriel</h1>
+</div>
+<div class="content">
+<div class="voyage-nav-bar" data-pagefind-ignore><a class="voyage-nav-link" href="roshi.html"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 2L4 7l5 5"/></svg> <span class="nav-label">Roshi</span></a><a class="voyage-nav-center" href="index.html">The Embers</a><a class="voyage-nav-link" href="aeimos.html"><span class="nav-label">Aeimos</span> <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 2l5 5-5 5"/></svg></a></div>
+<div class="entry-header">
+  <div class="identity-card"><div class="portrait-frame"><img src="https://lh3.googleusercontent.com/d/1VKa7NEkNHE6cGsNfNBckPyjOvvKLPrkM" alt="Mayriel" loading="lazy"></div><div class="stat-card"><div class="stat-row"><span class="stat-key">Race</span> <span class="stat-val">Elf</span></div><div class="stat-row"><span class="stat-key">Class</span> <span class="stat-val">Cleric of Paladine</span></div><div class="stat-row"><span class="stat-key">Affiliation</span> <span class="stat-val stat-val-long">Faithful of Paladine; the Embers</span></div><div class="stat-row"><span class="stat-key">First Journey</span> <span class="stat-val">Journey 001</span></div><div class="stat-row"><span class="stat-key">Last Seen</span> <span class="stat-val">Journey 010</span></div><div class="stat-row"><span class="stat-key">Status</span> <span class="stat-val">Active</span></div></div></div>
+  <div class="entry-info"><div class="entry-name">Mayriel</div><div class="entry-sub">Cleric of Paladine; divine magic returned</div><div class="entry-body"><p>Mayriel is a healer and warrior who hears the voice of Paladine in moments of darkness and divine clarity. She came to the roads seeking to understand what the gods were saying, and she found her answer in fire and purpose.</p><p>She has stood between her companions and death. She has called down divine wrath upon those who would harm the innocent. And she has carried the weight of being the light in a world growing darker. Mayriel&#x27;s faith is not blind. It is sharp, tested, and earned through sacrifice.</p></div><div class="pursuit"><span class="pursuit-label">Pursuit</span><span class="pursuit-text">Walking her divine calling, and waiting for the sword the Dragon Queen has promised will find her.</span></div><div class="pursuit"><span class="pursuit-label">Now</span><span class="pursuit-text">Has not had a vision in some time, which she finds suspicious.</span></div></div>
+</div>
+<div class="divider" data-pagefind-ignore>&#10022; &#10022; &#10022;</div>
+<div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-010.html">Journey 010</a></div><ul class="record-list"><li>Told Aratos she has had no vision in some time, and that the silence feels suspicious</li><li>Does not know whether the promised sword is a blade or the one who carries it</li><li>Bought a healer&#x27;s kit</li></ul></div>
+<details class="prior"><summary>Previous Journeys <span class="prior-keys">001 &middot; 002 &middot; 003 &middot; 004 &middot; 005 &middot; 006 &middot; 007 &middot; 008 &middot; 009</span></summary><div class="prior-body"><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-009.html">Journey 009</a></div><ul class="record-list"><li>Saw purplish-black soot at the cave mouth and remembered the river</li><li>Struck the necromancer with radiant rose-thorns</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-008.html">Journey 008</a></div><ul class="record-list"><li>Saw the Dragon Queen in the river, who promised her sword would find her</li><li>Kept Sunscale, who chose her over Fizban</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-007.html">Journey 007</a></div><ul class="record-list"><li>Raised a twilight glow over her companions at the docks</li><li>Killed Theros Flametongue</li><li>Offered Paladine her family signet ring and her obedience when he asks</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-006.html">Journey 006</a></div><ul class="record-list"><li>Called down moonlit radiance on the cliff</li><li>Fell, and was brought back with a healing potion</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-005.html">Journey 005</a></div><ul class="record-list"><li>Healed a woman hiding a fatal wound, and was asked whether the gods had touched her</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-004.html">Journey 004</a></div><ul class="record-list"><li>Shared her vision with Becklin</li><li>Woke to a golden finch and a pendant</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-003.html">Journey 003</a></div><ul class="record-list"><li>Saw a horned woman in dark regalia unfold into a five-headed dragon, and platinum fire rise to shield her</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-002.html">Journey 002</a></div><ul class="record-list"><li>Kept Roshi alive after the sand creature struck</li><li>Drew Fizban&#x27;s interest: clerics had not walked openly in centuries</li></ul></div><div class="record-block"><div class="record-head"><a class="record-voyage" href="../unexpected-journeys/journey-001.html">Journey 001</a></div><ul class="record-list"><li>Saw divine fire and draconic terror at an old holy place on the road</li><li>Understood the ambushers when they named the Shadow Queen</li></ul></div></div></details>
+<div class="divider" data-pagefind-ignore>&#10022; &#10022; &#10022;</div><div class="xref-card"><div class="xref-head"><span class="xref-title">Connections</span></div><div class="xref-cols"><div class="xref-col"><div class="xref-col-head">Quests</div><a class="chip chip-quest" href="../quests/the-emberwakes-curse.html">The Emberwake&#x27;s Curse</a><a class="chip chip-quest" href="../quests/the-sword-of-the-dragon-queen.html">The Sword of the Dragon Queen</a></div><div class="xref-col"><div class="xref-col-head">Characters</div><a class="chip chip-npc" href="../dossiers/fizban.html">Fizban</a><a class="chip chip-npc" href="../dossiers/sunscale.html">Sunscale</a><a class="chip chip-npc" href="../dossiers/theros-flametongue.html">Theros Flametongue</a></div><div class="xref-col"><div class="xref-col-head">Items</div><a class="chip chip-item" href="../armory/divine-pendant.html">Divine Pendant</a><a class="chip chip-item" href="../armory/mayriels-signet-ring.html">Mayriel&#x27;s Signet Ring</a></div><div class="xref-col"><div class="xref-col-head">War Intel</div><a class="chip chip-place" href="../war-intel/takhisis-the-shadow-queen.html">Takhisis, the Dragon Queen</a></div></div></div>
+</div>
+</div>
 </body>
 </html>

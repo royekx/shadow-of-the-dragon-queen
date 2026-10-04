@@ -1,0 +1,328 @@
+/* ════════════════════════════════════════════════════════════════
+   entity.css — every entity detail page: dossiers, crew manifest,
+   inventory entries, navigation records, quests. Replaces ~8KB of
+   inline CSS per page.
+   ════════════════════════════════════════════════════════════════ */
+
+/* overflow-x: clip, not hidden. `hidden` on html/body makes the body a scroll
+   container, which silently breaks `position: sticky` on every descendant —
+   including the command bar. `clip` stops the sideways scroll without that
+   side effect. */
+html { overflow-x: clip; }
+/* box-sizing only — max-width:100% here would override the 900px cap
+   caelestis.css sets on .content and let pages span a whole monitor. */
+.page-content, .content { box-sizing: border-box; }
+
+/* ── IDENTITY CARD ──
+   Portrait and stats are one surface so they never separate, including
+   on mobile where they used to split into two boxes. */
+.entry-header {
+  display: grid; grid-template-columns: 190px 1fr;
+  gap: 2.2rem; margin-bottom: 2.4rem; align-items: start;
+}
+.identity-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid var(--rule); border-radius: 0; overflow: hidden;
+}
+.portrait-frame {
+  width: 100%; aspect-ratio: 1;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--rule);
+  display: flex; align-items: center; justify-content: center;
+}
+.portrait-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.portrait-frame .monogram { font-family: 'Cinzel', serif; font-size: 3rem; color: var(--ice-dim); opacity: 0.35; }
+
+.stat-card { padding: 0.4rem 1.1rem 0.5rem; }
+/* A quest has no portrait, so its stat rows are the whole card. */
+.identity-card > .stat-card:first-child { padding-top: 0.7rem; }
+.stat-row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: 0.8rem; padding: 0.5rem 0; border-bottom: 1px solid var(--rule);
+}
+.stat-row:last-child { border-bottom: none; }
+.stat-key {
+  font-family: 'Cinzel', serif; font-size: 0.719rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+}
+.stat-val { color: var(--text); text-align: right; font-size: 0.92rem; }
+
+/* ── IDENTITY ── */
+.entry-info { display: flex; flex-direction: column; gap: 0.5rem; }
+.entry-name {
+  font-family: 'Cinzel', serif; font-size: 1.85rem; font-weight: 700;
+  color: var(--text); letter-spacing: 0.02em; line-height: 1.1;
+}
+.entry-sub { font-size: 1rem; font-style: italic; color: var(--text-dim); }
+.entry-body { font-size: 1.04rem; line-height: 1.78; color: var(--text); margin-top: 0.5rem; }
+.entry-body p { margin-bottom: 0.85rem; }
+.entry-body p:last-child { margin-bottom: 0; }
+
+/* ── RECORD ──
+   One card per voyage. The latest sits open; earlier ones collapse and
+   roll forward automatically as sessions are added. */
+.record-block {
+  background: var(--bg-card);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid var(--rule); border-radius: 0;
+  padding: 1.1rem 1.4rem 1.3rem; margin-bottom: 0.9rem;
+}
+.record-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.7rem; }
+.record-voyage {
+  font-family: 'Cinzel', serif; font-size: 0.858rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.record-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.record-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+.record-list li { font-size: 1rem; line-height: 1.58; color: var(--text); padding-left: 1.1rem; position: relative; }
+.record-list li::before { content: '\203A'; position: absolute; left: 0; color: var(--ice-dim); }
+
+.prior { margin-top: 0.4rem; }
+.prior > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: baseline; gap: 0.7rem;
+  padding: 0.8rem 1.2rem; background: var(--bg-raised);
+  border: 1px solid var(--rule); border-radius: 999px;
+  font-family: 'Cinzel', serif; font-size: 0.789rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-muted);
+  transition: border-color .18s, color .18s;
+}
+.prior > summary::-webkit-details-marker { display: none; }
+.prior > summary::before { content: '\25B8'; color: var(--ice-dim); transition: transform .18s; display: inline-block; }
+.prior[open] > summary::before { transform: rotate(90deg); }
+.prior > summary:hover { border-color: var(--ice-dim); color: var(--ice); }
+/* Session keys stay legible while collapsed, so appearance history can be
+   scanned without expanding. */
+.prior-keys { margin-left: auto; color: var(--ice-dim); letter-spacing: 0.1em; }
+.prior[open] .prior-keys { opacity: 0.4; }
+.prior-body { padding-top: 0.9rem; }
+
+/* ── CHIPS ── */
+.chip {
+  font-family: 'Crimson Pro', serif; font-size: 0.92rem;
+  padding: 0.2rem 0.75rem; border-radius: 999px;
+  border: 1px solid var(--rule); color: var(--text-dim); background: var(--bg-raised);
+  text-decoration: none; max-width: 100%; overflow-wrap: anywhere;
+  transition: border-color .18s, color .18s;
+}
+.chip:hover { border-color: var(--ice-dim); color: var(--ice); }
+.chip-quest { border-color: var(--gold-rule); }
+.chip-npc   { border-color: rgba(176, 60, 50,0.35); }
+.chip-place { border-color: rgba(140, 150, 162,0.32); }
+.chip-item  { border-color: rgba(176,142,63,0.32); }
+
+/* ── CONNECTIONS ──
+   Columns rather than a wrapping row, so a heavily-connected entity grows
+   in height instead of scrambling the layout. Column order is fixed
+   site-wide: Quests · Characters · Locations · Items · Factions. */
+.xref-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid var(--rule); border-radius: 0; padding: 1.2rem 1.4rem 1rem;
+}
+.xref-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+.xref-title {
+  font-family: 'Cinzel', serif; font-size: 0.858rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.xref-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.xref-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.3rem 1.6rem; }
+.xref-col { display: flex; flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+.xref-col-head {
+  font-family: 'Cinzel', serif; font-size: 0.719rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted);
+  padding-bottom: 0.35rem; margin-bottom: 0.1rem;
+  border-bottom: 1px solid var(--rule); width: 100%;
+}
+
+/* ── NAV BAR ──
+   caelestis.css sets flex-shrink:0 and nowrap on prev/next links, so a
+   long entity name pushes the bar off-screen on mobile. */
+.voyage-nav-bar { border-radius: 999px; max-width: 100%; box-sizing: border-box; }
+.voyage-nav-link { flex-shrink: 1; min-width: 0; overflow: hidden; }
+.voyage-nav-link .nav-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.voyage-nav-link svg { flex-shrink: 0; }
+.voyage-nav-center { flex-shrink: 0; }
+
+/* ── PLAYER CHARACTER ── */
+.pursuit { display: flex; align-items: baseline; gap: 0.8rem; margin-top: 1rem; }
+.pursuit-label {
+  font-family: 'Cinzel', serif; font-size: 0.708rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold-dim); white-space: nowrap; padding-top: 0.1rem;
+}
+.pursuit-text {
+  font-style: italic; color: var(--text-dim); font-size: 0.99rem; line-height: 1.6;
+  border-left: 2px solid var(--rule); padding-left: 0.9rem;
+}
+/* Derived from the Items tab by filtering on "Held By", so it cannot
+   disagree with an item's own page. */
+.carry-row { display: flex; align-items: baseline; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.carry-label {
+  font-family: 'Cinzel', serif; font-size: 0.719rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+}
+.carry-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; min-width: 0; max-width: 100%; }
+
+/* ── QUEST ──
+   Modelled on a quest log: giver, briefing, objectives and rewards up
+   front; the voyage record beneath. */
+.giver-strip {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.9rem 1.2rem; margin-bottom: 1.4rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid var(--rule); border-left: 3px solid var(--gold); border-radius: 0;
+}
+.giver-face {
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%; overflow: hidden;
+  border: 1px solid var(--rule); background: var(--bg-raised);
+  display: flex; align-items: center; justify-content: center;
+}
+.giver-face img { width: 100%; height: 100%; object-fit: cover; }
+.giver-info { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.giver-label {
+  font-family: 'Cinzel', serif; font-size: 0.683rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.giver-name { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; color: var(--text); text-decoration: none; }
+.giver-name:hover { color: var(--ice); }
+.giver-state {
+  margin-left: auto; text-align: right; white-space: nowrap;
+  font-family: 'Cinzel', serif; font-size: 0.719rem; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.giver-state b { display: block; color: var(--gold); font-size: 0.835rem; letter-spacing: 0.14em; }
+
+.brief-grid { display: grid; grid-template-columns: 1fr 340px; gap: 1.1rem; align-items: start; margin-bottom: 1.6rem; }
+.panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid var(--rule); border-radius: 0; padding: 1.2rem 1.4rem 1.3rem;
+}
+.panel + .panel { margin-top: 1.1rem; }
+.panel-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.9rem; }
+.panel-title {
+  font-family: 'Cinzel', serif; font-size: 0.858rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold); white-space: nowrap;
+}
+.panel-head::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.panel-count { font-family: 'Cinzel', serif; font-size: 0.742rem; letter-spacing: 0.1em; color: var(--text-muted); white-space: nowrap; }
+.quest-desc { font-size: 1.04rem; line-height: 1.78; color: var(--text); }
+.quest-desc p { margin-bottom: 0.85rem; }
+.quest-desc p:last-child { margin-bottom: 0; }
+
+.obj-list, .rew-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+.obj-item { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.97rem; line-height: 1.5; }
+.obj-box {
+  flex-shrink: 0; width: 15px; height: 15px; margin-top: 0.2rem;
+  border: 1px solid var(--rule); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+}
+.obj-box svg { width: 10px; color: var(--gold); }
+.obj-item.is-done .obj-box { border-color: var(--gold-dim); background: var(--gold-faint); }
+.obj-item.is-done .obj-text { color: var(--text-muted); text-decoration: line-through; text-decoration-color: var(--rule); }
+.obj-text { color: var(--text); }
+
+.rew-item { display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.97rem; line-height: 1.5; color: var(--text); }
+.rew-icon { flex-shrink: 0; width: 15px; margin-top: 0.16rem; color: var(--gold-dim); display: flex; }
+.rew-icon svg { width: 100%; }
+/* An unspecified reward is still a reward — present, acknowledged. */
+.rew-item.is-unknown .rew-text { color: var(--text-muted); font-style: italic; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) { .brief-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) {
+  .entry-header { grid-template-columns: 1fr; gap: 1.4rem; }
+  .portrait-frame { aspect-ratio: 16 / 10; }
+  .entry-name { font-size: 1.5rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   INDEX CARDS (Crew Manifest, Factions)
+   Migrated from hub.html's inline styles, which only that one page
+   could see — any other page using .s-card / .card-grid rendered as
+   unstyled links. This is the corrected, denser layout: icon and
+   title share a row, description clamps to two lines, links wrap
+   instead of forcing card width.
+   ════════════════════════════════════════════════════════════════ */
+.card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; }
+.card-grid.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.s-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 0.95rem 1.1rem 0.85rem;
+  min-height: 0; min-width: 0;
+  display: flex; flex-direction: column; gap: 0.4rem;
+  text-decoration: none;
+  transition: border-color .2s, background .2s;
+}
+.s-card:hover { border-color: var(--ice-dim); background: var(--bg-raised); }
+
+.s-card-head { display: flex; align-items: center; gap: 0.6rem; }
+.s-icon { width: 20px; height: 20px; flex-shrink: 0; color: var(--gold-dim); }
+.s-icon svg, .s-icon .face-mono { width: 100%; height: 100%; display: block; }
+.s-icon .face-mono {
+  font-family: 'Cinzel', serif; font-size: 0.963rem; line-height: 20px; text-align: center;
+}
+.s-title {
+  font-family: 'Cinzel', serif; font-size: 0.963rem; font-weight: 700;
+  color: var(--text); letter-spacing: 0.02em; text-align: left;
+}
+.s-card:hover .s-title { color: var(--gold-light); }
+
+.s-desc {
+  font-size: 0.931rem; line-height: 1.5; color: var(--text-dim); text-align: left;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden; max-height: 3em; flex: none;
+}
+
+.s-links {
+  display: flex; flex-wrap: wrap; gap: 0.25rem 0.9rem;
+  align-items: baseline; padding-top: 0.5rem; margin-top: auto; min-width: 0;
+}
+.s-link {
+  display: inline-block; text-align: left; max-width: 100%;
+  font-family: 'Cinzel', serif; font-size: 0.835rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold-dim); text-decoration: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  transition: color .18s;
+}
+.s-link:hover { color: var(--gold-light); }
+.s-link-all { margin-top: 0; padding-top: 0; border-top: none; color: var(--text-muted); }
+.s-link-all:hover { color: var(--gold-dim); }
+
+@media (max-width: 900px) {
+  .card-grid, .card-grid.two-up { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .card-grid, .card-grid.two-up { grid-template-columns: 1fr; }
+}
+
+/* ── Register row subtitle ──
+   Dossier and inventory index rows put the role/type directly inside
+   .ent-name as a nested span. Without this rule it rendered inline with
+   no separator — "TARTOBoatswain and instructor". */
+.ent-sub {
+  display: block;
+  font-family: 'Crimson Pro', serif; font-weight: 400; font-style: italic;
+  font-size: 0.877rem; color: var(--text-muted); letter-spacing: 0;
+  margin-top: 0.1rem;
+}
+
+/* Pages scaffolded before build-pages.js was corrected carry `prior-voyages`
+   where the stylesheet expects `prior`. Aliased rather than rewritten so an
+   old page picks the chrome up without being regenerated. */
+.prior-voyages { margin-top: 1.1rem; }
+.prior-voyages > summary { list-style: none; cursor: pointer;
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.8rem 1.2rem; background: var(--bg-raised);
+  border: 1px solid var(--rule); border-radius: 999px;
+  font-family: 'Cinzel', serif; font-size: 0.789rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--text-muted); }
+.prior-voyages > summary::-webkit-details-marker { display: none; }
+.prior-voyages > summary::before { content: '\25B8'; color: var(--ice-dim);
+  transition: transform .18s; display: inline-block; }
+.prior-voyages[open] > summary::before { transform: rotate(90deg); }
+.prior-voyages[open] .prior-keys { opacity: 0.4; }

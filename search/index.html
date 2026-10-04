@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../data/standing.js" defer></script>
+<script src="../scripts/nav.js" defer></script>
+<script src="../data/vocabulary.js"></script>
+<script src="../scripts/spelling.js"></script>
+</head>
+<body data-pagefind-ignore>
+<div class="terminal-wrap">
+  <div class="terminal-head">
+    <div class="terminal-eyebrow">Shadow of the Dragon Queen &middot; The Record</div>
+    <h1 class="terminal-title">Search</h1>
+    <p class="terminal-sub">Every journey, face, place and thing on record. If a name is spelled the way it sounded at the table, the search will try to meet you halfway.</p>
+  </div>
+  <div class="search-console">
+    <div class="search-console-label">Query</div>
+    <div class="search-row">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/></svg>
+        <input class="search-input" id="q" type="text" placeholder="Search the record&hellip;" autocomplete="off" autofocus aria-label="Search the record">
+      </div>
+      <div class="scope-select">
+        <select id="scope" aria-label="Section to search">
+          <option value="">All Records</option>
+          <option value="unexpected-journeys">Unexpected Journeys</option><option value="quests">Quest Board</option><option value="the-embers">The Embers</option><option value="dossiers">Dossiers</option><option value="atlas">The Atlas</option><option value="armory">Armory</option><option value="war-intel">War Intel</option><option value="road-so-far">The Road So Far</option>
+        </select>
+      </div>
+    </div>
+    <div class="scope-hint" id="scopeHint">Searching <b>all records</b>. Choose a section to search only within it.</div>
+  </div>
+  <div id="resultsMeta" class="results-meta" style="display:none;">
+    <div class="results-count"><span id="count">0</span> &middot; <span class="results-term" id="termEcho"></span></div>
+    <div class="results-scope" id="scopeEcho">across all records</div>
+  </div>
+  <div id="results"></div>
+  <div id="state" class="search-state">Enter a name, place, or event to begin.</div>
+</div>
+
+<script type="module">
+// Player-facing search. Uses the Pagefind JS API; the index is generated
+// into /pagefind/ by the deploy Action, so it does not exist in the repo.
+
+const SCOPE_LABELS = {"": "all records", "unexpected-journeys": "Unexpected Journeys", "quests": "Quest Board", "the-embers": "The Embers", "dossiers": "Dossiers", "atlas": "The Atlas", "armory": "Armory", "war-intel": "War Intel", "road-so-far": "The Road So Far"};
+
+const STOPWORDS = new Set(['a','an','the','of','to','in','on','at','by','for','and','or','but','is','was','it','as','with','from','that','this','his','her','their','they','them','he','she']);
+function cleanExcerpt(html) {
+  return html.replace(/<mark>(.*?)<\/mark>/g, (m, word) =>
+    STOPWORDS.has(word.trim().toLowerCase()) ? word : m);
+}
+
+function sectionFromUrl(url) {
+  const segs = url.replace(/^\//, '').split('/');
+  let label = 'Records';
+  for (const s of segs) { if (SCOPE_LABELS[s]) { label = SCOPE_LABELS[s]; break; } }
+  const m = url.match(/journey-(\d+)/);
+  if (m) label += ' \u00b7 ' + m[1];
+  return label;
+}
+
+let pagefind = null;
+async function loadPagefind() {
+  if (pagefind) return pagefind;
+  try {
+    pagefind = await import('../pagefind/pagefind.js');
+    const siteRoot = location.pathname.replace(/search\/(index\.html)?$/, '');
+    await pagefind.options({ excerptLength: 30, baseUrl: siteRoot });
+    await pagefind.init();
+  } catch (e) {
+    pagefind = null;
+    document.getElementById('state').textContent =
+      'Search index not yet available. It builds automatically on deploy.';
+    console.error('Pagefind load failed:', e);
+  }
+  return pagefind;
+}
+
+const qEl = document.getElementById('q');
+const scopeEl = document.getElementById('scope');
+const resultsEl = document.getElementById('results');
+const stateEl = document.getElementById('state');
+const metaEl = document.getElementById('resultsMeta');
+const countEl = document.getElementById('count');
+const termEcho = document.getElementById('termEcho');
+const scopeEcho = document.getElementById('scopeEcho');
+const scopeHint = document.getElementById('scopeHint');
+
+function setState(msg) { stateEl.style.display = 'block'; stateEl.textContent = msg; }
+function clearState() { stateEl.style.display = 'none'; }
+function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+const bareWord = w => w.toLowerCase().replace(/[^a-z0-9]/g, '');
+async function hasRealHit(search, term) {
+  if (!search.results.length) return false;
+  const words = term.split(/\s+/).map(bareWord).filter(w => w.length >= 3 && !STOPWORDS.has(w));
+  if (!words.length) return true;
+  const sample = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
+  return sample.some(d => (d.excerpt.match(/<mark>(.*?)<\/mark>/g) || [])
+    .map(m => bareWord(m.replace(/<\/?mark>/g, '')))
+    .some(m => words.some(w => m.length >= 3 && (m.startsWith(w.slice(0, 4)) || w.startsWith(m)))));
+}
+
+let debounce;
+async function run() {
+  const term = qEl.value.trim();
+  const scope = scopeEl.value;
+
+  scopeHint.innerHTML = scope
+    ? 'Searching <b>' + SCOPE_LABELS[scope] + '</b> only. Switch to <b>All Records</b> to search everything.'
+    : 'Searching <b>all records</b>. Choose a section to search only within it.';
+
+  const priorNote = document.getElementById('correction-note');
+  if (priorNote) priorNote.remove();
+
+  if (!term) {
+    resultsEl.innerHTML = '';
+    metaEl.style.display = 'none';
+    setState('Enter a name, place, or event to begin.');
+    return;
+  }
+
+  const pf = await loadPagefind();
+  if (!pf) return;
+
+  const opts = scope ? { filters: { section: scope } } : {};
+  let search = await pf.search(term, opts);
+
+  // Nothing real as typed? Try a repaired spelling before giving up. Names
+  // heard across a table rarely survive contact with a keyboard intact.
+  //
+  // "Nothing" needs care. When a word is not in the index, Pagefind falls
+  // back to ever-shorter prefixes of it, so a misspelling usually comes back
+  // with a few junk hits on its first letter or two rather than with none.
+  // A hit only counts if what it highlighted shares a real stem with what
+  // was typed.
+  let searched = term, correctedFrom = null;
+  if (window.SotdqSpelling) {
+    const fix = window.SotdqSpelling.correct(term);
+    if (fix.changed && !(await hasRealHit(search, term))) {
+      const retry = await pf.search(fix.term, opts);
+      if (retry.results.length) { search = retry; searched = fix.term; correctedFrom = term; }
+    }
+  }
+
+  const nothing = () => {
+    resultsEl.innerHTML = '';
+    metaEl.style.display = 'none';
+    setState('No records found for "' + term + '"' + (scope ? ' in ' + SCOPE_LABELS[scope] : '') + '.');
+  };
+  if (!search.results.length) return nothing();
+
+  const rawData = await Promise.all(search.results.slice(0, 30).map(r => r.data()));
+
+  // Drop results whose only match is a stopword.
+  const meaningful = searched.toLowerCase().split(/\s+/).filter(Boolean).filter(w => !STOPWORDS.has(w));
+  const data = rawData.filter(d => {
+    if (!meaningful.length) return true;
+    const marks = (d.excerpt.match(/<mark>(.*?)<\/mark>/g) || [])
+      .map(m => m.replace(/<\/?mark>/g, '').trim().toLowerCase());
+    if (marks.some(w => !STOPWORDS.has(w))) return true;
+    const plain = d.excerpt.replace(/<\/?mark>/g, '').toLowerCase();
+    return meaningful.some(w => plain.includes(w));
+  });
+  if (!data.length) return nothing();
+
+  clearState();
+  metaEl.style.display = 'flex';
+  countEl.textContent = data.length + (data.length === 1 ? ' record' : ' records');
+  termEcho.textContent = '"' + searched + '"';
+  if (correctedFrom) {
+    const n = document.createElement('div');
+    n.id = 'correction-note';
+    n.className = 'search-correction';
+    n.innerHTML = 'Showing results for <b>' + esc(searched) +
+      '</b> \u2014 nothing is filed under \u201c' + esc(correctedFrom) + '\u201d.';
+    resultsEl.parentNode.insertBefore(n, resultsEl);
+  }
+  scopeEcho.textContent = scope ? 'in ' + SCOPE_LABELS[scope] : 'across all records';
+
+  resultsEl.innerHTML = data.map(d => {
+    const title = (d.meta && d.meta.title) ? d.meta.title : d.url;
+    return `<a class="result" href="${d.url}">
+      <div class="result-head">
+        <div class="result-title">${title}</div>
+        <div class="result-path">${sectionFromUrl(d.url)}</div>
+      </div>
+      <div class="result-snippet">${cleanExcerpt(d.excerpt)}</div>
+    </a>`;
+  }).join('');
+}
+
+qEl.addEventListener('input', () => { clearTimeout(debounce); debounce = setTimeout(run, 180); });
+scopeEl.addEventListener('change', run);
+
+const params = new URLSearchParams(location.search);
+if (params.get('scope')) scopeEl.value = params.get('scope');
+if (params.get('q')) { qEl.value = params.get('q'); run(); }
+</script>
+</body>
+</html>
