@@ -462,12 +462,15 @@ def build_journeys():
             rec = ('<div class="video-container"><iframe src="https://www.youtube.com/embed/%s" '
                    'title="Session recording" loading="lazy" allowfullscreen></iframe></div>\n'
                    '<div class="video-link">Watch on YouTube: <a href="https://youtu.be/%s" target="_blank" '
-                   'rel="noopener">youtu.be/%s</a></div>' % (j['video'], j['video'], j['video']))
+                   'rel="noopener">youtu.be/%s</a> &middot; <a href="%s" target="_blank" rel="noopener">'
+                   'all recordings</a></div>' % (j['video'], j['video'], j['video'], e(CAMPAIGN['playlist'])))
         else:
             rec = ('<div class="video-container"><div class="video-placeholder">'
                    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'
                    '<circle cx="24" cy="24" r="20"/><polygon points="20,16 36,24 20,32" fill="currentColor" '
-                   'stroke="none" opacity="0.4"/></svg><p>Recording Unavailable</p></div></div>')
+                   'stroke="none" opacity="0.4"/></svg><p>Recording Not Linked Yet</p></div></div>\n'
+                   '<div class="video-link">Find it in the playlist: <a href="%s" target="_blank" '
+                   'rel="noopener">all recordings</a></div>' % e(CAMPAIGN['playlist']))
         content = '''<div class="log-meta">
   <span class="log-badge">UJ {k}</span>
   <span class="log-type-badge">Party Level {level}</span>

@@ -11,6 +11,7 @@ CAMPAIGN = dict(
     kicker='A Dragonlance Campaign',
     party='The Embers',
     scheduler='https://rallly.co/invite/D8kMYvewkWxI',
+    playlist='https://www.youtube.com/playlist?list=PLN57h0dwcT5t6izo-CKegvP96QNZyXIDn',
     gate_art=IMG + '1HxtWOhCcRJALSWUbbrUCKNGmLYB8fIPG',
 )
 
@@ -91,7 +92,7 @@ JOURNEYS = [
                  ('The Vingaard River', 'place:the-vingaard-river')],
          items=[('The Emberwake Greataxe', 'item:the-emberwake-greataxe'), ('Boilerdrake Heart', 'item:boilerdrake-heart'),
                 ("Mayriel's Signet Ring", 'item:mayriels-signet-ring'), ('Winged Boots', 'item:winged-boots')]),
-    dict(num=8, title='Ashes on the River', level=4, where='Vingaard River to Kalaman', video='5olPIXViJD4',
+    dict(num=8, title='Ashes on the River', level=4, where='Vingaard River to Kalaman', video=None,
          subtitle='The river carries ghosts. Kalaman rises ahead, but the dead walk the waters.',
          synopsis='On the river the dead rise as Ashen Vigils, each showing a survivor someone different. The party breaks them, reaches Kalaman, and argues its way before the council. Vogler is given refuge in exchange for military service, with Darrett as the go-between.',
          pcs=FIVE,
