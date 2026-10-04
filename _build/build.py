@@ -14,9 +14,9 @@ deploy: the GitHub Action only builds the search index and publishes. Run it
 by hand after editing the data, then commit what changed.
 
 To add a session:
-  1. write _build/journeys/011.brief.html and 011.full.html
+  1. write _build/journeys/012.brief.html and 012.full.html
   2. add the JOURNEYS entry in campaign_world.py
-  3. add an "11:" line under `records` for anyone and anything it touched,
+  3. add a "12:" line under `records` for anyone and anything it touched,
      and bump their `last`
   4. update QUESTS and STANDING
   5. run this, look at the result, commit
@@ -1451,6 +1451,7 @@ def build_stubs():
     stub('command-post/index.html', '../hub.html')
     stub('field-manual/index.html', '../hub.html')
     stub('theatre-of-war/index.html', '../atlas/index.html')
+    stub('quests/fire-and-frost.html', 'the-axe-from-the-vision.html')   # renamed after Journey 010
 
 
 # ---------------------------------------------------------------------------

@@ -53,5 +53,10 @@ var SOTDQ_JOURNEYS = [
     "num": "010",
     "title": "The Weight of the Axe",
     "path": "unexpected-journeys/journey-010.html"
+  },
+  {
+    "num": "011",
+    "title": "The Moons Over Bracken Hollow",
+    "path": "unexpected-journeys/journey-011.html"
   }
 ];

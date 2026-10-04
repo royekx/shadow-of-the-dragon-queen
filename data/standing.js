@@ -4,18 +4,33 @@
  * Written by _build/build.py from STANDING in campaign_world.py.
  */
 window.SOTDQ_STANDING = {
-  "journey": 10,
-  "title": "The Weight of the Axe",
-  "position": "The road out of Kalaman",
-  "posNote": "several days from Tatina Rookledust",
-  "outstanding": "Find the tinkerer Tatina Rookledust",
+  "journey": 11,
+  "title": "The Moons Over Bracken Hollow",
+  "position": "Bracken Hollow",
+  "posNote": "shut in, with less than a day until the next eclipse",
+  "outstanding": "Find the three things that break the spell",
   "detail": {
-    "consequence": "Aratos's trophy axe is cursed. It took him in a sparring match and nearly killed a squire, and he cannot give it away. At the reliquary he held it once by choosing stillness over fury. He will need his companions when he cannot.",
+    "consequence": "The Emberwake's fury took Aratos in the middle of the fight, and Roshi had to strike him senseless. He lies on the hill ringed by the horn's spectral warriors, after the monument marked him black. Ked lies senseless nearby. Corvin has run.",
     "quests": [
+      {
+        "name": "The Spell Over Bracken Hollow",
+        "progress": "2/4",
+        "href": "quests/the-spell-over-bracken-hollow.html"
+      },
+      {
+        "name": "The Axe from the Vision",
+        "progress": "1/3",
+        "href": "quests/the-axe-from-the-vision.html"
+      },
       {
         "name": "The First Mission",
         "progress": "1/3",
         "href": "quests/the-first-mission.html"
+      },
+      {
+        "name": "Wyhan's List",
+        "progress": "3/5",
+        "href": "quests/wyhans-list.html"
       },
       {
         "name": "The Orb of Dragonkind",
@@ -35,26 +50,22 @@ window.SOTDQ_STANDING = {
     ],
     "met": [
       {
-        "name": "Seredyn",
-        "href": "dossiers/seredyn.html"
+        "name": "Sergeant Boyd",
+        "href": "dossiers/sergeant-boyd.html"
       },
       {
-        "name": "Finbar",
-        "href": "dossiers/finbar.html"
+        "name": "Corvin",
+        "href": "dossiers/corvin.html"
       },
       {
-        "name": "Roberto",
-        "href": "dossiers/roberto.html"
-      },
-      {
-        "name": "Wyhan",
-        "href": "dossiers/wyhan.html"
+        "name": "Ked",
+        "href": "dossiers/ked.html"
       }
     ]
   },
   "links": {
     "standing": "road-so-far/index.html",
-    "journey": "unexpected-journeys/journey-010.html",
+    "journey": "unexpected-journeys/journey-011.html",
     "scheduler": "https://rallly.co/invite/D8kMYvewkWxI"
   }
 };

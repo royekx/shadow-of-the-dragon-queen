@@ -51,9 +51,9 @@ but the next build overwrites it, so put the change in the data instead.
 
 ## Adding a session
 
-1. Write `_build/journeys/011.brief.html` and `011.full.html`.
+1. Write `_build/journeys/012.brief.html` and `012.full.html`.
 2. Add the `JOURNEYS` entry in `campaign_world.py`.
-3. Add an `11:` line under `records` for everyone and everything it touched,
+3. Add a `12:` line under `records` for everyone and everything it touched,
    and bump their `last`.
 4. Update `QUESTS` (objectives, new threads, anything closed) and `STANDING`.
 5. Run the build, look at it locally, commit.
