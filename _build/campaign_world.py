@@ -7,7 +7,7 @@ IMG = 'https://lh3.googleusercontent.com/d/'
 
 CAMPAIGN = dict(
     title='Shadow of the Dragon Queen',
-    tagline="The Dragon Queen's armies are marching on Ansalon.",
+    tagline='Takhisis stirs. Her armies march on Ansalon.',
     kicker='A Dragonlance Campaign',
     party='The Embers',
     scheduler='https://rallly.co/invite/D8kMYvewkWxI',
@@ -505,10 +505,10 @@ ITEM_TABS = [
 # band: threat | order | guild   (grouping on the index)
 
 FACTIONS = [
-    dict(slug='the-dragon-queen', name='The Dragon Queen', band='threat',
+    dict(slug='takhisis-the-shadow-queen', name='Takhisis, the Dragon Queen', band='threat',
          kind='The power behind the invasion', relation='Overarching enemy', last=8, status='Active',
-         aliases=['Shadow Queen'],
-         overview="The queen the enemy serves. Her soldiers call her the Shadow Queen and the Dragon Queen and say they are reclaiming the realm for her. Mayriel has seen her in vision as a horned woman in dark regalia who unfolds into a five-headed dragon.",
+         aliases=['Shadow Queen', 'Dragon Queen'],
+         overview="Takhisis is the queen the enemy serves. Her soldiers call her the Shadow Queen and the Dragon Queen and say they are reclaiming the realm for her. Mayriel has seen her in vision as a horned woman in dark regalia who unfolds into a five-headed dragon.",
          links=['fac:the-red-dragon-army', 'fac:draconians', 'pc:mayriel', 'quest:the-sword-of-the-dragon-queen'],
          records={
              1: ["Named by a captured draconian: the realm reclaimed for its queen, the east already fallen, the shadow coming fast"],
@@ -521,7 +521,7 @@ FACTIONS = [
          kind='Enemy army', relation='Primary enemy force', last=8, status='Active',
          aliases=['Red Army'],
          overview="An invading army serving the Dragon Queen, organized and well supplied. It fields armored soldiers, draconians and a war machine built like a dragon, and it paid mercenaries to turn on Vogler. It burned Vogler and is pressing other villages too.",
-         links=['fac:the-dragon-queen', 'fac:draconians', 'npc:theros-flametongue',
+         links=['fac:takhisis-the-shadow-queen', 'fac:draconians', 'npc:theros-flametongue',
                 'npc:the-charred-swordswoman', 'npc:gragonis', 'place:vogler', 'item:boilerdrake-heart',
                 'quest:the-first-mission', 'quest:the-betrayal-at-high-hill'],
          records={
@@ -536,7 +536,7 @@ FACTIONS = [
     dict(slug='draconians', name='Draconians', band='threat',
          kind='Creature', relation="Soldiers of the Dragon Queen", last=7, status='Active',
          overview="Reptilian humanoids with scaled hides, sharp claws and brutal weapons. They speak Draconic and fight in coordination. A captured one killed itself sooner than talk. Their bodies decay with unnatural speed, and a red one exploded when it was killed.",
-         links=['fac:the-red-dragon-army', 'fac:the-dragon-queen'],
+         links=['fac:the-red-dragon-army', 'fac:takhisis-the-shadow-queen'],
          records={
              1: ["Ambushed a caravan on the road; one knight fell with an arrow in his throat",
                  "A captive spoke of its queen, then choked itself to death rather than say more",
@@ -683,7 +683,7 @@ QUESTS = [
                   "He warned that getting in might prove easier than getting out"],
          }),
     dict(slug='finbar', name='Finbar', kind='thread', status='open', parent='the-orb-of-dragonkind', last=10,
-         overview="Old Man Jenkins of Vogler was a disguise. His name is Finbar, he can turn invisible, and he belongs to the Dragon's Eye. He gave Jasper potions and leeching arrows in Vogler, and took him to Seredyn in Kalaman.",
+         overview="Old Man Jenkins of Vogler was a disguise. His name is Finbar, he can turn invisible, and he belongs to the Dragon's Eye. Jasper saw through the disguise in Vogler and was given the name. The rest of the party still does not know. He gave Jasper potions and leeching arrows in Vogler, and took him to Seredyn in Kalaman.",
          links=['npc:finbar', 'pc:jasper', 'npc:seredyn'],
          records={
              5: ["Gave Jasper potions and leeching arrows as he packed to leave Vogler"],
@@ -772,7 +772,7 @@ QUESTS = [
          }),
     dict(slug='the-sword-of-the-dragon-queen', name='The Sword of the Dragon Queen', kind='thread', status='open', last=10,
          overview="The Dragon Queen has told Mayriel that her sword will find her. Mayriel does not know whether that means a blade or the one who carries it. She has had no vision in some time, and the silence makes her suspicious.",
-         links=['pc:mayriel', 'fac:the-dragon-queen', 'item:mayriels-signet-ring'],
+         links=['pc:mayriel', 'fac:takhisis-the-shadow-queen', 'item:mayriels-signet-ring'],
          records={
              3: ["A horned woman in dark regalia spoke against the followers of Paladine"],
              7: ["Mayriel pledged Paladine her signet and her obedience"],
@@ -919,6 +919,6 @@ EXTRA_VOCAB = [
     'Voglerans', 'Jenkins', 'Jeyev', 'Tatina', 'Rookledust', 'Cathan', 'Gertrude', 'Wraith',
     'Necromancer', 'Reliquary', 'Ashen', 'Vigils', 'Orb', 'Dragonkind',
     'Emberwake', 'Boilerdrake', 'Periapt', 'Finn', 'Peller', 'Apothecary',
-    'Bracken', 'Hollow', 'Frostlace', 'Willowbark', 'Gribb', 'Brack', 'Marigold', 'Boyd', 'Corvin', 'Ked',
+    'Takhisis', 'Bracken', 'Hollow', 'Frostlace', 'Willowbark', 'Gribb', 'Brack', 'Marigold', 'Boyd', 'Corvin', 'Ked',
     'Eclipse', 'Monument', 'Leviathan',
 ]

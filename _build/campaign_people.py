@@ -623,7 +623,7 @@ NPCS = [
         relation='Guild contact, once "Old Man Jenkins"', affiliation="Dragon's Eye",
         met='vogler', aff='dragons-eye', standing='Neutral', last=10, status='Active',
         aliases=['Old Man Jenkins', 'Jenkins'],
-        overview="Finbar is a member of the Dragon's Eye who can pass unseen. In Vogler he wore the face of Old Man Jenkins at General Goods. In Kalaman he dropped the disguise and walked Jasper to the guild.",
+        overview="Finbar is a member of the Dragon's Eye who can pass unseen. In Vogler he wore the face of Old Man Jenkins at General Goods. Jasper saw through the disguise there and was given his real name. The rest of the party still knows him only as Jenkins. In Kalaman he dropped the disguise and walked Jasper to the guild.",
         links=['npc:seredyn', 'npc:lucky', 'pc:jasper', 'item:winged-boots', 'item:leeching-arrows',
                'quest:finbar', 'quest:the-orb-of-dragonkind', 'fac:the-dragons-eye'],
         records={

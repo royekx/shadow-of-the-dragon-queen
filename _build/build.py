@@ -1464,7 +1464,6 @@ def build_stubs():
     stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')            # renamed after Journey 010
     stub('dossiers/the-pale-elven-woman.html', 'the-pale-woman.html')       # renamed pages keep their old addresses
     stub('armory/leeching-bolts.html', 'leeching-arrows.html')
-    stub('war-intel/takhisis-the-shadow-queen.html', 'the-dragon-queen.html')
 
 
 # ---------------------------------------------------------------------------

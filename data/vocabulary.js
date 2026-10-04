@@ -188,6 +188,7 @@ var SOTDQ_VOCAB = [
   "Sunscale",
   "Sword",
   "Swordswoman",
+  "Takhisis",
   "Tales",
   "Tatina",
   "Tears",
