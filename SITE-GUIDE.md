@@ -84,7 +84,7 @@ lives in the `TOKENS` block of the port script.
   Unexpected Journey accounts. The Prep Queue and the "Next Planned Beat"
   column are never used.
 - Unidentified figures stay unidentified (the charred swordswoman, the pale
-  elven woman).
+  woman).
 - A name with nothing behind it goes under Named, Unfiled on the Dossiers
   page and gets no page of its own.
 

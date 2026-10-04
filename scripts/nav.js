@@ -91,7 +91,7 @@
       '<form class="cb-search" id="js-cb-search" role="search" autocomplete="off">' +
         '<button type="submit" class="cb-search-go" aria-label="Search">' + SEARCH_ICON + '</button>' +
         '<input type="text" id="js-cb-search-input" ' +
-          'placeholder="Search the record — a name, a place, a thing you half remember…" ' +
+          'placeholder="Search the record: a name, a place, a thing you half remember…" ' +
           'aria-label="Search all records">' +
         '<button type="submit" class="cb-search-tag">Search</button>' +
       '</form>';

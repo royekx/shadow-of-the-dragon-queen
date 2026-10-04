@@ -865,7 +865,7 @@ def build_quests():
             extra = '<span class="row-sub">Part of %s</span>' % e(get('quest:' + q['parent'])['name'])
         if q['status'] == 'closed' and q.get('outcome'):
             extra = '<span class="row-sub">%s</span>' % e(q['outcome'])
-        prog = ('<span class="obj-progress">%d/%d</span>' % pr) if pr else '<span class="obj-progress is-none">&mdash;</span>'
+        prog = ('<span class="obj-progress">%d/%d</span>' % pr) if pr else '<span class="obj-progress is-none">&middot;</span>'
         return ('<div class="log-entry q-entry%s" data-kind="%s"><div class="log-row">'
                 '<a class="log-row-link" href="%s.html"><span class="log-title">%s '
                 '<span class="q-kind kind-%s">%s</span>%s</span>%s<span class="log-open">Open &rsaquo;</span></a>'
@@ -943,7 +943,7 @@ def build_road():
     <div class="panel">
       <div class="panel-head"><span class="panel-title">Last Journey</span>
         <a class="panel-more" href="{r}unexpected-journeys/journey-{k}.html">Read the account &rsaquo;</a></div>
-      <div class="last-title">Journey {k} &mdash; {title}</div>
+      <div class="last-title">Journey {k}: {title}</div>
       <p class="last-text">{last}</p>
       <p class="last-text">{conseq}</p>
       <div class="chip-row"><span class="chip-label">Faces</span><div class="chips">{met}</div></div>
@@ -1461,7 +1461,10 @@ def build_stubs():
     stub('command-post/index.html', '../hub.html')
     stub('field-manual/index.html', '../hub.html')
     stub('theatre-of-war/index.html', '../atlas/index.html')
-    stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')   # renamed after Journey 010
+    stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')            # renamed after Journey 010
+    stub('dossiers/the-pale-elven-woman.html', 'the-pale-woman.html')       # renamed pages keep their old addresses
+    stub('armory/leeching-bolts.html', 'leeching-arrows.html')
+    stub('war-intel/takhisis-the-shadow-queen.html', 'the-dragon-queen.html')
 
 
 # ---------------------------------------------------------------------------
