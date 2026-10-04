@@ -115,6 +115,7 @@ var SOTDQ_VOCAB = [
   "Krynn",
   "Leeching",
   "Leppomanto",
+  "Leviathan",
   "List",
   "Lord",
   "Lost",

@@ -1451,7 +1451,7 @@ def build_stubs():
     stub('command-post/index.html', '../hub.html')
     stub('field-manual/index.html', '../hub.html')
     stub('theatre-of-war/index.html', '../atlas/index.html')
-    stub('quests/fire-and-frost.html', 'the-axe-from-the-vision.html')   # renamed after Journey 010
+    stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')   # renamed after Journey 010
 
 
 # ---------------------------------------------------------------------------

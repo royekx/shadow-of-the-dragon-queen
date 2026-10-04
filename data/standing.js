@@ -18,9 +18,9 @@ window.SOTDQ_STANDING = {
         "href": "quests/the-spell-over-bracken-hollow.html"
       },
       {
-        "name": "The Axe from the Vision",
+        "name": "The Leviathan Axe",
         "progress": "1/3",
-        "href": "quests/the-axe-from-the-vision.html"
+        "href": "quests/the-leviathan-axe.html"
       },
       {
         "name": "The First Mission",

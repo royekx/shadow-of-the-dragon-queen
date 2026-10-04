@@ -33,7 +33,7 @@ PCS = [
         state="Unconscious on the hill at Bracken Hollow, ringed by the spectral warriors of the horn. The monument marked him with the black glow.",
         line="Took the head off the monument at Bracken Hollow in a fury that was not his own, and had to be brought down by Roshi.",
         links=['item:the-emberwake-greataxe', 'item:horn-of-sir-cthondor', 'quest:the-emberwakes-curse',
-               'quest:the-axe-from-the-vision', 'quest:the-first-mission', 'pc:aeimos', 'npc:theros-flametongue',
+               'quest:the-leviathan-axe', 'quest:the-first-mission', 'pc:aeimos', 'npc:theros-flametongue',
                'fac:the-knights-radiant', 'place:bracken-hollow', 'npc:ked'],
         records={
             1: ["Woke from a dream of scaled warriors marching in ranks, with one command in it: fight",
@@ -682,7 +682,7 @@ NPCS = [
         relation='Looming antagonist', affiliation='Knights of Solamnia (fallen)',
         met='visions', aff='knights', standing='Adversary', last=9, status='At large',
         overview="Lord Soth was once a celebrated Knight of Solamnia. He fell through selfishness and personal failure and lives in disgrace under a curse. He works through servants to corrupt knights and their legacies, and means to continue until the curse is lifted. He has brushed the party's path and has not moved against them.",
-        links=['quest:lord-soths-corruption', 'quest:the-axe-from-the-vision', 'pc:aratos', 'pc:aeimos',
+        links=['quest:lord-soths-corruption', 'quest:the-leviathan-axe', 'pc:aratos', 'pc:aeimos',
                'npc:sir-cthondor', 'npc:the-pale-elven-woman', 'fac:the-knights-of-solamnia',
                'place:the-reliquary-of-sir-cthondor'],
         records={
