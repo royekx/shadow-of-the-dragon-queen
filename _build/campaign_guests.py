@@ -35,7 +35,7 @@ GUESTS = dict(
     # reason to leave for Kalaman with the party afterwards, and a thread to
     # pick up later.
     # What they know: people at home keep forgetting things, it had begun to
-    # happen to them, and they were smuggled out for help. They know who they
+    # happen to them, and the village elder smuggled them out for help. They know who they
     # are and where home is; only stretches of time are missing. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
@@ -49,27 +49,27 @@ GUESTS = dict(
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
         'You and your traveling companion were a day short of Kalaman, carrying a letter that asks the '
-        'city for help. Something is wrong at home. People lose an afternoon, then whole days, and come '
-        'back with aching backs and dust on their boots and no memory of where they have been. It had '
-        'begun to happen to the two of you when the neighbors who still had their wits slipped you out '
-        'by night, which was the hard part. There are days this past season that neither of you can '
-        'account for.',
-        'As the evening drew on, the two of you turned off the road to rest for the night in Bracken '
-        'Hollow, a quiet forest village with no wall and no guard at its gate. The sky went dark as you '
-        'walked in. An old soldier named Sergeant Boyd hurried you indoors and gave you a place by his fire.',
-        'What he told you sounded like a tired man\'s tale. Three moons hang over the village in a single '
-        'eclipse and take their turns, white, then red, then black, each with its own trouble in the '
-        'streets. Then comes an hour when the Standing Stone on the hill wakes and walks, and someone '
-        'vanishes. And no one, he said, can leave. You thanked him, shouldered your packs, and walked out '
-        'anyway. The road carried you straight back in on the far side of the village.',
-        'That was a week ago. You have watched the moons turn, carried food in from the farms with the '
-        'wolves about, and found every word of it true.',
-        'Now something has changed. A band of strangers walked into the Hollow and killed the wolves that '
-        'met them. Boyd brought word to the house where you were sheltering: they meant to climb the hill '
-        'at the eclipse and bring the Standing Stone down. From the doorway you watched them go up, and '
-        'you watched it fall.',
-        'It is the first thing that has changed here in a week. Perhaps these strangers are the way out '
-        'of this place, and the way to get help for your people.',
+        'city for help. Something is wrong at home, where people lose an afternoon and then whole days, '
+        'and come back with aching backs and dust on their boots and no memory of where they have been. '
+        'When it began to happen to the two of you, the village elder put the letter in your hands and '
+        'slipped you out by night, and there are still days from this past season that neither of you '
+        'can account for.',
+        'As evening drew on, you turned off the road to rest in Bracken Hollow, a quiet forest village '
+        'with no wall and no guard at its gate. The sky went dark as you walked in, and something howled '
+        'close by. An old soldier named Sergeant Boyd pulled you through a doorway ahead of the wolves '
+        'and gave you a place by his fire.',
+        'What he told you there sounded like a tired man\'s tale: that three moons hang over the village '
+        'in a single eclipse and take their turns, white, then red, then black, each with its own trouble '
+        'in the streets, until the hour when the Standing Stone on the hill wakes and walks and someone '
+        'vanishes, and that no one can leave. You thanked him and, once the wolves had gone, walked out '
+        'anyway, and the road carried you straight back in on the far side of the village.',
+        'That was a week ago. Since then you have watched the moons turn, carried food in from the farms '
+        'with the wolves about, and found every word of it true.',
+        'Now a band of strangers has walked into the Hollow and killed the wolves that met them. Boyd '
+        'brought word to the house where you were sheltering that they meant to climb the hill at the '
+        'eclipse and bring the Standing Stone down, and from the doorway you watched them do it.',
+        'It is the first thing that has changed here in a week, and perhaps these strangers are the way '
+        'out of this place and the way to get help for your people.',
     ],
 
     # The line under "Choose Your Character".
