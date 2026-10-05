@@ -33,19 +33,24 @@ GUESTS = dict(
     # The errand is invented for the guests: they carry a letter from their
     # home village to Kalaman. It gives them a reason to be on the road, a
     # reason to leave for Kalaman with the party afterwards, and a thread to
-    # pick up later. What is fouling the brook upstream is left open on purpose;
-    # the villagers do not know.
+    # pick up later.
+    # What they know: people at home keep forgetting things, it had begun to
+    # happen to them, and they were sent out for help. That is all. Not
+    # remembering is the clue, so the page gives them nothing more. Who is
+    # doing it, how, and what they want from the village are DM-side and are
+    # deliberately absent here. It is someone's doing, not a curse.
     # Where they were during Journey 011: in the second house, the one Boyd
     # carried food to, where the sick are tended. Boyd was still there when the
     # party left for the hill, so he is how they heard about the strangers.
     # They saw the monument fall. They do not know it can return.
     story=[
-        'The brook that turns the mill in your home village has run low and rust-red since the end of '
-        'summer. The wheel stands idle, the fish are gone, and the wells have begun to taste of iron. '
-        'The elders wrote a letter to Kalaman explaining it and asking for help, and handed it to you '
-        'and your traveling companion to carry. About a week ago, with the city a day ahead, the two '
-        'of you turned off the road to rest for a night in Bracken Hollow, a quiet forest village with '
-        'no wall and no guard at its gate.',
+        'Something is wrong in your home village. People lose an afternoon, then whole days. They forget '
+        'where they have been, what they were doing, sometimes what they were about to say. It had begun '
+        'to happen to the two of you when the neighbors who still had their wits put a letter in your '
+        'hands and sent you to Kalaman for help. There are days this past season that neither of you can '
+        'account for. About a week ago, with the city a day ahead, you and your traveling companion '
+        'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
+        'and no guard at its gate.',
         'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
         'and they have stood there since. When you shouldered your packs and walked out, the road '
         'carried you straight back in on the far side of the village.',
