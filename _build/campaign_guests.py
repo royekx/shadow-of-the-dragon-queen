@@ -35,7 +35,8 @@ GUESTS = dict(
     # reason to leave for Kalaman with the party afterwards, and a thread to
     # pick up later.
     # What they know: people at home keep forgetting things, it had begun to
-    # happen to them, and they were sent out for help. That is all. Not
+    # happen to them, and they were smuggled out for help. They know who they
+    # are and where home is; only stretches of time are missing. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
     # deliberately absent here. It is someone's doing, not a curse. The shape
@@ -48,9 +49,9 @@ GUESTS = dict(
     story=[
         'Something is wrong in your home village. People lose an afternoon, then whole days. They come '
         'home with aching backs and dust on their boots, and no memory of where they have been. It had '
-        'begun to happen to the two of you when the neighbors who still had their wits put a letter in '
-        'your hands and sent you to Kalaman for help. There are days this past season that neither of '
-        'you can account for. About a week ago, with the city a day ahead, you and your traveling companion '
+        'begun to happen to the two of you when the neighbors who still had their wits put a letter for '
+        'Kalaman in your hands and slipped you out by night, which was the hard part. There are days '
+        'this past season that neither of you can account for. About a week ago, with the city a day ahead, you and your traveling companion '
         'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
         'and no guard at its gate.',
         'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
