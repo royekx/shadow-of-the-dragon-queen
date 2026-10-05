@@ -23,7 +23,7 @@ Cathan is the one testing Aratos. He is a separate ancestor and stands apart fro
 | 7 | Later throw, cold down the arm, the javelin changes shape: "are you worthy?" |
 | 8 | In the river, opposite Lord Soth: he will have to choose soon |
 
-**DM-side.** DM ruling, 2026-10-04: let the player work it out at the table. On the site the figure and the voice share one moniker, **the stern elder** (listed as The Stern Elder under Named, Unfiled), and the Leviathan Axe quest calls him "the one testing him". The name Cathan appears only where it was said in play: the Session 8 river vision, "children of Cathan" in Session 9, and the Session 10 campfire.
+**DM-side.** DM ruling, 2026-10-04: let the player work it out at the table. On the site the figure and the voice share one moniker, **the elder warrior** (listed as The Elder Warrior under Named, Unfiled), and the Leviathan Axe quest calls him "the one testing him". The name Cathan appears only where it was said in play: the Session 8 river vision, "children of Cathan" in Session 9, and the Session 10 campfire.
 
 ## The three spirits
 
@@ -39,7 +39,7 @@ They come from the player's own backstory. At the table they have only been desc
 
 - The name "Leviathan Axe". The player is a God of War fan and the axe was built for him, so the name is fine to use on the site. The quest is titled The Leviathan Axe.
 - The tree of fire and frost, and the choice: blades of fury or an axe of cold restraint (Session 5).
-- A stern elder is testing him: the figure at the tree and the voice since. He has not been told it is Cathan.
+- An elder warrior is testing him: the figure at the tree and the voice since. He has not been told it is Cathan.
 - Aratos chose the cold side at the reliquary. The Emberwake briefly became the weapon from his vision, then turned back (Session 10).
 - The King has spoken three times, all in Session 10: "The same blood flows through my veins. The same weakness. Don't let it take you." at the campfire, "Don't let it overtake you." in Kalaman, and "You must test your resolve." at the reliquary.
 - Cathan Twice-Born is his ancestor, whose failure brought ruin (Session 10 campfire). He saw Cathan in the river (Session 8). Sir Cthondor named him and Aeimos children of Cathan (Session 9).
@@ -48,7 +48,7 @@ They come from the player's own backstory. At the table they have only been desc
 
 ## What they do not know
 
-- That the stern elder is Cathan Twice-Born.
+- That the elder warrior is Cathan Twice-Born.
 - That there are trials, how many, or what each asks.
 - Who the spirits are. Only the King has a moniker in play. The other two stay off the dossiers.
 - The save mechanic and the three-success count.
