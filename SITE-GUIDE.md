@@ -129,6 +129,11 @@ result is the story and How to Play on the first sheet, then every character
 on a sheet of its own, in ink on white. The rules for that are the print
 block at the end of `styles/site.css`.
 
+Each character follows the standard character sheet. Ability modifiers,
+saving throws, the full skill list, initiative and passive Perception are
+worked out by the build from the scores and proficiencies in the data;
+attack and spell numbers are entered by hand.
+
 To reuse it for another session, rewrite `title`, `subtitle` and `story` in
 `_build/campaign_guests.py`. Set `video` there to a YouTube id to put a
 how-to-play video at the top of the How to Play section.

@@ -1,17 +1,24 @@
 """
 campaign_guests.py - the guest players' page (guests/index.html).
 
-One page for people sitting in for a session: who they are in the story,
+One page for someone sitting in for a session: their part in the story,
 how the game works, and a tab per ready-made character. Everything on it
 is static, and it carries none of the site's navigation. To reuse it for
 another session, rewrite `story`, `title` and `subtitle`; the sheets can
 stay as they are.
 
+Voice: the page speaks to one reader ("you and your companion"), since
+each guest reads it on their own.
+
 Player-known framing only, same as the rest of the site: the story below
 says nothing a villager in Bracken Hollow could not tell a stranger.
 
-Sheets are plain level 3 characters with the subclass left off (2014
-rules, standard array, average hit points).
+Sheets follow the standard character sheet and are plain level 3
+characters with the subclass left off (2014 rules, standard array with
++2/+1, average hit points). Ability modifiers, saving throws, the full
+skill list, initiative and passive Perception are worked out by the build
+from `scores`, `saves`, `skills`, `expertise` and `jack`. Attack and spell
+numbers are entered by hand.
 """
 
 GUESTS = dict(
@@ -24,20 +31,22 @@ GUESTS = dict(
     video=None,
 
     story=[
-        'The two of you travel together, on an errand your Dungeon Master will tell you about. '
-        'A few days ago you stopped for the night in Bracken Hollow, '
+        'You and your traveling companion are on the road together, on an errand your Dungeon Master '
+        'will tell you about. A few days ago the two of you stopped for the night in Bracken Hollow, '
         'a quiet forest village off the road east of Kalaman. When you tried to leave, the road led '
         'straight back in.',
         'Three moons hang over the village in a standing eclipse, and each hour of it brings its own '
         'danger. At the worst of them, a stone monument on the hill wakes and one villager vanishes. '
-        'An old soldier, Sergeant Boyd, keeps people fed and indoors, and you have stayed close to him. '
-        'Two travelers stood little chance against it.',
+        'An old soldier, Sergeant Boyd, keeps people fed and indoors, and you have both stayed close '
+        'to him. Against that monument, the two of you stood little chance.',
         'Then five strangers walked in, climbed the hill, and brought it down. It will rise again at the '
-        'next eclipse, and they mean to break the spell before then. You have decided to help.',
+        'next eclipse, and they mean to break the spell before then. You and your companion have '
+        'decided to help.',
     ],
+
     # The line under "Choose Your Character".
-    choose='Each sheet lists everything that character can do, and both of you may choose the same one. '
-           'Your character\'s name and look are yours to decide.',
+    choose='Each sheet lists everything that character can do. You and your companion may choose the '
+           'same one. Your character\'s name, species, and appearance are yours to decide.',
 
     basics=[
         ('Say what you do.',
@@ -47,185 +56,222 @@ GUESTS = dict(
          'When the outcome is uncertain, roll the twenty-sided die, add the number from your sheet, '
          'and say the total. Higher is better.'),
         ('Armor Class and Hit Points.',
-         'AC is the number an attack must reach to hit you. HP is how much harm you can take. '
-         'At 0 HP you fall, and a friend can get you back up.'),
+         'Armor Class (AC) is the number an attack must reach to hit you. Hit Points (HP) are how much '
+         'harm you can take. At 0 HP you fall, and a friend can get you back up.'),
         ('Your turn in a fight.',
-         'Move up to your speed and take one action, usually an attack or a spell. Some abilities are '
-         "a bonus action (a quick extra) or a reaction (an answer on someone else's turn)."),
+         'Initiative, rolled when a fight starts, sets the turn order. On your turn, move up to your '
+         'speed and take one action, usually an attack or a spell. Some abilities use a bonus action '
+         'on your turn, or a reaction on someone else\'s.'),
         ('Checks and saves.',
-         'A check is you attempting something: d20 plus that skill or ability number. A saving throw '
-         'is you resisting something: d20 plus the save number beside that ability.'),
+         'A check is you attempting something: d20 plus the number beside that skill. A saving throw '
+         'is you resisting something: d20 plus the number beside that ability under Saving Throws.'),
+        ('Advantage and disadvantage.',
+         'With advantage, roll two d20s and keep the higher. With disadvantage, keep the lower.'),
         ('Reading your sheet.',
-         '"+5 to hit" is d20 + 5. "1d8+3" is one eight-sided die plus 3. "Roll twice" is two d20s, '
-         'keeping the higher or lower as stated. Tick a box when you spend a limited use.'),
+         '"Hit +5" is d20 + 5 against the target\'s Armor Class. "1d8+3" is one eight-sided die plus 3. '
+         '"DEX 13" means the target makes a Dexterity save and needs 13 or higher. A circle is a '
+         'limited use: fill it in when it is spent.'),
     ],
 
-    # abilities: (name, modifier, save, proficient in that save)
-    # attacks:   (name, to hit, damage, reach)
-    # blocks:    title, optional pools [(label, [(sub-label, boxes)], note)],
-    #            rows [(name, tag, text)], optional note
+    # scores:   the six ability scores
+    # saves:    abilities with saving throw proficiency
+    # skills:   proficient skills; expertise: the ones that count double
+    # jack:     True adds half proficiency to everything else (the bard)
+    # attacks:  (name, hit, damage/type, notes)
+    # actions:  [(group, [(name, uses label, boxes, text)])]
+    # spells:   ability, dc, attack, groups [(label, slots, slots already spent,
+    #           [(name, time, range, save/attack, effect)])], optional note
+    # features: [(name, text)]
     sheets=[
         dict(
-            slug='fighter', name='Fighter', play='Simplest',
-            pitch='I want to stand in front and hit things.',
+            slug='fighter', name='Fighter', role='Front-line warrior', complexity='Simple',
+            quote='Stand behind me. This part is mine.',
             about='You are a trained warrior in heavy armor. You are the hardest person here to hurt, and '
                   'you land a solid blow almost every turn. Your place is between the danger and your '
                   'friends. This is the most straightforward character of the five.',
-            ac='18', ac_note='chain mail and shield', hp='28', speed='30 ft', init='+1',
-            abilities=[('Strength', '+3', '+5', True), ('Dexterity', '+1', '+1', False),
-                       ('Constitution', '+2', '+4', True), ('Intelligence', '-1', '-1', False),
-                       ('Wisdom', '+1', '+1', False), ('Charisma', '+0', '+0', False)],
-            attacks_label='Attacks', attack_head='Weapon',
-            attacks=[('Longsword', 'd20 +5', '1d8+5 slashing', 'A foe next to you'),
-                     ('Javelin', 'd20 +5', '1d6+3 piercing', 'Thrown, up to 30 ft. You carry four.')],
-            blocks=[dict(title='Special Abilities', rows=[
-                ('Second Wind', 'bonus action', 'Catch your breath and regain 1d10+3 HP. Returns after a short rest.', 1),
-                ('Action Surge', '', 'Take a second action this turn, usually another attack. Returns after a short rest.', 1),
-            ])],
-            skills=[('Athletics', '+5'), ('Perception', '+3'), ('Survival', '+3'), ('Intimidation', '+2')],
+            scores=dict(STR=17, DEX=13, CON=15, INT=8, WIS=12, CHA=10),
+            saves=('STR', 'CON'),
+            skills=('Athletics', 'Perception', 'Survival', 'Intimidation'),
+            ac='18', ac_note='Chain mail, shield', hp='28', hit_dice='3d10', speed='30 ft.',
+            attacks=[('Longsword', '+5', '1d8+5 slashing', 'Melee. Dueling style included.'),
+                     ('Javelin', '+5', '1d6+3 piercing', 'Thrown, range 30/120 ft. You carry four.')],
+            actions=[
+                ('Bonus Actions', [('Second Wind', '1 / Short Rest', 1, 'Regain 1d10+3 hit points.')]),
+                ('Special', [('Action Surge', '1 / Short Rest', 1, 'On your turn, take one additional action.')]),
+            ],
+            features=[('Fighting Style: Dueling',
+                       '+2 damage with a one-handed melee weapon. Included in the longsword above.')],
             turn=['Move next to the biggest threat.',
                   'Attack with your longsword.',
-                  'Badly hurt? Use Second Wind. Big moment? Use Action Surge and attack again.'],
+                  'Badly hurt: Second Wind. Decisive moment: Action Surge and attack again.'],
         ),
         dict(
-            slug='ranger', name='Ranger', play='Simple, three spells',
-            pitch='I want to strike from a distance and read the wild.',
+            slug='ranger', name='Ranger', role='Archer and tracker', complexity='Simple',
+            quote='Everything leaves a trail. I only have to be patient.',
             about='You are a hunter and tracker, at home in the forest. You are deadly with a bow, quick '
                   'to notice trouble, and the one who finds the trail when everyone else is lost. You '
                   'also carry a few spells drawn from the wild.',
-            ac='15', ac_note='studded leather', hp='25', speed='30 ft', init='+3',
-            abilities=[('Strength', '+1', '+3', True), ('Dexterity', '+3', '+5', True),
-                       ('Constitution', '+1', '+1', False), ('Intelligence', '+0', '+0', False),
-                       ('Wisdom', '+2', '+2', False), ('Charisma', '-1', '-1', False)],
-            attacks_label='Attacks', attack_head='Weapon',
-            attacks=[('Longbow', 'd20 +7', '1d8+3 piercing', 'Up to 150 ft'),
-                     ('Shortsword', 'd20 +5', '1d6+3 piercing', 'A foe next to you')],
-            blocks=[
-                dict(title='Spells',
-                     pools=[('Spell slots', [('', 3)],
-                             'Each spell you cast spends one. Targets need 12 or higher on a save to resist.')],
-                     rows=[
-                         ('Hunter\'s Mark', 'bonus action', 'Mark one foe you can see. Each of your hits on it deals an extra 1d6 damage, for up to an hour.', 0),
-                         ('Ensnaring Strike', 'bonus action', 'Your next hit sprouts vines. The target makes a Strength save or is held in place.', 0),
-                         ('Cure Wounds', 'action', 'Touch someone to restore 1d8+2 HP.', 0),
-                     ],
-                     note='Hunter\'s Mark and Ensnaring Strike both take your focus, so keep one going at a time.'),
-                dict(title='Traits', rows=[
-                    ('Favored Enemy: beasts', '', 'Roll twice and keep the higher when you track beasts or recall what you know of them. Wolves count.', 0),
-                    ('Natural Explorer: forest', '', 'In woodland you keep your bearings and find food and water with ease.', 0),
+            scores=dict(STR=13, DEX=17, CON=13, INT=10, WIS=14, CHA=8),
+            saves=('STR', 'DEX'),
+            skills=('Stealth', 'Perception', 'Survival', 'Nature', 'Animal Handling'),
+            ac='15', ac_note='Studded leather', hp='25', hit_dice='3d10', speed='30 ft.',
+            attacks=[('Longbow', '+7', '1d8+3 piercing', 'Range 150/600 ft. Archery style included.'),
+                     ('Shortsword', '+5', '1d6+3 piercing', 'Melee. Finesse, light.')],
+            actions=[],
+            spells=dict(ability='Wisdom', dc='12', attack='+4', groups=[
+                ('1st Level', 3, 0, [
+                    ('Hunter\'s Mark', 'Bonus', '90 ft.', '',
+                     'Concentration. Your weapon hits on the marked creature deal an extra 1d6 damage.'),
+                    ('Ensnaring Strike', 'Bonus', 'Self', 'STR 12',
+                     'Concentration. Your next weapon hit wraps the target in vines: restrained on a failed save.'),
+                    ('Cure Wounds', 'Action', 'Touch', '', 'A creature regains 1d8+2 hit points.'),
                 ]),
+            ]),
+            features=[
+                ('Favored Enemy: Beasts',
+                 'Advantage on Survival checks to track beasts and on Intelligence checks to recall information about them.'),
+                ('Natural Explorer: Forest',
+                 'In forest your group travels at full pace over difficult terrain, you keep your bearings, '
+                 'and you forage twice as much food.'),
+                ('Fighting Style: Archery', '+2 to attack rolls with ranged weapons. Included in the longbow above.'),
             ],
-            skills=[('Stealth', '+5'), ('Perception', '+4'), ('Survival', '+4'), ('Nature', '+2')],
             turn=['Stay back where you have a clear shot.',
                   'First turn: Hunter\'s Mark on the main threat, then shoot.',
                   'Every turn after: shoot the marked target.'],
         ),
         dict(
-            slug='sorcerer', name='Sorcerer', play='A handful of spells',
-            pitch='I want to throw fire.',
+            slug='sorcerer', name='Sorcerer', role='Damage caster', complexity='Moderate',
+            quote='There is a storm under my skin, and today it gets out.',
             about='Magic runs in your blood and answers when you call. You deal the most damage of the '
                   'five and you are the easiest to hurt, so keep your friends between you and the danger. '
                   'A small pool of Sorcery Points lets you bend your spells.',
-            ac='14', ac_note='Mage Armor, already cast', hp='20', speed='30 ft', init='+1',
-            abilities=[('Strength', '-1', '-1', False), ('Dexterity', '+1', '+1', False),
-                       ('Constitution', '+2', '+4', True), ('Intelligence', '+0', '+0', False),
-                       ('Wisdom', '+1', '+1', False), ('Charisma', '+3', '+5', True)],
-            attacks_label='Cantrips: free, every turn', attack_head='Cantrip',
-            attacks=[('Fire Bolt', 'd20 +5', '1d10 fire', 'Up to 120 ft')],
-            also=[('Mage Hand', 'A ghostly hand moves small things within 30 ft.'),
-                  ('Light', 'An object glows like a torch.'),
-                  ('Prestidigitation', 'Small harmless tricks: sparks, a breeze, a clean cloak.')],
-            blocks=[
-                dict(title='Spells',
-                     pools=[('Spell slots', [('1st', 3), ('2nd', 2)],
-                             'A spell spends one slot of its level. Targets resist on a save of 13 or higher.')],
-                     rows=[
-                         ('Burning Hands', '1st', 'A 15 ft cone of flame. Each creature in it makes a Dexterity save: 3d6 fire, or half on a success.', 0),
-                         ('Scorching Ray', '2nd', 'Three rays, up to 120 ft, at one target or several. Roll d20 +5 for each. 2d6 fire per hit.', 0),
-                         ('Shield', '1st, reaction', 'When an attack hits you, gain +5 AC until your next turn. That may turn the hit into a miss.', 0),
-                     ]),
-                dict(title='Sorcery Points',
-                     pools=[('Points', [('', 3)], 'Spend one as you cast a spell.')],
-                     rows=[
-                         ('Empowered', '', 'Reroll up to three of the spell\'s damage dice and keep the new results.', 0),
-                         ('Careful', '', 'Choose up to three friends caught in your blast. They pass the save automatically.', 0),
-                     ]),
+            scores=dict(STR=8, DEX=13, CON=15, INT=10, WIS=12, CHA=17),
+            saves=('CON', 'CHA'),
+            skills=('Persuasion', 'Deception', 'Insight', 'Arcana'),
+            ac='14', ac_note='Mage Armor (cast)', hp='20', hit_dice='3d6', speed='30 ft.',
+            attacks=[('Fire Bolt', '+5', '1d10 fire', 'Cantrip. Range 120 ft.'),
+                     ('Dagger', '+3', '1d4+1 piercing', 'Melee, or thrown at range 20/60 ft.')],
+            actions=[
+                ('Special', [
+                    ('Sorcery Points', '3 / Long Rest', 3, 'Spend them on Metamagic as you cast a spell.'),
+                    ('Empowered Spell', '1 point', 0,
+                     'Reroll up to three of the spell\'s damage dice. You must use the new rolls.'),
+                    ('Careful Spell', '1 point', 0,
+                     'Choose up to three creatures. They automatically succeed on the spell\'s saving throw.'),
+                ]),
             ],
-            skills=[('Persuasion', '+5'), ('Deception', '+5'), ('Insight', '+3'), ('Arcana', '+2')],
+            spells=dict(ability='Charisma', dc='13', attack='+5', groups=[
+                ('Cantrips', 0, 0, [
+                    ('Mage Hand', 'Action', '30 ft.', '', 'A spectral hand moves or carries small objects for 1 minute.'),
+                    ('Light', 'Action', 'Touch', '', 'An object sheds bright light for 1 hour.'),
+                    ('Prestidigitation', 'Action', '10 ft.', '', 'A minor trick: sparks, a breeze, a clean cloak, a warmed drink.'),
+                ]),
+                ('1st Level', 4, 1, [
+                    ('Mage Armor', 'Action', 'Touch', '', 'Already cast today, using one slot. Lasts 8 hours.'),
+                    ('Burning Hands', 'Action', '15 ft. cone', 'DEX 13',
+                     '3d6 fire to each creature in the cone, or half on a successful save.'),
+                    ('Shield', 'Reaction', 'Self', '',
+                     'When you are hit: +5 AC until the start of your next turn, which can turn the hit into a miss.'),
+                ]),
+                ('2nd Level', 2, 0, [
+                    ('Scorching Ray', 'Action', '120 ft.', '+5',
+                     'Three rays, at one target or several. Each hit deals 2d6 fire.'),
+                ]),
+            ]),
+            features=[],
             turn=['Most turns: Fire Bolt from behind your friends.',
                   'Enemies bunched together: Burning Hands.',
                   'One tough enemy: Scorching Ray.',
                   'An attack hits you: Shield.'],
         ),
         dict(
-            slug='artificer', name='Artificer', play='A handful of spells',
-            pitch='I want gadgets and clever fixes.',
+            slug='artificer', name='Artificer', role='Inventor and support', complexity='Moderate',
+            quote='Give me an hour and a box of scrap, and you will have a better plan.',
             about='You are an inventor who works magic through devices of your own making. Your reinforced '
                   'gear keeps you sturdy while you solve problems: mend the wounded, light up hidden '
                   'enemies, sharpen a friend\'s roll.',
-            ac='18', ac_note='scale mail and shield', hp='24', speed='30 ft', init='+1',
-            abilities=[('Strength', '-1', '-1', False), ('Dexterity', '+1', '+1', False),
-                       ('Constitution', '+2', '+4', True), ('Intelligence', '+3', '+5', True),
-                       ('Wisdom', '+1', '+1', False), ('Charisma', '+0', '+0', False)],
-            attacks_label='Cantrips: free, every turn', attack_head='Cantrip',
-            attacks=[('Ray of Frost', 'd20 +6', '1d8 cold', '60 ft. Slows the target by 10 ft for a turn.')],
-            also=[('Guidance', 'Touch a friend. They add 1d4 to one skill check of their choice within the next minute.')],
-            blocks=[
-                dict(title='Spells',
-                     pools=[('Spell slots', [('', 3)],
-                             'Each spell you cast spends one. Targets need 13 or higher on a save to resist.')],
-                     rows=[
-                         ('Cure Wounds', '', 'Touch someone to restore 1d8+3 HP.', 0),
-                         ('Faerie Fire', '', 'Creatures in a 20 ft square within 60 ft make a Dexterity save or glow. Attacks against a glowing creature roll twice and keep the higher.', 0),
-                         ('Thunderwave', '', 'A 15 ft blast in front of you. Each creature makes a Constitution save: 2d8 thunder and pushed 10 ft, or half damage and no push on a success.', 0),
-                         ('Detect Magic', '', 'For 10 minutes you sense magic within 30 ft of you.', 0),
-                     ],
-                     note='Guidance and Faerie Fire both take your focus, so keep one going at a time.'),
-                dict(title='Traits', rows=[
-                    ('Magical Tinkering', '', 'Touch a tiny object to make it glow, play a recorded sound, or display a short message.', 0),
-                    ('Infusions', '', 'Your improvements to your armor and tools are already counted in the numbers on this sheet.', 0),
+            scores=dict(STR=8, DEX=13, CON=15, INT=17, WIS=12, CHA=10),
+            saves=('CON', 'INT'),
+            skills=('Investigation', 'Arcana', 'Perception', 'Sleight of Hand'),
+            ac='18', ac_note='Scale mail, shield, infusion', hp='24', hit_dice='3d8', speed='30 ft.',
+            attacks=[('Ray of Frost', '+6', '1d8 cold',
+                      'Cantrip. Range 60 ft. The target\'s speed drops 10 ft. for a turn.'),
+                     ('Light Crossbow', '+3', '1d8+1 piercing', 'Range 80/320 ft.')],
+            actions=[],
+            spells=dict(ability='Intelligence', dc='13', attack='+6', groups=[
+                ('Cantrips', 0, 0, [
+                    ('Guidance', 'Action', 'Touch', '',
+                     'Concentration. The target adds 1d4 to one ability check within 1 minute.'),
                 ]),
+                ('1st Level', 3, 0, [
+                    ('Cure Wounds', 'Action', 'Touch', '', 'A creature regains 1d8+3 hit points.'),
+                    ('Faerie Fire', 'Action', '60 ft.', 'DEX 13',
+                     'Concentration. Creatures in a 20 ft. cube are outlined on a failed save, and attacks '
+                     'against them have advantage.'),
+                    ('Thunderwave', 'Action', '15 ft. cube', 'CON 13',
+                     '2d8 thunder and pushed 10 ft., or half damage and no push on a successful save.'),
+                    ('Detect Magic', 'Action', 'Self', '', 'Concentration. You sense magic within 30 ft. for up to 10 minutes.'),
+                ]),
+            ]),
+            features=[
+                ('Magical Tinkering',
+                 'Touch a tiny object to make it shed light, play a recorded message, or display a short line of text.'),
+                ('Infusions',
+                 'Enhanced Defense (+1 AC) and Enhanced Arcane Focus (+1 to spell attacks). Both are included in the numbers on this sheet.'),
+                ('Tools', 'Thieves\' tools +3.'),
             ],
-            skills=[('Investigation', '+5'), ('Arcana', '+5'), ('Perception', '+3'), ('Thieves\' tools', '+3')],
             turn=['Most turns: Ray of Frost.',
                   'A friend is hurt: Cure Wounds.',
-                  'Several enemies: Faerie Fire, so everyone hits more often.',
+                  'Several enemies: Faerie Fire, so every attack against them has advantage.',
                   'Before a friend\'s skill check: Guidance.'],
         ),
         dict(
-            slug='bard', name='Bard', play='Most options',
-            pitch='I want to talk my way through it and lift my friends.',
+            slug='bard', name='Bard', role='Charmer and support', complexity='Most options',
+            quote='A sharp word, a good song, and somehow everyone walks out alive.',
             about='You work magic through words, music, and nerve. You are the best talker at the table and '
                   'the best at making everyone around you better. This sheet has the most options of the '
                   'five, so it suits someone who enjoys choices.',
-            ac='13', ac_note='leather armor', hp='21', speed='30 ft', init='+3',
-            abilities=[('Strength', '-1', '-1', False), ('Dexterity', '+2', '+4', True),
-                       ('Constitution', '+1', '+1', False), ('Intelligence', '+0', '+0', False),
-                       ('Wisdom', '+1', '+1', False), ('Charisma', '+3', '+5', True)],
-            attacks_label='Attacks and cantrips: free, every turn', attack_head='Attack',
-            attacks=[('Rapier', 'd20 +4', '1d8+2 piercing', 'A foe next to you'),
-                     ('Vicious Mockery', 'Wisdom save', '1d4 psychic', '60 ft. Its next attack rolls twice, keeps the lower.')],
-            also=[('Minor Illusion', 'Create a sound, or a still image up to the size of a chest, for one minute.')],
-            blocks=[
-                dict(title='Spells',
-                     pools=[('Spell slots', [('1st', 4), ('2nd', 2)],
-                             'A spell spends one slot of its level. Targets resist on a save of 13 or higher.')],
-                     rows=[
-                         ('Healing Word', '1st, bonus action', 'A friend within 60 ft regains 1d4+3 HP.', 0),
-                         ('Dissonant Whispers', '1st', 'A creature within 60 ft makes a Wisdom save: 3d6 psychic and it flees. Half on a success.', 0),
-                         ('Faerie Fire', '1st', 'Creatures in a 20 ft square make a Dexterity save or glow. Attacks against them roll twice and keep the higher.', 0),
-                         ('Charm Person', '1st', 'A person within 30 ft makes a Wisdom save or treats you as a friend for an hour.', 0),
-                         ('Shatter', '2nd', 'A 10 ft burst within 60 ft. Each creature makes a Constitution save: 3d8 thunder, or half on a success.', 0),
-                         ('Hold Person', '2nd', 'A person within 60 ft makes a Wisdom save or is frozen in place. It rolls again each turn.', 0),
-                     ]),
-                dict(title='Traits', rows=[
-                    ('Bardic Inspiration', 'bonus action', 'A friend within 60 ft adds 1d6 to one attack, check, or save of their choice.', 3),
-                    ('Jack of All Trades', '', 'Add +1 to any skill check outside your list.', 0),
+            scores=dict(STR=8, DEX=15, CON=13, INT=10, WIS=12, CHA=17),
+            saves=('DEX', 'CHA'),
+            skills=('Persuasion', 'Deception', 'Performance', 'Insight', 'Sleight of Hand'),
+            expertise=('Persuasion', 'Deception'), jack=True,
+            ac='13', ac_note='Leather armor', hp='21', hit_dice='3d8', speed='30 ft.',
+            attacks=[('Rapier', '+4', '1d8+2 piercing', 'Melee. Finesse.'),
+                     ('Vicious Mockery', 'WIS 13', '1d4 psychic',
+                      'Cantrip. Range 60 ft. On a failed save, the target has disadvantage on its next attack roll.')],
+            actions=[
+                ('Bonus Actions', [
+                    ('Bardic Inspiration', '3 / Long Rest', 3,
+                     'A creature within 60 ft. gains a d6. Within 10 minutes it can add the die to one '
+                     'ability check, attack roll, or saving throw.'),
                 ]),
             ],
-            skills=[('Persuasion', '+7'), ('Deception', '+7'), ('Performance', '+5'), ('Insight', '+3')],
-            turn=['Bonus action first: inspire a friend or cast Healing Word.',
-                  'Action: Vicious Mockery, or a bigger spell when it counts.',
+            spells=dict(ability='Charisma', dc='13', attack='+5', groups=[
+                ('Cantrips', 0, 0, [
+                    ('Minor Illusion', 'Action', '30 ft.', '', 'A sound, or a still image up to a 5 ft. cube, for 1 minute.'),
+                ]),
+                ('1st Level', 4, 0, [
+                    ('Healing Word', 'Bonus', '60 ft.', '', 'A creature regains 1d4+3 hit points.'),
+                    ('Dissonant Whispers', 'Action', '60 ft.', 'WIS 13',
+                     '3d6 psychic, and the target uses its reaction to move away. Half damage on a successful save.'),
+                    ('Faerie Fire', 'Action', '60 ft.', 'DEX 13',
+                     'Concentration. Creatures in a 20 ft. cube are outlined on a failed save, and attacks '
+                     'against them have advantage.'),
+                    ('Charm Person', 'Action', '30 ft.', 'WIS 13', 'A humanoid is charmed by you for 1 hour on a failed save.'),
+                ]),
+                ('2nd Level', 2, 0, [
+                    ('Shatter', 'Action', '60 ft.', 'CON 13',
+                     '3d8 thunder to each creature in a 10 ft. radius, or half on a successful save.'),
+                    ('Hold Person', 'Action', '60 ft.', 'WIS 13',
+                     'Concentration. A humanoid is paralyzed on a failed save. It repeats the save at the end of each of its turns.'),
+                ]),
+            ]),
+            features=[
+                ('Jack of All Trades', '+1 on ability checks you lack proficiency in. Included in the skills on this sheet.'),
+                ('Expertise', 'Double proficiency in Persuasion and Deception. Included.'),
+            ],
+            turn=['Bonus action first: Bardic Inspiration or Healing Word.',
+                  'Action: Vicious Mockery, or a levelled spell when it counts.',
                   'Outside a fight: you do the talking.'],
         ),
     ],

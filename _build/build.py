@@ -1459,90 +1459,180 @@ def build_gate():
 # GUEST PLAYERS: one page, with none of the site's navigation on it. Two
 # folding sections (the story, how the game works), then a tab per
 # ready-made character, and a button that exports the lot as a PDF.
+# Each character is laid out after the standard character sheet: abilities,
+# saving throws and skills down the side; armor class, hit points, attacks,
+# actions, spells and features beside them.
 # Data: campaign_guests.py.
 # Styling and the print layout: the "Guest players" block in styles/site.css.
 # ---------------------------------------------------------------------------
 
-def signed(s):
-    """A modifier for display: the hyphen in "-1" becomes a true minus."""
-    return e(s).replace('-', '&minus;')
+ABILITIES = [('STR', 'Strength'), ('DEX', 'Dexterity'), ('CON', 'Constitution'),
+             ('INT', 'Intelligence'), ('WIS', 'Wisdom'), ('CHA', 'Charisma')]
+SKILLS = [('Acrobatics', 'DEX'), ('Animal Handling', 'WIS'), ('Arcana', 'INT'), ('Athletics', 'STR'),
+          ('Deception', 'CHA'), ('History', 'INT'), ('Insight', 'WIS'), ('Intimidation', 'CHA'),
+          ('Investigation', 'INT'), ('Medicine', 'WIS'), ('Nature', 'INT'), ('Perception', 'WIS'),
+          ('Performance', 'CHA'), ('Persuasion', 'CHA'), ('Religion', 'INT'), ('Sleight of Hand', 'DEX'),
+          ('Stealth', 'DEX'), ('Survival', 'WIS')]
+GUEST_PROFICIENCY = 2   # every guest sheet is level 3
 
 
-def ticks(n, what):
-    """n boxes to tick as a limited use is spent. Plain checkboxes, no script."""
-    return ''.join('<input class="g-tick" type="checkbox" aria-label="%s, use %d of %d">' % (e(what), i + 1, n)
-                   for i in range(n))
+def signed(n):
+    """A modifier for display, with a true minus sign."""
+    n = int(n)
+    return '+%d' % n if n >= 0 else '&minus;%d' % -n
+
+
+def ticks(n, what, spent=0):
+    """n circles to fill in as a limited use is spent. Plain checkboxes, no script."""
+    return ''.join('<input class="g-tick" type="checkbox" aria-label="%s, use %d of %d"%s>'
+                   % (e(what), i + 1, n, ' checked' if i < spent else '') for i in range(n))
+
+
+def guest_numbers(s):
+    """Everything on a sheet that follows from the ability scores."""
+    mods = {k: (s['scores'][k] - 10) // 2 for k, _ in ABILITIES}
+    half = GUEST_PROFICIENCY // 2 if s.get('jack') else 0
+    for name in tuple(s['skills']) + tuple(s.get('expertise', ())):
+        assert name in dict(SKILLS), 'unknown skill on the %s sheet: %s' % (s['slug'], name)
+    saves = [(name, mods[k] + (GUEST_PROFICIENCY if k in s['saves'] else 0), k in s['saves'])
+             for k, name in ABILITIES]
+    skills = []
+    for name, k in SKILLS:
+        prof = name in s['skills']
+        bonus = (GUEST_PROFICIENCY * 2 if name in s.get('expertise', ()) else
+                 GUEST_PROFICIENCY if prof else half)
+        skills.append((name, k, mods[k] + bonus, prof))
+    perception = [v for n, _, v, _ in skills if n == 'Perception'][0]
+    return dict(mods=mods, saves=saves, skills=skills, passive=10 + perception, init=mods['DEX'] + half)
 
 
 def guest_rows(rows):
+    """Named entries: a limited-use label and its circles where there is one."""
     out = []
-    for name, tag, text, uses in rows:
-        out.append('<p class="g-row">%s<b>%s</b>%s %s</p>'
-                   % (('<span class="g-ticks">%s</span> ' % ticks(uses, name)) if uses else '', e(name),
-                      (' <em>(%s)</em>' % e(tag)) if tag else '', e(text)))
+    for name, uses, n, text in rows:
+        tag = ''
+        if uses or n:
+            tag = ' <span class="g-uses">%s%s</span>' % (
+                e(uses), (' <span class="g-ticks">%s</span>' % ticks(n, name)) if n else '')
+        out.append('<p class="g-row"><b>%s</b>%s %s</p>' % (e(name), tag, e(text)))
     return '<div class="g-rows">\n%s\n</div>' % '\n'.join(out)
 
 
+def guest_spells(sp):
+    rows = []
+    for lbl, slots, spent, spells in sp['groups']:
+        uses = ('<span class="g-uses">%d Slots <span class="g-ticks">%s</span></span>'
+                % (slots, ticks(slots, lbl + ' slot', spent))) if slots else '<span class="g-uses">At will</span>'
+        rows.append('<tr class="g-slot"><td colspan="5"><span class="g-group-title">%s</span>%s</td></tr>'
+                    % (e(lbl), uses))
+        for name, time, rng, save, effect in spells:
+            rows.append('<tr><td>%s</td><td>%s</td><td>%s</td>'
+                        '<td%s>%s</td><td>%s</td></tr>'
+                        % (e(name), e(time), e(rng), '' if save else ' class="g-none"', e(save), e(effect)))
+    conc = any(effect.startswith('Concentration') for _, _, _, spells in sp['groups'] for *_, effect in spells)
+    return '''<div class="brief-heading">Spells</div>
+<div class="g-cast">
+  <div class="g-vital"><span class="g-val">{ability}</span><span class="g-key">Spellcasting Ability</span></div>
+  <div class="g-vital"><span class="g-val">{dc}</span><span class="g-key">Spell Save DC</span></div>
+  <div class="g-vital"><span class="g-val">{attack}</span><span class="g-key">Spell Attack Bonus</span></div>
+</div>
+<table class="g-table g-spells">
+<thead><tr><th>Spell</th><th>Time</th><th>Range</th><th>Save / Atk</th><th>Effect</th></tr></thead>
+<tbody>
+{rows}
+</tbody>
+</table>
+{note}'''.format(ability=e(sp['ability']), dc=e(sp['dc']), attack=e(sp['attack']), rows='\n'.join(rows),
+                 note='<p class="g-hint">Concentration: you can hold one such spell at a time. Casting another ends the first.</p>'
+                 if conc else '')
+
+
 def guest_sheet(s, active=False):
-    abilities = ''.join(
-        '<div class="g-ability"><span class="g-key">%s</span><span class="g-val">%s</span>'
-        '<span class="g-note">save %s</span></div>'
-        % (e(name), signed(mod), ('<b>%s</b>' % signed(save)) if prof else signed(save))
-        for name, mod, save, prof in s['abilities'])
+    n = guest_numbers(s)
+    scores = ''.join(
+        '<div class="g-score"><span class="g-key">%s</span><span class="g-val">%s</span>'
+        '<span class="g-score-num">%d</span></div>' % (e(name), signed(n['mods'][k]), s['scores'][k])
+        for k, name in ABILITIES)
+
+    def li(val, name, prof, sub=''):
+        return ('<div class="g-li%s"><span class="g-dot"></span><span class="g-li-val">%s</span>'
+                '<span class="g-li-name">%s</span><span class="g-li-tag">%s</span></div>'
+                % (' is-prof' if prof else '', signed(val), e(name), sub))
+    saves = ''.join(li(v, name, prof) for name, v, prof in n['saves'])
+    skills = ''.join(li(v, name, prof, k.title()) for name, k, v, prof in n['skills'])
     attacks = ''.join(
-        '<tr><td>%s</td><td data-label="To hit">%s</td><td data-label="Damage">%s</td>'
-        '<td data-label="Reach">%s</td></tr>\n' % (e(a), e(b), e(c), e(d)) for a, b, c, d in s['attacks'])
-    also = guest_rows([(n, '', t, 0) for n, t in s['also']]) if s.get('also') else ''
-    blocks = []
-    for b in s['blocks']:
-        part = ['<div class="brief-heading">%s</div>' % e(b['title'])]
-        for lbl, groups, note in b.get('pools', []):
-            boxes = ''.join('<span class="g-ticks">%s%s</span>'
-                            % (('<span class="g-pool-sub">%s</span>' % e(sub)) if sub else '',
-                               ticks(n, ('%s %s' % (sub, lbl)).strip()))
-                            for sub, n in groups)
-            part.append('<div class="g-pool"><span class="g-key">%s</span>%s<span class="g-note">%s</span></div>'
-                        % (e(lbl), boxes, e(note)))
-        part.append(guest_rows(b['rows']))
-        if b.get('note'):
-            part.append('<p class="g-hint">%s</p>' % e(b['note']))
-        blocks.append('\n'.join(part))
-    skills = ''.join('<dt>%s</dt><dd>%s</dd>' % (e(n), signed(v)) for n, v in s['skills'])
+        '<tr><td>%s</td><td data-label="Hit">%s</td><td data-label="Damage / Type">%s</td>'
+        '<td data-label="Notes">%s</td></tr>\n' % (e(a), e(b), e(c), e(d)) for a, b, c, d in s['attacks'])
+    actions = ['<p class="g-row g-std"><b>Standard Actions</b> Attack, Cast a Spell, Dash, Disengage, Dodge, '
+               'Help, Hide.</p>']
+    for group, rows in s['actions']:
+        actions.append('<div class="g-group-title">%s</div>\n%s' % (e(group), guest_rows(rows)))
+    features = ''
+    if s['features']:
+        features = ('<div class="brief-heading">Features &amp; Traits</div>\n%s'
+                    % guest_rows([(a, '', 0, b) for a, b in s['features']]))
     turn = ''.join('<li>%s</li>' % e(t) for t in s['turn'])
     return '''  <section class="account-panel g-sheet{on}" id="{slug}" data-panel="{slug}">
     <div class="account-body">
 <div class="g-head">
-  <div><div class="g-name">{name}</div><div class="g-pitch">&ldquo;{pitch}&rdquo;</div></div>
-  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">{play}</span></div>
+  <div><div class="g-name">{name}</div><div class="g-pitch">&ldquo;{quote}&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">{role}</span><span class="log-type-badge">{complexity}</span></div>
 </div>
-<div class="g-nameline">Character name</div>
+<div class="g-id">
+  <div class="g-id-cell"><span class="g-id-val"></span><span class="g-key">Character Name</span></div>
+  <div class="g-id-cell"><span class="g-id-val">{name} 3</span><span class="g-key">Class &amp; Level</span></div>
+  <div class="g-id-cell"><span class="g-id-val"></span><span class="g-key">Species</span></div>
+  <div class="g-id-cell"><span class="g-id-val"></span><span class="g-key">Player Name</span></div>
+</div>
 <p class="g-about">{about}</p>
-<div class="g-vitals">
-  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">{ac}</span><span class="g-note">{ac_note}</span></div>
-  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">{hp}</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="{hp}" placeholder="{hp}"></label></div>
-  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">{speed}</span><span class="g-note">per turn</span></div>
-  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">{init}</span><span class="g-note">d20 + this when a fight starts</span></div>
+<div class="g-strip">
+  <div class="g-vital"><span class="g-val">{ac}</span><span class="g-key">Armor Class</span><span class="g-note">{ac_note}</span></div>
+  <div class="g-vital"><span class="g-val">{init}</span><span class="g-key">Initiative</span></div>
+  <div class="g-vital"><span class="g-val">{speed}</span><span class="g-key">Speed</span></div>
+  <div class="g-vital g-hp">
+    <div class="g-hp-cell"><span class="g-val">{hp}</span><span class="g-key">Max HP</span></div>
+    <label class="g-hp-cell"><input type="number" inputmode="numeric" min="0" max="{hp}" placeholder="{hp}"><span class="g-key">Current HP</span></label>
+    <label class="g-hp-cell"><input type="number" inputmode="numeric" min="0" placeholder="0"><span class="g-key">Temp HP</span></label>
+  </div>
+  <div class="g-vital"><span class="g-val">{hit_dice}</span><span class="g-key">Hit Dice</span></div>
+  <div class="g-vital g-death">
+    <div class="g-death-row"><span class="g-note">Successes</span><span class="g-ticks">{succ}</span></div>
+    <div class="g-death-row"><span class="g-note">Failures</span><span class="g-ticks">{fail}</span></div>
+    <span class="g-key">Death Saves</span>
+  </div>
 </div>
-<div class="g-abilities">{abilities}</div>
-<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
-<div class="brief-heading">{attacks_label}</div>
+<div class="g-cols">
+<div class="g-side">
+  <div class="g-scores">{scores}</div>
+  <div class="g-lists">
+    <div class="g-list"><div class="g-list-title">Saving Throws</div>{saves}</div>
+    <div class="g-list"><div class="g-list-title">Skills</div>{skills}</div>
+    <div class="g-passive"><span class="g-val">{passive}</span><span class="g-key">Passive Perception</span></div>
+  </div>
+</div>
+<div class="g-main">
+<div class="brief-heading">Weapon Attacks &amp; Cantrips</div>
 <table class="g-table">
-<thead><tr><th>{attack_head}</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<thead><tr><th>Name</th><th>Hit</th><th>Damage / Type</th><th>Notes</th></tr></thead>
 <tbody>
 {attacks}</tbody>
 </table>
-{also}
-{blocks}
-<div class="g-foot">
-  <div class="g-skills"><div class="brief-heading">Skills</div><dl>{skills}</dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
-  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol>{turn}</ol></div>
+<div class="brief-heading">Actions</div>
+{actions}
+{spells}
+{features}
+</div>
+<div class="callout g-turn"><span class="callout-label">On Your Turn</span><ol>{turn}</ol></div>
 </div>
     </div>
-  </section>'''.format(on=' is-active' if active else '', slug=s['slug'], name=e(s['name']), pitch=e(s['pitch']), play=e(s['play']),
-                       about=e(s['about']), ac=e(s['ac']), ac_note=e(s['ac_note']), hp=e(s['hp']),
-                       speed=e(s['speed']), init=signed(s['init']), abilities=abilities,
-                       attacks_label=e(s['attacks_label']), attack_head=e(s['attack_head']),
-                       attacks=attacks, also=also, blocks='\n'.join(blocks), skills=skills, turn=turn)
+  </section>'''.format(on=' is-active' if active else '', slug=s['slug'], name=e(s['name']), quote=e(s['quote']),
+                       role=e(s['role']), complexity=e(s['complexity']), about=e(s['about']),
+                       ac=e(s['ac']), ac_note=e(s['ac_note']), init=signed(n['init']), speed=e(s['speed']),
+                       hp=e(s['hp']), hit_dice=e(s['hit_dice']),
+                       succ=ticks(3, 'Death save success'), fail=ticks(3, 'Death save failure'),
+                       scores=scores, saves=saves, skills=skills, passive=n['passive'], attacks=attacks,
+                       actions='\n'.join(actions),
+                       spells=guest_spells(s['spells']) if s.get('spells') else '', features=features, turn=turn)
 
 
 def build_guests():
@@ -1563,7 +1653,7 @@ def build_guests():
     <span class="account-tab-name">%s</span>
     <span class="account-tab-note">%s</span>
   </button>''' % (' is-active' if i == 0 else '', s['slug'], 'true' if i == 0 else 'false',
-                  e(s['name']), e(s['play'])))
+                  e(s['name']), e(s['role'])))
     content = '''<div class="g-tools">
   <button class="g-export" id="js-export" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 13.5h11"/></svg>Export PDF</button>
 </div>
@@ -1576,7 +1666,7 @@ def build_guests():
   </div>
 </details>
 <details class="account g-fold" open>
-  <summary>{caret}<span class="account-name">How to Play</span><span class="account-note">The game in six ideas</span></summary>
+  <summary>{caret}<span class="account-name">How to Play</span><span class="account-note">The basics</span></summary>
   <div class="account-body">
 {video}<ul class="brief-list">
 {basics}
@@ -1585,13 +1675,11 @@ def build_guests():
 </details>
 <div class="section-label">Choose Your Character</div>
 <p class="g-choose">{choose}</p>
-<div class="railed">
-<div class="account-tabs tabrail">
+<div class="account-tabs">
 {tabs}
 </div>
-<div class="account-panels panels">
+<div class="account-panels">
 {sheets}
-</div>
 </div>'''.format(caret=caret, story=story, video=video, basics=basics, choose=e(g['choose']),
                  tabs='\n'.join(tabs),
                  sheets='\n'.join(guest_sheet(s, i == 0) for i, s in enumerate(g['sheets'])))
