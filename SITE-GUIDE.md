@@ -27,6 +27,7 @@ its index is not available yet.
 | `armory/` | Items | `inventory/` |
 | `war-intel/` | Factions and powers | `factions/` |
 | `search/` | Search, with misspelling repair | `search/` |
+| `images/` | The Embers' banner, made by the players. Shown on the hub and The Embers page | none |
 
 Old addresses redirect: the brief and full account pages, `command-post/`,
 `field-manual/` and `theatre-of-war/`.
@@ -51,9 +52,9 @@ but the next build overwrites it, so put the change in the data instead.
 
 ## Adding a session
 
-1. Write `_build/journeys/011.brief.html` and `011.full.html`.
+1. Write `_build/journeys/012.brief.html` and `012.full.html`.
 2. Add the `JOURNEYS` entry in `campaign_world.py`.
-3. Add an `11:` line under `records` for everyone and everything it touched,
+3. Add a `12:` line under `records` for everyone and everything it touched,
    and bump their `last`.
 4. Update `QUESTS` (objectives, new threads, anything closed) and `STANDING`.
 5. Run the build, look at it locally, commit.
@@ -84,9 +85,18 @@ lives in the `TOKENS` block of the port script.
   Unexpected Journey accounts. The Prep Queue and the "Next Planned Beat"
   column are never used.
 - Unidentified figures stay unidentified (the charred swordswoman, the pale
-  elven woman).
+  woman).
 - A name with nothing behind it goes under Named, Unfiled on the Dossiers
   page and gets no page of its own.
+- Anything named at the table is player-facing, and items carry the name
+  they were given at the table.
+
+## DM side
+
+`_dm/` holds DM-only notes. It lives in the repo and is left out of the
+published site: the deploy removes it, and the leading underscore keeps a
+branch-based Pages build from serving it. The repo is public, so the folder
+is still readable on GitHub. Nothing in `_dm/` is used by the build.
 
 ## Checking a change locally
 

@@ -49,9 +49,9 @@ jobs:
             --exclude-selectors "[data-pagefind-ignore], nav, footer" \
             --verbose
 
-      # The build tooling is not part of the published site.
-      - name: Drop build tooling from the artifact
-        run: rm -rf _build
+      # The build tooling and the DM notes are not part of the published site.
+      - name: Drop build tooling and DM notes from the artifact
+        run: rm -rf _build _dm
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

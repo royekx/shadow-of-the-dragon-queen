@@ -105,3 +105,34 @@ html { overflow-x: clip; }
   .railed .item-row .ent-type { display: none; }
   .railed .item-row .ent-state { grid-column: 2; justify-self: start; white-space: normal; }
 }
+
+/* The Embers' banner, made by the players. Shown at the top of the hub and
+   of The Embers page. The frame matches the cards: square, thin gold rule. */
+.embers-banner { max-width: 920px; margin: 0 auto 1.6rem; }
+.embers-banner a {
+  display: block; border: 1px solid var(--gold-rule); background: var(--bg-deep);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.55);
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.embers-banner a:hover, .embers-banner a:focus-visible {
+  border-color: var(--gold-dim); box-shadow: 0 14px 44px rgba(201, 150, 63, 0.16);
+}
+.embers-banner img { display: block; width: 100%; height: auto; }
+.embers-banner figcaption {
+  margin-top: 0.55rem; text-align: center; font-size: 0.86rem; font-style: italic;
+  color: var(--text-muted);
+}
+.hub-head .embers-banner, .page-header .embers-banner { margin-bottom: 1.5rem; }
+
+/* Link from a party member's page to that player's own character sheet. */
+.sheet-link {
+  display: block; margin: 0.9rem 1.05rem 1.05rem; padding: 0.6rem 0.85rem;
+  border: 1px solid var(--gold-rule); color: var(--gold-light); text-decoration: none;
+  font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.sheet-link span {
+  display: block; margin-top: 0.15rem; color: var(--text-muted);
+  font-size: 0.86rem; letter-spacing: 0.02em; text-transform: none; font-style: italic;
+}
+.sheet-link:hover, .sheet-link:focus-visible { border-color: var(--gold-dim); background: var(--gold-faint); }

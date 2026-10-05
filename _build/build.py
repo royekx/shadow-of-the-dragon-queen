@@ -14,9 +14,9 @@ deploy: the GitHub Action only builds the search index and publishes. Run it
 by hand after editing the data, then commit what changed.
 
 To add a session:
-  1. write _build/journeys/011.brief.html and 011.full.html
+  1. write _build/journeys/012.brief.html and 012.full.html
   2. add the JOURNEYS entry in campaign_world.py
-  3. add an "11:" line under `records` for anyone and anything it touched,
+  3. add a "12:" line under `records` for anyone and anything it touched,
      and bump their `last`
   4. update QUESTS and STANDING
   5. run this, look at the result, commit
@@ -178,9 +178,10 @@ def head(path, title, kind, extra_head=''):
             '<title>%s</title>\n%s%s%s</head>\n' % (full, css, js, extra_head))
 
 
-def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail=''):
+def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail='', hero=None):
+    # hero: markup that takes the emblem's place at the top of the header.
     hdr = ['<div class="page-header">',
-           '  <div class="page-emblem" data-pagefind-ignore>%s</div>' % EMBLEM]
+           hero or '  <div class="page-emblem" data-pagefind-ignore>%s</div>' % EMBLEM]
     if eyebrow:
         hdr.append('  <div class="page-eyebrow">%s</div>' % e(eyebrow))
     hdr.append('  <h1 class="page-title" data-pagefind-meta="title">%s</h1>' % e(title))
@@ -310,6 +311,14 @@ def paras(x):
     return ''.join('<p>%s</p>' % e(p) for p in x)
 
 
+def sheet_link(rec):
+    """A party member's own character sheet, when one is on file."""
+    if not rec.get('sheet'):
+        return ''
+    return ('<a class="sheet-link" href="%s" target="_blank" rel="noopener" data-pagefind-ignore>'
+            'Character sheet <span>D&amp;D Beyond &#8599;</span></a>' % rec['sheet'])
+
+
 def entity_page(rec, section, centre_label, stats, sub, bar, extra_top='', extra_mid='',
                 conn_first=False):
     path = '%s/%s.html' % (DIRS[rec['kind_']], rec['slug'])
@@ -327,7 +336,7 @@ def entity_page(rec, section, centre_label, stats, sub, bar, extra_top='', extra
     conn = connections(rec['ref'], r)
     parts = [bar, extra_top,
              '<div class="entry-header">\n  <div class="identity-card">%s%s</div>\n'
-             '  <div class="entry-info">%s</div>\n</div>' % (portrait(rec), stat_rows(stats), ''.join(info)),
+             '  <div class="entry-info">%s</div>\n</div>' % (portrait(rec), stat_rows(stats) + sheet_link(rec), ''.join(info)),
              extra_mid]
     if conn_first and conn:
         parts.append(conn)
@@ -462,12 +471,22 @@ def build_journeys():
             rec = ('<div class="video-container"><iframe src="https://www.youtube.com/embed/%s" '
                    'title="Session recording" loading="lazy" allowfullscreen></iframe></div>\n'
                    '<div class="video-link">Watch on YouTube: <a href="https://youtu.be/%s" target="_blank" '
-                   'rel="noopener">youtu.be/%s</a></div>' % (j['video'], j['video'], j['video']))
+                   'rel="noopener">youtu.be/%s</a> &middot; <a href="%s" target="_blank" rel="noopener">'
+                   'all recordings</a></div>' % (j['video'], j['video'], j['video'], e(CAMPAIGN['playlist'])))
+        elif j.get('video') is False:
+            rec = ('<div class="video-container"><div class="video-placeholder">'
+                   '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'
+                   '<circle cx="24" cy="24" r="20"/><polygon points="20,16 36,24 20,32" fill="currentColor" '
+                   'stroke="none" opacity="0.4"/></svg><p>This Session Was Not Recorded</p></div></div>\n'
+                   '<div class="video-link">The other sessions: <a href="%s" target="_blank" '
+                   'rel="noopener">all recordings</a></div>' % e(CAMPAIGN['playlist']))
         else:
             rec = ('<div class="video-container"><div class="video-placeholder">'
                    '<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">'
                    '<circle cx="24" cy="24" r="20"/><polygon points="20,16 36,24 20,32" fill="currentColor" '
-                   'stroke="none" opacity="0.4"/></svg><p>Recording Unavailable</p></div></div>')
+                   'stroke="none" opacity="0.4"/></svg><p>Recording Not Linked Yet</p></div></div>\n'
+                   '<div class="video-link">Find it in the playlist: <a href="%s" target="_blank" '
+                   'rel="noopener">all recordings</a></div>' % e(CAMPAIGN['playlist']))
         content = '''<div class="log-meta">
   <span class="log-badge">UJ {k}</span>
   <span class="log-type-badge">Party Level {level}</span>
@@ -550,6 +569,17 @@ def build_journeys():
 # THE EMBERS
 # ---------------------------------------------------------------------------
 
+def embers_banner(r, href, caption=''):
+    """The company's own banner, made by the players. r is the path back to the site root."""
+    cap = ('<figcaption>%s</figcaption>' % caption) if caption else ''
+    return ('<figure class="embers-banner" data-pagefind-ignore><a href="{href}">'
+            '<img src="{r}images/the-embers.jpg" '
+            'srcset="{r}images/the-embers-800.jpg 800w, {r}images/the-embers.jpg 1600w" '
+            'sizes="(max-width: 960px) 100vw, 920px" width="1600" height="873" '
+            'alt="The Embers: a phoenix of flame rising from a bed of coals, above a scroll bearing the company\'s name">'
+            '</a>{cap}</figure>').format(r=r, href=href, cap=cap)
+
+
 def build_embers():
     for i, pc in enumerate(PCS):
         stats = [('Race', pc['race']), ('Class', pc['klass']), ('Affiliation', pc['affiliation']),
@@ -582,7 +612,8 @@ def build_embers():
                + board_body('Search the Embers', facets, '%d in the company' % len(PCS), rows))
     page('the-embers/index.html', 'The Embers', 'listing', 'the-embers', content,
          subtitle='The company, and what each of them carries',
-         tail=filter_js(['race', 'klass'], 'in the company'))
+         tail=filter_js(['race', 'klass'], 'in the company'),
+         hero=embers_banner('../', '../images/the-embers.jpg', 'The company\'s banner, made by its players.'))
 
 
 # ---------------------------------------------------------------------------
@@ -855,7 +886,7 @@ def build_quests():
             extra = '<span class="row-sub">Part of %s</span>' % e(get('quest:' + q['parent'])['name'])
         if q['status'] == 'closed' and q.get('outcome'):
             extra = '<span class="row-sub">%s</span>' % e(q['outcome'])
-        prog = ('<span class="obj-progress">%d/%d</span>' % pr) if pr else '<span class="obj-progress is-none">&mdash;</span>'
+        prog = ('<span class="obj-progress">%d/%d</span>' % pr) if pr else '<span class="obj-progress is-none">&middot;</span>'
         return ('<div class="log-entry q-entry%s" data-kind="%s"><div class="log-row">'
                 '<a class="log-row-link" href="%s.html"><span class="log-title">%s '
                 '<span class="q-kind kind-%s">%s</span>%s</span>%s<span class="log-open">Open &rsaquo;</span></a>'
@@ -933,7 +964,7 @@ def build_road():
     <div class="panel">
       <div class="panel-head"><span class="panel-title">Last Journey</span>
         <a class="panel-more" href="{r}unexpected-journeys/journey-{k}.html">Read the account &rsaquo;</a></div>
-      <div class="last-title">Journey {k} &mdash; {title}</div>
+      <div class="last-title">Journey {k}: {title}</div>
       <p class="last-text">{last}</p>
       <p class="last-text">{conseq}</p>
       <div class="chip-row"><span class="chip-label">Faces</span><div class="chips">{met}</div></div>
@@ -1244,7 +1275,7 @@ def build_hub():
     body = '''<body data-pagefind-ignore>
 <div class="hub">
   <div class="hub-head">
-    <div class="hub-emblem">{emblem}</div>
+    {banner}
     <div class="hub-eyebrow">Command Post &middot; The Embers of Vogler</div>
     <h1 class="hub-title">{site}</h1>
     <div class="hub-sub">Everything the company knows, and everything it carries.</div>
@@ -1286,7 +1317,7 @@ def build_hub():
 </script>
 </body>
 </html>
-'''.format(emblem=EMBLEM, site=SITE, kicker=CAMPAIGN['kicker'], company='\n'.join(company), war='\n'.join(war))
+'''.format(banner=embers_banner('', 'the-embers/index.html'), site=SITE, kicker=CAMPAIGN['kicker'], company='\n'.join(company), war='\n'.join(war))
     write('hub.html', head('hub.html', SITE, 'hub') + body)
 
 
@@ -1451,6 +1482,15 @@ def build_stubs():
     stub('command-post/index.html', '../hub.html')
     stub('field-manual/index.html', '../hub.html')
     stub('theatre-of-war/index.html', '../atlas/index.html')
+    stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')            # renamed after Journey 010
+    stub('dossiers/the-pale-elven-woman.html', 'the-pale-woman.html')       # renamed pages keep their old addresses
+    stub('armory/leeching-bolts.html', 'leeching-arrows.html')
+    stub('armory/armor-of-bone.html', 'armor-of-the-fallen.html')
+    stub('armory/divine-pendant.html', 'amulet-of-paladine.html')
+    stub('armory/mayriels-signet-ring.html', 'mayariels-signet-ring.html')
+    stub('the-embers/mayriel.html', 'mayariel.html')
+    stub('armory/periapt-from-the-cliffside.html', 'periapt-of-wound-closure.html')
+    stub('armory/blue-gemmed-ring.html', 'ring-of-protection.html')
 
 
 # ---------------------------------------------------------------------------
