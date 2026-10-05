@@ -511,10 +511,10 @@ ITEMS = [
              7: ["Worn by Roshi; kept her from death when the dragon machine crashed"],
              11: ["Worn by Roshi; held her from death when the moons' light struck her down"],
          }),
-    dict(slug='ring-of-protection', name='Ring of Protection', sub='A ring set with a blue gem',
+    dict(slug='ring-of-protection', name='Ring of Protection', sub='A blue-gemmed ring of protective magic',
          klass='magic-item', kind='Ring', holder='Kakashi', holder_ref='pc:kakashi',
          origin="Taken from the Red Army's fallen at Vogler", last=6, status='Worn',
-         overview="A ring set with a blue gem, found on one of the Red Army dead at Vogler, on the same body as the periapt. Identified as a Ring of Protection. Kakashi wears it.",
+         overview="A blue-gemmed ring found on one of the Red Army dead at Vogler, on the same body as the periapt. Identified as a Ring of Protection. Kakashi wears it.",
          links=['pc:kakashi', 'place:vogler'],
          records={
              6: ["Found on the same body as the periapt",

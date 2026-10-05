@@ -1099,9 +1099,13 @@ async function hasRealHit(search, term) {
   const words = term.split(/\\s+/).map(bareWord).filter(w => w.length >= 3 && !STOPWORDS.has(w));
   if (!words.length) return true;
   const sample = await Promise.all(search.results.slice(0, 5).map(r => r.data()));
-  return sample.some(d => (d.excerpt.match(/<mark>(.*?)<\\/mark>/g) || [])
-    .map(m => bareWord(m.replace(/<\\/?mark>/g, '')))
-    .some(m => words.some(w => m.length >= 3 && (m.startsWith(w.slice(0, 4)) || w.startsWith(m)))));
+  // Every word typed has to be found for real. A highlight counts for a word
+  // when it starts the same way, or is that word's stem (not just its first
+  // few letters, which is all Pagefind's prefix fallback needs to match).
+  const marks = [].concat(...sample.map(d => (d.excerpt.match(/<mark>(.*?)<\\/mark>/g) || [])
+    .map(m => bareWord(m.replace(/<\\/?mark>/g, ''))))).filter(m => m.length >= 3);
+  return words.every(w => marks.some(m => m.startsWith(w.slice(0, 4)) ||
+    (w.startsWith(m) && m.length >= w.length - 3)));
 }
 
 let debounce;
