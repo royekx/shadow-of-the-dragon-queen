@@ -177,8 +177,8 @@ html { overflow-x: clip; }
 .g-val { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.15; color: var(--text); white-space: nowrap; }
 .g-note { font-size: 0.88rem; font-style: italic; line-height: 1.3; color: var(--text-muted); }
 
-/* The top strip: armor class, initiative, speed, hit points, hit dice, death saves. */
-.g-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr 1.9fr; gap: 0.6rem; }
+/* The top strip: armor class, initiative, speed, hit points, hit dice. */
+.g-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr; gap: 0.6rem; }
 .g-vital {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem; min-width: 0;
   padding: 0.7rem 0.5rem 0.65rem; border: 1px solid var(--gold-rule); border-radius: 10px;
@@ -199,9 +199,6 @@ html { overflow-x: clip; }
 .g-hp-cell input::-webkit-outer-spin-button, .g-hp-cell input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .g-hp-cell input::placeholder { color: var(--text-faint); opacity: 0.6; }
 .g-hp-cell input:focus-visible, .g-tick:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
-.g-death { align-items: stretch; gap: 0.3rem; padding-left: 0.8rem; padding-right: 0.8rem; }
-.g-death-row { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
-.g-death .g-tick { width: 1.1rem; height: 1.1rem; }
 
 /* Circles to fill in as a limited use is spent. */
 .g-ticks { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle; }
@@ -304,9 +301,7 @@ html { overflow-x: clip; }
   .g-turn.callout { margin-top: 0; }
   .g-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .g-strip > .g-vital { grid-column: span 2; }
-  .g-strip > .g-hp { grid-column: 1 / -1; }
-  .g-strip > .g-vital:nth-child(5) { grid-column: span 2; }
-  .g-strip > .g-death { grid-column: span 4; }
+  .g-strip > .g-hp { grid-column: span 4; }
   .g-side { grid-template-columns: minmax(0, 1fr); }
   .g-scores { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .g-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; align-items: start; }
@@ -314,7 +309,9 @@ html { overflow-x: clip; }
 }
 @media (max-width: 560px) {
   .g-name { font-size: 1.45rem; }
-  .g-strip > .g-vital:nth-child(5), .g-strip > .g-death { grid-column: 1 / -1; }
+  .g-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g-strip > .g-vital { grid-column: auto; }
+  .g-strip > .g-hp { grid-column: 1 / -1; order: 1; }
   .g-scores { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .g-lists { grid-template-columns: minmax(0, 1fr); }
   .g-cast { grid-template-columns: minmax(0, 1fr); }
@@ -365,7 +362,6 @@ html { overflow-x: clip; }
   /* Filled marks are drawn with the border: browsers leave backgrounds off paper by default. */
   .guest-page .g-tick { border-color: #1b1512; background: none; box-shadow: none !important; }
   .guest-page .g-tick:checked { border-width: 0.65rem; }
-  .guest-page .g-death .g-tick:checked { border-width: 0.55rem; }
   .guest-page .g-dot { border-color: #6b5b52; }
   .guest-page .g-li.is-prof .g-dot { border: 0.28rem solid #58180d; background: none; }
 
@@ -378,8 +374,8 @@ html { overflow-x: clip; }
   .guest-page .g-id-cell { display: flex; flex-direction: column; gap: 0.15rem; }
   .guest-page .g-id-val { min-height: 1.5rem; border-bottom: 1px solid #1b1512; font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; line-height: 1.45; }
   .guest-page .g-about { margin: 0.7rem 0 0.8rem; font-size: 1rem; line-height: 1.45; }
-  .guest-page .g-strip { grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr 1.9fr; gap: 0.5rem; }
-  .guest-page .g-strip > .g-vital, .guest-page .g-strip > .g-hp, .guest-page .g-strip > .g-death { grid-column: auto; }
+  .guest-page .g-strip { grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr; gap: 0.5rem; }
+  .guest-page .g-strip > .g-vital, .guest-page .g-strip > .g-hp { grid-column: auto; order: 0; }
   .guest-page .g-vital { padding: 0.5rem 0.4rem; }
   .guest-page .g-hp { padding: 0; }
   .guest-page .g-hp-cell { justify-content: flex-end; min-height: 3.4rem; padding: 0.5rem 0.3rem; }

@@ -1594,12 +1594,7 @@ def guest_sheet(s, active=False):
     <label class="g-hp-cell"><input type="number" inputmode="numeric" min="0" max="{hp}" placeholder="{hp}"><span class="g-key">Current HP</span></label>
     <label class="g-hp-cell"><input type="number" inputmode="numeric" min="0" placeholder="0"><span class="g-key">Temp HP</span></label>
   </div>
-  <div class="g-vital"><span class="g-val">{hit_dice}</span><span class="g-key">Hit Dice</span></div>
-  <div class="g-vital g-death">
-    <div class="g-death-row"><span class="g-note">Successes</span><span class="g-ticks">{succ}</span></div>
-    <div class="g-death-row"><span class="g-note">Failures</span><span class="g-ticks">{fail}</span></div>
-    <span class="g-key">Death Saves</span>
-  </div>
+  <div class="g-vital g-hd"><span class="g-val">{hit_dice}</span><span class="g-key">Hit Dice</span></div>
 </div>
 <div class="g-cols">
 <div class="g-side">
@@ -1629,7 +1624,6 @@ def guest_sheet(s, active=False):
                        role=e(s['role']), complexity=e(s['complexity']), about=e(s['about']),
                        ac=e(s['ac']), ac_note=e(s['ac_note']), init=signed(n['init']), speed=e(s['speed']),
                        hp=e(s['hp']), hit_dice=e(s['hit_dice']),
-                       succ=ticks(3, 'Death save success'), fail=ticks(3, 'Death save failure'),
                        scores=scores, saves=saves, skills=skills, passive=n['passive'], attacks=attacks,
                        actions='\n'.join(actions),
                        spells=guest_spells(s['spells']) if s.get('spells') else '', features=features, turn=turn)
