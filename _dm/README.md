@@ -10,3 +10,7 @@ Notes for the DM. Players should not read this folder.
 | File | What it holds |
 |---|---|
 | [aratos-leviathan-axe.md](aratos-leviathan-axe.md) | Aratos's axe: the tester, the three spirits, the mechanic, progress, what the player knows |
+
+## To do
+
+- Build a DM section on the site, the way `prime/` works on Caelestis. On hold until the Caelestis setup is finished.
