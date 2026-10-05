@@ -88,6 +88,13 @@ lives in the `TOKENS` block of the port script.
 - A name with nothing behind it goes under Named, Unfiled on the Dossiers
   page and gets no page of its own.
 
+## DM side
+
+`_dm/` holds DM-only notes. It lives in the repo and is left out of the
+published site: the deploy removes it, and the leading underscore keeps a
+branch-based Pages build from serving it. The repo is public, so the folder
+is still readable on GitHub. Nothing in `_dm/` is used by the build.
+
 ## Checking a change locally
 
 ```
