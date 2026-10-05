@@ -38,17 +38,19 @@ GUESTS = dict(
     # happen to them, and they were sent out for help. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
-    # deliberately absent here. It is someone's doing, not a curse.
+    # deliberately absent here. It is someone's doing, not a curse. The shape
+    # of it: the missing time is time spent working, and the one who works and
+    # the one who comes home do not share memories.
     # Where they were during Journey 011: in the second house, the one Boyd
     # carried food to, where the sick are tended. Boyd was still there when the
     # party left for the hill, so he is how they heard about the strangers.
     # They saw the monument fall. They do not know it can return.
     story=[
-        'Something is wrong in your home village. People lose an afternoon, then whole days. They forget '
-        'where they have been, what they were doing, sometimes what they were about to say. It had begun '
-        'to happen to the two of you when the neighbors who still had their wits put a letter in your '
-        'hands and sent you to Kalaman for help. There are days this past season that neither of you can '
-        'account for. About a week ago, with the city a day ahead, you and your traveling companion '
+        'Something is wrong in your home village. People lose an afternoon, then whole days. They come '
+        'home with aching backs and dust on their boots, and no memory of where they have been. It had '
+        'begun to happen to the two of you when the neighbors who still had their wits put a letter in '
+        'your hands and sent you to Kalaman for help. There are days this past season that neither of '
+        'you can account for. About a week ago, with the city a day ahead, you and your traveling companion '
         'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
         'and no guard at its gate.',
         'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
