@@ -104,7 +104,8 @@ PCS = [
         pursuit="Growing his power and earning his White Robes, while puzzling over a vision of a tower.",
         state="Inside Bracken Hollow with less than a day to break its spell. Still awaiting his White Robes exam.",
         line="Saw the lattice of spellwork over Bracken Hollow and its three knots, and found the three recesses beneath the hill.",
-        links=['item:boilerdrake-heart', 'item:moon-marked-spellbook', 'item:armor-of-the-fallen', 'quest:the-white-robes',
+        links=['item:boilerdrake-heart', 'item:moon-marked-spellbook', 'item:armor-of-the-fallen', 'item:ring-of-protection',
+               'quest:the-white-robes',
                'quest:kakashis-tower-vision', 'quest:kakashis-buried-past', 'npc:wyhan',
                'fac:the-mages-of-high-sorcery'],
         records={
