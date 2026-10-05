@@ -123,3 +123,16 @@ html { overflow-x: clip; }
   color: var(--text-muted);
 }
 .hub-head .embers-banner, .page-header .embers-banner { margin-bottom: 1.5rem; }
+
+/* Link from a party member's page to that player's own character sheet. */
+.sheet-link {
+  display: block; margin: 0.9rem 1.05rem 1.05rem; padding: 0.6rem 0.85rem;
+  border: 1px solid var(--gold-rule); color: var(--gold-light); text-decoration: none;
+  font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; text-align: center;
+  transition: border-color 0.2s, background 0.2s;
+}
+.sheet-link span {
+  display: block; margin-top: 0.15rem; color: var(--text-muted);
+  font-size: 0.86rem; letter-spacing: 0.02em; text-transform: none; font-style: italic;
+}
+.sheet-link:hover, .sheet-link:focus-visible { border-color: var(--gold-dim); background: var(--gold-faint); }

@@ -311,6 +311,14 @@ def paras(x):
     return ''.join('<p>%s</p>' % e(p) for p in x)
 
 
+def sheet_link(rec):
+    """A party member's own character sheet, when one is on file."""
+    if not rec.get('sheet'):
+        return ''
+    return ('<a class="sheet-link" href="%s" target="_blank" rel="noopener" data-pagefind-ignore>'
+            'Character sheet <span>D&amp;D Beyond &#8599;</span></a>' % rec['sheet'])
+
+
 def entity_page(rec, section, centre_label, stats, sub, bar, extra_top='', extra_mid='',
                 conn_first=False):
     path = '%s/%s.html' % (DIRS[rec['kind_']], rec['slug'])
@@ -328,7 +336,7 @@ def entity_page(rec, section, centre_label, stats, sub, bar, extra_top='', extra
     conn = connections(rec['ref'], r)
     parts = [bar, extra_top,
              '<div class="entry-header">\n  <div class="identity-card">%s%s</div>\n'
-             '  <div class="entry-info">%s</div>\n</div>' % (portrait(rec), stat_rows(stats), ''.join(info)),
+             '  <div class="entry-info">%s</div>\n</div>' % (portrait(rec), stat_rows(stats) + sheet_link(rec), ''.join(info)),
              extra_mid]
     if conn_first and conn:
         parts.append(conn)
@@ -1478,6 +1486,9 @@ def build_stubs():
     stub('dossiers/the-pale-elven-woman.html', 'the-pale-woman.html')       # renamed pages keep their old addresses
     stub('armory/leeching-bolts.html', 'leeching-arrows.html')
     stub('armory/armor-of-bone.html', 'armor-of-the-fallen.html')
+    stub('armory/divine-pendant.html', 'amulet-of-paladine.html')
+    stub('armory/mayriels-signet-ring.html', 'mayariels-signet-ring.html')
+    stub('the-embers/mayriel.html', 'mayariel.html')
     stub('armory/periapt-from-the-cliffside.html', 'periapt-of-wound-closure.html')
     stub('armory/blue-gemmed-ring.html', 'ring-of-protection.html')
 
