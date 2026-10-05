@@ -51,9 +51,8 @@ GUESTS = dict(
         'You and your traveling companion were a day short of Kalaman, carrying a letter that asks the '
         'city for help. Something is wrong at home, where people lose an afternoon and then whole days, '
         'and come back with aching backs and dust on their boots and no memory of where they have been. '
-        'When it began to happen to the two of you, the village elder put the letter in your hands and '
-        'slipped you out by night, and there are still days from this past season that neither of you '
-        'can account for.',
+        'When the two of you began losing days of your own, the village elder put the letter in your '
+        'hands and slipped you out by night.',
         'As evening drew on, you turned off the road to rest in Bracken Hollow, a quiet forest village '
         'with no wall and no guard at its gate. The sky went dark as you walked in, and something howled '
         'close by. An old soldier named Sergeant Boyd pulled you through a doorway ahead of the wolves '
