@@ -30,13 +30,14 @@ GUESTS = dict(
     # How to Play section. None leaves the block off the page.
     video=None,
 
-    # The errand (a courier's job out of Kalaman) is invented for the guests so
-    # they arrive with a reason to be on the road. Change it freely.
+    # The errand (a courier's job bound for Kalaman) is invented for the guests:
+    # a reason to be on the road, and a reason to leave for Kalaman with the
+    # party afterwards. Who the satchel is for is left open on purpose.
     story=[
-        'You and your traveling companion took a courier\'s job in Kalaman: carry a sealed satchel east '
-        'to a river trader, half the coin up front and half on delivery. A few days ago the two of you '
-        'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
-        'and no guard at its gate.',
+        'You and your traveling companion took a courier\'s job on the eastern road: carry a sealed '
+        'satchel to Kalaman, half the coin up front and half on delivery. A few days ago, with the city '
+        'a day ahead, the two of you turned off the road to rest for a night in Bracken Hollow, a quiet '
+        'forest village with no wall and no guard at its gate.',
         'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
         'and they have stood there since. When you shouldered your packs and walked out, the road '
         'carried you straight back in on the far side of the village.',
@@ -47,7 +48,7 @@ GUESTS = dict(
         'of you watched that monument walk once, and knew better than to climb the hill alone.',
         'Then five strangers arrived, climbed the hill, and brought it down. It will stand again at '
         'the next eclipse, and they mean to break the spell over this place before then. The satchel '
-        'is still in your pack and the delivery is days late. You and your companion have decided to help.',
+        'is still in your pack, and Kalaman is still a day away. You and your companion have decided to help.',
     ],
 
     # The line under "Choose Your Character".
