@@ -343,7 +343,9 @@ html { overflow-x: clip; }
   .guest-page .g-hp-cell input { display: none !important; }
   .guest-page * { animation: none !important; text-shadow: none !important; box-shadow: none !important; }
   .guest-page .page-content, .guest-page .content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
-  .guest-page .page-header { padding: 0 0 0.9rem; margin: 0 0 1.1rem; text-align: left; }
+  .guest-page .page-header { padding: 0 0 0.5rem; margin: 0 0 0.7rem; text-align: left; }
+  .guest-page .g-fold + .section-label { margin-top: 1.2rem; }
+  .guest-page .g-choose { margin-bottom: 0; }
   .guest-page .page-title { color: #58180d; }
   .guest-page .g-fold { border: none; background: none; margin-bottom: 1rem; }
   .guest-page .g-fold > summary { border-radius: 0; padding: 0 0 0.35rem; margin-bottom: 0.2rem; border-bottom: 1px solid #b9a99c; }

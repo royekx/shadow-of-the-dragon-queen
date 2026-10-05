@@ -36,8 +36,9 @@ GUESTS = dict(
     # pick up later. What is fouling the brook upstream is left open on purpose;
     # the villagers do not know.
     # Where they were during Journey 011: in the second house, the one Boyd
-    # carried food to, where the sick are tended. They saw the monument fall.
-    # They do not know it can return.
+    # carried food to, where the sick are tended. Boyd was still there when the
+    # party left for the hill, so he is how they heard about the strangers.
+    # They saw the monument fall. They do not know it can return.
     story=[
         'The brook that turns the mill in your home village has run low and rust-red since the end of '
         'summer. The wheel stands idle, the fish are gone, and the wells have begun to taste of iron. '
@@ -54,11 +55,12 @@ GUESTS = dict(
         'month. An old soldier, Sergeant Boyd, keeps people fed and indoors. The farms give food only '
         'under the black moon, when the wolves are out, and the two of you have taken your turns '
         'carrying sacks back through the dark.',
-        'This last time you stayed behind at the house where the sick are tended, and Boyd brought the '
-        'food over himself. From its doorway you watched a band of strangers climb the hill to meet the '
-        'monument, and you watched it fall. It is the first time anyone in the Hollow has seen that. '
-        'The letter is still in your coat, and Kalaman is still a day away. You and your companion mean '
-        'to find those strangers and help.',
+        'This last time you stayed behind at the house where the sick are tended. Boyd brought the food '
+        'over himself, and brought news with it: a band of strangers had walked into the village, killed '
+        'the wolves that met them, and were talking of going up the hill at the eclipse. From the doorway '
+        'you watched them climb to meet the monument, and you watched it fall. It is the first time anyone '
+        'in the Hollow has seen that. The letter is still in your coat, and Kalaman is still a day away. '
+        'You and your companion mean to meet those strangers when they come down.',
     ],
 
     # The line under "Choose Your Character".
