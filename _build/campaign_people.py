@@ -359,7 +359,7 @@ PCS = [
         affiliation='Knights Radiant; Stormblessed kin', first=3, last=9, status='Companion',
         overview=[
             "Aeimos is Aratos's cousin and carries Stormblessed markings in blue where Aratos's are red. He announced himself in Vogler by stealing Aratos's ring. He fights with storm-charged gauntlets.",
-            "He comes and goes on his own road. He left Vogler with Fizban, returned outside Kalaman for the reliquary of Sir Cthondor, and left again to seek out the other tombs Lord Soth means to corrupt.",
+            "He comes and goes on his own road. He left Vogler with Fizban, returned outside Kalaman for the Radiant Reliquary, and left again to seek out the other tombs Lord Soth means to corrupt.",
         ],
         pursuit="Seeking out the knights' tombs that Lord Soth means to corrupt, on a road apart from the party's.",
         state="Off on his own road against Soth's corruption. Appears and vanishes.",
@@ -848,11 +848,11 @@ NPCS = [
         overview="Lord Soth was once a celebrated Knight of Solamnia. He fell through selfishness and personal failure and lives in disgrace under a curse. Aratos has seen him in the river's apparitions, and the party has fought one of his servants, a necromancer corrupting a tomb of knights. The pale woman told Aeimos alone that Soth wishes to corrupt all knights and their legacies, in vengeance for how they portrayed him, until his curse is lifted.",
         links=['quest:lord-soths-corruption', 'quest:the-leviathan-axe', 'pc:aratos', 'pc:aeimos',
                'npc:sir-cthondor', 'npc:the-pale-woman', 'fac:the-knights-of-solamnia',
-               'place:the-reliquary-of-sir-cthondor'],
+               'place:the-radiant-reliquary'],
         records={
             8: ["Appeared to Aratos in the river opposite Cathan Twice-Born; the two told him he would have to choose soon",
                 "His statue stands in Kalaman's courtyard among knights once honored"],
-            9: ["A necromancer died in his service while corrupting the tomb of Sir Cthondor: his will is done, Lord Soth",
+            9: ["A necromancer died in his service while corrupting the Radiant Reliquary: his will is done, Lord Soth",
                 "Said by the pale woman, to Aeimos alone, to wish the corruption of all knights, their image and their legacies, in vengeance for how they portrayed him"],
         },
     ),
@@ -860,8 +860,8 @@ NPCS = [
         slug='sir-cthondor', name='Sir Cthondor', role="Knight of the hidden reliquary, at rest",
         relation='Freed spirit', affiliation="The reliquary of the Knights Radiant",
         met='kalaman', aff='knights', standing='Ally', last=10, status='At rest',
-        overview="Sir Cthondor was a knight whose tomb lies in a hidden reliquary of the Knights Radiant outside Kalaman. A necromancer serving Lord Soth raised his spirit as a wraith. Freed, he named Aratos and Aeimos children of Cathan and sounded his horn to send the risen dead back to rest.",
-        links=['place:the-reliquary-of-sir-cthondor', 'item:horn-of-sir-cthondor', 'npc:lord-soth',
+        overview="Sir Cthondor is one of the knights laid to rest in the Radiant Reliquary outside Kalaman, the tomb of those who fell in the battle shown on its murals. His statue stands at its center. A necromancer serving Lord Soth raised his spirit as a wraith. Freed, he named Aratos and Aeimos children of Cathan and sounded his horn to send the risen dead back to rest.",
+        links=['place:the-radiant-reliquary', 'item:horn-of-sir-cthondor', 'npc:lord-soth',
                'pc:aratos', 'pc:aeimos', 'fac:the-knights-radiant', 'quest:meat-for-ispins-stew'],
         records={
             9: ["Stood at the center of the tomb, horn in the crook of his arm",

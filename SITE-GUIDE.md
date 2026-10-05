@@ -98,6 +98,9 @@ published site: the deploy removes it, and the leading underscore keeps a
 branch-based Pages build from serving it. The repo is public, so the folder
 is still readable on GitHub. Nothing in `_dm/` is used by the build.
 
+This guide is left out of the published site as well, because it says where
+the DM notes are.
+
 ## Checking a change locally
 
 ```
