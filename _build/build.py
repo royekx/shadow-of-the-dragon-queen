@@ -1483,7 +1483,7 @@ def signed(n):
 
 
 def ticks(n, what, spent=0):
-    """n circles to fill in as a limited use is spent. Plain checkboxes, no script."""
+    """n boxes to tick as a limited use is spent. Plain checkboxes, no script."""
     return ''.join('<input class="g-tick" type="checkbox" aria-label="%s, use %d of %d"%s>'
                    % (e(what), i + 1, n, ' checked' if i < spent else '') for i in range(n))
 
@@ -1502,12 +1502,11 @@ def guest_numbers(s):
         bonus = (GUEST_PROFICIENCY * 2 if name in s.get('expertise', ()) else
                  GUEST_PROFICIENCY if prof else half)
         skills.append((name, k, mods[k] + bonus, prof))
-    perception = [v for n, _, v, _ in skills if n == 'Perception'][0]
-    return dict(mods=mods, saves=saves, skills=skills, passive=10 + perception, init=mods['DEX'] + half)
+    return dict(mods=mods, saves=saves, skills=skills, init=mods['DEX'] + half)
 
 
 def guest_rows(rows):
-    """Named entries: a limited-use label and its circles where there is one."""
+    """Named entries: a limited-use label and its boxes where there is one."""
     out = []
     for name, uses, n, text in rows:
         tag = ''
@@ -1571,7 +1570,6 @@ def guest_sheet(s, active=False):
     if s['features']:
         features = ('<div class="brief-heading">Features &amp; Traits</div>\n%s'
                     % guest_rows([(a, '', 0, b) for a, b in s['features']]))
-    turn = ''.join('<li>%s</li>' % e(t) for t in s['turn'])
     return '''  <section class="account-panel g-sheet{on}" id="{slug}" data-panel="{slug}">
     <div class="account-body">
 <div class="g-head">
@@ -1602,7 +1600,6 @@ def guest_sheet(s, active=False):
   <div class="g-lists">
     <div class="g-list"><div class="g-list-title">Saving Throws</div>{saves}</div>
     <div class="g-list"><div class="g-list-title">Skills</div>{skills}</div>
-    <div class="g-passive"><span class="g-val">{passive}</span><span class="g-key">Passive Perception</span></div>
   </div>
 </div>
 <div class="g-main">
@@ -1617,22 +1614,25 @@ def guest_sheet(s, active=False):
 {spells}
 {features}
 </div>
-<div class="callout g-turn"><span class="callout-label">On Your Turn</span><ol>{turn}</ol></div>
 </div>
     </div>
   </section>'''.format(on=' is-active' if active else '', slug=s['slug'], name=e(s['name']), quote=e(s['quote']),
                        role=e(s['role']), complexity=e(s['complexity']), about=e(s['about']),
                        ac=e(s['ac']), ac_note=e(s['ac_note']), init=signed(n['init']), speed=e(s['speed']),
                        hp=e(s['hp']), hit_dice=e(s['hit_dice']),
-                       scores=scores, saves=saves, skills=skills, passive=n['passive'], attacks=attacks,
+                       scores=scores, saves=saves, skills=skills, attacks=attacks,
                        actions='\n'.join(actions),
-                       spells=guest_spells(s['spells']) if s.get('spells') else '', features=features, turn=turn)
+                       spells=guest_spells(s['spells']) if s.get('spells') else '', features=features)
 
 
 def build_guests():
     g = GUESTS
     story = '\n'.join('<p>%s</p>' % e(p) for p in g['story'])
     basics = '\n'.join('    <li><b>%s</b> %s</li>' % (e(a), e(b)) for a, b in g['basics'])
+    # What to do on a turn, one line per character. It sits with the rules
+    # so the sheets themselves stay to the numbers.
+    turns = '\n'.join('<p class="g-row"><b>%s</b> %s</p>' % (e(s['name']), e(' '.join(s['turn'])))
+                      for s in g['sheets'])
     video = ''
     if g.get('video'):
         video = ('<div class="video-block"><div class="video-container"><iframe '
@@ -1665,6 +1665,11 @@ def build_guests():
 {video}<ul class="brief-list">
 {basics}
 </ul>
+<div class="brief-heading">On Your Turn</div>
+<p class="g-hint">A dependable turn for each character, for when you are unsure what to do.</p>
+<div class="g-rows g-turns">
+{turns}
+</div>
   </div>
 </details>
 <div class="section-label">Choose Your Character</div>
@@ -1674,7 +1679,7 @@ def build_guests():
 </div>
 <div class="account-panels">
 {sheets}
-</div>'''.format(caret=caret, story=story, video=video, basics=basics, choose=e(g['choose']),
+</div>'''.format(caret=caret, story=story, video=video, basics=basics, turns=turns, choose=e(g['choose']),
                  tabs='\n'.join(tabs),
                  sheets='\n'.join(guest_sheet(s, i == 0) for i, s in enumerate(g['sheets'])))
     # Export is the browser's own print-to-PDF, laid out by the print rules in

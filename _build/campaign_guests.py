@@ -16,7 +16,7 @@ says nothing a villager in Bracken Hollow could not tell a stranger.
 Sheets follow the standard character sheet and are plain level 3
 characters with the subclass left off (2014 rules, standard array with
 +2/+1, average hit points). Ability modifiers, saving throws, the full
-skill list, initiative and passive Perception are worked out by the build
+skill list and initiative are worked out by the build
 from `scores`, `saves`, `skills`, `expertise` and `jack`. Attack and spell
 numbers are entered by hand.
 """
@@ -69,8 +69,8 @@ GUESTS = dict(
          'With advantage, roll two d20s and keep the higher. With disadvantage, keep the lower.'),
         ('Reading your sheet.',
          '"Hit +5" is d20 + 5 against the target\'s Armor Class. "1d8+3" is one eight-sided die plus 3. '
-         '"DEX 13" means the target makes a Dexterity save and needs 13 or higher. A circle is a '
-         'limited use: fill it in when it is spent.'),
+         '"DEX 13" means the target makes a Dexterity save and needs 13 or higher. A box is a '
+         'limited use: tick it when it is spent.'),
     ],
 
     # scores:   the six ability scores
@@ -82,6 +82,7 @@ GUESTS = dict(
     # spells:   ability, dc, attack, groups [(label, slots, slots already spent,
     #           [(name, time, range, save/attack, effect)])], optional note
     # features: [(name, text)]
+    # turn:     a dependable turn, listed under How to Play
     sheets=[
         dict(
             slug='fighter', name='Fighter', role='Front-line warrior', complexity='Simple',

@@ -130,7 +130,7 @@ on a sheet of its own, in ink on white. The rules for that are the print
 block at the end of `styles/site.css`.
 
 Each character follows the standard character sheet. Ability modifiers,
-saving throws, the full skill list, initiative and passive Perception are
+saving throws, the full skill list and initiative are
 worked out by the build from the scores and proficiencies in the data;
 attack and spell numbers are entered by hand.
 

@@ -200,11 +200,11 @@ html { overflow-x: clip; }
 .g-hp-cell input::placeholder { color: var(--text-faint); opacity: 0.6; }
 .g-hp-cell input:focus-visible, .g-tick:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
 
-/* Circles to fill in as a limited use is spent. */
+/* Boxes to tick as a limited use is spent. */
 .g-ticks { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle; }
 .g-tick {
   appearance: none; -webkit-appearance: none; flex: 0 0 auto; width: 1.3rem; height: 1.3rem; margin: 0;
-  border: 1.5px solid var(--gold); border-radius: 50%; background: transparent; cursor: pointer;
+  border: 1.5px solid var(--gold); border-radius: 3px; background: transparent; cursor: pointer;
   transition: background 0.15s, box-shadow 0.15s;
 }
 .g-tick:checked { background: var(--gold); box-shadow: inset 0 0 0 3px var(--bg); }
@@ -213,15 +213,13 @@ html { overflow-x: clip; }
   font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
 }
 
-/* Two columns under the strip: the side (abilities, saves, skills) and the
-   main column, with the turn reminder under the main column. */
+/* Two columns under the strip: the side (abilities, saves, skills) and the main column. */
 .g-cols {
-  display: grid; grid-template-columns: 19rem minmax(0, 1fr); grid-template-areas: "side main" "side turn";
-  grid-template-rows: auto 1fr; column-gap: 2rem; align-items: start; margin-top: 1.5rem;
+  display: grid; grid-template-columns: 19rem minmax(0, 1fr); grid-template-areas: "side main";
+  column-gap: 2rem; align-items: start; margin-top: 1.5rem;
 }
 .g-side { grid-area: side; display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 0.8rem; align-items: start; }
 .g-main { grid-area: main; min-width: 0; }
-.g-turn { grid-area: turn; }
 .g-scores { display: flex; flex-direction: column; gap: 0.55rem; }
 .g-score {
   display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.5rem 0.2rem 0.5rem;
@@ -232,8 +230,8 @@ html { overflow-x: clip; }
   min-width: 2.2rem; padding: 0 0.5rem; border: 1px solid var(--rule); border-radius: 999px;
   font-size: 0.82rem; line-height: 1.45; text-align: center; color: var(--text-muted);
 }
-.g-list, .g-passive { border: 1px solid var(--rule); border-radius: 10px; padding: 0.55rem 0.7rem 0.6rem; }
-.g-list + .g-list, .g-passive { margin-top: 0.7rem; }
+.g-list { border: 1px solid var(--rule); border-radius: 10px; padding: 0.55rem 0.7rem 0.6rem; }
+.g-list + .g-list { margin-top: 0.7rem; }
 .g-list-title {
   margin-bottom: 0.3rem; font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--gold);
@@ -246,8 +244,6 @@ html { overflow-x: clip; }
 .g-li.is-prof { color: var(--text); font-weight: 600; }
 .g-li.is-prof .g-dot { background: var(--gold); border-color: var(--gold); }
 .g-li.is-prof .g-li-val { color: var(--gold-light); }
-.g-passive { display: flex; align-items: center; gap: 0.7rem; }
-.g-passive .g-val { font-size: 1.2rem; }
 
 .g-sheet .brief-heading { margin-top: 1.6rem; }
 .g-main > .brief-heading:first-child { margin-top: 0; }
@@ -291,21 +287,20 @@ html { overflow-x: clip; }
 .g-std { color: var(--text-soft); }
 .g-hint { margin-top: 0.55rem; font-size: 0.9rem; font-style: italic; line-height: 1.45; color: var(--text-muted); }
 
-.g-turn.callout { margin-top: 1.6rem; border-radius: 0 10px 10px 0; }
-.g-turn ol { padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.98rem; line-height: 1.5; }
-.g-turn li::marker { color: var(--gold); font-family: 'Cinzel', serif; font-size: 0.9em; }
+/* How to Play: a dependable turn for each character. */
+.g-fold .brief-heading { margin-top: 1.7rem; }
+.g-fold .g-hint { margin: 0 0 0.7rem; }
 
 @media (max-width: 960px) {
-  /* One column. What you do on your turn comes before the long skill list. */
-  .g-cols { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "turn" "side"; grid-template-rows: auto; row-gap: 1.6rem; }
-  .g-turn.callout { margin-top: 0; }
+  /* One column. Attacks and actions come before the long skill list. */
+  .g-cols { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "side"; row-gap: 1.6rem; }
   .g-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .g-strip > .g-vital { grid-column: span 2; }
   .g-strip > .g-hp { grid-column: span 4; }
   .g-side { grid-template-columns: minmax(0, 1fr); }
   .g-scores { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .g-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; align-items: start; }
-  .g-list + .g-list, .g-passive { margin-top: 0; }
+  .g-list + .g-list { margin-top: 0; }
 }
 @media (max-width: 560px) {
   .g-name { font-size: 1.45rem; }
@@ -379,10 +374,9 @@ html { overflow-x: clip; }
   .guest-page .g-vital { padding: 0.5rem 0.4rem; }
   .guest-page .g-hp { padding: 0; }
   .guest-page .g-hp-cell { justify-content: flex-end; min-height: 3.4rem; padding: 0.5rem 0.3rem; }
-  /* On paper the turn reminder goes under the side column, which is the shorter one. */
   .guest-page .g-cols {
-    grid-template-columns: 16.4rem minmax(0, 1fr); grid-template-areas: "side main" "turn main";
-    grid-template-rows: auto 1fr; column-gap: 1.5rem; row-gap: 0; margin-top: 1rem;
+    grid-template-columns: 16.4rem minmax(0, 1fr); grid-template-areas: "side main";
+    column-gap: 1.5rem; row-gap: 0; margin-top: 1rem;
   }
   .guest-page .g-side { grid-template-columns: 4.6rem minmax(0, 1fr); gap: 0.6rem; }
   .guest-page .g-li-tag { display: none; }
@@ -390,7 +384,7 @@ html { overflow-x: clip; }
   .guest-page .g-scores { display: flex; flex-direction: column; gap: 0.45rem; }
   .guest-page .g-score { padding: 0.35rem 0.2rem 0.4rem; }
   .guest-page .g-lists { display: block; }
-  .guest-page .g-list + .g-list, .guest-page .g-passive { margin-top: 0.55rem; }
+  .guest-page .g-list + .g-list { margin-top: 0.55rem; }
   .guest-page .g-li { line-height: 1.38; }
   .guest-page .g-sheet .brief-heading { margin-top: 0.95rem; margin-bottom: 0.4rem; }
   .guest-page .g-main > .brief-heading:first-child { margin-top: 0; }
@@ -411,9 +405,8 @@ html { overflow-x: clip; }
   .guest-page .g-cast { margin-bottom: 0.5rem; }
   .guest-page .g-cast .g-vital { padding: 0.3rem 0.4rem; }
   .guest-page .g-rows { gap: 0.28rem; }
-  .guest-page .g-row, .guest-page .g-turn ol { line-height: 1.38; }
+  .guest-page .g-row { line-height: 1.38; }
   .guest-page .g-hint { margin-top: 0.35rem; }
-  .guest-page .g-turn.callout { margin-top: 0.7rem; padding: 0.5rem 0.7rem; }
-  .guest-page .g-turn ol { padding-left: 1.1rem; }
-  .guest-page .g-row, .guest-page .g-table tr, .guest-page .g-strip, .guest-page .g-turn { break-inside: avoid; }
+  .guest-page .g-fold .brief-heading { margin-top: 1.1rem; }
+  .guest-page .g-row, .guest-page .g-table tr, .guest-page .g-strip { break-inside: avoid; }
 }
