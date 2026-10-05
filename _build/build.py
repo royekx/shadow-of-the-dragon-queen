@@ -178,9 +178,10 @@ def head(path, title, kind, extra_head=''):
             '<title>%s</title>\n%s%s%s</head>\n' % (full, css, js, extra_head))
 
 
-def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail=''):
+def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail='', hero=None):
+    # hero: markup that takes the emblem's place at the top of the header.
     hdr = ['<div class="page-header">',
-           '  <div class="page-emblem" data-pagefind-ignore>%s</div>' % EMBLEM]
+           hero or '  <div class="page-emblem" data-pagefind-ignore>%s</div>' % EMBLEM]
     if eyebrow:
         hdr.append('  <div class="page-eyebrow">%s</div>' % e(eyebrow))
     hdr.append('  <h1 class="page-title" data-pagefind-meta="title">%s</h1>' % e(title))
@@ -560,6 +561,17 @@ def build_journeys():
 # THE EMBERS
 # ---------------------------------------------------------------------------
 
+def embers_banner(r, href, caption=''):
+    """The company's own banner, made by the players. r is the path back to the site root."""
+    cap = ('<figcaption>%s</figcaption>' % caption) if caption else ''
+    return ('<figure class="embers-banner" data-pagefind-ignore><a href="{href}">'
+            '<img src="{r}images/the-embers.jpg" '
+            'srcset="{r}images/the-embers-800.jpg 800w, {r}images/the-embers.jpg 1600w" '
+            'sizes="(max-width: 960px) 100vw, 920px" width="1600" height="873" '
+            'alt="The Embers: a phoenix of flame rising from a bed of coals, above a scroll bearing the company\'s name">'
+            '</a>{cap}</figure>').format(r=r, href=href, cap=cap)
+
+
 def build_embers():
     for i, pc in enumerate(PCS):
         stats = [('Race', pc['race']), ('Class', pc['klass']), ('Affiliation', pc['affiliation']),
@@ -592,7 +604,8 @@ def build_embers():
                + board_body('Search the Embers', facets, '%d in the company' % len(PCS), rows))
     page('the-embers/index.html', 'The Embers', 'listing', 'the-embers', content,
          subtitle='The company, and what each of them carries',
-         tail=filter_js(['race', 'klass'], 'in the company'))
+         tail=filter_js(['race', 'klass'], 'in the company'),
+         hero=embers_banner('../', '../images/the-embers.jpg', 'The company\'s banner, made by its players.'))
 
 
 # ---------------------------------------------------------------------------
@@ -1254,7 +1267,7 @@ def build_hub():
     body = '''<body data-pagefind-ignore>
 <div class="hub">
   <div class="hub-head">
-    <div class="hub-emblem">{emblem}</div>
+    {banner}
     <div class="hub-eyebrow">Command Post &middot; The Embers of Vogler</div>
     <h1 class="hub-title">{site}</h1>
     <div class="hub-sub">Everything the company knows, and everything it carries.</div>
@@ -1296,7 +1309,7 @@ def build_hub():
 </script>
 </body>
 </html>
-'''.format(emblem=EMBLEM, site=SITE, kicker=CAMPAIGN['kicker'], company='\n'.join(company), war='\n'.join(war))
+'''.format(banner=embers_banner('', 'the-embers/index.html'), site=SITE, kicker=CAMPAIGN['kicker'], company='\n'.join(company), war='\n'.join(war))
     write('hub.html', head('hub.html', SITE, 'hub') + body)
 
 
@@ -1464,6 +1477,9 @@ def build_stubs():
     stub('quests/fire-and-frost.html', 'the-leviathan-axe.html')            # renamed after Journey 010
     stub('dossiers/the-pale-elven-woman.html', 'the-pale-woman.html')       # renamed pages keep their old addresses
     stub('armory/leeching-bolts.html', 'leeching-arrows.html')
+    stub('armory/armor-of-bone.html', 'armor-of-the-fallen.html')
+    stub('armory/periapt-from-the-cliffside.html', 'periapt-of-wound-closure.html')
+    stub('armory/blue-gemmed-ring.html', 'ring-of-protection.html')
 
 
 # ---------------------------------------------------------------------------

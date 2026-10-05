@@ -27,6 +27,7 @@ its index is not available yet.
 | `armory/` | Items | `inventory/` |
 | `war-intel/` | Factions and powers | `factions/` |
 | `search/` | Search, with misspelling repair | `search/` |
+| `images/` | The Embers' banner, made by the players. Shown on the hub and The Embers page | none |
 
 Old addresses redirect: the brief and full account pages, `command-post/`,
 `field-manual/` and `theatre-of-war/`.
@@ -87,6 +88,8 @@ lives in the `TOKENS` block of the port script.
   woman).
 - A name with nothing behind it goes under Named, Unfiled on the Dossiers
   page and gets no page of its own.
+- Anything named at the table is player-facing, and items carry the name
+  they were given at the table.
 
 ## DM side
 
