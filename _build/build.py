@@ -1491,8 +1491,6 @@ def build_stubs():
     stub('armory/leeching-bolts.html', 'leeching-arrows.html')
     stub('armory/armor-of-bone.html', 'armor-of-the-fallen.html')
     stub('armory/divine-pendant.html', 'amulet-of-paladine.html')
-    stub('armory/mayriels-signet-ring.html', 'mayariels-signet-ring.html')
-    stub('the-embers/mayriel.html', 'mayariel.html')
     stub('armory/periapt-from-the-cliffside.html', 'periapt-of-wound-closure.html')
     stub('armory/blue-gemmed-ring.html', 'ring-of-protection.html')
 
