@@ -5,6 +5,7 @@ build.py - write every page of the site from the campaign data.
     python3 _build/build.py
 
 Reads  : _build/campaign_people.py, _build/campaign_world.py
+         _build/campaign_guests.py
          _build/journeys/NNN.brief.html, NNN.full.html
 Writes : every .html page, data/standing.js, data/journeys.js,
          data/vocabulary.js
@@ -36,6 +37,7 @@ sys.path.insert(0, str(HERE))
 from campaign_people import PCS, NPCS, UNFILED, AFF_LABELS, MET_LABELS   # noqa: E402
 from campaign_world import (CAMPAIGN, JOURNEYS, REGIONS, ATLAS_MAP, PLACES, PLACES_UNLINKED,  # noqa: E402
                             ITEMS, ITEM_TABS, FACTIONS, FACTION_BANDS, QUESTS, STANDING, EXTRA_VOCAB)
+from campaign_guests import GUESTS   # noqa: E402
 
 SITE = CAMPAIGN['title']
 written = []
@@ -159,27 +161,31 @@ SHEETS = {
     'road':    ['base', 'entity', 'board', 'standing'],
     'search':  ['base'],
     'hub':     ['base', 'hub'],
+    'guest':   ['base', 'board', 'register', 'journey'],
 }
 SCRIPTS = {
     'entity': ['scripts/ui.js'], 'listing': ['scripts/ui.js'], 'journey': ['scripts/ui.js'],
     'jindex': ['scripts/ui.js'], 'road': ['scripts/ui.js'], 'search': [],
-    'hub': ['data/journeys.js'],
+    'hub': ['data/journeys.js'], 'guest': ['scripts/ui.js'],
 }
 
 
-def head(path, title, kind, extra_head=''):
+def head(path, title, kind, extra_head='', nav=True):
+    # nav=False leaves out the sidebar and the command bar (see build_guests).
     r = rel(path)
     css = ''.join('<link rel="stylesheet" href="%sstyles/%s.css">\n' % (r, s) for s in SHEETS[kind] + ['site'])
     js = ''.join('<script src="%s%s" defer></script>\n' % (r, s)
-                 for s in ['data/standing.js', 'scripts/nav.js'] + SCRIPTS[kind])
+                 for s in (['data/standing.js', 'scripts/nav.js'] if nav else []) + SCRIPTS[kind])
     full = title if title == SITE else '%s &middot; %s' % (e(title), SITE)
     return ('<!DOCTYPE html>\n<html lang="en">\n<head>\n<meta charset="UTF-8">\n'
             '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
             '<title>%s</title>\n%s%s%s</head>\n' % (full, css, js, extra_head))
 
 
-def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail='', hero=None):
+def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail='', hero=None,
+         body_class=None, nav=True):
     # hero: markup that takes the emblem's place at the top of the header.
+    # body_class: a hook for site.css rules that belong to one kind of page.
     hdr = ['<div class="page-header">',
            hero or '  <div class="page-emblem" data-pagefind-ignore>%s</div>' % EMBLEM]
     if eyebrow:
@@ -188,10 +194,11 @@ def page(path, title, kind, section, content, eyebrow=None, subtitle=None, tail=
     if subtitle:
         hdr.append('  <div class="page-subtitle">%s</div>' % e(subtitle))
     hdr.append('</div>')
-    body = ('<body data-pagefind-filter="section:%s">\n<div class="page-content">\n%s\n'
+    cls = ' class="%s"' % body_class if body_class else ''
+    body = ('<body%s data-pagefind-filter="section:%s">\n<div class="page-content">\n%s\n'
             '<div class="content">\n%s\n</div>\n</div>\n%s</body>\n</html>\n'
-            % (section, '\n'.join(hdr), content, tail))
-    write(path, head(path, title, kind) + body)
+            % (cls, section, '\n'.join(hdr), content, tail))
+    write(path, head(path, title, kind, nav=nav) + body)
 
 
 def chip(ref, r, text=None):
@@ -1449,6 +1456,171 @@ def build_gate():
 
 
 # ---------------------------------------------------------------------------
+# GUEST PLAYERS: one page, with none of the site's navigation on it. Two
+# folding sections (the story, how the game works), then a tab per
+# ready-made character, and a button that exports the lot as a PDF.
+# Data: campaign_guests.py.
+# Styling and the print layout: the "Guest players" block in styles/site.css.
+# ---------------------------------------------------------------------------
+
+def signed(s):
+    """A modifier for display: the hyphen in "-1" becomes a true minus."""
+    return e(s).replace('-', '&minus;')
+
+
+def ticks(n, what):
+    """n boxes to tick as a limited use is spent. Plain checkboxes, no script."""
+    return ''.join('<input class="g-tick" type="checkbox" aria-label="%s, use %d of %d">' % (e(what), i + 1, n)
+                   for i in range(n))
+
+
+def guest_rows(rows):
+    out = []
+    for name, tag, text, uses in rows:
+        out.append('<p class="g-row">%s<b>%s</b>%s %s</p>'
+                   % (('<span class="g-ticks">%s</span> ' % ticks(uses, name)) if uses else '', e(name),
+                      (' <em>(%s)</em>' % e(tag)) if tag else '', e(text)))
+    return '<div class="g-rows">\n%s\n</div>' % '\n'.join(out)
+
+
+def guest_sheet(s, active=False):
+    abilities = ''.join(
+        '<div class="g-ability"><span class="g-key">%s</span><span class="g-val">%s</span>'
+        '<span class="g-note">save %s</span></div>'
+        % (e(name), signed(mod), ('<b>%s</b>' % signed(save)) if prof else signed(save))
+        for name, mod, save, prof in s['abilities'])
+    attacks = ''.join(
+        '<tr><td>%s</td><td data-label="To hit">%s</td><td data-label="Damage">%s</td>'
+        '<td data-label="Reach">%s</td></tr>\n' % (e(a), e(b), e(c), e(d)) for a, b, c, d in s['attacks'])
+    also = guest_rows([(n, '', t, 0) for n, t in s['also']]) if s.get('also') else ''
+    blocks = []
+    for b in s['blocks']:
+        part = ['<div class="brief-heading">%s</div>' % e(b['title'])]
+        for lbl, groups, note in b.get('pools', []):
+            boxes = ''.join('<span class="g-ticks">%s%s</span>'
+                            % (('<span class="g-pool-sub">%s</span>' % e(sub)) if sub else '',
+                               ticks(n, ('%s %s' % (sub, lbl)).strip()))
+                            for sub, n in groups)
+            part.append('<div class="g-pool"><span class="g-key">%s</span>%s<span class="g-note">%s</span></div>'
+                        % (e(lbl), boxes, e(note)))
+        part.append(guest_rows(b['rows']))
+        if b.get('note'):
+            part.append('<p class="g-hint">%s</p>' % e(b['note']))
+        blocks.append('\n'.join(part))
+    skills = ''.join('<dt>%s</dt><dd>%s</dd>' % (e(n), signed(v)) for n, v in s['skills'])
+    turn = ''.join('<li>%s</li>' % e(t) for t in s['turn'])
+    return '''  <section class="account-panel g-sheet{on}" id="{slug}" data-panel="{slug}">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">{name}</div><div class="g-pitch">&ldquo;{pitch}&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">{play}</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">{about}</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">{ac}</span><span class="g-note">{ac_note}</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">{hp}</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="{hp}" placeholder="{hp}"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">{speed}</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">{init}</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities">{abilities}</div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">{attacks_label}</div>
+<table class="g-table">
+<thead><tr><th>{attack_head}</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+{attacks}</tbody>
+</table>
+{also}
+{blocks}
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl>{skills}</dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol>{turn}</ol></div>
+</div>
+    </div>
+  </section>'''.format(on=' is-active' if active else '', slug=s['slug'], name=e(s['name']), pitch=e(s['pitch']), play=e(s['play']),
+                       about=e(s['about']), ac=e(s['ac']), ac_note=e(s['ac_note']), hp=e(s['hp']),
+                       speed=e(s['speed']), init=signed(s['init']), abilities=abilities,
+                       attacks_label=e(s['attacks_label']), attack_head=e(s['attack_head']),
+                       attacks=attacks, also=also, blocks='\n'.join(blocks), skills=skills, turn=turn)
+
+
+def build_guests():
+    g = GUESTS
+    story = '\n'.join('<p>%s</p>' % e(p) for p in g['story'])
+    basics = '\n'.join('    <li><b>%s</b> %s</li>' % (e(a), e(b)) for a, b in g['basics'])
+    video = ''
+    if g.get('video'):
+        video = ('<div class="video-block"><div class="video-container"><iframe '
+                 'src="https://www.youtube.com/embed/%s" title="How to play" loading="lazy" allowfullscreen>'
+                 '</iframe></div>\n<div class="video-link">Watch on YouTube: <a href="https://youtu.be/%s" '
+                 'target="_blank" rel="noopener">youtu.be/%s</a></div></div>\n' % ((g['video'],) * 3))
+    caret = ('<svg class="account-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" '
+             'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg>')
+    tabs = []
+    for i, s in enumerate(g['sheets']):
+        tabs.append('''  <button class="account-tab%s" type="button" data-panel="%s" aria-selected="%s">
+    <span class="account-tab-name">%s</span>
+    <span class="account-tab-note">%s</span>
+  </button>''' % (' is-active' if i == 0 else '', s['slug'], 'true' if i == 0 else 'false',
+                  e(s['name']), e(s['play'])))
+    content = '''<div class="g-tools">
+  <button class="g-export" id="js-export" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 13.5h11"/></svg>Export PDF</button>
+</div>
+<details class="account g-fold" open>
+  <summary>{caret}<span class="account-name">Who You Are</span><span class="account-note">Your part in the story</span></summary>
+  <div class="account-body">
+<div class="narrative">
+{story}
+</div>
+  </div>
+</details>
+<details class="account g-fold" open>
+  <summary>{caret}<span class="account-name">How to Play</span><span class="account-note">The game in six ideas</span></summary>
+  <div class="account-body">
+{video}<ul class="brief-list">
+{basics}
+</ul>
+  </div>
+</details>
+<div class="section-label">Choose Your Character</div>
+<p class="g-choose">{choose}</p>
+<div class="railed">
+<div class="account-tabs tabrail">
+{tabs}
+</div>
+<div class="account-panels panels">
+{sheets}
+</div>
+</div>'''.format(caret=caret, story=story, video=video, basics=basics, choose=e(g['choose']),
+                 tabs='\n'.join(tabs),
+                 sheets='\n'.join(guest_sheet(s, i == 0) for i, s in enumerate(g['sheets'])))
+    # Export is the browser's own print-to-PDF, laid out by the print rules in
+    # site.css. Folded sections are opened for the print and put back after,
+    # which also covers a plain Ctrl+P.
+    tail = '''<script>
+(function () {
+  var folds = document.querySelectorAll('details.g-fold'), was = null;
+  window.addEventListener('beforeprint', function () {
+    if (was) return;
+    was = []; folds.forEach(function (d) { was.push(d.open); d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    if (!was) return;
+    folds.forEach(function (d, i) { d.open = was[i]; }); was = null;
+  });
+  var btn = document.getElementById('js-export');
+  if (btn) btn.addEventListener('click', function () { window.print(); });
+})();
+</script>
+'''
+    # nav=False: a guest gets the page and nothing else. The sidebar and the
+    # command bar belong to the party's record, which is not theirs to wade through.
+    page('guests/index.html', g['title'], 'guest', 'guests', content, eyebrow=g['eyebrow'],
+         subtitle=g['subtitle'], body_class='guest-page', tail=tail, nav=False)
+
+
+# ---------------------------------------------------------------------------
 # REDIRECTS for addresses that were shared before the restructure
 # ---------------------------------------------------------------------------
 
@@ -1569,6 +1741,7 @@ def main():
     build_search()
     build_hub()
     build_gate()
+    build_guests()
     build_stubs()
     build_data()
     print('%d files written' % len(written))

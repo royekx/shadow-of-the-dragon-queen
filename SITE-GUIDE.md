@@ -27,6 +27,7 @@ its index is not available yet.
 | `armory/` | Items | `inventory/` |
 | `war-intel/` | Factions and powers | `factions/` |
 | `search/` | Search, with misspelling repair | `search/` |
+| `guests/` | One page for guest players: the story, how to play, and a tab per ready-made character. Sent as a direct link. It has no sidebar or command bar of its own, and is left out of the sidebar and the search index | none |
 | `images/` | The Embers' banner, made by the players. Shown on the hub and The Embers page | none |
 
 Old addresses redirect: the brief and full account pages, `command-post/`,
@@ -39,6 +40,7 @@ Old addresses redirect: the brief and full account pages, `command-post/`,
 | A person, place, item, quest or faction | `_build/campaign_people.py` or `_build/campaign_world.py` | run the build |
 | A journey's account | `_build/journeys/NNN.brief.html`, `NNN.full.html` | run the build |
 | The command bar strip | `STANDING` in `_build/campaign_world.py` | run the build |
+| The guest page: story, basics, character sheets, video | `_build/campaign_guests.py` | run the build |
 | Sidebar sections, scheduler link | `scripts/nav.js` | nothing |
 | Site-specific styling | `styles/site.css` | nothing |
 
@@ -114,3 +116,19 @@ npx -y pagefind --site . \
 ```
 
 `pagefind/` is git-ignored. The Action rebuilds it on every push.
+
+## The guest page
+
+`guests/index.html` is for people sitting in for a session. It is the one
+page built with `nav=False`, so it loads no sidebar and no command bar. Each
+tab has its own address (`guests/#fighter`, `guests/#bard`), so one character
+can be sent on its own.
+
+Export PDF opens the browser's print dialog; choose Save as PDF there. The
+result is the story and How to Play on the first sheet, then every character
+on a sheet of its own, in ink on white. The rules for that are the print
+block at the end of `styles/site.css`.
+
+To reuse it for another session, rewrite `title`, `subtitle` and `story` in
+`_build/campaign_guests.py`. Set `video` there to a YouTube id to put a
+how-to-play video at the top of the How to Play section.

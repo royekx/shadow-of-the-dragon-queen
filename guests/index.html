@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Bracken Hollow &middot; Shadow of the Dragon Queen</title>
+<link rel="stylesheet" href="../styles/base.css">
+<link rel="stylesheet" href="../styles/board.css">
+<link rel="stylesheet" href="../styles/register.css">
+<link rel="stylesheet" href="../styles/journey.css">
+<link rel="stylesheet" href="../styles/site.css">
+<script src="../scripts/ui.js" defer></script>
+</head>
+<body class="guest-page" data-pagefind-filter="section:guests">
+<div class="page-content">
+<div class="page-header">
+  <div class="page-emblem" data-pagefind-ignore><svg viewBox="0 0 120 40" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="0" y1="20" x2="42" y2="20" stroke-width="0.6" opacity="0.4"/><polyline points="38,15 43,20 38,25" opacity="0.5"/><polyline points="33,16 38,20 33,24" opacity="0.3"/><g transform="translate(60,21)"><path d="M0,-15 C1.5,-9 8,-6 8,2 A8,8 0 0 1 -8,2 C-8,-2 -5.5,-4 -4.5,-8 C-2.5,-6.5 -1,-9 0,-15 Z"/><path d="M0,-3 C1,-0.5 3,1 3,4 A3,3 0 0 1 -3,4 C-3,1.5 -1,0.5 0,-3 Z" fill="currentColor" stroke="none" opacity="0.75"/></g><polyline points="82,15 77,20 82,25" opacity="0.3"/><polyline points="87,16 82,20 87,24" opacity="0.5"/><line x1="78" y1="20" x2="120" y2="20" stroke-width="0.6" opacity="0.4"/></svg></div>
+  <div class="page-eyebrow">Guest Players</div>
+  <h1 class="page-title" data-pagefind-meta="title">Welcome to Bracken Hollow</h1>
+  <div class="page-subtitle">One evening of Dungeons &amp; Dragons. Read the top of this page, choose a character, and you are ready.</div>
+</div>
+<div class="content">
+<div class="g-tools">
+  <button class="g-export" id="js-export" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v8M4.5 6.5L8 10l3.5-3.5M2.5 13.5h11"/></svg>Export PDF</button>
+</div>
+<details class="account g-fold" open>
+  <summary><svg class="account-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg><span class="account-name">Who You Are</span><span class="account-note">Your part in the story</span></summary>
+  <div class="account-body">
+<div class="narrative">
+<p>The two of you travel together, on an errand your Dungeon Master will tell you about. A few days ago you stopped for the night in Bracken Hollow, a quiet forest village off the road east of Kalaman. When you tried to leave, the road led straight back in.</p>
+<p>Three moons hang over the village in a standing eclipse, and each hour of it brings its own danger. At the worst of them, a stone monument on the hill wakes and one villager vanishes. An old soldier, Sergeant Boyd, keeps people fed and indoors, and you have stayed close to him. Two travelers stood little chance against it.</p>
+<p>Then five strangers walked in, climbed the hill, and brought it down. It will rise again at the next eclipse, and they mean to break the spell before then. You have decided to help.</p>
+</div>
+  </div>
+</details>
+<details class="account g-fold" open>
+  <summary><svg class="account-caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 2l4 4-4 4"/></svg><span class="account-name">How to Play</span><span class="account-note">The game in six ideas</span></summary>
+  <div class="account-body">
+<ul class="brief-list">
+    <li><b>Say what you do.</b> You can try anything. Describe what your character does, and the Dungeon Master (DM) tells you what happens or what to roll.</li>
+    <li><b>The d20 decides.</b> When the outcome is uncertain, roll the twenty-sided die, add the number from your sheet, and say the total. Higher is better.</li>
+    <li><b>Armor Class and Hit Points.</b> AC is the number an attack must reach to hit you. HP is how much harm you can take. At 0 HP you fall, and a friend can get you back up.</li>
+    <li><b>Your turn in a fight.</b> Move up to your speed and take one action, usually an attack or a spell. Some abilities are a bonus action (a quick extra) or a reaction (an answer on someone else&#x27;s turn).</li>
+    <li><b>Checks and saves.</b> A check is you attempting something: d20 plus that skill or ability number. A saving throw is you resisting something: d20 plus the save number beside that ability.</li>
+    <li><b>Reading your sheet.</b> &quot;+5 to hit&quot; is d20 + 5. &quot;1d8+3&quot; is one eight-sided die plus 3. &quot;Roll twice&quot; is two d20s, keeping the higher or lower as stated. Tick a box when you spend a limited use.</li>
+</ul>
+  </div>
+</details>
+<div class="section-label">Choose Your Character</div>
+<p class="g-choose">Each sheet lists everything that character can do, and both of you may choose the same one. Your character&#x27;s name and look are yours to decide.</p>
+<div class="railed">
+<div class="account-tabs tabrail">
+  <button class="account-tab is-active" type="button" data-panel="fighter" aria-selected="true">
+    <span class="account-tab-name">Fighter</span>
+    <span class="account-tab-note">Simplest</span>
+  </button>
+  <button class="account-tab" type="button" data-panel="ranger" aria-selected="false">
+    <span class="account-tab-name">Ranger</span>
+    <span class="account-tab-note">Simple, three spells</span>
+  </button>
+  <button class="account-tab" type="button" data-panel="sorcerer" aria-selected="false">
+    <span class="account-tab-name">Sorcerer</span>
+    <span class="account-tab-note">A handful of spells</span>
+  </button>
+  <button class="account-tab" type="button" data-panel="artificer" aria-selected="false">
+    <span class="account-tab-name">Artificer</span>
+    <span class="account-tab-note">A handful of spells</span>
+  </button>
+  <button class="account-tab" type="button" data-panel="bard" aria-selected="false">
+    <span class="account-tab-name">Bard</span>
+    <span class="account-tab-note">Most options</span>
+  </button>
+</div>
+<div class="account-panels panels">
+  <section class="account-panel g-sheet is-active" id="fighter" data-panel="fighter">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">Fighter</div><div class="g-pitch">&ldquo;I want to stand in front and hit things.&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">Simplest</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">You are a trained warrior in heavy armor. You are the hardest person here to hurt, and you land a solid blow almost every turn. Your place is between the danger and your friends. This is the most straightforward character of the five.</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">18</span><span class="g-note">chain mail and shield</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">28</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="28" placeholder="28"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">30 ft</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">+1</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities"><div class="g-ability"><span class="g-key">Strength</span><span class="g-val">+3</span><span class="g-note">save <b>+5</b></span></div><div class="g-ability"><span class="g-key">Dexterity</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Constitution</span><span class="g-val">+2</span><span class="g-note">save <b>+4</b></span></div><div class="g-ability"><span class="g-key">Intelligence</span><span class="g-val">&minus;1</span><span class="g-note">save &minus;1</span></div><div class="g-ability"><span class="g-key">Wisdom</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Charisma</span><span class="g-val">+0</span><span class="g-note">save +0</span></div></div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">Attacks</div>
+<table class="g-table">
+<thead><tr><th>Weapon</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+<tr><td>Longsword</td><td data-label="To hit">d20 +5</td><td data-label="Damage">1d8+5 slashing</td><td data-label="Reach">A foe next to you</td></tr>
+<tr><td>Javelin</td><td data-label="To hit">d20 +5</td><td data-label="Damage">1d6+3 piercing</td><td data-label="Reach">Thrown, up to 30 ft. You carry four.</td></tr>
+</tbody>
+</table>
+
+<div class="brief-heading">Special Abilities</div>
+<div class="g-rows">
+<p class="g-row"><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Second Wind, use 1 of 1"></span> <b>Second Wind</b> <em>(bonus action)</em> Catch your breath and regain 1d10+3 HP. Returns after a short rest.</p>
+<p class="g-row"><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Action Surge, use 1 of 1"></span> <b>Action Surge</b> Take a second action this turn, usually another attack. Returns after a short rest.</p>
+</div>
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl><dt>Athletics</dt><dd>+5</dd><dt>Perception</dt><dd>+3</dd><dt>Survival</dt><dd>+3</dd><dt>Intimidation</dt><dd>+2</dd></dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol><li>Move next to the biggest threat.</li><li>Attack with your longsword.</li><li>Badly hurt? Use Second Wind. Big moment? Use Action Surge and attack again.</li></ol></div>
+</div>
+    </div>
+  </section>
+  <section class="account-panel g-sheet" id="ranger" data-panel="ranger">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">Ranger</div><div class="g-pitch">&ldquo;I want to strike from a distance and read the wild.&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">Simple, three spells</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">You are a hunter and tracker, at home in the forest. You are deadly with a bow, quick to notice trouble, and the one who finds the trail when everyone else is lost. You also carry a few spells drawn from the wild.</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">15</span><span class="g-note">studded leather</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">25</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="25" placeholder="25"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">30 ft</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">+3</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities"><div class="g-ability"><span class="g-key">Strength</span><span class="g-val">+1</span><span class="g-note">save <b>+3</b></span></div><div class="g-ability"><span class="g-key">Dexterity</span><span class="g-val">+3</span><span class="g-note">save <b>+5</b></span></div><div class="g-ability"><span class="g-key">Constitution</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Intelligence</span><span class="g-val">+0</span><span class="g-note">save +0</span></div><div class="g-ability"><span class="g-key">Wisdom</span><span class="g-val">+2</span><span class="g-note">save +2</span></div><div class="g-ability"><span class="g-key">Charisma</span><span class="g-val">&minus;1</span><span class="g-note">save &minus;1</span></div></div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">Attacks</div>
+<table class="g-table">
+<thead><tr><th>Weapon</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+<tr><td>Longbow</td><td data-label="To hit">d20 +7</td><td data-label="Damage">1d8+3 piercing</td><td data-label="Reach">Up to 150 ft</td></tr>
+<tr><td>Shortsword</td><td data-label="To hit">d20 +5</td><td data-label="Damage">1d6+3 piercing</td><td data-label="Reach">A foe next to you</td></tr>
+</tbody>
+</table>
+
+<div class="brief-heading">Spells</div>
+<div class="g-pool"><span class="g-key">Spell slots</span><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 1 of 3"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 2 of 3"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 3 of 3"></span><span class="g-note">Each spell you cast spends one. Targets need 12 or higher on a save to resist.</span></div>
+<div class="g-rows">
+<p class="g-row"><b>Hunter&#x27;s Mark</b> <em>(bonus action)</em> Mark one foe you can see. Each of your hits on it deals an extra 1d6 damage, for up to an hour.</p>
+<p class="g-row"><b>Ensnaring Strike</b> <em>(bonus action)</em> Your next hit sprouts vines. The target makes a Strength save or is held in place.</p>
+<p class="g-row"><b>Cure Wounds</b> <em>(action)</em> Touch someone to restore 1d8+2 HP.</p>
+</div>
+<p class="g-hint">Hunter&#x27;s Mark and Ensnaring Strike both take your focus, so keep one going at a time.</p>
+<div class="brief-heading">Traits</div>
+<div class="g-rows">
+<p class="g-row"><b>Favored Enemy: beasts</b> Roll twice and keep the higher when you track beasts or recall what you know of them. Wolves count.</p>
+<p class="g-row"><b>Natural Explorer: forest</b> In woodland you keep your bearings and find food and water with ease.</p>
+</div>
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl><dt>Stealth</dt><dd>+5</dd><dt>Perception</dt><dd>+4</dd><dt>Survival</dt><dd>+4</dd><dt>Nature</dt><dd>+2</dd></dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol><li>Stay back where you have a clear shot.</li><li>First turn: Hunter&#x27;s Mark on the main threat, then shoot.</li><li>Every turn after: shoot the marked target.</li></ol></div>
+</div>
+    </div>
+  </section>
+  <section class="account-panel g-sheet" id="sorcerer" data-panel="sorcerer">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">Sorcerer</div><div class="g-pitch">&ldquo;I want to throw fire.&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">A handful of spells</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">Magic runs in your blood and answers when you call. You deal the most damage of the five and you are the easiest to hurt, so keep your friends between you and the danger. A small pool of Sorcery Points lets you bend your spells.</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">14</span><span class="g-note">Mage Armor, already cast</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">20</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="20" placeholder="20"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">30 ft</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">+1</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities"><div class="g-ability"><span class="g-key">Strength</span><span class="g-val">&minus;1</span><span class="g-note">save &minus;1</span></div><div class="g-ability"><span class="g-key">Dexterity</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Constitution</span><span class="g-val">+2</span><span class="g-note">save <b>+4</b></span></div><div class="g-ability"><span class="g-key">Intelligence</span><span class="g-val">+0</span><span class="g-note">save +0</span></div><div class="g-ability"><span class="g-key">Wisdom</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Charisma</span><span class="g-val">+3</span><span class="g-note">save <b>+5</b></span></div></div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">Cantrips: free, every turn</div>
+<table class="g-table">
+<thead><tr><th>Cantrip</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+<tr><td>Fire Bolt</td><td data-label="To hit">d20 +5</td><td data-label="Damage">1d10 fire</td><td data-label="Reach">Up to 120 ft</td></tr>
+</tbody>
+</table>
+<div class="g-rows">
+<p class="g-row"><b>Mage Hand</b> A ghostly hand moves small things within 30 ft.</p>
+<p class="g-row"><b>Light</b> An object glows like a torch.</p>
+<p class="g-row"><b>Prestidigitation</b> Small harmless tricks: sparks, a breeze, a clean cloak.</p>
+</div>
+<div class="brief-heading">Spells</div>
+<div class="g-pool"><span class="g-key">Spell slots</span><span class="g-ticks"><span class="g-pool-sub">1st</span><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 1 of 3"><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 2 of 3"><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 3 of 3"></span><span class="g-ticks"><span class="g-pool-sub">2nd</span><input class="g-tick" type="checkbox" aria-label="2nd Spell slots, use 1 of 2"><input class="g-tick" type="checkbox" aria-label="2nd Spell slots, use 2 of 2"></span><span class="g-note">A spell spends one slot of its level. Targets resist on a save of 13 or higher.</span></div>
+<div class="g-rows">
+<p class="g-row"><b>Burning Hands</b> <em>(1st)</em> A 15 ft cone of flame. Each creature in it makes a Dexterity save: 3d6 fire, or half on a success.</p>
+<p class="g-row"><b>Scorching Ray</b> <em>(2nd)</em> Three rays, up to 120 ft, at one target or several. Roll d20 +5 for each. 2d6 fire per hit.</p>
+<p class="g-row"><b>Shield</b> <em>(1st, reaction)</em> When an attack hits you, gain +5 AC until your next turn. That may turn the hit into a miss.</p>
+</div>
+<div class="brief-heading">Sorcery Points</div>
+<div class="g-pool"><span class="g-key">Points</span><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Points, use 1 of 3"><input class="g-tick" type="checkbox" aria-label="Points, use 2 of 3"><input class="g-tick" type="checkbox" aria-label="Points, use 3 of 3"></span><span class="g-note">Spend one as you cast a spell.</span></div>
+<div class="g-rows">
+<p class="g-row"><b>Empowered</b> Reroll up to three of the spell&#x27;s damage dice and keep the new results.</p>
+<p class="g-row"><b>Careful</b> Choose up to three friends caught in your blast. They pass the save automatically.</p>
+</div>
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl><dt>Persuasion</dt><dd>+5</dd><dt>Deception</dt><dd>+5</dd><dt>Insight</dt><dd>+3</dd><dt>Arcana</dt><dd>+2</dd></dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol><li>Most turns: Fire Bolt from behind your friends.</li><li>Enemies bunched together: Burning Hands.</li><li>One tough enemy: Scorching Ray.</li><li>An attack hits you: Shield.</li></ol></div>
+</div>
+    </div>
+  </section>
+  <section class="account-panel g-sheet" id="artificer" data-panel="artificer">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">Artificer</div><div class="g-pitch">&ldquo;I want gadgets and clever fixes.&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">A handful of spells</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">You are an inventor who works magic through devices of your own making. Your reinforced gear keeps you sturdy while you solve problems: mend the wounded, light up hidden enemies, sharpen a friend&#x27;s roll.</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">18</span><span class="g-note">scale mail and shield</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">24</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="24" placeholder="24"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">30 ft</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">+1</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities"><div class="g-ability"><span class="g-key">Strength</span><span class="g-val">&minus;1</span><span class="g-note">save &minus;1</span></div><div class="g-ability"><span class="g-key">Dexterity</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Constitution</span><span class="g-val">+2</span><span class="g-note">save <b>+4</b></span></div><div class="g-ability"><span class="g-key">Intelligence</span><span class="g-val">+3</span><span class="g-note">save <b>+5</b></span></div><div class="g-ability"><span class="g-key">Wisdom</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Charisma</span><span class="g-val">+0</span><span class="g-note">save +0</span></div></div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">Cantrips: free, every turn</div>
+<table class="g-table">
+<thead><tr><th>Cantrip</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+<tr><td>Ray of Frost</td><td data-label="To hit">d20 +6</td><td data-label="Damage">1d8 cold</td><td data-label="Reach">60 ft. Slows the target by 10 ft for a turn.</td></tr>
+</tbody>
+</table>
+<div class="g-rows">
+<p class="g-row"><b>Guidance</b> Touch a friend. They add 1d4 to one skill check of their choice within the next minute.</p>
+</div>
+<div class="brief-heading">Spells</div>
+<div class="g-pool"><span class="g-key">Spell slots</span><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 1 of 3"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 2 of 3"><input class="g-tick" type="checkbox" aria-label="Spell slots, use 3 of 3"></span><span class="g-note">Each spell you cast spends one. Targets need 13 or higher on a save to resist.</span></div>
+<div class="g-rows">
+<p class="g-row"><b>Cure Wounds</b> Touch someone to restore 1d8+3 HP.</p>
+<p class="g-row"><b>Faerie Fire</b> Creatures in a 20 ft square within 60 ft make a Dexterity save or glow. Attacks against a glowing creature roll twice and keep the higher.</p>
+<p class="g-row"><b>Thunderwave</b> A 15 ft blast in front of you. Each creature makes a Constitution save: 2d8 thunder and pushed 10 ft, or half damage and no push on a success.</p>
+<p class="g-row"><b>Detect Magic</b> For 10 minutes you sense magic within 30 ft of you.</p>
+</div>
+<p class="g-hint">Guidance and Faerie Fire both take your focus, so keep one going at a time.</p>
+<div class="brief-heading">Traits</div>
+<div class="g-rows">
+<p class="g-row"><b>Magical Tinkering</b> Touch a tiny object to make it glow, play a recorded sound, or display a short message.</p>
+<p class="g-row"><b>Infusions</b> Your improvements to your armor and tools are already counted in the numbers on this sheet.</p>
+</div>
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl><dt>Investigation</dt><dd>+5</dd><dt>Arcana</dt><dd>+5</dd><dt>Perception</dt><dd>+3</dd><dt>Thieves&#x27; tools</dt><dd>+3</dd></dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol><li>Most turns: Ray of Frost.</li><li>A friend is hurt: Cure Wounds.</li><li>Several enemies: Faerie Fire, so everyone hits more often.</li><li>Before a friend&#x27;s skill check: Guidance.</li></ol></div>
+</div>
+    </div>
+  </section>
+  <section class="account-panel g-sheet" id="bard" data-panel="bard">
+    <div class="account-body">
+<div class="g-head">
+  <div><div class="g-name">Bard</div><div class="g-pitch">&ldquo;I want to talk my way through it and lift my friends.&rdquo;</div></div>
+  <div class="g-badges"><span class="log-badge">Level 3</span><span class="log-type-badge">Most options</span></div>
+</div>
+<div class="g-nameline">Character name</div>
+<p class="g-about">You work magic through words, music, and nerve. You are the best talker at the table and the best at making everyone around you better. This sheet has the most options of the five, so it suits someone who enjoys choices.</p>
+<div class="g-vitals">
+  <div class="g-vital"><span class="g-key">Armor Class</span><span class="g-val">13</span><span class="g-note">leather armor</span></div>
+  <div class="g-vital g-hp"><div class="g-hp-full"><span class="g-key">Hit Points</span><span class="g-val">21</span><span class="g-note">at full health</span></div><label class="g-now"><span class="g-note">Right now</span><input type="number" inputmode="numeric" min="0" max="21" placeholder="21"></label></div>
+  <div class="g-vital"><span class="g-key">Speed</span><span class="g-val">30 ft</span><span class="g-note">per turn</span></div>
+  <div class="g-vital"><span class="g-key">Initiative</span><span class="g-val">+3</span><span class="g-note">d20 + this when a fight starts</span></div>
+</div>
+<div class="g-abilities"><div class="g-ability"><span class="g-key">Strength</span><span class="g-val">&minus;1</span><span class="g-note">save &minus;1</span></div><div class="g-ability"><span class="g-key">Dexterity</span><span class="g-val">+2</span><span class="g-note">save <b>+4</b></span></div><div class="g-ability"><span class="g-key">Constitution</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Intelligence</span><span class="g-val">+0</span><span class="g-note">save +0</span></div><div class="g-ability"><span class="g-key">Wisdom</span><span class="g-val">+1</span><span class="g-note">save +1</span></div><div class="g-ability"><span class="g-key">Charisma</span><span class="g-val">+3</span><span class="g-note">save <b>+5</b></span></div></div>
+<p class="g-hint">Add the large number to any d20 roll that uses that ability. Add the save number when the DM calls for that saving throw.</p>
+<div class="brief-heading">Attacks and cantrips: free, every turn</div>
+<table class="g-table">
+<thead><tr><th>Attack</th><th>To hit</th><th>Damage</th><th>Reach</th></tr></thead>
+<tbody>
+<tr><td>Rapier</td><td data-label="To hit">d20 +4</td><td data-label="Damage">1d8+2 piercing</td><td data-label="Reach">A foe next to you</td></tr>
+<tr><td>Vicious Mockery</td><td data-label="To hit">Wisdom save</td><td data-label="Damage">1d4 psychic</td><td data-label="Reach">60 ft. Its next attack rolls twice, keeps the lower.</td></tr>
+</tbody>
+</table>
+<div class="g-rows">
+<p class="g-row"><b>Minor Illusion</b> Create a sound, or a still image up to the size of a chest, for one minute.</p>
+</div>
+<div class="brief-heading">Spells</div>
+<div class="g-pool"><span class="g-key">Spell slots</span><span class="g-ticks"><span class="g-pool-sub">1st</span><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 1 of 4"><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 2 of 4"><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 3 of 4"><input class="g-tick" type="checkbox" aria-label="1st Spell slots, use 4 of 4"></span><span class="g-ticks"><span class="g-pool-sub">2nd</span><input class="g-tick" type="checkbox" aria-label="2nd Spell slots, use 1 of 2"><input class="g-tick" type="checkbox" aria-label="2nd Spell slots, use 2 of 2"></span><span class="g-note">A spell spends one slot of its level. Targets resist on a save of 13 or higher.</span></div>
+<div class="g-rows">
+<p class="g-row"><b>Healing Word</b> <em>(1st, bonus action)</em> A friend within 60 ft regains 1d4+3 HP.</p>
+<p class="g-row"><b>Dissonant Whispers</b> <em>(1st)</em> A creature within 60 ft makes a Wisdom save: 3d6 psychic and it flees. Half on a success.</p>
+<p class="g-row"><b>Faerie Fire</b> <em>(1st)</em> Creatures in a 20 ft square make a Dexterity save or glow. Attacks against them roll twice and keep the higher.</p>
+<p class="g-row"><b>Charm Person</b> <em>(1st)</em> A person within 30 ft makes a Wisdom save or treats you as a friend for an hour.</p>
+<p class="g-row"><b>Shatter</b> <em>(2nd)</em> A 10 ft burst within 60 ft. Each creature makes a Constitution save: 3d8 thunder, or half on a success.</p>
+<p class="g-row"><b>Hold Person</b> <em>(2nd)</em> A person within 60 ft makes a Wisdom save or is frozen in place. It rolls again each turn.</p>
+</div>
+<div class="brief-heading">Traits</div>
+<div class="g-rows">
+<p class="g-row"><span class="g-ticks"><input class="g-tick" type="checkbox" aria-label="Bardic Inspiration, use 1 of 3"><input class="g-tick" type="checkbox" aria-label="Bardic Inspiration, use 2 of 3"><input class="g-tick" type="checkbox" aria-label="Bardic Inspiration, use 3 of 3"></span> <b>Bardic Inspiration</b> <em>(bonus action)</em> A friend within 60 ft adds 1d6 to one attack, check, or save of their choice.</p>
+<p class="g-row"><b>Jack of All Trades</b> Add +1 to any skill check outside your list.</p>
+</div>
+<div class="g-foot">
+  <div class="g-skills"><div class="brief-heading">Skills</div><dl><dt>Persuasion</dt><dd>+7</dd><dt>Deception</dt><dd>+7</dd><dt>Performance</dt><dd>+5</dd><dt>Insight</dt><dd>+3</dd></dl><p class="g-hint">Any other skill: d20 + the matching ability above.</p></div>
+  <div class="callout g-turn"><span class="callout-label">On your turn</span><ol><li>Bonus action first: inspire a friend or cast Healing Word.</li><li>Action: Vicious Mockery, or a bigger spell when it counts.</li><li>Outside a fight: you do the talking.</li></ol></div>
+</div>
+    </div>
+  </section>
+</div>
+</div>
+</div>
+</div>
+<script>
+(function () {
+  var folds = document.querySelectorAll('details.g-fold'), was = null;
+  window.addEventListener('beforeprint', function () {
+    if (was) return;
+    was = []; folds.forEach(function (d) { was.push(d.open); d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    if (!was) return;
+    folds.forEach(function (d, i) { d.open = was[i]; }); was = null;
+  });
+  var btn = document.getElementById('js-export');
+  if (btn) btn.addEventListener('click', function () { window.print(); });
+})();
+</script>
+</body>
+</html>
