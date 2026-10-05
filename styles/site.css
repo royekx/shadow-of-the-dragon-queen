@@ -347,11 +347,12 @@ html { overflow-x: clip; }
   .guest-page .g-fold + .section-label { margin-top: 1.2rem; }
   .guest-page .g-choose { margin-bottom: 0; }
   .guest-page .page-title { color: #58180d; }
-  .guest-page .g-fold { border: none; background: none; margin-bottom: 1rem; }
+  .guest-page .g-fold { border: none; background: none; margin-bottom: 0.8rem; }
   .guest-page .g-fold > summary { border-radius: 0; padding: 0 0 0.35rem; margin-bottom: 0.2rem; border-bottom: 1px solid #b9a99c; }
   .guest-page .g-fold .account-body > *:first-child { margin-top: 0.8rem; }
   .guest-page .narrative, .guest-page .g-about, .guest-page .g-choose { max-width: none; }
-  .guest-page .narrative p { margin-bottom: 0.75rem; font-size: 1rem; line-height: 1.5; }
+  .guest-page .narrative p { margin-bottom: 0.6rem; font-size: 0.97rem; line-height: 1.46; }
+  .guest-page .g-fold .g-hint { display: none; }
   .guest-page .g-fold .brief-list { gap: 0.25rem; }
   .guest-page .g-fold .brief-list li { font-size: 1rem; line-height: 1.4; }
   .guest-page .account-panel { display: block !important; border: none; border-radius: 0; background: none; break-before: page; }
@@ -412,6 +413,6 @@ html { overflow-x: clip; }
   .guest-page .g-rows { gap: 0.28rem; }
   .guest-page .g-row { line-height: 1.38; }
   .guest-page .g-hint { margin-top: 0.35rem; }
-  .guest-page .g-fold .brief-heading { margin-top: 1.1rem; }
+  .guest-page .g-fold .brief-heading { margin-top: 0.8rem; }
   .guest-page .g-row, .guest-page .g-table tr, .guest-page .g-strip { break-inside: avoid; }
 }

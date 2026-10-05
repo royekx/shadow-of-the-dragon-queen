@@ -47,28 +47,30 @@ GUESTS = dict(
     # party left for the hill, so he is how they heard about the strangers.
     # They saw the monument fall. They do not know it can return.
     story=[
-        'Something is wrong in your home village. People lose an afternoon, then whole days. They come '
-        'home with aching backs and dust on their boots, and no memory of where they have been. It had '
-        'begun to happen to the two of you when the neighbors who still had their wits put a letter for '
-        'Kalaman in your hands and slipped you out by night, which was the hard part. There are days '
-        'this past season that neither of you can account for. About a week ago, with the city a day ahead, you and your traveling companion '
-        'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
-        'and no guard at its gate.',
-        'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
-        'and they have stood there since. When you shouldered your packs and walked out, the road '
-        'carried you straight back in on the far side of the village.',
-        'You have watched the moons take their turns several times now: white, then red, then black, '
-        'each with its own danger in the streets. Then comes the hour of the eclipse, when the stone '
-        'monument on the hill wakes and someone vanishes. The village has lived this way for about a '
-        'month. An old soldier, Sergeant Boyd, keeps people fed and indoors. The farms give food only '
-        'under the black moon, when the wolves are out, and the two of you have taken your turns '
-        'carrying sacks back through the dark.',
-        'This last time you stayed behind at the house where the sick are tended. Boyd brought the food '
-        'over himself, and brought news with it: a band of strangers had walked into the village, killed '
-        'the wolves that met them, and were talking of going up the hill at the eclipse. From the doorway '
-        'you watched them climb to meet the monument, and you watched it fall. It is the first time anyone '
-        'in the Hollow has seen that. The letter is still in your coat, and Kalaman is still a day away. '
-        'You and your companion mean to meet those strangers when they come down.',
+        'You and your traveling companion were a day short of Kalaman when the light began to go. The two '
+        'of you turned off the road toward a quiet forest village called Bracken Hollow, with no wall and '
+        'no guard at its gate, meaning to rest for one night and be on your way by morning. That was '
+        'about a week ago.',
+        'The sky went dark as you walked in, and it has stayed dark. Three moons stand over the rooftops '
+        'in a single eclipse. When you shouldered your packs and walked out, the road carried you straight '
+        'back in on the far side of the village. You tried it more than once.',
+        'So you have learned how the place lives. An old soldier named Sergeant Boyd keeps people fed and '
+        'indoors, and he says it has been this way for about a month. The moons take their turns, white, '
+        'then red, then black, and each brings its own trouble to the streets. The farms give food only '
+        'under the black moon, when the wolves are out, and the two of you have taken your turns carrying '
+        'sacks back through the dark. Then comes the hour of the eclipse, when the stone monument on the '
+        'hill wakes and someone vanishes.',
+        'All the while there is the letter in your coat. Something is wrong at home. People lose an '
+        'afternoon, then whole days, and come back with aching backs and dust on their boots and no '
+        'memory of where they have been. It had begun to happen to the two of you. The neighbors who still '
+        'had their wits wrote to Kalaman for help and slipped you out by night to carry it, which was the '
+        'hard part. There are days this past season that neither of you can account for.',
+        'Then, on this last turn of the moons, something changed. You had stayed behind at the house where '
+        'the sick are tended when Boyd came in with the food, and with news: a band of strangers had '
+        'walked into the village, killed the wolves that met them, and were talking of going up the hill '
+        'at the eclipse. From the doorway you watched them climb to meet the monument, and you watched it '
+        'fall. It is the first time anyone in the Hollow has seen that. You and your companion mean to '
+        'meet those strangers when they come down.',
     ],
 
     # The line under "Choose Your Character".
