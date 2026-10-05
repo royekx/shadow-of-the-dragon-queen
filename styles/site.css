@@ -345,10 +345,13 @@ html { overflow-x: clip; }
   .guest-page .page-content, .guest-page .content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .guest-page .page-header { padding: 0 0 0.9rem; margin: 0 0 1.1rem; text-align: left; }
   .guest-page .page-title { color: #58180d; }
-  .guest-page .g-fold { border: none; background: none; margin-bottom: 1.3rem; }
+  .guest-page .g-fold { border: none; background: none; margin-bottom: 1rem; }
   .guest-page .g-fold > summary { border-radius: 0; padding: 0 0 0.35rem; margin-bottom: 0.2rem; border-bottom: 1px solid #b9a99c; }
   .guest-page .g-fold .account-body > *:first-child { margin-top: 0.8rem; }
   .guest-page .narrative, .guest-page .g-about, .guest-page .g-choose { max-width: none; }
+  .guest-page .narrative p { margin-bottom: 0.75rem; font-size: 1rem; line-height: 1.5; }
+  .guest-page .g-fold .brief-list { gap: 0.25rem; }
+  .guest-page .g-fold .brief-list li { font-size: 1rem; line-height: 1.4; }
   .guest-page .account-panel { display: block !important; border: none; border-radius: 0; background: none; break-before: page; }
   .guest-page .account-body { padding: 0; border: none; }
   .guest-page .account-body > *:first-child { margin-top: 0; }

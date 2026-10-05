@@ -30,18 +30,24 @@ GUESTS = dict(
     # How to Play section. None leaves the block off the page.
     video=None,
 
+    # The errand (a courier's job out of Kalaman) is invented for the guests so
+    # they arrive with a reason to be on the road. Change it freely.
     story=[
-        'You and your traveling companion are on the road together, on an errand your Dungeon Master '
-        'will tell you about. A few days ago the two of you stopped for the night in Bracken Hollow, '
-        'a quiet forest village off the road east of Kalaman. When you tried to leave, the road led '
-        'straight back in.',
-        'Three moons hang over the village in a standing eclipse, and each hour of it brings its own '
-        'danger. At the worst of them, a stone monument on the hill wakes and one villager vanishes. '
-        'An old soldier, Sergeant Boyd, keeps people fed and indoors, and you have both stayed close '
-        'to him. Against that monument, the two of you stood little chance.',
-        'Then five strangers walked in, climbed the hill, and brought it down. It will rise again at the '
-        'next eclipse, and they mean to break the spell before then. You and your companion have '
-        'decided to help.',
+        'You and your traveling companion took a courier\'s job in Kalaman: carry a sealed satchel east '
+        'to a river trader, half the coin up front and half on delivery. A few days ago the two of you '
+        'turned off the road to rest for a night in Bracken Hollow, a quiet forest village with no wall '
+        'and no guard at its gate.',
+        'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
+        'and they have stood there since. When you shouldered your packs and walked out, the road '
+        'carried you straight back in on the far side of the village.',
+        'The people here have lived this way for about a month. The moons take their turns, white, '
+        'then red, then black, and each brings its own danger to the streets. Then comes the hour of '
+        'the eclipse, when the stone monument on the hill wakes and someone vanishes. An old soldier, '
+        'Sergeant Boyd, keeps the village fed and indoors, and you have stayed close to him. The two '
+        'of you watched that monument walk once, and knew better than to climb the hill alone.',
+        'Then five strangers arrived, climbed the hill, and brought it down. It will stand again at '
+        'the next eclipse, and they mean to break the spell over this place before then. The satchel '
+        'is still in your pack and the delivery is days late. You and your companion have decided to help.',
     ],
 
     # The line under "Choose Your Character".
@@ -149,7 +155,7 @@ GUESTS = dict(
             scores=dict(STR=8, DEX=13, CON=15, INT=10, WIS=12, CHA=17),
             saves=('CON', 'CHA'),
             skills=('Persuasion', 'Deception', 'Insight', 'Arcana'),
-            ac='14', ac_note='Mage Armor (cast)', hp='20', hit_dice='3d6', speed='30 ft.',
+            ac='14', ac_note='Mage Armor (active)', hp='20', hit_dice='3d6', speed='30 ft.',
             attacks=[('Fire Bolt', '+5', '1d10 fire', 'Cantrip. Range 120 ft.'),
                      ('Dagger', '+3', '1d4+1 piercing', 'Melee, or thrown at range 20/60 ft.')],
             actions=[
@@ -167,8 +173,8 @@ GUESTS = dict(
                     ('Light', 'Action', 'Touch', '', 'An object sheds bright light for 1 hour.'),
                     ('Prestidigitation', 'Action', '10 ft.', '', 'A minor trick: sparks, a breeze, a clean cloak, a warmed drink.'),
                 ]),
-                ('1st Level', 4, 1, [
-                    ('Mage Armor', 'Action', 'Touch', '', 'Already cast today, using one slot. Lasts 8 hours.'),
+                ('1st Level', 4, 0, [
+                    ('Mage Armor', 'Action', 'Touch', '', 'Already active when play begins, at no cost. Your Armor Class of 14 includes it.'),
                     ('Burning Hands', 'Action', '15 ft. cone', 'DEX 13',
                      '3d6 fire to each creature in the cone, or half on a successful save.'),
                     ('Shield', 'Reaction', 'Self', '',
