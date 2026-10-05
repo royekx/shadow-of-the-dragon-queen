@@ -10,7 +10,7 @@ window.SOTDQ_STANDING = {
   "posNote": "shut in, with less than a day until the next eclipse",
   "outstanding": "Find the three things that break the spell",
   "detail": {
-    "consequence": "The Emberwake's fury took Aratos in the middle of the fight, and Roshi had to strike him senseless. The monument marked him black before it fell. He lies on the hill, ringed by the horn's spectral warriors. Ked lies senseless nearby. Corvin has run.",
+    "consequence": "The Emberwake's fury took Aratos in the middle of the fight, and Roshi had to strike him senseless. The monument marked him black before it fell. He lies on the hill, guarded by the horn's spectral warriors. Ked lies senseless nearby. Corvin has run.",
     "quests": [
       {
         "name": "The Spell Over Bracken Hollow",
