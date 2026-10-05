@@ -182,6 +182,7 @@ var SOTDQ_VOCAB = [
   "Soth's",
   "Spell",
   "Spellbook",
+  "Stern",
   "Stew",
   "Storm-Charged",
   "Stormblessed",
