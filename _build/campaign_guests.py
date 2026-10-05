@@ -33,16 +33,18 @@ GUESTS = dict(
     # The errand is invented for the guests: they carry a letter from their
     # home village to Kalaman. It gives them a reason to be on the road, a
     # reason to leave for Kalaman with the party afterwards, and a thread to
-    # pick up later. Whose seal is on the writ is left open on purpose.
-    # Where they were during Journey 011: among the villagers who came in from
-    # the food run with sacks, in the second house, where the sick are tended.
-    # They saw the monument fall. They do not know it can return.
+    # pick up later. What is fouling the brook upstream is left open on purpose;
+    # the villagers do not know.
+    # Where they were during Journey 011: in the second house, the one Boyd
+    # carried food to, where the sick are tended. They saw the monument fall.
+    # They do not know it can return.
     story=[
-        'Men came to your home village with a writ from Kalaman and took the winter stores for the war. '
-        'The elders wrote a letter explaining what that will mean when the snow comes, and handed it to '
-        'you and your traveling companion to carry to the city. About a week ago, with Kalaman a day '
-        'ahead, the two of you turned off the road to rest for a night in Bracken Hollow, a quiet forest '
-        'village with no wall and no guard at its gate.',
+        'The brook that turns the mill in your home village has run low and rust-red since the end of '
+        'summer. The wheel stands idle, the fish are gone, and the wells have begun to taste of iron. '
+        'The elders wrote a letter to Kalaman explaining it and asking for help, and handed it to you '
+        'and your traveling companion to carry. About a week ago, with the city a day ahead, the two '
+        'of you turned off the road to rest for a night in Bracken Hollow, a quiet forest village with '
+        'no wall and no guard at its gate.',
         'The light failed as you walked in. Three moons stood over the rooftops in a single eclipse, '
         'and they have stood there since. When you shouldered your packs and walked out, the road '
         'carried you straight back in on the far side of the village.',
@@ -50,11 +52,11 @@ GUESTS = dict(
         'each with its own danger in the streets. Then comes the hour of the eclipse, when the stone '
         'monument on the hill wakes and someone vanishes. The village has lived this way for about a '
         'month. An old soldier, Sergeant Boyd, keeps people fed and indoors. The farms give food only '
-        'under the black moon, when the wolves are out, and the two of you have earned your keep on '
-        'those runs, carrying sacks back through the dark.',
-        'On the last run you brought your share to the house where the sick are tended, and you stayed '
-        'there through the eclipse. From its doorway you watched five strangers climb the hill to meet '
-        'the monument, and you watched it fall. It is the first time anyone in the Hollow has seen that. '
+        'under the black moon, when the wolves are out, and the two of you have taken your turns '
+        'carrying sacks back through the dark.',
+        'This last time you stayed behind at the house where the sick are tended, and Boyd brought the '
+        'food over himself. From its doorway you watched a band of strangers climb the hill to meet the '
+        'monument, and you watched it fall. It is the first time anyone in the Hollow has seen that. '
         'The letter is still in your coat, and Kalaman is still a day away. You and your companion mean '
         'to find those strangers and help.',
     ],
