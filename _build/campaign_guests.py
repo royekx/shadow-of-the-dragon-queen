@@ -46,6 +46,8 @@ GUESTS = dict(
     # carried food to, where the sick are tended. Boyd was still there when the
     # party left for the hill, so he is how they heard about the strangers.
     # They saw the monument fall. They do not know it can return.
+    # They arrived under the red moon, with the battle in the streets. The
+    # party arrived under the black, with the wolves.
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
         'You and your traveling companion were a day short of Kalaman, carrying a letter that asks the '
@@ -54,14 +56,15 @@ GUESTS = dict(
         'When the two of you began losing days of your own, the village elder put the letter in your '
         'hands and slipped you out by night.',
         'As evening drew on, you turned off the road to rest in Bracken Hollow, a quiet forest village '
-        'with no wall and no guard at its gate. The sky went dark as you walked in, and something howled '
-        'close by. An old soldier named Sergeant Boyd pulled you through a doorway ahead of the wolves '
-        'and gave you a place by his fire.',
+        'with no wall and no guard at its gate. The sky turned red as you walked in, and from the lanes '
+        'ahead came shouting, the ring of steel and the sound of running feet. An old soldier named '
+        'Sergeant Boyd pulled you through a doorway before the fighting reached you and gave you a '
+        'place by his fire.',
         'What he told you there sounded like a tired man\'s tale: that three moons hang over the village '
         'in a single eclipse and take their turns, white, then red, then black, each with its own trouble '
         'in the streets, until the hour when the Standing Stone on the hill wakes and walks and someone '
-        'vanishes, and that no one can leave. You thanked him and, once the wolves had gone, walked out '
-        'anyway, and the road carried you straight back in on the far side of the village.',
+        'vanishes, and that no one can leave. You thanked him and, once the streets had gone quiet, '
+        'walked out anyway, and the road carried you straight back in on the far side of the village.',
         'That was a week ago. Since then you have watched the moons turn, carried food in from the farms '
         'with the wolves about, and found every word of it true.',
         'Now a band of strangers has walked into the Hollow and killed the wolves that met them. Boyd '
