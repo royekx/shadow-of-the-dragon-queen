@@ -53,7 +53,10 @@ GUESTS = dict(
     # What they know: people at home keep forgetting things, it had begun to
     # happen to them, and the village elder smuggled them out for help. A company of
     # mercenaries holds the village and watches the roads, which is why they left by
-    # night; who pays the company and what it wants are not on the page. They know who they
+    # night; who pays the company and what it wants are not on the page. The story
+    # puts the mercenaries' arrival before the forgetting, so the order is the hint.
+    # "The three moons" is said as a known thing: Krynn has three, and the guests' characters
+    # would know it. They know who they
     # are and where home is; only stretches of time are missing. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
@@ -69,18 +72,17 @@ GUESTS = dict(
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
         'You and your partner carry a letter from Barrowmere, your home village, to the city of Kalaman, '
-        'asking for help. At home, people '
-        'lose an afternoon, then whole days, and come back with aching backs, dusty boots, and no '
-        'memory of where they went. A company of mercenaries came to "keep the peace" and now watches '
-        'every road. When the two of you began losing days of your own, the village elder slipped you '
-        'past them by night.',
+        'asking for help. A company of mercenaries came to "keep the peace" and now watches every road. '
+        'Soon after, people began losing an afternoon, then whole days, coming back with aching backs, '
+        'dusty boots, and no memory of where they went. When the two of you began losing days of your '
+        'own, the village elder slipped you past the mercenaries by night.',
         'A day short of the city, you stopped in Bracken Hollow, a quiet forest village. The sky turned '
         'red as you walked in, and fighting filled the lanes. An old soldier, Sergeant Boyd, pulled you '
         'through a doorway and gave you a place by his fire.',
-        'He told you three moons hang over the village in one eclipse and take turns, white, then red, '
-        'then black, each with its own trouble. At the last hour the Standing Stone on the hill wakes '
-        'and walks, someone vanishes, and no one can leave. You tried anyway. The road carried you '
-        'straight back in. That was a week ago.',
+        'He told you that here the three moons hang locked in a single eclipse and take turns, white, '
+        'then red, then black, each with its own trouble. At the last hour the Standing Stone on the '
+        'hill wakes and walks, someone vanishes, and no one can leave. You tried anyway. The road '
+        'carried you straight back in. That was a week ago.',
         'Now a band of strangers has walked in, killed the wolves that met them, and climbed the hill '
         'at the eclipse. From a doorway, you watched them bring the Standing Stone down. Nothing else '
         'has changed here in a week. They may be your way out, and your way to help for home.',
