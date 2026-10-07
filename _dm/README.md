@@ -14,3 +14,5 @@ Notes for the DM. Players should not read this folder.
 ## To do
 
 - Build a DM section on the site, the way `prime/` works on Caelestis. On hold until the Caelestis setup is finished.
+- Rename "The Radiant Reliquary" to "The Radiant Reliquary (Kalaman)". There are others.
+- Add place images for the Radiant Reliquary and Bracken Hollow. Korey has both and will upload them.
