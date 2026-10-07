@@ -93,7 +93,7 @@ GUESTS = dict(
            'same one. Your character\'s name, species, and appearance are yours to decide.',
 
     # A line of reassurance at the head of How to Play. None leaves it off.
-    ease='You do not need to remember any of this. The Dungeon Master will guide you and tell you '
+    ease='You do not need to remember everything. The Dungeon Master will guide you and tell you '
          'what to do next, and you can ask anything at any time.',
 
     # Only what a first-time player needs to sit down. The DM calls for every
