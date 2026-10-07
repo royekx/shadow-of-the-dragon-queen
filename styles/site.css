@@ -163,6 +163,8 @@ html { overflow-x: clip; }
 .g-fold .narrative p:last-child { margin-bottom: 0; }
 .g-fold + .section-label { margin-top: 2.4rem; }
 .g-choose { max-width: 46rem; margin: 0 0 1.4rem; font-size: 1.03rem; line-height: 1.6; color: var(--text-dim); }
+/* A line of reassurance at the head of How to Play. It prints, unlike the hints. */
+.g-ease { max-width: 46rem; margin: 0 0 0.9rem; font-size: 1.03rem; font-style: italic; line-height: 1.55; color: var(--text-dim); }
 
 /* Sheet head: the class, a line in its voice, and what kind of character it is. */
 .g-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem 1.4rem; flex-wrap: wrap; }
@@ -353,6 +355,7 @@ html { overflow-x: clip; }
   .guest-page .narrative, .guest-page .g-about, .guest-page .g-choose { max-width: none; }
   .guest-page .narrative p { margin-bottom: 0.6rem; font-size: 0.97rem; line-height: 1.46; }
   .guest-page .g-fold .g-hint { display: none; }
+  .guest-page .g-ease { max-width: none; margin-bottom: 0.45rem; font-size: 1rem; line-height: 1.4; }
   .guest-page .g-fold .brief-list { gap: 0.25rem; }
   .guest-page .g-fold .brief-list li { font-size: 1rem; line-height: 1.4; }
   .guest-page .account-panel { display: block !important; border: none; border-radius: 0; background: none; break-before: page; }

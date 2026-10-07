@@ -92,6 +92,10 @@ GUESTS = dict(
     choose='Each sheet lists everything that character can do. You and your partner may choose the '
            'same one. Your character\'s name, species, and appearance are yours to decide.',
 
+    # A line of reassurance at the head of How to Play. None leaves it off.
+    ease='You do not need to remember any of this. The Dungeon Master will guide you and tell you '
+         'what to do next, and you can ask anything at any time.',
+
     # Only what a first-time player needs to sit down. The DM calls for every
     # roll and explains the rest at the table, so checks, saves, advantage
     # and the action types are left for then.
@@ -112,7 +116,7 @@ GUESTS = dict(
          'harm you can take. At 0 HP you fall, and a friend can get you back up.'),
         ('Reading your sheet.',
          '"+5" is a number you add to a d20 roll. "1d8+3" means roll one eight-sided die and add 3. '
-         'A box is a limited use: tick it when it is spent. For anything else, ask at the table.'),
+         'A box is a limited use: tick it when it is spent.'),
     ],
 
     # scores:   the six ability scores

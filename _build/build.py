@@ -1668,7 +1668,7 @@ def build_guest_page(g):
 <details class="account g-fold" open>
   <summary>{caret}<span class="account-name">How to Play</span><span class="account-note">The basics</span></summary>
   <div class="account-body">
-{video}<ul class="brief-list">
+{video}{ease}<ul class="brief-list">
 {basics}
 </ul>
 <div class="brief-heading">On Your Turn</div>
@@ -1686,6 +1686,7 @@ def build_guest_page(g):
 <div class="account-panels">
 {sheets}
 </div>'''.format(caret=caret, story=story, video=video, basics=basics, turns=turns, choose=e(g['choose']),
+                 ease=('<p class="g-ease">%s</p>\n' % e(g['ease'])) if g.get('ease') else '',
                  tabs='\n'.join(tabs),
                  sheets='\n'.join(guest_sheet(s, i == 0) for i, s in enumerate(g['sheets'])))
     # Export is the browser's own print-to-PDF, laid out by the print rules in
