@@ -90,7 +90,8 @@ GUESTS = dict(
 
     # The line under "Choose Your Character".
     choose='Each sheet lists everything that character can do. You and your partner may choose the '
-           'same one. Your character\'s name, species, and appearance are yours to decide.',
+           'same one. Your character\'s name, species (human, elf, or dwarf), and appearance are yours to decide. '
+           'Species changes nothing on the sheet.',
 
     # A line of reassurance at the head of How to Play. None leaves it off.
     ease='You do not need to remember everything. The Dungeon Master will guide you and tell you '
@@ -109,8 +110,7 @@ GUESTS = dict(
          'Higher is better.'),
         ('Fights go in turns.',
          'When a fight starts, the DM has everyone roll to set the order. That roll is called '
-         'initiative. On your turn you can move and do one thing, usually an attack or a spell. The '
-         'line for your character under On Your Turn is a good place to start.'),
+         'initiative. On your turn you can move and do one thing, usually an attack or a spell.'),
         ('Armor Class and Hit Points.',
          'Armor Class (AC) is the number an attack must reach to hit you. Hit Points (HP) are how much '
          'harm you can take. At 0 HP you fall, and a friend can get you back up.'),
@@ -128,7 +128,8 @@ GUESTS = dict(
     # spells:   ability, dc, attack, groups [(label, slots, slots already spent,
     #           [(name, time, range, save/attack, effect)])], optional note
     # features: [(name, text)]
-    # turn:     a dependable turn, listed under How to Play
+    # glance:   what the character is good at and the key things it does,
+    #           listed under How to Play. Not a script for a turn.
     sheets=[
         dict(
             slug='fighter', name='Fighter', role='Front-line warrior', complexity='Simple',
@@ -152,10 +153,9 @@ GUESTS = dict(
                        'Armor Class, or hit points, and anything a trained eye would notice about how it fights.'),
                       ('Fighting Style: Dueling',
                        '+2 damage with a one-handed melee weapon. Included in the longsword above.')],
-            turn=['Move next to the biggest threat.',
-                  'Attack with your longsword.',
-                  'Badly hurt: Second Wind. Decisive moment: Action Surge and attack again.',
-                  'Outside a fight: size up whatever worries you with Know Your Enemy.'],
+            glance=['Good at: taking hits and standing between danger and your friends.',
+                    'Key things: your longsword, Second Wind to heal yourself, Action Surge to act twice in '
+                    'one turn, and Know Your Enemy to size up a threat before a fight.'],
         ),
         dict(
             slug='ranger', name='Ranger', role='Archer and tracker', complexity='Simple',
@@ -194,10 +194,9 @@ GUESTS = dict(
                  'and you forage twice as much food.'),
                 ('Fighting Style: Archery', '+2 to attack rolls with ranged weapons. Included in the longbow above.'),
             ],
-            turn=['Stay back where you have a clear shot.',
-                  'First turn: Hunter\'s Mark on the main threat, then shoot.',
-                  'Every turn after: shoot the marked target.',
-                  'Outside a fight: read the tracks, and try Primeval Awareness when something feels wrong.'],
+            glance=['Good at: hitting from far away, tracking, and noticing trouble first.',
+                    'Key things: your longbow, Hunter\'s Mark for extra damage on one target, a healing '
+                    'spell, and Primeval Awareness to sense unnatural creatures nearby.'],
         ),
         dict(
             slug='sorcerer', name='Sorcerer', role='Damage caster', complexity='Moderate',
@@ -244,11 +243,9 @@ GUESTS = dict(
                 ]),
             ]),
             features=[],
-            turn=['Most turns: Fire Bolt from behind your friends.',
-                  'Enemies bunched together: Burning Hands.',
-                  'One tough enemy: Scorching Ray.',
-                  'An attack hits you: Shield.',
-                  'Outside a fight: Telepathic Speech for a private word nobody else can hear.'],
+            glance=['Good at: dealing the most damage of the five, from behind your friends.',
+                    'Key things: Fire Bolt as often as you like, Burning Hands for a group, Scorching Ray '
+                    'for one tough enemy, Shield when you are hit, and Telepathic Speech for a private word.'],
         ),
         dict(
             slug='artificer', name='Artificer', role='Inventor and support', complexity='Moderate',
@@ -293,11 +290,9 @@ GUESTS = dict(
                  'Enhanced Defense (+1 AC) and Enhanced Arcane Focus (+1 to spell attacks). Both are included in the numbers on this sheet.'),
                 ('Tools', 'Thieves\' tools +3.'),
             ],
-            turn=['Most turns: Ray of Frost.',
-                  'A friend is hurt: Cure Wounds.',
-                  'Several enemies: Faerie Fire, so every attack against them has advantage.',
-                  'Before a friend\'s skill check: Guidance.',
-                  'Outside a fight: Detect Magic on anything strange, and your elixir for whoever needs it most.'],
+            glance=['Good at: solving problems and keeping your friends on their feet.',
+                    'Key things: Cure Wounds, Guidance to help a friend\'s roll, Faerie Fire to make enemies '
+                    'easier to hit, Detect Magic for anything strange, and one elixir to hand out.'],
         ),
         dict(
             slug='bard', name='Bard', role='Charmer and support', complexity='Most options',
@@ -346,9 +341,9 @@ GUESTS = dict(
                 ('Bonus Proficiencies',
                  'History and Medicine: you know the old songs and how to tell if someone is truly hurt. Included.'),
             ],
-            turn=['First, something quick: Bardic Inspiration or Healing Word.',
-                  'Then Vicious Mockery, or a bigger spell when it counts.',
-                  'Outside a fight: you do the talking, and you know the old stories.'],
+            glance=['Good at: talking, and making everyone around you better.',
+                    'Key things: Bardic Inspiration to boost a friend\'s roll, Healing Word, Vicious Mockery '
+                    'to rattle an enemy, and knowing the old stories.'],
         ),
     ],
 )
