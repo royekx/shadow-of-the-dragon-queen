@@ -11,8 +11,9 @@ lists them. To add one, append `dict(GUESTS, slug=..., title=...,
 subtitle=..., story=[...])` there: it takes the basics and the sheets
 from GUESTS and brings its own story.
 
-Voice: the page speaks to one reader ("you and your companion"), since
-each guest reads it on their own.
+Voice: the page speaks to one reader ("you and your partner"), since
+each guest reads it on their own. "Partner" is chosen to read as close
+without saying how: the two may be a couple, friends or kin, as the guests like.
 
 Player-known framing only, same as the rest of the site: the story below
 says nothing a villager in Bracken Hollow could not tell a stranger.
@@ -42,11 +43,20 @@ GUESTS = dict(
     video=None,
 
     # The errand is invented for the guests: they carry a letter from their
-    # home village to Kalaman. It gives them a reason to be on the road, a
+    # home village to Kalaman. The village is Barrowmere, invented for this
+    # page and named for the old burial mounds (barrows) beside its lake. DM-side, for when the table asks: it lies in Hinterlund, the
+    # Solamnic province west of Kalaman, about a week on foot, off the road
+    # toward Maelgoth. Bracken Hollow and Tatina Rookledust's home lie the
+    # same way. Only the name is on the page. It gives them a reason to be on the road, a
     # reason to leave for Kalaman with the party afterwards, and a thread to
     # pick up later.
     # What they know: people at home keep forgetting things, it had begun to
-    # happen to them, and the village elder smuggled them out for help. They know who they
+    # happen to them, and the village elder smuggled them out for help. A company of
+    # mercenaries holds the village and watches the roads, which is why they left by
+    # night; who pays the company and what it wants are not on the page. The story
+    # puts the mercenaries' arrival before the forgetting, so the order is the hint.
+    # "The three moons" is said as a known thing: Krynn has three, and the guests' characters
+    # would know it. They know who they
     # are and where home is; only stretches of time are missing. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
@@ -61,57 +71,52 @@ GUESTS = dict(
     # party arrived under the black, with the wolves.
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
-        'You and your traveling companion were a day short of Kalaman, carrying a letter that asks the '
-        'city for help. Something is wrong at home, where people lose an afternoon and then whole days, '
-        'and come back with aching backs and dust on their boots and no memory of where they have been. '
-        'When the two of you began losing days of your own, the village elder put the letter in your '
-        'hands and slipped you out by night.',
-        'As evening drew on, you turned off the road to rest in Bracken Hollow, a quiet forest village '
-        'with no wall and no guard at its gate. The sky turned red as you walked in, and from the lanes '
-        'ahead came shouting, the ring of steel and the sound of running feet. An old soldier named '
-        'Sergeant Boyd pulled you through a doorway before the fighting reached you and gave you a '
-        'place by his fire.',
-        'What he told you there sounded like a tired man\'s tale: that three moons hang over the village '
-        'in a single eclipse and take their turns, white, then red, then black, each with its own trouble '
-        'in the streets, until the hour when the Standing Stone on the hill wakes and walks and someone '
-        'vanishes, and that no one can leave. You thanked him and, once the streets had gone quiet, '
-        'walked out anyway, and the road carried you straight back in on the far side of the village.',
-        'That was a week ago. Since then you have watched the moons turn, carried food in from the farms '
-        'with the wolves about, and found every word of it true.',
-        'Now a band of strangers has walked into the Hollow and killed the wolves that met them. Boyd '
-        'brought word to the house where you were sheltering that they meant to climb the hill at the '
-        'eclipse and bring the Standing Stone down, and from the doorway you watched them do it.',
-        'It is the first thing that has changed here in a week, and perhaps these strangers are the way '
-        'out of this place and the way to get help for your people.',
+        'You and your partner carry a letter from Barrowmere, your home village, to the city of Kalaman, '
+        'asking for help. A company of mercenaries came to "keep the peace" and now watches every road. '
+        'Soon after, people began losing an afternoon, then whole days, coming back with aching backs, '
+        'dusty boots, and no memory of where they went. When the two of you began losing days of your '
+        'own, the village elder slipped you past the mercenaries by night.',
+        'A day short of the city, you stopped in Bracken Hollow, a quiet forest village. The sky turned '
+        'red as you walked in, and fighting filled the lanes. An old soldier, Sergeant Boyd, pulled you '
+        'through a doorway and gave you a place by his fire.',
+        'He told you that here the three moons hang locked in a single eclipse and take turns, white, '
+        'then red, then black, each with its own trouble. At the last hour the Standing Stone on the '
+        'hill wakes and walks, someone vanishes, and no one can leave. You tried anyway. The road '
+        'carried you straight back in. That was a week ago.',
+        'Now a band of strangers has walked in, killed the wolves that met them, and climbed the hill '
+        'at the eclipse. From a doorway, you watched them bring the Standing Stone down. Nothing else '
+        'has changed here in a week. They may be your way out, and your way to help for home.',
     ],
 
     # The line under "Choose Your Character".
-    choose='Each sheet lists everything that character can do. You and your companion may choose the '
+    choose='Each sheet lists everything that character can do. You and your partner may choose the '
            'same one. Your character\'s name, species, and appearance are yours to decide.',
 
+    # A line of reassurance at the head of How to Play. None leaves it off.
+    ease='You do not need to remember everything. The Dungeon Master will guide you and tell you '
+         'what to do next, and you can ask anything at any time.',
+
+    # Only what a first-time player needs to sit down. The DM calls for every
+    # roll and explains the rest at the table, so checks, saves, advantage
+    # and the action types are left for then.
     basics=[
         ('Say what you do.',
          'You can try anything. Describe what your character does, and the Dungeon Master (DM) tells '
-         'you what happens or what to roll.'),
-        ('The d20 decides.',
-         'When the outcome is uncertain, roll the twenty-sided die, add the number from your sheet, '
-         'and say the total. Higher is better.'),
+         'you what happens.'),
+        ('Roll when the DM asks.',
+         'When it is unclear whether something works, the DM asks for a roll and tells you which number '
+         'on your sheet to add. Roll the twenty-sided die (the d20), add that number, and say the total. '
+         'Higher is better.'),
+        ('Fights go in turns.',
+         'When a fight starts, the DM has everyone roll to set the order. That roll is called '
+         'initiative. On your turn you can move and do one thing, usually an attack or a spell. The '
+         'line for your character under On Your Turn is a good place to start.'),
         ('Armor Class and Hit Points.',
          'Armor Class (AC) is the number an attack must reach to hit you. Hit Points (HP) are how much '
          'harm you can take. At 0 HP you fall, and a friend can get you back up.'),
-        ('Your turn in a fight.',
-         'Initiative, rolled when a fight starts, sets the turn order. On your turn, move up to your '
-         'speed and take one action, usually an attack or a spell. Some abilities use a bonus action '
-         'on your turn, or a reaction on someone else\'s.'),
-        ('Checks and saves.',
-         'A check is you attempting something: d20 plus the number beside that skill. A saving throw '
-         'is you resisting something: d20 plus the number beside that ability under Saving Throws.'),
-        ('Advantage and disadvantage.',
-         'With advantage, roll two d20s and keep the higher. With disadvantage, keep the lower.'),
         ('Reading your sheet.',
-         '"Hit +5" is d20 + 5 against the target\'s Armor Class. "1d8+3" is one eight-sided die plus 3. '
-         '"DEX 13" means the target makes a Dexterity save and needs 13 or higher. A box is a '
-         'limited use: tick it when it is spent.'),
+         '"+5" is a number you add to a d20 roll. "1d8+3" means roll one eight-sided die and add 3. '
+         'A box is a limited use: tick it when it is spent.'),
     ],
 
     # scores:   the six ability scores
@@ -341,8 +346,8 @@ GUESTS = dict(
                 ('Bonus Proficiencies',
                  'History and Medicine: you know the old songs and how to tell if someone is truly hurt. Included.'),
             ],
-            turn=['Bonus action first: Bardic Inspiration or Healing Word.',
-                  'Action: Vicious Mockery, or a levelled spell when it counts.',
+            turn=['First, something quick: Bardic Inspiration or Healing Word.',
+                  'Then Vicious Mockery, or a bigger spell when it counts.',
                   'Outside a fight: you do the talking, and you know the old stories.'],
         ),
     ],
