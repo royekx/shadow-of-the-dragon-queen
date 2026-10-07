@@ -92,29 +92,27 @@ GUESTS = dict(
     choose='Each sheet lists everything that character can do. You and your partner may choose the '
            'same one. Your character\'s name, species, and appearance are yours to decide.',
 
+    # Only what a first-time player needs to sit down. The DM calls for every
+    # roll and explains the rest at the table, so checks, saves, advantage
+    # and the action types are left for then.
     basics=[
         ('Say what you do.',
          'You can try anything. Describe what your character does, and the Dungeon Master (DM) tells '
-         'you what happens or what to roll.'),
-        ('The d20 decides.',
-         'When the outcome is uncertain, roll the twenty-sided die, add the number from your sheet, '
-         'and say the total. Higher is better.'),
+         'you what happens.'),
+        ('Roll when the DM asks.',
+         'When it is unclear whether something works, the DM asks for a roll and tells you which number '
+         'on your sheet to add. Roll the twenty-sided die (the d20), add that number, and say the total. '
+         'Higher is better.'),
+        ('Fights go in turns.',
+         'When a fight starts, the DM has everyone roll to set the order. That roll is called '
+         'initiative. On your turn you can move and do one thing, usually an attack or a spell. The '
+         'line for your character under On Your Turn is a good place to start.'),
         ('Armor Class and Hit Points.',
          'Armor Class (AC) is the number an attack must reach to hit you. Hit Points (HP) are how much '
          'harm you can take. At 0 HP you fall, and a friend can get you back up.'),
-        ('Your turn in a fight.',
-         'Initiative, rolled when a fight starts, sets the turn order. On your turn, move up to your '
-         'speed and take one action, usually an attack or a spell. Some abilities use a bonus action '
-         'on your turn, or a reaction on someone else\'s.'),
-        ('Checks and saves.',
-         'A check is you attempting something: d20 plus the number beside that skill. A saving throw '
-         'is you resisting something: d20 plus the number beside that ability under Saving Throws.'),
-        ('Advantage and disadvantage.',
-         'With advantage, roll two d20s and keep the higher. With disadvantage, keep the lower.'),
         ('Reading your sheet.',
-         '"Hit +5" is d20 + 5 against the target\'s Armor Class. "1d8+3" is one eight-sided die plus 3. '
-         '"DEX 13" means the target makes a Dexterity save and needs 13 or higher. A box is a '
-         'limited use: tick it when it is spent.'),
+         '"+5" is a number you add to a d20 roll. "1d8+3" means roll one eight-sided die and add 3. '
+         'A box is a limited use: tick it when it is spent. For anything else, ask at the table.'),
     ],
 
     # scores:   the six ability scores
@@ -344,8 +342,8 @@ GUESTS = dict(
                 ('Bonus Proficiencies',
                  'History and Medicine: you know the old songs and how to tell if someone is truly hurt. Included.'),
             ],
-            turn=['Bonus action first: Bardic Inspiration or Healing Word.',
-                  'Action: Vicious Mockery, or a levelled spell when it counts.',
+            turn=['First, something quick: Bardic Inspiration or Healing Word.',
+                  'Then Vicious Mockery, or a bigger spell when it counts.',
                   'Outside a fight: you do the talking, and you know the old stories.'],
         ),
     ],
