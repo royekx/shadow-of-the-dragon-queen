@@ -128,15 +128,14 @@ GUESTS = dict(
     # spells:   ability, dc, attack, groups [(label, slots, slots already spent,
     #           [(name, time, range, save/attack, effect)])], optional note
     # features: [(name, text)]
-    # glance:   what the character is good at and the key things it does,
-    #           listed under How to Play. Not a script for a turn.
     sheets=[
         dict(
             slug='fighter', name='Fighter', role='Front-line warrior', complexity='Simple',
             quote='Stand behind me. This part is mine.',
-            about='You are a trained warrior in heavy armor. You are the hardest person here to hurt, and '
-                  'you land a solid blow almost every turn. Your place is between the danger and your '
-                  'friends. This is the most straightforward character of the five.',
+            about='You are a trained warrior in heavy armor: the hardest person here to hurt, and your place '
+                  'is between the danger and your friends. Key things: your longsword, Second Wind to heal '
+                  'yourself, Action Surge to act twice in one turn, and Know Your Enemy to size up a threat '
+                  'before a fight. This is the most straightforward character of the five.',
             scores=dict(STR=17, DEX=13, CON=15, INT=8, WIS=12, CHA=10),
             saves=('STR', 'CON'),
             skills=('Athletics', 'Perception', 'Survival', 'Intimidation'),
@@ -153,16 +152,14 @@ GUESTS = dict(
                        'Armor Class, or hit points, and anything a trained eye would notice about how it fights.'),
                       ('Fighting Style: Dueling',
                        '+2 damage with a one-handed melee weapon. Included in the longsword above.')],
-            glance=['Good at: taking hits and standing between danger and your friends.',
-                    'Key things: your longsword, Second Wind to heal yourself, Action Surge to act twice in '
-                    'one turn, and Know Your Enemy to size up a threat before a fight.'],
         ),
         dict(
             slug='ranger', name='Ranger', role='Archer and tracker', complexity='Simple',
             quote='Everything leaves a trail. I only have to be patient.',
-            about='You are a hunter and tracker, at home in the forest. You are deadly with a bow, quick '
-                  'to notice trouble, and the one who finds the trail when everyone else is lost. You '
-                  'also carry a few spells drawn from the wild.',
+            about='You are a hunter and tracker, at home in the forest: deadly with a bow, quick to notice '
+                  'trouble, and the one who finds the trail when everyone else is lost. Key things: your '
+                  'longbow, Hunter\'s Mark for extra damage on one target, a healing spell, and Primeval '
+                  'Awareness to sense unnatural creatures nearby.',
             scores=dict(STR=13, DEX=17, CON=13, INT=10, WIS=14, CHA=8),
             saves=('STR', 'DEX'),
             skills=('Stealth', 'Perception', 'Survival', 'Nature', 'Animal Handling'),
@@ -194,16 +191,14 @@ GUESTS = dict(
                  'and you forage twice as much food.'),
                 ('Fighting Style: Archery', '+2 to attack rolls with ranged weapons. Included in the longbow above.'),
             ],
-            glance=['Good at: hitting from far away, tracking, and noticing trouble first.',
-                    'Key things: your longbow, Hunter\'s Mark for extra damage on one target, a healing '
-                    'spell, and Primeval Awareness to sense unnatural creatures nearby.'],
         ),
         dict(
             slug='sorcerer', name='Sorcerer', role='Damage caster', complexity='Moderate',
             quote='There is a storm under my skin, and today it gets out.',
             about='Magic runs in your blood and answers when you call. You deal the most damage of the '
                   'five and you are the easiest to hurt, so keep your friends between you and the danger. '
-                  'A small pool of Sorcery Points lets you bend your spells.',
+                  'Key things: Fire Bolt as often as you like, Burning Hands for a group, Scorching Ray for '
+                  'one tough enemy, Shield when you are hit, and Telepathic Speech for a private word.',
             scores=dict(STR=8, DEX=13, CON=15, INT=10, WIS=12, CHA=17),
             saves=('CON', 'CHA'),
             skills=('Persuasion', 'Deception', 'Insight', 'Arcana'),
@@ -243,16 +238,14 @@ GUESTS = dict(
                 ]),
             ]),
             features=[],
-            glance=['Good at: dealing the most damage of the five, from behind your friends.',
-                    'Key things: Fire Bolt as often as you like, Burning Hands for a group, Scorching Ray '
-                    'for one tough enemy, Shield when you are hit, and Telepathic Speech for a private word.'],
         ),
         dict(
             slug='artificer', name='Artificer', role='Inventor and support', complexity='Moderate',
             quote='Give me an hour and a box of scrap, and you will have a better plan.',
             about='You are an inventor who works magic through devices of your own making. Your reinforced '
-                  'gear keeps you sturdy while you solve problems: mend the wounded, light up hidden '
-                  'enemies, sharpen a friend\'s roll.',
+                  'gear keeps you sturdy while you solve problems and keep your friends on their feet. Key '
+                  'things: Cure Wounds, Guidance to help a friend\'s roll, Faerie Fire to make enemies easier '
+                  'to hit, Detect Magic for anything strange, and one elixir to hand out.',
             scores=dict(STR=8, DEX=13, CON=15, INT=17, WIS=12, CHA=10),
             saves=('CON', 'INT'),
             skills=('Investigation', 'Arcana', 'Perception', 'Sleight of Hand'),
@@ -290,16 +283,14 @@ GUESTS = dict(
                  'Enhanced Defense (+1 AC) and Enhanced Arcane Focus (+1 to spell attacks). Both are included in the numbers on this sheet.'),
                 ('Tools', 'Thieves\' tools +3.'),
             ],
-            glance=['Good at: solving problems and keeping your friends on their feet.',
-                    'Key things: Cure Wounds, Guidance to help a friend\'s roll, Faerie Fire to make enemies '
-                    'easier to hit, Detect Magic for anything strange, and one elixir to hand out.'],
         ),
         dict(
             slug='bard', name='Bard', role='Charmer and support', complexity='Most options',
             quote='A sharp word, a good song, and somehow everyone walks out alive.',
             about='You work magic through words, music, and nerve. You are the best talker at the table and '
-                  'the best at making everyone around you better. This sheet has the most options of the '
-                  'five, so it suits someone who enjoys choices.',
+                  'the best at making everyone around you better. Key things: Bardic Inspiration to boost a '
+                  'friend\'s roll, Healing Word, Vicious Mockery to rattle an enemy, and knowing the old '
+                  'stories. This sheet has the most options of the five, so it suits someone who enjoys choices.',
             scores=dict(STR=8, DEX=15, CON=13, INT=10, WIS=12, CHA=17),
             saves=('DEX', 'CHA'),
             skills=('Persuasion', 'Deception', 'Performance', 'Insight', 'Sleight of Hand', 'History', 'Medicine'),
@@ -339,11 +330,8 @@ GUESTS = dict(
                 ('Jack of All Trades', '+1 on ability checks you lack proficiency in. Included in the skills on this sheet.'),
                 ('Expertise', 'Double proficiency in Persuasion and Deception. Included.'),
                 ('Bonus Proficiencies',
-                 'History and Medicine: you know the old songs and how to tell if someone is truly hurt. Included.'),
+                 'History and Medicine: the old songs, and how to tell if someone is hurt. Included.'),
             ],
-            glance=['Good at: talking, and making everyone around you better.',
-                    'Key things: Bardic Inspiration to boost a friend\'s roll, Healing Word, Vicious Mockery '
-                    'to rattle an enemy, and knowing the old stories.'],
         ),
     ],
 )

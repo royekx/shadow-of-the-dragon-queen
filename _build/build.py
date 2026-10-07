@@ -1635,10 +1635,6 @@ def build_guests():
 def build_guest_page(g):
     story = '\n'.join('<p>%s</p>' % e(p) for p in g['story'])
     basics = '\n'.join('    <li><b>%s</b> %s</li>' % (e(a), e(b)) for a, b in g['basics'])
-    # What each character is good at and the key things it does, one line
-    # apiece. It sits with the rules so the sheets themselves stay to the numbers.
-    turns = '\n'.join('<p class="g-row"><b>%s</b> %s</p>' % (e(s['name']), e(' '.join(s['glance'])))
-                      for s in g['sheets'])
     video = ''
     if g.get('video'):
         video = ('<div class="video-block"><div class="video-container"><iframe '
@@ -1671,11 +1667,6 @@ def build_guest_page(g):
 {video}{ease}<ul class="brief-list">
 {basics}
 </ul>
-<div class="brief-heading">What Each Character Is Good At</div>
-<p class="g-hint">A quick look at all five, to help you choose and to glance back at during play.</p>
-<div class="g-rows g-turns">
-{turns}
-</div>
   </div>
 </details>
 <div class="section-label">Choose Your Character</div>
@@ -1685,7 +1676,7 @@ def build_guest_page(g):
 </div>
 <div class="account-panels">
 {sheets}
-</div>'''.format(caret=caret, story=story, video=video, basics=basics, turns=turns, choose=e(g['choose']),
+</div>'''.format(caret=caret, story=story, video=video, basics=basics, choose=e(g['choose']),
                  ease=('<p class="g-ease">%s</p>\n' % e(g['ease'])) if g.get('ease') else '',
                  tabs='\n'.join(tabs),
                  sheets='\n'.join(guest_sheet(s, i == 0) for i, s in enumerate(g['sheets'])))
