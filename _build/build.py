@@ -37,7 +37,7 @@ sys.path.insert(0, str(HERE))
 from campaign_people import PCS, NPCS, UNFILED, AFF_LABELS, MET_LABELS   # noqa: E402
 from campaign_world import (CAMPAIGN, JOURNEYS, REGIONS, ATLAS_MAP, PLACES, PLACES_UNLINKED,  # noqa: E402
                             ITEMS, ITEM_TABS, FACTIONS, FACTION_BANDS, QUESTS, STANDING, EXTRA_VOCAB)
-from campaign_guests import GUESTS   # noqa: E402
+from campaign_guests import GUEST_PAGES   # noqa: E402
 
 SITE = CAMPAIGN['title']
 written = []
@@ -1626,7 +1626,13 @@ def guest_sheet(s, active=False):
 
 
 def build_guests():
-    g = GUESTS
+    slugs = [g['slug'] for g in GUEST_PAGES]
+    assert len(slugs) == len(set(slugs)), 'two guest pages share a slug'
+    for g in GUEST_PAGES:
+        build_guest_page(g)
+
+
+def build_guest_page(g):
     story = '\n'.join('<p>%s</p>' % e(p) for p in g['story'])
     basics = '\n'.join('    <li><b>%s</b> %s</li>' % (e(a), e(b)) for a, b in g['basics'])
     # What to do on a turn, one line per character. It sits with the rules
@@ -1703,7 +1709,7 @@ def build_guests():
 '''
     # nav=False: a guest gets the page and nothing else. The sidebar and the
     # command bar belong to the party's record, which is not theirs to wade through.
-    page('guests/index.html', g['title'], 'guest', 'guests', content, eyebrow=g['eyebrow'],
+    page('guests/%s.html' % g['slug'], g['title'], 'guest', 'guests', content, eyebrow=g['eyebrow'],
          subtitle=g['subtitle'], body_class='guest-page', tail=tail, nav=False)
 
 

@@ -1,11 +1,15 @@
 """
-campaign_guests.py - the guest players' page (guests/index.html).
+campaign_guests.py - the guest players' pages (guests/<slug>.html).
 
 One page for someone sitting in for a session: their part in the story,
 how the game works, and a tab per ready-made character. Everything on it
-is static, and it carries none of the site's navigation. To reuse it for
-another session, rewrite `story`, `title` and `subtitle`; the sheets can
-stay as they are.
+is static, and it carries none of the site's navigation.
+
+Each one-shot gets a page of its own, named for its title, and the old
+ones stay where they are as a record. GUEST_PAGES at the foot of this file
+lists them. To add one, append `dict(GUESTS, slug=..., title=...,
+subtitle=..., story=[...])` there: it takes the basics and the sheets
+from GUESTS and brings its own story.
 
 Voice: the page speaks to one reader ("you and your companion"), since
 each guest reads it on their own.
@@ -28,7 +32,9 @@ numbers are entered by hand.
 
 GUESTS = dict(
     eyebrow='Guest Players',
-    title='Strangers in Bracken Hollow',
+    # The file is guests/<slug>.html, so the address says which one-shot it is.
+    slug='the-road-through-bracken-hollow',
+    title='The Road Through Bracken Hollow',
     subtitle='One evening of Dungeons & Dragons. Read the top of this page, choose a character, and you are ready.',
 
     # YouTube id of a short "how to play" video, shown at the top of the
@@ -341,3 +347,8 @@ GUESTS = dict(
         ),
     ],
 )
+
+
+# Every guest page the site carries, oldest first. Each is built to
+# guests/<slug>.html. Slugs must not repeat.
+GUEST_PAGES = [GUESTS]
