@@ -43,7 +43,11 @@ GUESTS = dict(
     video=None,
 
     # The errand is invented for the guests: they carry a letter from their
-    # home village to Kalaman. It gives them a reason to be on the road, a
+    # home village to Kalaman. The village is Deepwell, invented for this
+    # page. DM-side, for when the table asks: it lies in Hinterlund, the
+    # Solamnic province west of Kalaman, about a week on foot, off the road
+    # toward Maelgoth. Bracken Hollow and Tatina Rookledust's home lie the
+    # same way. Only the name is on the page. It gives them a reason to be on the road, a
     # reason to leave for Kalaman with the party afterwards, and a thread to
     # pick up later.
     # What they know: people at home keep forgetting things, it had begun to
@@ -64,7 +68,8 @@ GUESTS = dict(
     # party arrived under the black, with the wolves.
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
-        'You and your partner carry a letter to the city of Kalaman, asking for help. At home, people '
+        'You and your partner carry a letter from Deepwell, your home village, to the city of Kalaman, '
+        'asking for help. At home, people '
         'lose an afternoon, then whole days, and come back with aching backs, dusty boots, and no '
         'memory of where they went. A company of mercenaries came to "keep the peace" and now watches '
         'every road. When the two of you began losing days of your own, the village elder slipped you '
