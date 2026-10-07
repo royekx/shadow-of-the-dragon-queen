@@ -15,7 +15,12 @@ says nothing a villager in Bracken Hollow could not tell a stranger.
 
 Sheets follow the standard character sheet and are plain level 3
 characters with the subclass left off (2014 rules, standard array with
-+2/+1, average hit points). Ability modifiers, saving throws, the full
++2/+1, average hit points). Each sheet carries one borrowed piece so a
+guest has something to do outside a fight: the fighter's Know Your Enemy
+(Battle Master), the sorcerer's Telepathic Speech (Aberrant Mind), the
+artificer's Experimental Elixir (Alchemist, simplified to a choice of
+three), and the bard's History and Medicine (College of Lore). The
+ranger's is Primeval Awareness, which is the class's own. Ability modifiers, saving throws, the full
 skill list and initiative are worked out by the build
 from `scores`, `saves`, `skills`, `expertise` and `jack`. Attack and spell
 numbers are entered by hand.
@@ -130,11 +135,16 @@ GUESTS = dict(
                 ('Bonus Actions', [('Second Wind', '1 / Short Rest', 1, 'Regain 1d10+3 hit points.')]),
                 ('Special', [('Action Surge', '1 / Short Rest', 1, 'On your turn, take one additional action.')]),
             ],
-            features=[('Fighting Style: Dueling',
+            features=[('Know Your Enemy',
+                       'Spend 1 minute watching or talking with a creature outside a fight. The DM tells you '
+                       'whether it is stronger or weaker than you in two things you choose, such as Strength, '
+                       'Armor Class, or hit points, and anything a trained eye would notice about how it fights.'),
+                      ('Fighting Style: Dueling',
                        '+2 damage with a one-handed melee weapon. Included in the longsword above.')],
             turn=['Move next to the biggest threat.',
                   'Attack with your longsword.',
-                  'Badly hurt: Second Wind. Decisive moment: Action Surge and attack again.'],
+                  'Badly hurt: Second Wind. Decisive moment: Action Surge and attack again.',
+                  'Outside a fight: size up whatever worries you with Know Your Enemy.'],
         ),
         dict(
             slug='ranger', name='Ranger', role='Archer and tracker', complexity='Simple',
@@ -148,7 +158,14 @@ GUESTS = dict(
             ac='15', ac_note='Studded leather', hp='25', hit_dice='3d10', speed='30 ft.',
             attacks=[('Longbow', '+7', '1d8+3 piercing', 'Range 150/600 ft. Archery style included.'),
                      ('Shortsword', '+5', '1d6+3 piercing', 'Melee. Finesse, light.')],
-            actions=[],
+            actions=[
+                ('Actions', [
+                    ('Primeval Awareness', '1 spell slot', 0,
+                     'For 1 minute you sense whether any aberrations, celestials, dragons, elementals, fey, '
+                     'fiends, or undead are within 1 mile, or 6 miles in forest. You learn which kinds, '
+                     'not where or how many.'),
+                ]),
+            ],
             spells=dict(ability='Wisdom', dc='12', attack='+4', groups=[
                 ('1st Level', 3, 0, [
                     ('Hunter\'s Mark', 'Bonus', '90 ft.', '',
@@ -168,7 +185,8 @@ GUESTS = dict(
             ],
             turn=['Stay back where you have a clear shot.',
                   'First turn: Hunter\'s Mark on the main threat, then shoot.',
-                  'Every turn after: shoot the marked target.'],
+                  'Every turn after: shoot the marked target.',
+                  'Outside a fight: read the tracks, and try Primeval Awareness when something feels wrong.'],
         ),
         dict(
             slug='sorcerer', name='Sorcerer', role='Damage caster', complexity='Moderate',
@@ -183,6 +201,11 @@ GUESTS = dict(
             attacks=[('Fire Bolt', '+5', '1d10 fire', 'Cantrip. Range 120 ft.'),
                      ('Dagger', '+3', '1d4+1 piercing', 'Melee, or thrown at range 20/60 ft.')],
             actions=[
+                ('Bonus Actions', [
+                    ('Telepathic Speech', '', 0,
+                     'Choose a creature within 30 ft. For the next 3 minutes the two of you can speak mind '
+                     'to mind while within 3 miles of each other. You must share a language.'),
+                ]),
                 ('Special', [
                     ('Sorcery Points', '3 / Long Rest', 3, 'Spend them on Metamagic as you cast a spell.'),
                     ('Empowered Spell', '1 point', 0,
@@ -213,7 +236,8 @@ GUESTS = dict(
             turn=['Most turns: Fire Bolt from behind your friends.',
                   'Enemies bunched together: Burning Hands.',
                   'One tough enemy: Scorching Ray.',
-                  'An attack hits you: Shield.'],
+                  'An attack hits you: Shield.',
+                  'Outside a fight: Telepathic Speech for a private word nobody else can hear.'],
         ),
         dict(
             slug='artificer', name='Artificer', role='Inventor and support', complexity='Moderate',
@@ -228,7 +252,14 @@ GUESTS = dict(
             attacks=[('Ray of Frost', '+6', '1d8 cold',
                       'Cantrip. Range 60 ft. The target\'s speed drops 10 ft. for a turn.'),
                      ('Light Crossbow', '+3', '1d8+1 piercing', 'Range 80/320 ft.')],
-            actions=[],
+            actions=[
+                ('Special', [
+                    ('Experimental Elixir', '1 / Long Rest', 1,
+                     'You carry one flask. Choose what it is when it is drunk: Healing (regain 2d4+3 hit '
+                     'points), Swiftness (+10 ft. of speed for 1 hour), or Boldness (+1d4 to every attack '
+                     'roll and saving throw for 1 minute). Drinking it, or giving it to someone, takes an action.'),
+                ]),
+            ],
             spells=dict(ability='Intelligence', dc='13', attack='+6', groups=[
                 ('Cantrips', 0, 0, [
                     ('Guidance', 'Action', 'Touch', '',
@@ -254,7 +285,8 @@ GUESTS = dict(
             turn=['Most turns: Ray of Frost.',
                   'A friend is hurt: Cure Wounds.',
                   'Several enemies: Faerie Fire, so every attack against them has advantage.',
-                  'Before a friend\'s skill check: Guidance.'],
+                  'Before a friend\'s skill check: Guidance.',
+                  'Outside a fight: Detect Magic on anything strange, and your elixir for whoever needs it most.'],
         ),
         dict(
             slug='bard', name='Bard', role='Charmer and support', complexity='Most options',
@@ -264,7 +296,7 @@ GUESTS = dict(
                   'five, so it suits someone who enjoys choices.',
             scores=dict(STR=8, DEX=15, CON=13, INT=10, WIS=12, CHA=17),
             saves=('DEX', 'CHA'),
-            skills=('Persuasion', 'Deception', 'Performance', 'Insight', 'Sleight of Hand'),
+            skills=('Persuasion', 'Deception', 'Performance', 'Insight', 'Sleight of Hand', 'History', 'Medicine'),
             expertise=('Persuasion', 'Deception'), jack=True,
             ac='13', ac_note='Leather armor', hp='21', hit_dice='3d8', speed='30 ft.',
             attacks=[('Rapier', '+4', '1d8+2 piercing', 'Melee. Finesse.'),
@@ -300,10 +332,12 @@ GUESTS = dict(
             features=[
                 ('Jack of All Trades', '+1 on ability checks you lack proficiency in. Included in the skills on this sheet.'),
                 ('Expertise', 'Double proficiency in Persuasion and Deception. Included.'),
+                ('Bonus Proficiencies',
+                 'History and Medicine: you know the old songs and how to tell if someone is truly hurt. Included.'),
             ],
             turn=['Bonus action first: Bardic Inspiration or Healing Word.',
                   'Action: Vicious Mockery, or a levelled spell when it counts.',
-                  'Outside a fight: you do the talking.'],
+                  'Outside a fight: you do the talking, and you know the old stories.'],
         ),
     ],
 )
