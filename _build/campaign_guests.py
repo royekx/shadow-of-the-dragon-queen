@@ -28,7 +28,7 @@ numbers are entered by hand.
 
 GUESTS = dict(
     eyebrow='Guest Players',
-    title='Welcome to Bracken Hollow',
+    title='Strangers in Bracken Hollow',
     subtitle='One evening of Dungeons & Dragons. Read the top of this page, choose a character, and you are ready.',
 
     # YouTube id of a short "how to play" video, shown at the top of the
