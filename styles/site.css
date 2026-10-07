@@ -136,3 +136,283 @@ html { overflow-x: clip; }
   font-size: 0.86rem; letter-spacing: 0.02em; text-transform: none; font-style: italic;
 }
 .sheet-link:hover, .sheet-link:focus-visible { border-color: var(--gold-dim); background: var(--gold-faint); }
+
+/* =======================================================
+   GUEST PLAYERS  (guests/index.html, body.guest-page)
+   One page for someone sitting in for a session: the story and how the
+   game works as two folding sections, then a tab per ready-made character.
+   Built by build_guests() from _build/campaign_guests.py. It loads no
+   sidebar and no command bar. The folds and tabs are the journey page's own.
+
+   Each character follows the standard character sheet: abilities, saving
+   throws and skills down the side; armor class, hit points, attacks,
+   actions, spells and features beside them.
+   ======================================================= */
+.guest-page .content { max-width: 1040px; }
+.g-tools { display: flex; justify-content: flex-end; margin-bottom: 1.2rem; }
+.g-export {
+  display: inline-flex; align-items: center; gap: 0.55rem; min-height: 44px; padding: 0.5rem 1.2rem;
+  border: 1px solid var(--gold-rule); border-radius: 999px; background: none; color: var(--gold-light);
+  font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
+  cursor: pointer; transition: border-color 0.2s, background 0.2s;
+}
+.g-export svg { width: 14px; height: 14px; }
+.g-export:hover, .g-export:focus-visible { border-color: var(--gold-dim); background: var(--gold-faint); }
+.g-fold { border-radius: 12px; }
+.g-fold > summary { border-radius: 12px; }
+.g-fold .narrative p:last-child { margin-bottom: 0; }
+.g-fold + .section-label { margin-top: 2.4rem; }
+.g-choose { max-width: 46rem; margin: 0 0 1.4rem; font-size: 1.03rem; line-height: 1.6; color: var(--text-dim); }
+
+/* Sheet head: the class, a line in its voice, and what kind of character it is. */
+.g-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.8rem 1.4rem; flex-wrap: wrap; }
+.g-name { font-family: 'Cinzel', serif; font-size: 1.75rem; font-weight: 700; letter-spacing: 0.06em; line-height: 1.1; color: var(--gold-light); }
+.g-pitch { margin-top: 0.3rem; font-size: 1.1rem; font-style: italic; color: var(--text-dim); }
+.g-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 0.3rem; }
+.g-id { display: none; }
+.g-about { margin: 1rem 0 1.4rem; max-width: 46rem; font-size: 1.03rem; line-height: 1.65; }
+
+/* Three small parts share one look across the sheet: a value, its label, a note. */
+.g-key { font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); line-height: 1.3; }
+.g-val { font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.15; color: var(--text); white-space: nowrap; }
+.g-note { font-size: 0.88rem; font-style: italic; line-height: 1.3; color: var(--text-muted); }
+
+/* The top strip: armor class, initiative, speed, hit points, hit dice. */
+.g-strip { display: grid; grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr; gap: 0.6rem; }
+.g-vital {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.15rem; min-width: 0;
+  padding: 0.7rem 0.5rem 0.65rem; border: 1px solid var(--gold-rule); border-radius: 10px;
+  background: rgba(201, 150, 63, 0.05); text-align: center;
+}
+.g-hp { flex-direction: row; align-items: stretch; padding: 0; }
+.g-hp-cell {
+  flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.15rem; padding: 0.7rem 0.4rem 0.65rem;
+}
+.g-hp-cell + .g-hp-cell { border-left: 1px solid var(--rule); }
+.g-hp-cell input {
+  width: 100%; max-width: 4.4rem; padding: 0.1rem 0.2rem; border: 1px solid var(--gold-rule); border-radius: 8px;
+  background: var(--bg-deep); color: var(--text); text-align: center;
+  font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 700; line-height: 1.15;
+  -moz-appearance: textfield; appearance: textfield;
+}
+.g-hp-cell input::-webkit-outer-spin-button, .g-hp-cell input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.g-hp-cell input::placeholder { color: var(--text-faint); opacity: 0.6; }
+.g-hp-cell input:focus-visible, .g-tick:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+
+/* Boxes to tick as a limited use is spent. */
+.g-ticks { display: inline-flex; align-items: center; gap: 0.35rem; vertical-align: middle; }
+.g-tick {
+  appearance: none; -webkit-appearance: none; flex: 0 0 auto; width: 1.3rem; height: 1.3rem; margin: 0;
+  border: 1.5px solid var(--gold); border-radius: 3px; background: transparent; cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.g-tick:checked { background: var(--gold); box-shadow: inset 0 0 0 3px var(--bg); }
+.g-uses {
+  display: inline-flex; align-items: center; gap: 0.45rem; margin: 0 0.35rem 0 0.15rem; vertical-align: middle;
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+}
+
+/* Two columns under the strip: the side (abilities, saves, skills) and the main column. */
+.g-cols {
+  display: grid; grid-template-columns: 19rem minmax(0, 1fr); grid-template-areas: "side main";
+  column-gap: 2rem; align-items: start; margin-top: 1.5rem;
+}
+.g-side { grid-area: side; display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); gap: 0.8rem; align-items: start; }
+.g-main { grid-area: main; min-width: 0; }
+.g-scores { display: flex; flex-direction: column; gap: 0.55rem; }
+.g-score {
+  display: flex; flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.5rem 0.2rem 0.5rem;
+  border: 1px solid var(--gold-rule); border-radius: 10px; background: rgba(201, 150, 63, 0.05);
+}
+.g-score .g-key { font-size: 0.56rem; letter-spacing: 0.04em; }
+.g-score-num {
+  min-width: 2.2rem; padding: 0 0.5rem; border: 1px solid var(--rule); border-radius: 999px;
+  font-size: 0.82rem; line-height: 1.45; text-align: center; color: var(--text-muted);
+}
+.g-list { border: 1px solid var(--rule); border-radius: 10px; padding: 0.55rem 0.7rem 0.6rem; }
+.g-list + .g-list { margin-top: 0.7rem; }
+.g-list-title {
+  margin-bottom: 0.3rem; font-family: 'Cinzel', serif; font-size: 0.66rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+}
+.g-li { display: grid; grid-template-columns: 0.6rem 1.8rem minmax(0, 1fr) auto; align-items: baseline; column-gap: 0.4rem; font-size: 0.92rem; line-height: 1.5; color: var(--text-soft); }
+.g-dot { align-self: center; width: 0.55rem; height: 0.55rem; border: 1px solid var(--text-faint); border-radius: 50%; }
+.g-li-val { text-align: right; font-variant-numeric: tabular-nums; }
+.g-li-name { white-space: nowrap; }
+.g-li-tag { font-size: 0.66em; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-faint); }
+.g-li.is-prof { color: var(--text); font-weight: 600; }
+.g-li.is-prof .g-dot { background: var(--gold); border-color: var(--gold); }
+.g-li.is-prof .g-li-val { color: var(--gold-light); }
+
+.g-sheet .brief-heading { margin-top: 1.6rem; }
+.g-main > .brief-heading:first-child { margin-top: 0; }
+
+.g-table { width: 100%; border-collapse: collapse; }
+.g-table th {
+  padding: 0 0.9rem 0.4rem 0; text-align: left; font-family: 'Cinzel', serif; font-size: 0.66rem; font-weight: 400;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); white-space: nowrap;
+}
+.g-table td { padding: 0.45rem 0.9rem 0.45rem 0; border-top: 1px solid var(--rule); vertical-align: top; font-size: 0.98rem; line-height: 1.45; }
+.g-table th:last-child, .g-table td:last-child { padding-right: 0; }
+.g-table td:first-child { font-weight: 600; color: var(--gold-light); }
+.g-table td:nth-child(2), .g-table td:nth-child(3) { white-space: nowrap; }
+/* Spells on screen: name, casting time, range and save on one line, the
+   effect beneath it at full width. On paper they are a plain table again. */
+.g-spells thead { display: none; }
+.g-spells, .g-spells tbody { display: block; }
+.g-spells tr {
+  display: grid; grid-template-columns: minmax(0, 1fr) 4.4rem 6.4rem 3.8rem; column-gap: 0.9rem;
+  padding: 0.5rem 0 0.55rem; border-top: 1px solid var(--rule);
+}
+.g-spells td { display: block; padding: 0; border: none; white-space: normal !important; }
+.g-spells td:nth-child(2), .g-spells td:nth-child(3), .g-spells td:nth-child(4) { color: var(--text-dim); }
+.g-spells td:nth-child(5) { grid-column: 1 / -1; margin-top: 0.1rem; color: var(--text-soft); }
+.g-spells tr.g-slot { display: block; padding: 0.9rem 0 0.35rem; border-top: none; }
+.g-spells tr.g-slot:first-child { padding-top: 0.2rem; }
+.g-spells tr.g-slot + tr { border-top-color: var(--gold-rule); }
+.g-group-title {
+  font-family: 'Cinzel', serif; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+}
+.g-main > .g-group-title { margin: 0.9rem 0 0.4rem; }
+.g-slot .g-uses { margin-left: 0.8rem; }
+
+.g-cast { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.6rem; margin-bottom: 0.9rem; }
+.g-cast .g-vital { padding: 0.5rem 0.4rem; }
+.g-cast .g-val { font-size: 1.15rem; }
+
+.g-rows { display: flex; flex-direction: column; gap: 0.5rem; }
+.g-row { font-size: 0.98rem; line-height: 1.5; }
+.g-row b { font-weight: 600; color: var(--gold-light); }
+.g-std { color: var(--text-soft); }
+.g-hint { margin-top: 0.55rem; font-size: 0.9rem; font-style: italic; line-height: 1.45; color: var(--text-muted); }
+
+/* How to Play: a dependable turn for each character. */
+.g-fold .brief-heading { margin-top: 1.7rem; }
+.g-fold .g-hint { margin: 0 0 0.7rem; }
+
+@media (max-width: 960px) {
+  /* One column. Attacks and actions come before the long skill list. */
+  .g-cols { grid-template-columns: minmax(0, 1fr); grid-template-areas: "main" "side"; row-gap: 1.6rem; }
+  .g-strip { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .g-strip > .g-vital { grid-column: span 2; }
+  .g-strip > .g-hp { grid-column: span 4; }
+  .g-side { grid-template-columns: minmax(0, 1fr); }
+  .g-scores { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .g-lists { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.7rem; align-items: start; }
+  .g-list + .g-list { margin-top: 0; }
+}
+@media (max-width: 560px) {
+  .g-name { font-size: 1.45rem; }
+  .g-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .g-strip > .g-vital { grid-column: auto; }
+  .g-strip > .g-hp { grid-column: 1 / -1; order: 1; }
+  .g-scores { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .g-lists { grid-template-columns: minmax(0, 1fr); }
+  .g-cast { grid-template-columns: minmax(0, 1fr); }
+  /* Tables turn into one stacked entry per row. */
+  .g-table thead { display: none; }
+  .g-table tr { display: block; padding: 0.55rem 0; border-top: 1px solid var(--rule); }
+  .g-table td { display: block; padding: 0; border: none; white-space: normal !important; }
+  .g-spells tr { grid-template-columns: auto auto minmax(0, 1fr); column-gap: 1rem; }
+  .g-spells td:first-child { grid-column: 1 / -1; }
+  .g-table td[data-label]::before {
+    content: attr(data-label) '\00a0\00a0'; font-family: 'Cinzel', serif; font-size: 0.64rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+  }
+}
+
+/* -- Print / Export PDF --
+   The whole page prints: the story and How to Play first, then every
+   character on a sheet of its own, in ink on white. The tokens are
+   redefined on the body so each ported rule follows without edits. */
+@media print {
+  @page { size: letter; margin: 0.4in 0.5in; }
+  html:has(body.guest-page) { background: #fff; font-size: 75%; }
+  body.guest-page {
+    --bg: #fff; --bg-deep: #fff; --bg-card: transparent; --bg-raised: transparent; --bg-panel: transparent;
+    --rule: #b9a99c; --rule-soft: #d8ccc0;
+    --gold: #58180d; --gold-light: #58180d; --gold-dim: #58180d; --gold-faint: transparent; --gold-rule: #b9a99c;
+    --ice: #58180d; --ice-light: #58180d; --ice-dim: #b9a99c;
+    --text: #1b1512; --text-soft: #1b1512; --text-dim: #3a302a; --text-muted: #5a4a42; --text-faint: #6b5b52;
+    padding: 0 !important; min-height: 0; background: #fff;
+  }
+  body.guest-page::before, body.guest-page::after, .guest-page .content::before,
+  .guest-page .account-tabs, .guest-page .page-emblem, .guest-page .video-block, .guest-page .g-tools,
+  .guest-page .account-caret, .guest-page .account-note, .guest-page .g-badges,
+  .guest-page .g-hp-cell input { display: none !important; }
+  .guest-page * { animation: none !important; text-shadow: none !important; box-shadow: none !important; }
+  .guest-page .page-content, .guest-page .content { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .guest-page .page-header { padding: 0 0 0.5rem; margin: 0 0 0.7rem; text-align: left; }
+  .guest-page .g-fold + .section-label { margin-top: 1.2rem; }
+  .guest-page .g-choose { margin-bottom: 0; }
+  .guest-page .page-title { color: #58180d; }
+  .guest-page .g-fold { border: none; background: none; margin-bottom: 0.8rem; }
+  .guest-page .g-fold > summary { border-radius: 0; padding: 0 0 0.35rem; margin-bottom: 0.2rem; border-bottom: 1px solid #b9a99c; }
+  .guest-page .g-fold .account-body > *:first-child { margin-top: 0.8rem; }
+  .guest-page .narrative, .guest-page .g-about, .guest-page .g-choose { max-width: none; }
+  .guest-page .narrative p { margin-bottom: 0.6rem; font-size: 0.97rem; line-height: 1.46; }
+  .guest-page .g-fold .g-hint { display: none; }
+  .guest-page .g-fold .brief-list { gap: 0.25rem; }
+  .guest-page .g-fold .brief-list li { font-size: 1rem; line-height: 1.4; }
+  .guest-page .account-panel { display: block !important; border: none; border-radius: 0; background: none; break-before: page; }
+  .guest-page .account-body { padding: 0; border: none; }
+  .guest-page .account-body > *:first-child { margin-top: 0; }
+  .guest-page .callout { background: none; border-color: #b9a99c; border-left-color: #58180d; }
+  .guest-page .g-vital, .guest-page .g-score { background: none; }
+  /* Filled marks are drawn with the border: browsers leave backgrounds off paper by default. */
+  .guest-page .g-tick { border-color: #1b1512; background: none; box-shadow: none !important; }
+  .guest-page .g-tick:checked { border-width: 0.65rem; }
+  .guest-page .g-dot { border-color: #6b5b52; }
+  .guest-page .g-li.is-prof .g-dot { border: 0.28rem solid #58180d; background: none; }
+
+  /* The sheet, restated at full width: paper is narrower than the
+     breakpoints above, which would otherwise stack it like a phone. */
+  .guest-page .g-name { font-size: 1.9rem; }
+  .guest-page .g-id {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.2fr; gap: 1.2rem; margin: 0.7rem 0 0.2rem;
+  }
+  .guest-page .g-id-cell { display: flex; flex-direction: column; gap: 0.15rem; }
+  .guest-page .g-id-val { min-height: 1.5rem; border-bottom: 1px solid #1b1512; font-family: 'Cinzel', serif; font-weight: 700; font-size: 1rem; line-height: 1.45; }
+  .guest-page .g-about { margin: 0.7rem 0 0.8rem; font-size: 1rem; line-height: 1.45; }
+  .guest-page .g-strip { grid-template-columns: 1.2fr 1fr 1fr 3fr 1fr; gap: 0.5rem; }
+  .guest-page .g-strip > .g-vital, .guest-page .g-strip > .g-hp { grid-column: auto; order: 0; }
+  .guest-page .g-vital { padding: 0.5rem 0.4rem; }
+  .guest-page .g-hp { padding: 0; }
+  .guest-page .g-hp-cell { justify-content: flex-end; min-height: 3.4rem; padding: 0.5rem 0.3rem; }
+  .guest-page .g-cols {
+    grid-template-columns: 16.4rem minmax(0, 1fr); grid-template-areas: "side main";
+    column-gap: 1.5rem; row-gap: 0; margin-top: 1rem;
+  }
+  .guest-page .g-side { grid-template-columns: 4.6rem minmax(0, 1fr); gap: 0.6rem; }
+  .guest-page .g-li-tag { display: none; }
+  .guest-page .g-li { grid-template-columns: 0.6rem 1.8rem minmax(0, 1fr); }
+  .guest-page .g-scores { display: flex; flex-direction: column; gap: 0.45rem; }
+  .guest-page .g-score { padding: 0.35rem 0.2rem 0.4rem; }
+  .guest-page .g-lists { display: block; }
+  .guest-page .g-list + .g-list { margin-top: 0.55rem; }
+  .guest-page .g-li { line-height: 1.38; }
+  .guest-page .g-sheet .brief-heading { margin-top: 0.95rem; margin-bottom: 0.4rem; }
+  .guest-page .g-main > .brief-heading:first-child { margin-top: 0; }
+  .guest-page .g-main > .g-group-title { margin: 0.55rem 0 0.25rem; }
+  .guest-page .g-table td { padding-top: 0.26rem; padding-bottom: 0.26rem; line-height: 1.35; }
+  .guest-page .g-spells { display: table; }
+  .guest-page .g-spells thead { display: table-header-group; }
+  .guest-page .g-spells tbody { display: table-row-group; }
+  .guest-page .g-spells tr, .guest-page .g-spells tr.g-slot { display: table-row; }
+  .guest-page .g-spells td {
+    display: table-cell; padding: 0.26rem 0.9rem 0.26rem 0; border-top: 1px solid #b9a99c; margin: 0; color: #1b1512;
+  }
+  .guest-page .g-spells td:first-child { width: 6.2rem; }
+  .guest-page .g-spells td:nth-child(2), .guest-page .g-spells td:nth-child(4) { white-space: nowrap !important; }
+  .guest-page .g-spells td:last-child { padding-right: 0; }
+  .guest-page .g-spells td.g-none::before { content: '\2013'; }
+  .guest-page .g-spells tr.g-slot td { padding-top: 0.5rem; padding-bottom: 0.2rem; border-top: none; }
+  .guest-page .g-cast { margin-bottom: 0.5rem; }
+  .guest-page .g-cast .g-vital { padding: 0.3rem 0.4rem; }
+  .guest-page .g-rows { gap: 0.28rem; }
+  .guest-page .g-row { line-height: 1.38; }
+  .guest-page .g-hint { margin-top: 0.35rem; }
+  .guest-page .g-fold .brief-heading { margin-top: 0.8rem; }
+  .guest-page .g-row, .guest-page .g-table tr, .guest-page .g-strip { break-inside: avoid; }
+}
