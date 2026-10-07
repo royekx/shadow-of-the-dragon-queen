@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Expected Journey 010 — First Light in Kalaman</title>
+<style>
+@page { size: 8.5in 11in; margin: 0.6in 0.7in; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Georgia', serif; font-size: 9.5pt; color: #1a1a1a; line-height: 1.55; background: #fff; }
+.page { max-width: 7.1in; margin: 0 auto; padding: 0.25in 0 0; }
+.print-btn { display: block; margin: 0 auto 0.3in; padding: 8px 28px; background: #58180D; color: white; border: none; border-radius: 4px; font-size: 11pt; font-family: sans-serif; cursor: pointer; }
+@media print { .print-btn { display: none; } }
+.campaign-name { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; font-weight: bold; letter-spacing: 3px; color: #58180D; text-transform: uppercase; margin-bottom: 3pt; }
+.session-title { font-family: 'Georgia', serif; font-size: 20pt; font-weight: normal; color: #1a1a1a; margin-bottom: 5pt; }
+.section-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2.5px; text-transform: uppercase; color: #58180D; margin-bottom: 4pt; }
+p { margin-bottom: 5pt; } strong { font-weight: bold; } em { font-style: italic; }
+.session-header { text-align: center; margin-bottom: 0.1in; }
+.meta-row { display: flex; justify-content: center; gap: 8pt; flex-wrap: wrap; }
+.meta-pill { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1.5px; color: #58180D; border: 0.75pt solid #58180D; padding: 1.5pt 7pt; border-radius: 2pt; text-transform: uppercase; }
+.orn { text-align: center; color: #58180D; font-size: 11pt; letter-spacing: 5px; margin: 2pt 0; }
+.rule-thick { border: none; border-top: 1.5pt solid #58180D; margin: 2pt 0; }
+.rule-thin { border: none; border-top: 0.5pt solid #aaa; margin: 7pt 0; }
+.main-plot { border-left: 2.5pt solid #58180D; padding: 5pt 8pt; margin: 7pt 0; }
+.main-plot .section-label { margin-bottom: 3pt; }
+.beats-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5pt; margin: 5pt 0; }
+.beat-col { border: 0.5pt solid #ccc; border-radius: 3pt; padding: 5pt 6pt; }
+.beat-col-header { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #58180D; border-bottom: 0.75pt solid #ccc; padding-bottom: 3pt; margin-bottom: 4pt; }
+.beat-item { font-size: 8.5pt; padding: 2pt 0; border-bottom: 0.5pt solid #eee; line-height: 1.4; }
+.beat-item:last-child { border-bottom: none; }
+.read-aloud { border: 0.75pt solid #999; border-left: 2.5pt solid #1D9E75; background: #f9f9f9; padding: 5pt 8pt; margin: 5pt 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.read-aloud-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #0F6E56; margin-bottom: 3pt; }
+.read-aloud p { font-style: italic; font-size: 9pt; line-height: 1.6; margin-bottom: 0; }
+.dm-note { border-left: 2.5pt solid #185FA5; padding: 4pt 0 4pt 8pt; margin: 5pt 0; }
+.dm-note-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #185FA5; margin-bottom: 2pt; }
+.dm-note p, .dm-note ul { font-size: 8.5pt; line-height: 1.5; }
+.dm-note ul { padding-left: 12pt; }
+.dm-note li { margin-bottom: 2pt; }
+.flag { border-left: 2.5pt solid #A32D2D; padding: 4pt 0 4pt 8pt; margin: 5pt 0; }
+.flag-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #A32D2D; margin-bottom: 2pt; }
+.flag p { font-size: 8.5pt; }
+.scene-card { border: 0.5pt solid #bbb; border-radius: 3pt; margin: 6pt 0; page-break-inside: avoid; break-inside: avoid; }
+.scene-header { display: flex; align-items: center; gap: 6pt; padding: 4pt 7pt; border-bottom: 1.5pt solid #58180D; }
+.scene-num { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #58180D; border: 0.75pt solid #58180D; padding: 1.5pt 5pt; border-radius: 2pt; white-space: nowrap; }
+.scene-title { font-size: 10.5pt; font-weight: bold; flex: 1; }
+.scene-tag { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1px; color: #666; text-transform: uppercase; white-space: nowrap; }
+.scene-body { padding: 6pt 8pt; }
+.scene-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8pt; margin-bottom: 5pt; }
+.meta-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 1pt; }
+.meta-value { font-size: 8.5pt; line-height: 1.4; }
+.outcome-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #666; margin: 4pt 0 2pt; }
+.outcome-item { font-size: 8.5pt; padding-left: 10pt; position: relative; margin-bottom: 2pt; line-height: 1.4; }
+.outcome-item::before { content: "→"; position: absolute; left: 0; color: #58180D; font-size: 8pt; }
+.reward-badge { display: inline-block; font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; font-weight: bold; color: #27500A; border: 0.75pt solid #639922; padding: 1.5pt 6pt; border-radius: 2pt; margin-top: 4pt; }
+.vignette-card { border: 0.5pt solid #ccc; border-radius: 3pt; margin: 6pt 0; page-break-inside: avoid; break-inside: avoid; }
+.vignette-header { display: flex; align-items: center; gap: 6pt; padding: 4pt 7pt; border-bottom: 1pt solid #ccc; }
+.vignette-pc { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #58180D; border: 0.75pt solid #58180D; padding: 1.5pt 5pt; border-radius: 2pt; white-space: nowrap; }
+.vignette-name { font-size: 10.5pt; font-weight: bold; flex: 1; }
+.vignette-tag { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1px; color: #666; text-transform: uppercase; white-space: nowrap; }
+.vignette-body { padding: 6pt 8pt; }
+.clues-list { margin: 4pt 0; }
+.clue-item { display: flex; gap: 6pt; margin-bottom: 4pt; align-items: flex-start; }
+.clue-diamond { width: 7pt; height: 7pt; border: 1pt solid #534AB7; transform: rotate(45deg); flex-shrink: 0; margin-top: 3pt; }
+.clue-text { font-size: 9pt; line-height: 1.5; }
+.loc-card { border: 0.5pt solid #ccc; border-radius: 3pt; padding: 5pt 6pt; margin-bottom: 5pt; page-break-inside: avoid; break-inside: avoid; }
+.loc-name { font-size: 9.5pt; font-weight: bold; border-bottom: 0.5pt solid #ddd; padding-bottom: 3pt; margin-bottom: 3pt; }
+.loc-body { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6pt; }
+.loc-col-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #666; margin-bottom: 1pt; }
+.loc-col-text { font-size: 8.5pt; line-height: 1.4; }
+.npc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5pt; margin: 5pt 0; }
+.npc-card { border: 0.5pt solid #ccc; border-radius: 3pt; overflow: hidden; page-break-inside: avoid; break-inside: avoid; }
+.npc-header { padding: 3pt 6pt; border-bottom: 1.5pt solid #58180D; display: flex; align-items: baseline; gap: 5pt; flex-wrap: wrap; }
+.npc-name { font-size: 9pt; font-weight: bold; }
+.npc-tag { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 6.5pt; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #58180D; border: 0.5pt solid #58180D; padding: 1pt 4pt; border-radius: 2pt; }
+.npc-body { padding: 4pt 6pt; }
+.npc-row { display: grid; grid-template-columns: 44pt 1fr; gap: 3pt; margin-bottom: 2pt; }
+.npc-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 6.5pt; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #666; padding-top: 1pt; }
+.npc-value { font-size: 8pt; line-height: 1.4; }
+.rewards-row { display: flex; flex-wrap: wrap; gap: 5pt; margin: 5pt 0; }
+.reward-card { border: 0.5pt solid #ccc; border-radius: 3pt; padding: 4pt 7pt; min-width: 1.8in; page-break-inside: avoid; break-inside: avoid; }
+.reward-title { font-size: 8.5pt; font-weight: bold; margin-bottom: 2pt; }
+.reward-desc { font-size: 8pt; color: #444; line-height: 1.4; }
+.misc-list { margin: 4pt 0; }
+.misc-item { font-size: 9pt; padding: 2pt 0 2pt 10pt; position: relative; border-bottom: 0.5pt solid #eee; line-height: 1.5; }
+.misc-item:last-child { border-bottom: none; }
+.misc-item::before { content: "•"; position: absolute; left: 0; color: #58180D; }
+.break-before { page-break-before: always; break-before: page; }
+.live-log-section { page-break-before: always; break-before: page; page-break-after: avoid; break-after: avoid; display: flex; flex-direction: column; height: 9.4in; }
+.log-header { display: flex; align-items: flex-end; justify-content: space-between; padding-bottom: 5pt; margin-bottom: 6pt; border-bottom: 1.5pt solid #58180D; flex-shrink: 0; }
+.log-header-title { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 8pt; font-weight: bold; letter-spacing: 2.5px; text-transform: uppercase; color: #58180D; }
+.log-header-session { font-family: 'Georgia', serif; font-size: 14pt; color: #1a1a1a; }
+.log-date-line { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; color: #666; display: flex; align-items: center; gap: 6pt; }
+.log-date-blank { display: inline-block; border-bottom: 0.75pt solid #888; width: 1.4in; }
+.log-grid { display: grid; grid-template-columns: 1fr 1fr 1.5fr; grid-template-rows: 1fr 1fr; gap: 6pt; flex: 1; min-height: 0; }
+.log-bottom { margin-top: 6pt; height: 1.1in; flex-shrink: 0; }
+.log-box { border: 0.75pt solid #bbb; border-radius: 3pt; display: flex; flex-direction: column; overflow: hidden; }
+.log-box-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #58180D; padding: 3pt 7pt; border-bottom: 1pt solid #58180D; flex-shrink: 0; }
+.log-ruled { flex: 1; padding: 2pt 6pt; background-image: repeating-linear-gradient(to bottom, transparent, transparent 20pt, #ddd 20pt, #ddd 20.75pt); background-position: 0 10pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.log-bottom-box { border: 0.75pt solid #bbb; border-radius: 3pt; display: flex; flex-direction: column; overflow: hidden; height: 100%; }
+.log-bottom-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #A32D2D; padding: 3pt 7pt; border-bottom: 1pt solid #A32D2D; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="page">
+<button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+<!-- HEADER -->
+<div class="session-header">
+  <div class="campaign-name">Shadow of the Dragon Queen</div>
+  <div class="session-title">Expected Journey 010</div>
+  <div class="meta-row">
+    <span class="meta-pill">Party Level 4</span>
+    <span class="meta-pill">Location: Kalaman</span>
+    <span class="meta-pill">Chapter 4 — Shadow of War</span>
+  </div>
+</div>
+<div class="orn">✦ ✦ ✦</div><hr class="rule-thick"><div class="orn">✦ ✦ ✦</div>
+
+<!-- PREVIOUS SESSION -->
+<div style="margin: 8pt 0 4pt">
+  <div class="section-label">Previous Session</div>
+  <p>The Embers of Vogler arrived at the walls of Kalaman as evening settled. The council granted refuge to the Vogler survivors, Darrett donned Becklin's armor, and the party went hunting — only to discover the hidden reliquary of the Knights Radiant beneath the hill, face a necromancer serving Lord Soth, and free a corrupted knightly spirit. They came back with a bear. The stew was good.</p>
+  <p><em>Session 10 opens at the fire. The evening is winding down. There is a moment of relative peace before the war asks something of them again.</em></p>
+</div>
+
+<!-- MAIN PLOT -->
+<div class="main-plot">
+  <div class="section-label">Main Plot This Session</div>
+  <p><strong>Evening —</strong> Three things are in play simultaneously: Fizban's recipe handout hides a puzzle for anyone curious enough to look; Jasper slips away when the moment is right for his Dragon's Eye meeting at Pellar's Provisions; and the rest of the party has open time for RP, camp life, and the character vignettes to find their moment naturally. <strong>Morning / Day —</strong> The city opens up. Truly free time in Kalaman — map in hand, no agenda until midday. Around midday Darrett finds them in Becklin's armor with word from Marshal Vendri: the First Mission. They are sent to find inventor Tatina Rookledust. Before departing they can speak with Than Rookledust — somewhere in the camp — who gives them real intel on how to approach her. The party leaves when they are ready but within the day. Session ends at departure or shortly into travel.</p>
+</div>
+
+<hr class="rule-thin">
+
+<!-- CHARACTER BEATS GRID -->
+<div class="section-label">Character Beats</div>
+<div class="beats-grid">
+  <div class="beat-col">
+    <div class="beat-col-header">Group</div>
+    <div class="beat-item">Let the party exhale in Vogler's safety — then the war taps their shoulder again</div>
+    <div class="beat-item">The Embers of Vogler go in a military ledger today. Let it land.</div>
+  </div>
+  <div class="beat-col">
+    <div class="beat-col-header">PCs</div>
+    <div class="beat-item"><strong>Jasper</strong> — Dragon's Eye meeting. Risky, layered, a first small return.</div>
+    <div class="beat-item"><strong>Aratos</strong> — Campfire trance. Yggdrasil. The hooded king. The black rose.</div>
+    <div class="beat-item"><strong>Kakashi</strong> — Previous Watcher reflection. Floating — pull naturally.</div>
+    <div class="beat-item"><strong>Roshi</strong> — Villager sees Ispin's shield. The tree has grown.</div>
+    <div class="beat-item"><strong>Mayariel</strong> — Kansaldi dream. The signet flares. She wakes with the blade near her heart.</div>
+  </div>
+  <div class="beat-col">
+    <div class="beat-col-header">Sequencing</div>
+    <div class="beat-item"><strong>That evening:</strong> Jasper's meeting (when he slips away), Aratos's vision (campfire)</div>
+    <div class="beat-item"><strong>That night:</strong> Mayariel's dream (sleeping)</div>
+    <div class="beat-item"><strong>Floating:</strong> Kakashi's reflection, Roshi's shield — pull when the moment opens</div>
+  </div>
+</div>
+
+<hr class="rule-thin">
+
+<!-- STRONG START -->
+<div class="section-label">Strong Start</div>
+<div class="read-aloud">
+  <div class="read-aloud-label">Read Aloud</div>
+  <p>Open at the fire. The stew is done, the people of Vogler are eating around it, and Fizban is holding court somewhere in the middle of a story that has at least two things wrong with it. Before the evening winds down, he produces a crumpled, stained piece of paper — Ispin's stew recipe, recorded by Fizban the Fabulous, for posterity. He presents it with ceremony and mild self-satisfaction. Give the handout to the players.</p>
+</div>
+
+<hr class="rule-thin">
+
+<!-- CHARACTER VIGNETTES -->
+<div class="section-label">Character Vignettes</div>
+<p style="font-size:8.5pt; color:#444; margin-bottom:6pt;">Short end-of-night beats — 1 to 3 minutes each unless the player leans in. Run them when the trigger presents itself naturally. Do not force sequencing on Kakashi and Roshi.</p>
+
+<div class="vignette-card">
+  <div class="vignette-header">
+    <span class="vignette-pc">Jasper</span>
+    <span class="vignette-name">Seredyn's Territory</span>
+    <span class="vignette-tag">Evening — When He Slips Away</span>
+  </div>
+  <div class="vignette-body">
+    <div class="dm-note" style="margin-top:0">
+      <div class="dm-note-label">Trigger &amp; Setup</div>
+      <p>Finbar finds Jasper himself — no note, no signal. He simply appears at Jasper's elbow during the camp's evening noise, solid and unhurried in his Pellar disguise, and says something brief: <em>"Walk with me."</em> He doesn't ask twice. He leads Jasper through a quarter of the city to Pellar's Provisions. Through a hatch behind the supply shelf, down stone steps, into Fin's Bar — a vaulted cellar that predates the building above it, amber candlelight, a well-kept bar, twenty people who don't look at each other, southern wines that haven't been on the open market since the Dragon Army crossed the border. Seredyn Valcoran is at the best table. Not a corner — the center. Finbar sets drinks, takes a seat to the side, and doesn't speak again unless addressed.</p>
+    </div>
+    <div class="read-aloud">
+      <div class="read-aloud-label">Read Aloud — Seredyn's Opening</div>
+      <p>Finbar says your name once — less an introduction than a handoff — and steps back. Seredyn looks at you for a long moment. "Palanthas may have placed the coin in your hand. But Kalaman decides which doors open while you are here." A pause. "You are not mine. That does not mean you are free."</p>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">What Seredyn Covers</div>
+      <ul>
+        <li>The Dragon's Eye has assets inside Kalaman's military and council — coin-marked and unmarked both.</li>
+        <li>Lucky's timeline is being compressed by the war. The Wayreth window is not permanent.</li>
+        <li>The Test of High Sorcery is Jasper's fastest path to the Tower. Wyham's sponsorship puts him closer than Lucky expected.</li>
+        <li>The guild is watching the full party. That observation has a shape — Seredyn doesn't elaborate.</li>
+        <li><strong>Jasper's task:</strong> Watch for unsanctioned arcane activity in Kalaman. Report to Finbar. Nothing more is asked tonight.</li>
+      </ul>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">Subtext — The Room</div>
+      <p>Finbar built this bar. Seredyn uses it as if the question of ownership is settled. It isn't. Finbar's stillness is patience, not deference. DC 14 Insight: Seredyn sitting in the center of this room is a considered mockery, and Finbar is absorbing it the way a man absorbs something he intends to answer later. The mark pulse is Lucky's alone — Seredyn has no such reach over a coin-marked operative, whatever he implies.</p>
+    </div>
+    <p><strong>Recognition phrase:</strong> <em>"The eye closes." / "Only to remember."</em></p>
+    <p style="margin-top:4pt"><strong>Aftereffect:</strong> On the way out, the bartender — one of Finbar's people — slides Jasper a second drink without being asked. That's Finbar. The first small thing returned.</p>
+  </div>
+</div>
+
+<div class="vignette-card">
+  <div class="vignette-header">
+    <span class="vignette-pc">Aratos</span>
+    <span class="vignette-name">Cathan at Yggdrasil</span>
+    <span class="vignette-tag">That Evening — Campfire Trance</span>
+  </div>
+  <div class="vignette-body">
+    <p><strong>Trigger:</strong> Aratos staring into the campfire — a waking trance, eyes open, still present to anyone watching.</p>
+    <p>The campfire becomes Yggdrasil — still small, still burning, roots curling where the coals were, branches where the flame reaches. At the base of the tree, a black rose pushes slowly up through the ash, thorns catching the light. On the far side of the fire — there for only a moment, hooded, watching — stands a figure Aratos doesn't recognize. A king who doesn't look like one. He holds Aratos's gaze long enough to make the silence mean something. Then, quietly — not to Aratos, almost to himself:</p>
+    <div class="read-aloud">
+      <div class="read-aloud-label">Aragorn</div>
+      <p>"The same blood flows in my veins. The same weakness."</p>
+    </div>
+    <p>Then he's gone. The fire is just a fire again.</p>
+    <p><strong>Purpose:</strong> Seeds the Trial of the King without naming it. Aragorn isn't warning Aratos — he's speaking about himself, and Aratos hears it anyway. The black rose sits unresolved. The Emberwake is warm.</p>
+  </div>
+</div>
+
+<div class="vignette-card">
+  <div class="vignette-header">
+    <span class="vignette-pc">Mayariel</span>
+    <span class="vignette-name">Kansaldi Dream</span>
+    <span class="vignette-tag">That Night — Sleeping</span>
+  </div>
+  <div class="vignette-body">
+    <p><strong>Trigger:</strong> Mayariel sleeps — same night, after the fire dies down.</p>
+    <p>She "awakens" on cold pale stone beneath falling ash. Kansaldi stands over her wreathed in red flame and drives a heated blade toward her chest. Key images: smoke-choked sky, ash like snow, Kansaldi's burning eye, a blade glowing forge-hot, Mayariel's signet flaring platinum — the blade stopping just short of her heart. Behind Kansaldi: a broken pale road leading toward five shadowed dragon shapes around a crown.</p>
+    <div class="read-aloud">
+      <div class="read-aloud-label">Quest Phrase</div>
+      <p>"Rise before the sword falls."</p>
+    </div>
+    <p><strong>Aftereffect:</strong> Mayariel wakes with the signet warm and the phantom pressure of the blade near her heart.</p>
+    <p><strong>Purpose:</strong> Begins the signet quest. Frames Kansaldi as the sword sent to extinguish Paladine's chosen.</p>
+  </div>
+</div>
+
+<div class="vignette-card">
+  <div class="vignette-header">
+    <span class="vignette-pc">Roshi</span>
+    <span class="vignette-name">The Shield Has Grown</span>
+    <span class="vignette-tag">Floating — Villager Interaction</span>
+  </div>
+  <div class="vignette-body">
+    <p><strong>Trigger:</strong> A Vogler villager — someone who knew Ispin well, an older woman, a former neighbor, a fisherman's wife — spots the shield in the firelight and stops. She doesn't say much. Maybe just <em>"That's Ispin's"</em>, or she reaches out and doesn't quite touch it. A moment of shared grief. When the villager moves on, Roshi looks down at the shield properly.</p>
+    <p>The painted tree has changed subtly. A small branch now curls from the trunk near an old scar. A few tiny leaves are visible. No glow, no voice, no pulse — and the new paint looks old, as if it has always been there.</p>
+    <p><strong>Aftereffect:</strong> When Roshi touches the new leaves, she feels like the shield has remembered something.</p>
+    <p><strong>Purpose:</strong> The villager grounds the grief before the supernatural hint. The shield change reads as a response — as if being seen again did something.</p>
+  </div>
+</div>
+
+<div class="vignette-card">
+  <div class="vignette-header">
+    <span class="vignette-pc">Kakashi</span>
+    <span class="vignette-name">Previous Watcher Reflection</span>
+    <span class="vignette-tag">Floating — Pull Naturally</span>
+  </div>
+  <div class="vignette-body">
+    <p><strong>Trigger:</strong> Activated Sharingan reflected in dark water, polished metal, glass, or the empty stew pot — any quiet solo moment.</p>
+    <p>His reflection is briefly replaced by a female non-human Watcher — ash-marked skin, long ears or subtle hornlike ridges, eyes like his but older and exhausted. A smoke-filled tower. Shelves of sealed relics shaking. A lunar-carved stone door. Blood on her hand. Something wrapped in cloth and starlight, held close.</p>
+    <div class="read-aloud">
+      <div class="read-aloud-label">The Watcher</div>
+      <p>"Do not watch to know. Watch to preserve."</p>
+    </div>
+    <p><strong>Aftereffect:</strong> His eyes ache, as if they have been open for centuries.</p>
+    <p><strong>Purpose:</strong> Confirms he is replacing a prior Watcher without explaining the full history.</p>
+  </div>
+</div>
+
+
+<hr class="rule-thin">
+
+<!-- SCENES -->
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Scene 1</span><span class="scene-title">The Recipe</span><span class="scene-tag">Evening · Puzzle</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Plant a puzzle players can engage with at their own pace. Reward curiosity without demanding it.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">Vogler refugee camp — around the fire</div></div>
+    </div>
+    <p>The evening is winding down. Fizban produces a crumpled, stained piece of paper with ceremony — Ispin's stew recipe, recorded by Fizban the Fabulous, for posterity. He presents it like it cost him something. It did not. Give the handout to the players.</p>
+    <div class="dm-note">
+      <div class="dm-note-label">DM Note</div>
+      <p>The recipe is a disguised spell formula for <strong>Green-Flame Blade</strong>. The first letter of each ingredient in order spells GREEN FLAME BLADE. The preparation text reinforces it and Fizban's closing note — <em>"fire first, blade second, green herbs third"</em> — is the casting order. Most useful to Kakashi but worth checking against other builds. If players ask Fizban directly: <em>"It's a recipe. Very good with root vegetables."</em> Leave it open regardless — the handout is theirs and can be cracked any session.</p>
+    </div>
+    <div class="outcome-label">Possible Outcomes</div>
+    <div class="outcome-item">Players solve it → transcribe the cantrip</div>
+    <div class="outcome-item">Players notice something's off but don't crack it → lingers in their hands</div>
+    <div class="outcome-item">Ignored entirely → resurfaces any time; shelf life is the whole campaign</div>
+    <span class="reward-badge">Reward: Green-Flame Blade (cantrip)</span>
+  </div>
+</div>
+
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Scene 2</span><span class="scene-title">The Meeting</span><span class="scene-tag">Evening · Jasper Only</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Advance Jasper's Dragon's Eye arc. Establish the Finbar / Seredyn power struggle. Make the guild feel layered and watching.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">Pellar's Provisions — a forgettable dwarven merchant's shop on a side street. Members of the Dragon's Eye see "Fin's Bar" above the door where everyone else sees the store sign. Access: hatch behind the supply shelf, stone steps down into a vaulted pre-Cataclysm cellar.</div></div>
+    </div>
+    <p>See Character Vignettes — Jasper for the full scene write-up. This scene is available whenever Jasper chooses to slip away. Finbar retrieves him personally.</p>
+    <div class="flag">
+      <div class="flag-label">Private Scene</div>
+      <p>Cut away briefly from the main group. Give this real table time — high-value RP for Jasper's player. No one else needs to know the meeting occurred.</p>
+    </div>
+  </div>
+</div>
+
+<div class="break-before"></div>
+
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Scene 3</span><span class="scene-title">Free Time</span><span class="scene-tag">Evening → Morning · Open RP</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Let the story breathe. Give players genuine agency in Kalaman before the war pulls them back.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">Vogler refugee camp and Kalaman city proper — give them the map</div></div>
+    </div>
+    <p>The clock stops. No agenda, no nudge, no clock until midday. Open RP. Let players set the pace entirely.</p>
+    <div class="dm-note">
+      <div class="dm-note-label">Camp Threads</div>
+      <ul>
+        <li><strong>Mayor Raven</strong> — exhausted, composed, grateful. Good for grief and the weight of what was lost. Won't ask for anything tonight.</li>
+        <li><strong>The Vogler refugees</strong> — ordinary people asking ordinary questions. Good human texture.</li>
+        <li><strong>Than Rookledust</strong> — somewhere in the camp or near the city gate. Scattered, hard to keep on topic. The name Rookledust is available if anyone thinks to ask who he is. Don't surface Tatina — just make the name accessible. If the connection gets made now, the party arrives at Scene 5 already ahead of it.</li>
+        <li><strong>Roshi's shield beat</strong> — a villager recognizes Ispin's shield. The tree has changed. Run when the moment feels right.</li>
+        <li><strong>Aratos's fire beat</strong> — campfire trance. Run when the camp quiets and he's looking into the flames.</li>
+        <li><strong>Mayariel's dream</strong> — she sleeps. Run when the night is deep and the others have settled.</li>
+      </ul>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">City Threads</div>
+      <ul>
+        <li><strong>Wyham's Apothecary</strong> — test timeline, spell components, arcane resources. Essential for Kakashi and Jasper.</li>
+        <li><strong>Hammerstrike Forges</strong> — armor (Kadmos) or weapons (Tiria). Good pre-road stop.</li>
+        <li><strong>City Market</strong> — resupply. War-footing prices. Some items harder to find.</li>
+        <li><strong>The Steady Beacon</strong> — soldier tavern. Good for the temperature of Kalaman's military mood.</li>
+        <li><strong>Kalaman Harbor</strong> — old Istarian beacon-light cutting through sea fog. Good wandering beat.</li>
+        <li><strong>Meulara's Oddities</strong> — kender shopkeeper who knows everyone. Useful for casual information.</li>
+        <li><strong>Darrett</strong> — easy to find, still settling into the armor. Good for personal conversation.</li>
+        <li><strong>Kakashi's reflection</strong> — floating. Pull when a quiet solo moment opens naturally.</li>
+        <li><strong>Lord Bakaris and Cael</strong> — around and insufferable if encountered. Do not force it.</li>
+      </ul>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">Tone</div>
+      <p>This is the first morning the party doesn't have to be anywhere. Let it be that. The war taps them on the shoulder at midday. Until then it doesn't exist.</p>
+    </div>
+    <div class="outcome-item">Around midday → Darrett finds them wherever they have drifted (move to Scene 4)</div>
+  </div>
+</div>
+
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Scene 4</span><span class="scene-title">The Summons</span><span class="scene-tag">Midday · Transition</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Transition into the mission arc. Darrett in Becklin's armor is doing narrative work before a word is spoken. First official use of the party name.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">Wherever the party has drifted to by midday</div></div>
+    </div>
+    <p>Darrett finds them. He has been looking for a little while — methodically, not frantically. When he arrives he doesn't announce himself immediately. He just arrives, and the armor arrives with him. He's not comfortable in it yet — he carries it like something borrowed rather than earned, which is exactly what it is and exactly what he's trying to change.</p>
+    <p>Marshal Vendri has an assignment. He was told to bring them in. That's all he says before he waits to see if they follow.</p>
+    <div class="dm-note">
+      <div class="dm-note-label">DM Note — The Armor</div>
+      <p>Don't rush past this beat. Becklin is gone, Darrett is trying to become something in her absence, and the party knows both things. Let the image land before anyone speaks. If any party member has unresolved feeling about Becklin's death — Aratos in particular — this is a natural moment. Don't force it but don't close the door.</p>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">DM Note — The Name</div>
+      <p>When the party arrives at Castle Kalaman, Vendri asks — practically, without ceremony — what name she should record for the group. Kalaman's military keeps records. She needs something to put down. Let the players give it. If they give it, she writes it without comment and moves on. A name in a military ledger in a city at war means something different than a name said around a campfire.</p>
+    </div>
+    <div class="outcome-item">Party follows → move to Scene 5</div>
+    <div class="outcome-item">Someone acknowledges the armor directly → Darrett receives it simply; he has no speech prepared</div>
+    <div class="outcome-item">Party gives their name → Vendri writes it down; no fanfare; exactly right</div>
+  </div>
+</div>
+
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Scene 5</span><span class="scene-title">Vendri's Briefing &amp; the Than Connection</span><span class="scene-tag">Midday · Mission Launch</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Launch the First Mission. Make it personal through Than. The Embers leave Kalaman with a name, a mission, and a thread they either picked up or were handed.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">Castle Kalaman — Vendri's office or war room. Stone walls, maps on the table, the sound of the garrison outside.</div></div>
+    </div>
+    <div class="read-aloud">
+      <div class="read-aloud-label">Vendri's Briefing</div>
+      <p>She doesn't look up immediately when you enter. There are papers on the table and she is finishing something. Then she sets the pen down and looks at you properly. "Tatina Rookledust. Gnomish inventor, reliable until recently. She has something we need and she has stopped answering. I need someone outside the uniform to go find out why." She slides a folded document across the table — a rough map and a description of the workshop's last known location. "The road is not safe. It hasn't been safe for two weeks. That is why I'm asking you and not sending a patrol." A pause. "Any questions before you go?"</p>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">The Than Connection</div>
+      <p>The name Rookledust is the thread. How it surfaces depends on Scene 3:</p>
+      <ul>
+        <li><strong>If they already made the connection</strong> — one of them mentions Than before Vendri finishes. She notes it with mild interest. She didn't know he was in the camp.</li>
+        <li><strong>If they don't know</strong> — Darrett falls in beside them quietly as they leave: <em>"There's a gnome from Vogler with that name. Saw him near the east gate this morning."</em> He doesn't push. Either way it's the party's choice whether they go to Than before they leave.</li>
+      </ul>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">Than — If They Go</div>
+      <ul>
+        <li>She doesn't trust soldiers or anyone sent by authority. Come as people, not envoys.</li>
+        <li>When she's deep in a project she won't surface for pleasantries — make her problem your problem.</li>
+        <li>Workshop security is eccentric gnomish methodology, probably stranger than traps.</li>
+        <li>Their split was a question of who the work belonged to. Neither one ever answered it cleanly.</li>
+      </ul>
+      <p style="margin-top:3pt">Than's manner throughout: pride, bitterness, and reluctant respect he won't say plainly. He loved her work even when he couldn't stand being in the same room with her.</p>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">Departure Window</div>
+      <p>The party leaves when they are ready but within the day. Vendri doesn't say it like an order — just a fact. They have until the city gates begin their evening close to resupply, follow up on Than, and settle any unfinished business. If they haven't moved by then, Darrett finds them again. Quietly. Just standing nearby, ready to walk when they are.</p>
+    </div>
+    <div class="outcome-item">Party makes the Than connection themselves → they arrive already ahead; Vendri notes it</div>
+    <div class="outcome-item">Darrett nudges them → they find Than on the way out</div>
+    <div class="outcome-item">Party skips Than → they depart without the intel; Tatina's reception of a group sent by authority will be cold</div>
+    <div class="outcome-item">Party departs Kalaman → session likely ends here; move to Optional if time allows</div>
+  </div>
+</div>
+
+<div class="scene-card">
+  <div class="scene-header"><span class="scene-num">Optional</span><span class="scene-title">The Road Begins</span><span class="scene-tag">Overflow Only — Do Not Force</span></div>
+  <div class="scene-body">
+    <div class="scene-meta">
+      <div><div class="meta-label">Purpose</div><div class="meta-value">Close on forward momentum. Do not eat into Session 11's arrival material.</div></div>
+      <div><div class="meta-label">Location</div><div class="meta-value">The road out of Kalaman toward Tatina's workshop</div></div>
+    </div>
+    <div class="read-aloud">
+      <div class="read-aloud-label">Closing Image</div>
+      <p>The city falls behind them. The road runs through country that looks like the war has already visited — an abandoned cart tilted into a ditch, a farmhouse with shutters closed in the wrong season, smoke on the horizon the wrong color for a hearth fire. Somewhere ahead, an inventor who stopped answering hasn't stopped working. Probably. The Embers of Vogler walk into the afternoon and the road keeps going.</p>
+    </div>
+    <div class="dm-note">
+      <div class="dm-note-label">Optional Road Texture</div>
+      <ul>
+        <li>A refugee family moving toward Kalaman — they have news from the road ahead. Nothing specific, just the shape of danger. A village that felt wrong. Sounds at night.</li>
+        <li>A Kalaman patrol heading back in, tighter-lipped than they should be about what they saw. They wave the Embers through without stopping.</li>
+        <li>A signpost at a crossroads with one direction scratched out recently. The wood is still pale where the lettering was removed.</li>
+      </ul>
+      <p style="margin-top:3pt">None of these require resolution. They are texture. The session ends while the party is still moving.</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="break-before"></div>
+
+<!-- SECRETS & CLUES -->
+<div class="section-label">Secrets &amp; Clues</div>
+<div class="clues-list">
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text">The numbers in Fizban's recipe are misdirection. The <strong>first letters of each ingredient spell GREEN FLAME BLADE</strong>. The preparation text describes the spell. The closing note is the casting order.</div></div>
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text"><strong>Seredyn Valcoran</strong> is the shimmer Jasper clocked leaving the council chamber. He did not summon Jasper — Jasper simply recognized a fellow marked member. The Dragon's Eye's Kalaman reach is operational and deep. Seredyn holds authority here. Finbar held it before him.</div></div>
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text"><strong>Than Rookledust's last name is not a coincidence.</strong> He is Tatina's ex-husband. He knows more about how to reach her than anyone in the city. He will not volunteer it unless the name comes up first.</div></div>
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text">Darrett is still carrying Becklin's absence. He is trying to become what she needed him to be. He doesn't know yet if he's there — and the armor isn't telling him.</div></div>
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text">The Dragon Army's advance has not stopped. Kalaman has walls and a timeline. Every delay is a cost neither Vendri nor the city can afford to name openly.</div></div>
+  <div class="clue-item"><div class="clue-diamond"></div><div class="clue-text">The black rose in Aratos's vision is the Dragon's Eye symbol. He doesn't know this yet. It sprouted from the base of Yggdrasil without explanation. The hooded king's line does not explain it — that's the point.</div></div>
+</div>
+
+<hr class="rule-thin">
+
+<!-- FANTASTIC LOCATIONS -->
+<div class="section-label">Fantastic Locations</div>
+
+<div class="loc-card">
+  <div class="loc-name">Vogler Refugee Camp (Outside the Walls)</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Emotional anchor of what the party has been protecting</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Mayor Raven. Familiar faces. Children adjusting faster than adults. Old fishermen looking at the river. Than Rookledust somewhere among them. Quiet grief that hasn't found its shape yet.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">The stew fire. Fizban. The recipe handout. The vignette triggers. Than's last name if anyone asks.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Pellar's Provisions / Fin's Bar</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Dragon's Eye operation in Kalaman. Jasper's entry point into the guild's local infrastructure. Site of the Finbar / Seredyn power struggle.</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Street level: dwarven merchant's shop, dry goods, lamp oil, rope. Sign reads "Pellar's Provisions" — Dragon's Eye members see "Fin's Bar." Below: vaulted pre-Cataclysm cellar, amber candlelight, 40 seats, 20 people who don't look at each other, southern wines, real food, a room that shouldn't exist in a city under siege. Built by Finbar. Used by Seredyn as if that's settled.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Jasper only — Scene 2. Tell: amber candle in the window. Phrase: "Something for a long night." / "The kind that keeps."</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Castle Kalaman</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Military headquarters, seat of Governor Miat, where the party's name goes in the ledger</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Stone fortress atop rugged cliffs — visible from anywhere in the city. Barracks housing hundreds. War maps, garrison noise. Catacombs beneath, entrances magically sealed long ago. File that detail.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Vendri's briefing. The party name in the ledger. The Embers of Vogler become official.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Wyhan's Apothecary</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Arcane resources and test timeline for Kakashi and Jasper</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Wyhan — black-robed Mage of High Sorcery, lawful evil, technically retired. Front room sells occasional good-luck charms. Those who know what to ask for access the back room: esoteric spell components unavailable elsewhere. Precise, unhurried, no interest in small talk.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Test timeline, spell components, arcane questions either mage has been sitting on.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Hammerstrike Forges</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Equipment upgrade before the First Mission</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Twin forges across the street. Kadmos Hammerstrike: armor. Tiria Hammerstrike: weapons. Both dwarven veterans — competent, direct, no patience for indecision. They know what they're looking at when soldiers walk in.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Anyone wanting upgraded gear before the road.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">City Market</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Resupply and establish Kalaman as a functioning city worth fighting for</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Merchants from across Ansalon. Vendors from Ergoth and Mount Nevermind occasionally bring rare curios. Everything from the PHB available but war-footing means some items are harder to find and prices reflect it.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Gear up before departure. Good paired stop with the Forges.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">The Steady Beacon</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Military pulse of the city — mood, gossip, fear level</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Kalaman's soldier tavern. Large taproom, fish-focused menu, walls decorated with broken weapons of defeated bandits. Most evenings packed with off-duty troops. Owner Jesen Thold is a personal friend of Marshal Vendri.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">If the party wants the temperature of Kalaman's soldiers — their fear, confidence, and rumors — this is the room.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Kalaman Harbor</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Texture — a city that still has trade arteries even as war closes in</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Dozens of ships at anchor. The harbor beacons — pre-Cataclysm Istarian construction — cut through any fog, their light steady and ancient. 10% daily chance a ship from a distant land is in port with unique wares and sea stories.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Good wandering beat. Old magic still working in a world coming apart.</div></div>
+  </div>
+</div>
+
+<div class="loc-card">
+  <div class="loc-name">Meulara's Oddities</div>
+  <div class="loc-body">
+    <div><div class="loc-col-label">Purpose</div><div class="loc-col-text">Color and potential information — Meulara knows everyone</div></div>
+    <div><div class="loc-col-label">What's Here</div><div class="loc-col-text">Small shop piled with trinkets. Meulara — silver-haired kender, chaotic good, bright smile. Claims to know every kender in the city. Notices things and remembers them in the chaotic way kender do.</div></div>
+    <div><div class="loc-col-label">Scene Hook</div><div class="loc-col-text">Casual information. She may know something useful about something unrelated to what the party came in for.</div></div>
+  </div>
+</div>
+
+<hr class="rule-thin">
+
+<!-- IMPORTANT NPCS -->
+<div class="section-label">Important NPCs</div>
+<div class="npc-grid">
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Fizban the Fabulous</span><span class="npc-tag">Puzzle Source</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Benevolent chaos anchor. Unintentional puzzle-giver.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Cheerful, scattered, wise at exactly the wrong moments</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">Knows more than he says, including probably about the recipe. Won't explain it.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Finbar — Pellar Stonemark</span><span class="npc-tag">Dragon's Eye · Former Cell Lead</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Retrieves Jasper. Makes the introduction. Sits to the side and says very little.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Warm where Seredyn is cool. Unhurried. Makes you feel the conversation is going well until you realize he already has what he came for.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">To reclaim what Seredyn has taken — his room, his standing, his operation — without moving before the moment is right.</div></div>
+      <div class="npc-row"><div class="npc-label">Cover</div><div class="npc-value">Pellar Stonemark — middle-aged dwarf, broad shoulders, grey-streaked beard, moves with unhurried merchant efficiency.</div></div>
+      <div class="npc-row"><div class="npc-label">Thread</div><div class="npc-value">Watched Jasper in Vogler. Watched him stay when he didn't have to. The drink from the bartender is the first small thing returned. Pays debts in ways that matter.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Seredyn Valcoran</span><span class="npc-tag">Dragon's Eye · Kalaman Authority</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Leads the meeting. Asserts local authority over Jasper. Uses Fin's Bar as if it's his.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Still. Precise. Comfortable in every silence. Holds something over Finbar and never says it aloud.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">To keep Kalaman. Advancement within the marked ranks. Jasper's companions as potential guild assets.</div></div>
+      <div class="npc-row"><div class="npc-label">Limit</div><div class="npc-value">Cannot cleanly command a Coin-Marked operative. Does not reveal this. The mark pulse belongs to Lucky alone — Seredyn has no such reach.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Than Rookledust</span><span class="npc-tag">Mission Bridge · Vogler Survivor</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Unexpected bridge to the First Mission. In the camp or near the east gate.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Scattered, competitive, defensive. Reluctant respect for Tatina he won't say plainly.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">Does not want to talk about Tatina. Cannot quite stop himself once he starts.</div></div>
+      <div class="npc-row"><div class="npc-label">Knows</div><div class="npc-value">Exactly how to reach her and exactly what won't work when you try. Their split was a question of who the work belonged to. Neither one ever answered it cleanly.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Darrett Highwater</span><span class="npc-tag">Squire · Becklin's Armor</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Delivers the summons. Carries the weight of a new role he's still growing into.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Earnest, slightly overwhelmed, doing the job anyway. Stands a little straighter than he needs to.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">To be worthy of the armor. Knows the party trusts him and is trying to earn that forward.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Marshal Vendri</span><span class="npc-tag">Briefing · First Mission</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">The briefing. Writes the party name in the ledger. Sends them after Tatina.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Military, pragmatic. Not cold — efficient. Respects the Embers now that they have a track record.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">Tatina found. The party gone within the day. Doesn't have time to say either twice.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Mayor Raven Uth Vogler</span><span class="npc-tag">Refugee Camp · Light Beats</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Present in the refugee camp throughout the session.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">Exhausted, composed, grateful without being soft about it. Two weeks of the impossible and she knows how to keep doing it.</div></div>
+      <div class="npc-row"><div class="npc-label">Wants</div><div class="npc-value">Her people fed, housed, and treated as people. Won't ask the party for anything tonight — they've already given enough.</div></div>
+    </div>
+  </div>
+
+  <div class="npc-card">
+    <div class="npc-header"><span class="npc-name">Aragorn</span><span class="npc-tag">Aratos's Vignette · The Hooded King</span></div>
+    <div class="npc-body">
+      <div class="npc-row"><div class="npc-label">Role</div><div class="npc-value">Appears briefly in Aratos's campfire vision — there for a moment, then gone.</div></div>
+      <div class="npc-row"><div class="npc-label">Vibe</div><div class="npc-value">A king who doesn't look like one. Holds the silence long enough to make it mean something.</div></div>
+      <div class="npc-row"><div class="npc-label">Speaks</div><div class="npc-value">"The same blood flows in my veins. The same weakness." — not to Aratos; almost to himself.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="rule-thin">
+
+<!-- REWARDS -->
+<div class="section-label">Rewards &amp; Treasure</div>
+<div class="rewards-row">
+  <div class="reward-card"><div class="reward-title">Green-Flame Blade</div><div class="reward-desc">Cantrip encoded in Fizban's recipe — available if solved and transcribed this session or any future session</div></div>
+  <div class="reward-card"><div class="reward-title">Dragon's Eye Intel</div><div class="reward-desc">Jasper gains operational knowledge of guild structure, Seredyn's authority, Finbar's position, and Lucky's compressed timeline</div></div>
+  <div class="reward-card"><div class="reward-title">Free Morning → Supplies</div><div class="reward-desc">Open time in Kalaman to spend gold, upgrade gear at the Forges, and resupply before departure</div></div>
+</div>
+
+<hr class="rule-thin">
+
+<!-- MISC DM NOTES -->
+<div class="section-label">Miscellaneous DM Notes</div>
+<div class="misc-list">
+  <div class="misc-item">The First Mission will not be completed this session. Goal: briefed, personally connected via Than, name in the ledger, out the gate. Leave Tatina's location and arrival for Expected Journey 011.</div>
+  <div class="misc-item">If the recipe goes unsolved this session, leave it in the party's hands. It can be cracked any time — shelf life is the whole campaign.</div>
+  <div class="misc-item">Aeimos is absent — he left after the reliquary, following the pale woman's direction. Do not address unless Aratos's player brings it up.</div>
+  <div class="misc-item">Lord Bakaris and Cael are in Kalaman. Insufferable if encountered — use sparingly and only if players wander into them.</div>
+  <div class="misc-item">The Emberwake Greataxe runs warm constantly. Aratos does not yet know it is a Berserker Greataxe. The Trial of the King is approaching — Aragorn's line seeds it without naming it.</div>
+  <div class="misc-item">Seredyn cannot cleanly command a Coin-Marked operative. He does not reveal this. Finbar knows. File both facts for later.</div>
+</div>
+
+<div class="flag" style="margin-top:6pt">
+  <div class="flag-label">Carry Forward to Expected Journey 011</div>
+  <p>The First Mission continues. Plan Tatina's workshop location and its eccentric security. Play the Than dynamic on the road — if they talked to him, they have intel; if they didn't, the door will be cold. Seredyn has taken the measure of Jasper. Finbar is watching. The Embers have a name in a military ledger and a road that gets less safe the further they go.</p>
+</div>
+
+<!-- LIVE LOG -->
+<div class="live-log-section">
+  <div class="log-header">
+    <div>
+      <div class="log-header-title">Live Log &nbsp;·&nbsp; Session Notes</div>
+      <div class="log-header-session">Expected Journey 010</div>
+    </div>
+    <div class="log-date-line">Date &nbsp;<span class="log-date-blank"></span></div>
+  </div>
+  <div class="log-grid">
+    <div class="log-box"><div class="log-box-label">NPCs</div><div class="log-ruled"></div></div>
+    <div class="log-box"><div class="log-box-label">Plot Hooks / Threads</div><div class="log-ruled"></div></div>
+    <div class="log-box"><div class="log-box-label">PCs / Character Beats</div><div class="log-ruled"></div></div>
+    <div class="log-box"><div class="log-box-label">Lore / World</div><div class="log-ruled"></div></div>
+    <div class="log-box"><div class="log-box-label">Rewards / Magic Items</div><div class="log-ruled"></div></div>
+    <div class="log-box"><div class="log-box-label">Other / Loose Ends</div><div class="log-ruled"></div></div>
+  </div>
+  <div class="log-bottom">
+    <div class="log-bottom-box">
+      <div class="log-bottom-label">Next Session Must Respect</div>
+      <div class="log-ruled"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

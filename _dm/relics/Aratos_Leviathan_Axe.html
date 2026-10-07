@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Aratos Stormblessed &mdash; The Leviathan Axe (DM Only)</title>
+<style>
+@page { size: 8.5in 11in; margin: 0.6in 0.7in; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Georgia', serif; font-size: 10pt; color: #1a1a1a; line-height: 1.5; background: #fff; }
+.page { max-width: 7.1in; margin: 0 auto; padding: 0.25in 0 0.4in; }
+.print-btn { display: block; margin: 0 auto 0.3in; padding: 8px 28px; background: #58180D; color: white; border: none; border-radius: 4px; font-size: 11pt; font-family: sans-serif; cursor: pointer; }
+@media print { .print-btn { display: none; } }
+.campaign { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; font-weight: bold; letter-spacing: 3px; color: #58180D; text-transform: uppercase; text-align: center; margin-bottom: 3pt; }
+h1 { font-size: 20pt; font-weight: normal; text-align: center; margin-bottom: 3pt; }
+h2 { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 9pt; letter-spacing: 2.5px; text-transform: uppercase; color: #58180D; border-bottom: 1.5pt solid #58180D; padding-bottom: 2pt; margin: 16pt 0 6pt; page-break-after: avoid; break-after: avoid; }
+h3 { font-size: 10.5pt; margin: 10pt 0 4pt; page-break-after: avoid; break-after: avoid; }
+p { margin-bottom: 6pt; }
+.sub { font-style: italic; color: #444; font-size: 9pt; }
+h1 + .sub { text-align: center; }
+.warn { border-left: 2.5pt solid #A32D2D; padding: 3pt 0 3pt 8pt; font-size: 9pt; margin: 8pt 0; }
+.note { border-left: 2.5pt solid #185FA5; padding: 2pt 0 2pt 8pt; font-size: 9pt; color: #333; }
+.closing { font-style: italic; margin-top: 8pt; }
+ul, ol { padding-left: 16pt; margin-bottom: 6pt; }
+li { margin-bottom: 3pt; }
+table { width: 100%; border-collapse: collapse; margin: 5pt 0 8pt; font-size: 9pt; }
+th { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #58180D; text-align: left; padding: 3pt 6pt; border-bottom: 1.5pt solid #58180D; vertical-align: top; }
+td { border-bottom: 0.5pt solid #ddd; padding: 3pt 6pt; vertical-align: top; line-height: 1.4; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+td + td, th + td { border-bottom: 0.5pt solid #ddd; }
+tr > th:first-child:not(:only-child) { white-space: normal; }
+table tr th[style] + td, table tr th + td { }
+.card { border: 1pt solid #58180D; border-radius: 3pt; padding: 6pt 10pt; margin: 10pt 0; page-break-inside: avoid; break-inside: avoid; }
+.card-label { font-family: 'Arial Narrow', Arial, sans-serif; font-size: 7.5pt; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #58180D; margin-bottom: 4pt; }
+.card ol { margin-bottom: 0; }
+.stat { border: 0.75pt solid #58180D; border-radius: 3pt; padding: 6pt 9pt; margin: 8pt 0; page-break-inside: avoid; break-inside: avoid; }
+.stat-name { font-size: 11pt; font-weight: bold; color: #58180D; }
+.stat p { font-size: 9pt; margin-bottom: 4pt; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+<div class="campaign">Shadow of the Dragon Queen &middot; DM Only</div>
+<h1>Aratos Stormblessed &mdash; The Leviathan Axe</h1>
+<p class="sub">Vestige of Divergence &middot; Revised 2026-10-06 &middot; Current through Session 11</p>
+<p class="warn">Apart from the axe's name, nothing here is player-known. None of it goes on the player pages or in a recap.</p>
+
+<h2>At a Glance</h2>
+<table>
+ <tr><th style="width:26%">Now</th><td>The Emberwake Greataxe, a cursed berserker axe. Aratos cannot set it down.</td></tr>
+ <tr><th>Trial of the King</th><td><strong>0 of 3</strong> marks. One failed save so far (Session 11).</td></tr>
+ <tr><th>Next</th><td>Trial of the Storm, at level 6 or later.</td></tr>
+ <tr><th>His Wisdom save</th><td>+2. Plain: 45%. With advantage: 70%. Bless adds about 12 points to either.</td></tr>
+ <tr><th>Open work</th><td>The stat blocks need a balance pass, and the rule for calling the axe after the first trial is a draft. See the last two sections.</td></tr>
+</table>
+
+<div class="card">
+ <div class="card-label">Table Card</div>
+ <ol>
+ <li><strong>Trigger.</strong> The first time each rage that an enemy damages him.</li>
+ <li><strong>Choice.</strong> Let the rage go, and nothing happens. Or hold it, and roll.</li>
+ <li><strong>Save.</strong> Wisdom, DC 14.</li>
+ <li><strong>Advantage</strong> if he is protecting someone as it fires.</li>
+ <li><strong>Success.</strong> The axe goes cold. Mark one.</li>
+ <li><strong>Failure.</strong> Berserk on the nearest creature. New save at the end of each of his turns to shake it off.</li>
+ <li><strong>Third mark</strong> only counts when he chose someone's safety over a kill.</li>
+ </ol>
+</div>
+
+<h2>Overview</h2>
+<p>The Leviathan Axe is not received. It is forged from an enemy's weapon through repeated acts of restraint. Three ancestral spirits already appear when Aratos rages: a hooded king, a spear-bearing guardian, and a towering bald warrior. They are not summoned by the trials. They are watching, and have been watching since before the transformation began. The trials prove the transformation permanent and unlock each state.</p>
+<table>
+ <tr><th style="width:24%">Table moniker</th><th style="width:16%">Based on</th><th>What the spirit stands for</th><th style="width:18%">Trial</th></tr>
+ <tr><td>The King (hooded, dark green, gruff-bearded)</td><td>Aragorn</td><td>Leadership born of service. Protection extended outward. The king who earns the crown by refusing it.</td><td>Trial of the King</td></tr>
+ <tr><td>The spear-bearer (slim, blue-hued)</td><td>Kaladin</td><td>Life before death. The soldier who holds so others can finish. The shield that never retreats.</td><td>Trial of the Storm</td></tr>
+ <tr><td>The bald warrior (towering)</td><td>Kratos</td><td>Discipline over fury. The ghost who learned to stop. Power that serves the wielder.</td><td>Trial of the Blade</td></tr>
+</table>
+<p>The spirits come from the player's own backstory. At the table they have only been described, never named.</p>
+
+<h2>The Tester: Cathan Twice-Born</h2>
+<p>Cathan is the one testing Aratos. He is a separate ancestor and stands apart from the three spirits. Every unnamed voice and the figure at the tree are him. On the site the figure and the voice share one moniker, the elder warrior. Let the player work out who he is at the table. The name Cathan has been spoken in play three times: the river vision in Session 8, &ldquo;children of Cathan&rdquo; in Session 9, and the campfire in Session 10.</p>
+<table>
+ <tr><th style="width:12%">Session</th><th>What Aratos got</th></tr>
+ <tr><td>5</td><td>The figure at the foot of the fire-and-frost tree, telling him to choose and that the gods are watching.</td></tr>
+ <tr><td>6</td><td>The axe runs cold, the swing misses, and a voice says one word: prove.</td></tr>
+ <tr><td>7</td><td>The javelin throw that downs the dragon machine, and the voice approves.</td></tr>
+ <tr><td>7</td><td>A later throw: cold down the arm, the javelin changes shape, and the voice asks whether he is worthy.</td></tr>
+ <tr><td>8</td><td>In the river, opposite Lord Soth: he will have to choose soon.</td></tr>
+</table>
+
+<h2>What the Player Knows</h2>
+<ul>
+ <li>The name Leviathan Axe. The player is a God of War fan and the axe was built for him.</li>
+ <li>The tree of fire and frost, and the choice: blades of fury or an axe of cold restraint.</li>
+ <li>An elder warrior is testing him. He has not been told it is Cathan.</li>
+ <li>He chose the cold side at the reliquary. The Emberwake briefly became the weapon from his vision, then turned back.</li>
+ <li>Cathan Twice-Born is his ancestor, whose failure brought ruin. Sir Cthondor named him and Aeimos children of Cathan.</li>
+ <li>The Emberwake is cursed. He cannot hand it away or set it down. Other weapons feel wrong in his hand.</li>
+ <li>The three spirits appear when he rages. Their looks were described in Session 9.</li>
+ <li>The King has spoken to him three times, all in Session 10: at the campfire, in Kalaman and at the reliquary. Each was a warning that the same weakness runs in his blood, and a call to test his resolve.</li>
+</ul>
+<h3>What He Does Not Know</h3>
+<ul>
+ <li>That the elder warrior is Cathan.</li>
+ <li>That there are trials, how many, or what each asks.</li>
+ <li>Who the spirits are. Only the King has a moniker in play.</li>
+ <li>The save, the marks, and the count of three.</li>
+ <li>Any of the stat blocks.</li>
+</ul>
+
+<h2>The Emberwake Greataxe</h2>
+<p class="sub">Berserker greataxe, cursed. Taken from Theros Flametongue's body at the docks of Vogler.</p>
+<p>The axe runs warm constantly, like an ember that never quite dies. The ancestral spirits are quieter than usual when it is in his hand. Any other weapon he uses attacks at disadvantage (ruled at the table in Session 11).</p>
+
+<h3>The Rage Save</h3>
+<table>
+ <tr><th style="width:20%">Trigger</th><td>The first time in each rage that an enemy damages him. One save per rage.</td></tr>
+ <tr><th>The choice</th><td>In that moment he may let the rage go. The rage ends, he does not go berserk, and no mark is earned. Or he holds it and rolls.</td></tr>
+ <tr><th>The save</th><td>Wisdom, DC 14.</td></tr>
+ <tr><th>Advantage</th><td>He rolls with advantage if he is protecting someone as it fires. See below.</td></tr>
+ <tr><th>Success</th><td>Restraint holds. The axe goes briefly, visibly cold. Mark one.</td></tr>
+ <tr><th>Failure</th><td>Berserk. On each of his turns he must attack the nearest creature, friend or enemy. The axe runs hot. At the end of each of his turns he repeats the save, and a success ends it. Shaking it off earns no mark.</td></tr>
+ <tr><th>Carrying over</th><td>Failures do not erase marks. Marks carry from fight to fight.</td></tr>
+</table>
+
+<h3>What Counts as Protecting</h3>
+<ul>
+ <li>An ally or a bystander is within 5 feet of him and under threat.</li>
+ <li>The damage that triggered the save was taken for someone else: he stepped in front, took a hit meant for them, or drew an enemy off them.</li>
+ <li>He gave up a kill or a better target this round to stay with someone.</li>
+</ul>
+<p>If it is unclear, ask the player what Aratos is doing right now and rule from the answer.</p>
+
+<h3>Rulings</h3>
+<ul>
+ <li><strong>Nearest creature.</strong> If two are equally near, he goes for the one that last hurt him.</li>
+ <li><strong>Ending it another way.</strong> Berserk also ends if he is knocked out or his rage ends.</li>
+ <li><strong>Help from the party.</strong> Bless and similar effects apply to the save. Let the players discover that.</li>
+ <li><strong>Showing a success.</strong> Make it loud: frost on the blade, the hooded spirit turning to look. He does not know saves are progress.</li>
+ <li><strong>Showing a failure.</strong> Let it cost something he can see. In Session 11 the failure produced the kill, and the table cheered.</li>
+</ul>
+
+<h3>Tracking the Transformation</h3>
+<table>
+ <tr><th style="width:16%">Marks</th><th>What the table sees</th></tr>
+ <tr><td>0</td><td>The axe runs warm. The spirits are watchful and slightly tense.</td></tr>
+ <tr><td>1</td><td>Frost forms on the blade after the save and lingers before the heat returns.</td></tr>
+ <tr><td>2</td><td>Frost and fire visibly war on the metal between rages. Two spirits have settled. One still watches.</td></tr>
+ <tr><td>3</td><td>The heat loses. Frost spreads from blade to haft over about a minute. The grain of the steel shifts. The weight stays the same. The notches stay. Theros's axe is gone.</td></tr>
+</table>
+
+<h3>Progress</h3>
+<table>
+ <tr><th style="width:12%">Session</th><th>What happened</th><th style="width:22%">Counts?</th></tr>
+ <tr><td>10</td><td>The reliquary. He chose stillness, and the axe went cold and changed for a moment.</td><td>No. A preview.</td></tr>
+ <tr><td>11</td><td>The fight on the hill at Bracken Hollow. The save was missed for most of the fight and fired near the end. He rolled a 9, went berserk, beheaded the Stone on a natural 20, and Roshi knocked him out at 2 hit points.</td><td>Fail. Still 0.</td></tr>
+ <tr><td>12</td><td></td><td></td></tr>
+ <tr><td>13</td><td></td><td></td></tr>
+ <tr><td>14</td><td></td><td></td></tr>
+</table>
+
+<h3>What Changed in This Revision</h3>
+<table>
+ <tr><th style="width:26%">Rule</th><th>Before</th><th>Now</th></tr>
+ <tr><td>How often it fires</td><td>Every time he takes damage while raging</td><td>Once per rage, on the first enemy damage</td></tr>
+ <tr><td>Difficulty</td><td>Flat 15 in one doc, 14 then 16 then 18 in another</td><td>Flat 14</td></tr>
+ <tr><td>Protecting others</td><td>Named in the trial, with no rule</td><td>Advantage on the save, and required for the third mark</td></tr>
+ <tr><td>Berserk</td><td>One minute, ended only by knocking him out</td><td>A new save at the end of each turn</td></tr>
+ <tr><td>Letting the rage go</td><td>Had to happen before the hit landed</td><td>A choice at the moment the save is called</td></tr>
+</table>
+
+<h2>Trial of the King</h2>
+<p class="sub">Earns: Slumbering &middot; Minimum level: 4 &middot; Spirit: the Hooded King &middot; Pressure: internal. Beat the fire while serving others.</p>
+<p><strong>How it is won.</strong> Three marks. The first two can come in any fight. The third only counts in a moment where he chose someone's safety over a kill.</p>
+<h3>A Scene Built for the Third Mark</h3>
+<p>Use this, or any moment with the same shape.</p>
+<ul>
+ <li><strong>The crisis.</strong> People who cannot defend themselves are in danger: Dragon Army outriders catching a refugee column, or a flashpoint around the Vogler refugees in Kalaman.</li>
+ <li><strong>The lure.</strong> At the same moment a target worth killing presents itself, a named officer or commander. Taking that fight means leaving the others exposed for two or three rounds.</li>
+ <li><strong>The trap.</strong> The target reappears. The kill opens more than once, and he has to choose the column again each time.</li>
+ <li><strong>The witness.</strong> At least one person present has been wary of Aratos since a berserk incident. When he steps between them and the danger, they see what he chose, and afterward they acknowledge it. Recognition, with no apology attached.</li>
+</ul>
+<p><strong>The tell.</strong> On the third mark the heat loses. The frost spreads. The Emberwake is gone. The hooded spirit nods, the first real acknowledgment. King's Perimeter activates.</p>
+<p><strong>Before the trial.</strong> Cathan appears to name what the axe is and what it has done to the men who carried it before. He does not warn Aratos off it and offers no alternative. He leaves.</p>
+
+<div class="stat">
+ <div class="stat-name">Slumbering State</div>
+ <p class="sub">+1 magical battleaxe &middot; +1d4 cold damage on a hit</p>
+ <p><strong>Embed and Recall.</strong> This weapon has the Thrown property (range 15/30 ft.). On a hit, the axe embeds in the target. A creature can remove it with a DC 14 Strength (Athletics) check on its turn, dropping it at its feet. You can call the axe back as a bonus action: it flies up to 30 feet in a straight line back to your hand. Creatures in the return path must succeed on a DC 14 Dexterity saving throw or be knocked prone.</p>
+ <p><strong>Frost Memory.</strong> While attuned, you cannot be frightened while at least one ally is within 10 feet of you.</p>
+ <p><strong>King's Perimeter.</strong> While wielding this axe, allies within 5 feet of you gain a +1 bonus to AC.</p>
+ <p><strong>Topple.</strong> On a hit, you can force a Constitution saving throw (DC 8 + attack modifier + proficiency bonus) or the target falls prone.</p>
+ <p><strong>Frost Charges: 2</strong> (regained on a long rest).</p>
+ <p><em>Freezing Throw, 1 charge.</em> Bonus action. While the axe is embedded in a target, force a DC 14 Constitution saving throw or the target is restrained by permafrost for up to 1 minute, until the axe is recalled, or until it is attacked. The target repeats the save at the end of each of its turns.</p>
+</div>
+
+<h2>Trial of the Storm</h2>
+<p class="sub">Earns: Stirring &middot; Minimum level: 6 &middot; Spirit: the Spear-Bearer &middot; Pressure: survival instinct. Give yourself completely.</p>
+<p class="note">A loose sketch. The plan is to rework it as the campaign reaches that level.</p>
+<p><strong>The trial.</strong> During the siege of Kalaman, a breach in the defenses. A caster, Jasper or Kakashi, needs to complete something that requires stillness: a ritual, a seal, a spell with a long casting time. Aratos holds the chokepoint alone. Where possible, the caster protected should be the same ally who took damage during a berserk incident.</p>
+<p><strong>The conditions,</strong> made clear before the fight begins:</p>
+<ul>
+ <li>Aratos holds his ground and gives up no step.</li>
+ <li>The killing blow on the enemy leader belongs to someone else. Delay is the victory.</li>
+ <li>The win condition is time.</li>
+</ul>
+<p><strong>The axe in this fight.</strong> Freezing Throw to peel dangerous targets off the caster. Embed and Recall for crowd control in the narrow space. He will likely spend every charge before the caster finishes, and that is correct.</p>
+<p><strong>Scale.</strong> The waves should nearly break him. Single-digit hit points at least once. The drama is the close call.</p>
+<p><strong>The beat.</strong> When the caster finishes, the person Aratos protected looks at him, battered and still in position, and acknowledges what was given. A few words are enough. The spear-bearing spirit stills and settles.</p>
+<p><strong>The tell.</strong> Storm's Intercession activates. Stirring unlocks by enduring a fight entirely for someone else.</p>
+
+<div class="stat">
+ <div class="stat-name">Stirring State</div>
+ <p class="sub">+2 magical battleaxe &middot; +1d6 cold damage on a hit &middot; All Slumbering properties, plus:</p>
+ <p><strong>Embed and Recall (upgraded).</strong> The return path DC increases to 16. Creatures knocked prone by the recall are also slowed (speed reduced by 10 ft.) until the end of your next turn.</p>
+ <p><strong>Storm's Intercession.</strong> Once per short rest, when a creature within 10 feet of you takes damage, you can use your reaction to reduce that damage by 1d10 + your Strength modifier.</p>
+ <p><strong>Frost Charges: 4</strong> (regained on a long rest).</p>
+ <p><em>Freezing Throw, 1 charge.</em> Upgraded. Now inflicts petrified (encased in permafrost) instead of restrained. The DC increases to 16. The condition ends if the axe is recalled. The target repeats the save at the end of each of its turns.</p>
+ <p><em>Blessing of Frost, 2 charges.</em> Bonus action, after a successful melee attack. For 1 minute, attacks with this weapon deal an extra 2d8 cold damage, and creatures in a 10-foot cone behind the initial target take half the cold damage rolled.</p>
+</div>
+
+<h2>Trial of the Blade</h2>
+<p class="sub">Earns: Awakened &middot; Minimum level: 8 &middot; Spirit: the Bald Warrior &middot; Pressure: deliberate provocation. Hold discipline when someone is trying to break it.</p>
+<p class="note">A loose sketch. The plan is to rework it as the campaign reaches that level.</p>
+<p><strong>The opponent.</strong> A named Dragon Army champion with campaign history, or a corrupted Knight Radiant who once walked the same path as Aratos and failed where he is now being tested. The second option makes the Soth parallel explicit without naming it.</p>
+<p><strong>The trial.</strong> The opponent knows about the berserk incidents and presses on that wound: what Aratos did to his friends when the fire took him, whether the axe remembers it, whether the restraint is real. The taunting peaks when the easy path is clearest, with rage up, damage good and Reckless Attack available.</p>
+<p><strong>The condition.</strong> The killing blow must be cold: either Wrath of the Frost Ancient as the finishing move, or a final disciplined strike without Reckless Attack. He can rage through the fight and attack recklessly early. The last move has to be chosen. Managing the axe's charges so they are there at the end is the mechanical expression of the theme.</p>
+<p><strong>The tell.</strong> Nothing external. No one speaks. The enemy is on the ground, frost spreads from the impact, and the field goes quiet. The bald spirit, last to settle at every milestone, settles with something that looks like relief. Ghost's Discipline activates without ceremony.</p>
+
+<div class="stat">
+ <div class="stat-name">Awakened State</div>
+ <p class="sub">+3 magical battleaxe &middot; +1d8 cold damage on a hit &middot; All Stirring properties, plus:</p>
+ <p><strong>Storm's Intercession (upgraded).</strong> Now usable twice per short rest. The damage reduction increases to 2d10 + your Strength modifier.</p>
+ <p><strong>Ghost's Discipline.</strong> While raging, if you make an attack with this axe without using Reckless Attack, the attack deals an extra 2d6 cold damage and the target must succeed on a DC 16 Strength saving throw or be pushed 15 feet directly away from you.</p>
+ <p><strong>Frost Charges: 6</strong> (regained on a long rest).</p>
+ <p><em>Freezing Throw, 1 charge.</em> Unchanged from Stirring.</p>
+ <p><em>Blessing of Frost, 2 charges.</em> Unchanged from Stirring.</p>
+ <p><em>Wrath of the Frost Ancient, 3 charges.</em> Action. A 5-foot-wide, 30-foot line of scouring ice. Each creature in the line makes a DC 16 Dexterity saving throw. On a failure: 5d6 cold damage and speed reduced by 10 ft. until the start of your next turn. On a success: half damage and no slow.</p>
+</div>
+
+<h2>Summary</h2>
+<table>
+ <tr><th>Trial</th><th>State</th><th>Min level</th><th>Legacy</th><th>Pressure</th><th>The spirit's tell</th></tr>
+ <tr><td>King</td><td>Slumbering</td><td>4</td><td>Aragorn</td><td>Internal: beat the fire while serving</td><td>The hooded king nods</td></tr>
+ <tr><td>Storm</td><td>Stirring</td><td>6</td><td>Kaladin</td><td>Survival: give yourself completely</td><td>The spear-bearer stills</td></tr>
+ <tr><td>Blade</td><td>Awakened</td><td>8</td><td>Kratos</td><td>Provocation: hold under deliberate attack</td><td>The bald warrior, relief</td></tr>
+</table>
+<p class="closing">The axe does not get stronger because Aratos gets stronger. It gets stronger because it keeps watching him choose, and he keeps choosing correctly when it costs him something real.</p>
+
+<h2>After the First Trial: Calling the Axe (Draft)</h2>
+<p class="note">A draft from 2026-10-06. The idea is settled; the numbers are a first proposal.</p>
+<p><strong>The idea.</strong> Finishing the Trial of the King does not end the curse. The axe is still the Emberwake at rest. Each time, Aratos has to turn it into the Leviathan Axe, and until the curse is lifted he can still go berserk. It is the choice he made at the tree of fire and frost, made again every time. It gets easier.</p>
+<table>
+ <tr><th style="width:22%">At rest</th><td>The Emberwake. Warm, cursed, and he still cannot set it down.</td></tr>
+ <tr><th>Calling it</th><td>The same moment as the rage save: the first time an enemy damages him in a rage. He may also reach for the cold as he enters the rage and roll then.</td></tr>
+ <tr><th>Success</th><td>Frost takes the blade. It is the Leviathan Axe, in whatever state he has earned, until the rage ends.</td></tr>
+ <tr><th>Failure</th><td>Berserk with the Emberwake, as before, with a new save at the end of each of his turns. Shaking it off ends the berserk and leaves the axe hot.</td></tr>
+ <tr><th>Letting go</th><td>He can still drop the rage in place of rolling. The axe stays the Emberwake.</td></tr>
+ <tr><th>It gets easier</th><td>The DC falls by 2 with each trial finished. Advantage while protecting someone still applies.</td></tr>
+</table>
+<table>
+ <tr><th style="width:34%">Stage</th><th>DC</th><th>Plain</th><th>With advantage</th></tr>
+ <tr><td>During the Trial of the King</td><td>14</td><td>45%</td><td>70%</td></tr>
+ <tr><td>After the King</td><td>12</td><td>55%</td><td>80%</td></tr>
+ <tr><td>After the Storm</td><td>10</td><td>65%</td><td>88%</td></tr>
+ <tr><td>Curse lifted</td><td colspan="3">No save. The axe is the Leviathan Axe for good.</td></tr>
+</table>
+<h3>Lifting the Curse</h3>
+<ul>
+ <li><strong>Mayariel can help.</strong> She learns Remove Curse at level 5, one level from now, so decide before then what the spell does here.</li>
+ <li><strong>Proposal.</strong> The curse is older and deeper than the spell. Cast on him, it steadies him: advantage on the next rage save within the hour. It cannot end the curse outright.</li>
+ <li><strong>Ending it.</strong> A place and a moment, with her as the one who does it. The module has the party reforge a dragonlance at the Temple of Paladine at level 9, which would suit both her faith and the axe's last change.</li>
+</ul>
+<h3>Open Questions</h3>
+<ul>
+ <li>Whether lifting the curse and the Awakened state are the same event or two.</li>
+ <li>Whether he fights the first round of every battle with the Emberwake, or may call the frost as he rages.</li>
+ <li>What the Emberwake's own numbers are while it is hot.</li>
+</ul>
+
+<h2>Flagged for Another Pass</h2>
+<p class="note">Raised 2026-10-06. Nothing below has been changed in the stat blocks.</p>
+<table>
+ <tr><th style="width:26%">Item</th><th>Concern</th><th>One possible fix</th></tr>
+ <tr><td>Freezing Throw at Stirring</td><td>Petrified for one charge as a bonus action, four times a day, removes a creature from the fight at level 6.</td><td>Restrained on the first failed save, petrified only on a second.</td></tr>
+ <tr><td>Blessing of Frost</td><td>+2d8 on every hit for a minute without concentration, at level 6. Roughly doubles his damage while it runs.</td><td>+1d8 at Stirring, 2d8 at Awakened.</td></tr>
+ <tr><td>Awakened, stacked</td><td>+3, 1d8 cold, 2d6 from Ghost's Discipline and the Blessing all add together.</td><td>Ghost's Discipline once per turn.</td></tr>
+ <tr><td>+3 at level 8</td><td>The game expects +3 weapons around level 11.</td><td>Hold at +2 until level 9 or 10.</td></tr>
+ <tr><td>Storm's Intercession</td><td>Ancestral Guardians get Spirit Shield at level 6: same job, same reaction, usable every round while raging.</td><td>Add the axe's die on top of Spirit Shield.</td></tr>
+ <tr><td>Storm trial's setting</td><td>Written for the siege of Kalaman, which the module places at level 10. The attack on Kalaman near level 6 is the one at the end of chapter 4.</td><td>Run it there, paying out as the party reaches 6.</td></tr>
+ <tr><td>The caster in the Storm trial</td><td>Kakashi is one of the two named, and his player is stepping away.</td><td>Jasper, or whoever is at the table.</td></tr>
+ <tr><td>Party size</td><td>After Session 12 he is one of three characters, so the axe is a larger share of the party's strength.</td><td>Weigh the fixes above with that in mind.</td></tr>
+</table>
+
+<h2>Notes</h2>
+<ul>
+ <li><strong>Rules edition.</strong> Classes and spells are on the 2014 rules. Topple is written out in full above, so it works as is.</li>
+ <li><strong>Sources.</strong> This replaces the earlier design doc in Drive and the tracker note in the site repo. Both still hold the old save rule.</li>
+</ul>
+
+</div>
+
+</body>
+</html>
