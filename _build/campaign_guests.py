@@ -11,8 +11,9 @@ lists them. To add one, append `dict(GUESTS, slug=..., title=...,
 subtitle=..., story=[...])` there: it takes the basics and the sheets
 from GUESTS and brings its own story.
 
-Voice: the page speaks to one reader ("you and your companion"), since
-each guest reads it on their own.
+Voice: the page speaks to one reader ("you and your partner"), since
+each guest reads it on their own. "Partner" is chosen to read as close
+without saying how: the two may be a couple, friends or kin, as the guests like.
 
 Player-known framing only, same as the rest of the site: the story below
 says nothing a villager in Bracken Hollow could not tell a stranger.
@@ -46,7 +47,9 @@ GUESTS = dict(
     # reason to leave for Kalaman with the party afterwards, and a thread to
     # pick up later.
     # What they know: people at home keep forgetting things, it had begun to
-    # happen to them, and the village elder smuggled them out for help. They know who they
+    # happen to them, and the village elder smuggled them out for help. A company of
+    # mercenaries holds the village and watches the roads, which is why they left by
+    # night; who pays the company and what it wants are not on the page. They know who they
     # are and where home is; only stretches of time are missing. That is all. Not
     # remembering is the clue, so the page gives them nothing more. Who is
     # doing it, how, and what they want from the village are DM-side and are
@@ -61,32 +64,25 @@ GUESTS = dict(
     # party arrived under the black, with the wolves.
     # "The Standing Stone" is the villagers' name for the monument, new on this page.
     story=[
-        'You and your traveling companion were a day short of Kalaman, carrying a letter that asks the '
-        'city for help. Something is wrong at home, where people lose an afternoon and then whole days, '
-        'and come back with aching backs and dust on their boots and no memory of where they have been. '
-        'When the two of you began losing days of your own, the village elder put the letter in your '
-        'hands and slipped you out by night.',
-        'As evening drew on, you turned off the road to rest in Bracken Hollow, a quiet forest village '
-        'with no wall and no guard at its gate. The sky turned red as you walked in, and from the lanes '
-        'ahead came shouting, the ring of steel and the sound of running feet. An old soldier named '
-        'Sergeant Boyd pulled you through a doorway before the fighting reached you and gave you a '
-        'place by his fire.',
-        'What he told you there sounded like a tired man\'s tale: that three moons hang over the village '
-        'in a single eclipse and take their turns, white, then red, then black, each with its own trouble '
-        'in the streets, until the hour when the Standing Stone on the hill wakes and walks and someone '
-        'vanishes, and that no one can leave. You thanked him and, once the streets had gone quiet, '
-        'walked out anyway, and the road carried you straight back in on the far side of the village.',
-        'That was a week ago. Since then you have watched the moons turn, carried food in from the farms '
-        'with the wolves about, and found every word of it true.',
-        'Now a band of strangers has walked into the Hollow and killed the wolves that met them. Boyd '
-        'brought word to the house where you were sheltering that they meant to climb the hill at the '
-        'eclipse and bring the Standing Stone down, and from the doorway you watched them do it.',
-        'It is the first thing that has changed here in a week, and perhaps these strangers are the way '
-        'out of this place and the way to get help for your people.',
+        'You and your partner carry a letter to the city of Kalaman, asking for help. At home, people '
+        'lose an afternoon, then whole days, and come back with aching backs, dusty boots, and no '
+        'memory of where they went. A company of mercenaries came to "keep the peace" and now watches '
+        'every road. When the two of you began losing days of your own, the village elder slipped you '
+        'past them by night.',
+        'A day short of the city, you stopped in Bracken Hollow, a quiet forest village. The sky turned '
+        'red as you walked in, and fighting filled the lanes. An old soldier, Sergeant Boyd, pulled you '
+        'through a doorway and gave you a place by his fire.',
+        'He told you three moons hang over the village in one eclipse and take turns, white, then red, '
+        'then black, each with its own trouble. At the last hour the Standing Stone on the hill wakes '
+        'and walks, someone vanishes, and no one can leave. You tried anyway. The road carried you '
+        'straight back in. That was a week ago.',
+        'Now a band of strangers has walked in, killed the wolves that met them, and climbed the hill '
+        'at the eclipse. From a doorway, you watched them bring the Standing Stone down. Nothing else '
+        'has changed here in a week. They may be your way out, and your way to help for home.',
     ],
 
     # The line under "Choose Your Character".
-    choose='Each sheet lists everything that character can do. You and your companion may choose the '
+    choose='Each sheet lists everything that character can do. You and your partner may choose the '
            'same one. Your character\'s name, species, and appearance are yours to decide.',
 
     basics=[
