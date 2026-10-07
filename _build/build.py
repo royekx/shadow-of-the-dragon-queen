@@ -1635,9 +1635,9 @@ def build_guests():
 def build_guest_page(g):
     story = '\n'.join('<p>%s</p>' % e(p) for p in g['story'])
     basics = '\n'.join('    <li><b>%s</b> %s</li>' % (e(a), e(b)) for a, b in g['basics'])
-    # What to do on a turn, one line per character. It sits with the rules
-    # so the sheets themselves stay to the numbers.
-    turns = '\n'.join('<p class="g-row"><b>%s</b> %s</p>' % (e(s['name']), e(' '.join(s['turn'])))
+    # What each character is good at and the key things it does, one line
+    # apiece. It sits with the rules so the sheets themselves stay to the numbers.
+    turns = '\n'.join('<p class="g-row"><b>%s</b> %s</p>' % (e(s['name']), e(' '.join(s['glance'])))
                       for s in g['sheets'])
     video = ''
     if g.get('video'):
@@ -1671,8 +1671,8 @@ def build_guest_page(g):
 {video}{ease}<ul class="brief-list">
 {basics}
 </ul>
-<div class="brief-heading">On Your Turn</div>
-<p class="g-hint">A dependable turn for each character, for when you are unsure what to do.</p>
+<div class="brief-heading">What Each Character Is Good At</div>
+<p class="g-hint">A quick look at all five, to help you choose and to glance back at during play.</p>
 <div class="g-rows g-turns">
 {turns}
 </div>
