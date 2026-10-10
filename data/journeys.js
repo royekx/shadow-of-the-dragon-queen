@@ -58,5 +58,10 @@ var SOTDQ_JOURNEYS = [
     "num": "011",
     "title": "The Moons Over Bracken Hollow",
     "path": "unexpected-journeys/journey-011.html"
+  },
+  {
+    "num": "012",
+    "title": "The Three Gifts",
+    "path": "unexpected-journeys/journey-012.html"
   }
 ];
