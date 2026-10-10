@@ -146,7 +146,7 @@ JOURNEYS = [
                 ('Moon-Touched Sword', 'item:moon-touched-sword'),
                 ('Leeching Arrows', 'item:leeching-arrows'),
                 ('Periapt of Wound Closure', 'item:periapt-of-wound-closure')]),
-    dict(num=12, title='The Three Gifts', level=4, where='Bracken Hollow', video=None,
+    dict(num=12, title='The Three Gifts', level=4, where='Bracken Hollow', video='KgeNshSzi6E',
          subtitle='Three gifts taken back from the village, and a healer who had been feeding on it.',
          synopsis="With two travelers from Barrowmere, the bard Jumanji and the tinkerer Tien, the Embers find the three things that bind Bracken Hollow: a black seed under Gribb Brack's field, a white tooth that kept Sela alive after the Pale Fever, and the red banner Becklin gave Boyd in the Blood Summer. Sela dies when the tooth is taken. On the hill the monument rises again and takes Jasper to the cottage of Marigold, the village healer, where he breaks her charms. Roshi's shield wakes, Kakashi sends the monument away, and Aratos lets go of the axe's fury. The gifts are seated beneath the hill and the spell breaks. Marigold vanishes, and the party splits: Roshi and Kakashi to Kalaman with the guests, Aratos, Mayariel and Jasper on to Tatina Rookledust.",
          pcs=FIVE + ['jumanji', 'tien'],
